@@ -1,0 +1,33 @@
+{
+    "cortex-debug.armToolchainPath": "/opt/homebrew/Cellar/arm-none-eabi-gcc/10.3-2021.07/bin",
+    "cortex-debug.openocdPath": "/opt/homebrew/bin/openocd",
+    "cortex-debug.gdbPath": "/opt/homebrew/Cellar/arm-none-eabi-gcc/10.3-2021.07/bin/arm-none-eabi-gdb",
+    "cortex-debug.variableUseNaturalFormat": false,
+    "files.associations": {
+        "ili9431.h": "c",
+        "main.h": "c",
+        "spi.h": "c",
+        "stm32l4xx_it.h": "c",
+        "images.h": "c",
+        "dma.h": "c",
+        "fatfs.h": "c",
+        "diskio.h": "c",
+        "ff.h": "c",
+        "integer.h": "c",
+        "ffconf.h": "c",
+        "fonts.h": "c",
+        "i2c.h": "c",
+        "ft6206.h": "c",
+        "cmath": "c",
+        "*.tcc": "c",
+        "cstdlib": "c",
+        "math.h": "c",
+        "stdlib.h": "c",
+        "limits": "c",
+        "graphics.h": "c",
+        "esp32.h": "c",
+        "esp8266config.h": "c",
+        "esp32config.h": "c",
+        "usart.h": "c"
+    }
+}
