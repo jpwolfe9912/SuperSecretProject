@@ -15,47 +15,17 @@
  *
  ******************************************************************************
  */
-/* USER CODE END Header */
-/* Includes ------------------------------------------------------------------*/
-#include "main.h"
-
-/* Private includes ----------------------------------------------------------*/
-/* USER CODE BEGIN Includes */
+/* Includes */
+#include "data_transfer.h"
 #include "fatfs.h"
+#include "esp32.h"
+#include "ft6206.h"
+#include "ili9341.h"
+#include "graphics.h"
 #include "images.h"
-/* USER CODE END Includes */
 
-/* Private typedef -----------------------------------------------------------*/
-/* USER CODE BEGIN PTD */
-
-/* USER CODE END PTD */
-
-/* Private define ------------------------------------------------------------*/
-/* USER CODE BEGIN PD */
-
-/* USER CODE END PD */
-
-/* Private macro -------------------------------------------------------------*/
-/* USER CODE BEGIN PM */
-
-/* USER CODE END PM */
-
-/* Private variables ---------------------------------------------------------*/
-
-/* USER CODE BEGIN PV */
-
-/* USER CODE END PV */
-
-/* Private function prototypes -----------------------------------------------*/
+/* Private function prototypes */
 void SystemClock_Config(void);
-/* USER CODE BEGIN PFP */
-
-/* USER CODE END PFP */
-
-/* Private user code ---------------------------------------------------------*/
-/* USER CODE BEGIN 0 */
-
-/* USER CODE END 0 */
 
 /**
  * @brief  The application entry point.
@@ -63,29 +33,16 @@ void SystemClock_Config(void);
  */
 int main(void)
 {
-    /* USER CODE BEGIN 1 */
-
-    /* USER CODE END 1 */
-
-    /* MCU Configuration--------------------------------------------------------*/
-
-    /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
-    // HAL_Init();
+    LL_APB2_GRP1_EnableClock(LL_APB2_GRP1_PERIPH_SYSCFG);
+    LL_APB1_GRP1_EnableClock(LL_APB1_GRP1_PERIPH_PWR);
     HAL_NVIC_SetPriorityGrouping(NVIC_PRIORITYGROUP_4);
     HAL_NVIC_SetPriority(SysTick_IRQn, 15, 0U);
 
     SysTick_Config(SystemCoreClock / 1000);
 
-    /* USER CODE BEGIN Init */
-
-    /* USER CODE END Init */
-
-    /* Configure the system clock */
     SystemClock_Config();
 
-    /* USER CODE BEGIN SysInit */
     cycleCounterInit();
-    /* USER CODE END SysInit */
 
     /* Initialize all configured peripherals */
     MX_DMA_Init();
@@ -97,48 +54,47 @@ int main(void)
     // MX_FATFS_Init();
     /* USER CODE BEGIN 2 */
     ili9341Init();
+    printf("Test print\n");
     if (ft6206Init())
         printf("Init Success\n");
     else
         printf("Init Failed\n");
 
     ili9341FillScreen(BLUE);
-    ili9341DrawImage(0, 0, ILI9341_SCREEN_WIDTH, ILI9341_SCREEN_HEIGHT, &nellie);
+    ili9341DrawImage(0, 0, ILI9341_SCREEN_WIDTH, ILI9341_SCREEN_HEIGHT, nellie);
+
+    fillCircle(50, 50, 10, RED);
+    fillCircle(75, 50, 10, ORANGE);
+    fillCircle(100, 50, 10, YELLOW);
+    fillCircle(125, 50, 10, GREEN);
+    fillCircle(150, 50, 10, BLUE);
+    fillCircle(175, 50, 10, PURPLE);
+    fillCircle(200, 50, 10, WHITE);
+    fillCircle(225, 50, 10, BLACK);
+
+    drawVerticalLine(62, 40, 20, RED);
+
     /* USER CODE END 2 */
 
     /* Infinite loop */
     /* USER CODE BEGIN WHILE */
 
-    Wifi_Init();
-    SNTP_Init();
-    MQTT_Init();
+    // Wifi_Init();
+    // if (!Wifi_GetApConnection()) // connect if not connected
+    //     Wifi_Station_ConnectToAp("Jeremy Wolfe's iPhone", "aaaaaaaa", NULL);
+    // SNTP_Init();
+    // MQTT_Init();
 
-    MQTT_Message_t Test;
-    strcpy(Test.topic, "topic/esp32atRx");
-    strcpy(Test.TxData, "Hello from STM32L432");
-    MQTT_Subscribe(Test);
-    strcpy(Test.topic, "topic/esp32atTx");
-    MQTT_Unsubscribe(Test);
-    memset(Test.RxData, '\0', sizeof(Test.RxData));
-
-    TouchData_t txTouchData10[10];
-    TouchData_t rxTouchData10[10];
-    memset(rxTouchData10, '\0', sizeof(rxTouchData10));
-    uint8_t txTouchIdx = 0;
-    uint8_t rxTouchIdx = 0;
-    bool dataReady = false;
-
-    bool dataRecv = false;
-    uint32_t start;
-    volatile uint32_t elapsed;
+    // MQTT_Message_t MQTT_TxPacket;
+    // initTxTouches(&MQTT_TxPacket);
 
     while (1)
     {
         /*
-        5 Things to do
+        4 Things to do
             1) Listen for and display touch
-                a) In 100Hz loop, listen for TouchData.touched
-                b) Write small circle at touched spot
+                a) In 1Hz loop, listen for TouchData.touched
+                b) Write pixel at touched spot
                 c) Scan touches into buffer
             2) Send touches
                 a) Wait for 10 touches to occur
@@ -151,60 +107,37 @@ int main(void)
                 a) Display data to screen when ready
         */
 
-        /* USER CODE END WHILE */
-
-        /* USER CODE BEGIN 3 */
-        if (!dataRecv)
-        {
-            if (MQTT_ListenForMessage(&Test))
-            {
-                start = micros();
-                if (sscanf(Test.RxData, "%u;%u %u;%u %u;%u %u;%u %u;%u %u;%u %u;%u %u;%u %u;%u %u;%u", &rxTouchData10[0].xPos, &rxTouchData10[0].yPos, &rxTouchData10[1].xPos, &rxTouchData10[1].yPos, &rxTouchData10[2].xPos, &rxTouchData10[2].yPos, &rxTouchData10[3].xPos, &rxTouchData10[3].yPos, &rxTouchData10[4].xPos, &rxTouchData10[4].yPos, &rxTouchData10[5].xPos, &rxTouchData10[5].yPos, &rxTouchData10[6].xPos, &rxTouchData10[6].yPos, &rxTouchData10[7].xPos, &rxTouchData10[7].yPos, &rxTouchData10[8].xPos, &rxTouchData10[8].yPos, &rxTouchData10[9].xPos, &rxTouchData10[9].yPos))
-                        /* sscanf function takes over 500us to complete... could be causing problems */
-                    {
-                        dataRecv = true;
-                        elapsed = micros() - start;
-                    }
-            }
-        }
-        if (dataRecv)
-        {
-            if (frame100Hz)
-            {
-
-                fillRect(rxTouchData10[rxTouchIdx].xPos, rxTouchData10[rxTouchIdx].yPos, 5, 5, GREEN);
-                if (++rxTouchIdx > 10)
-                {
-                    rxTouchIdx = 0;
-                    dataRecv = false;
-                    memset(rxTouchData10, '\0', sizeof(rxTouchData10));
-                }
-            }
-        }
-
-        // if (touchData.touched)
+        // if (!dataRecv)
         // {
-        //     ft6206ReadData();
-        //     txTouchData10[txTouchIdx].xPos = touchData.xPos;
-        //     txTouchData10[txTouchIdx].yPos = touchData.yPos;
-        //     fillCircle(touchData.xPos, touchData.yPos, 3, RED);
-        //     if (txTouchIdx++ > 10)
-        //         dataReady = true;
-
-        //     touchData.touched = false;
+        //     if (MQTT_ListenForMessage(&Test))
+        //     {
+        //         start = micros();
+        //         if (sscanf(Test.RxData, "%u;%u %u;%u %u;%u %u;%u %u;%u %u;%u %u;%u %u;%u %u;%u %u;%u", &rxTouchData10[0].xPos, &rxTouchData10[0].yPos, &rxTouchData10[1].xPos, &rxTouchData10[1].yPos, &rxTouchData10[2].xPos, &rxTouchData10[2].yPos, &rxTouchData10[3].xPos, &rxTouchData10[3].yPos, &rxTouchData10[4].xPos, &rxTouchData10[4].yPos, &rxTouchData10[5].xPos, &rxTouchData10[5].yPos, &rxTouchData10[6].xPos, &rxTouchData10[6].yPos, &rxTouchData10[7].xPos, &rxTouchData10[7].yPos, &rxTouchData10[8].xPos, &rxTouchData10[8].yPos, &rxTouchData10[9].xPos, &rxTouchData10[9].yPos))
+        //                 /* sscanf function takes over 500us to complete... could be causing problems */
+        //             {
+        //                 dataRecv = true;
+        //                 elapsed = micros() - start;
+        //             }
+        //     }
         // }
-
-        // if (dataReady)
+        // if (dataRecv)
         // {
-        //     sprintf(Test.TxData, "%u;%u %u;%u %u;%u %u;%u %u;%u %u;%u %u;%u %u;%u %u;%u %u;%u", txTouchData10[0].xPos, txTouchData10[0].yPos, txTouchData10[1].xPos, txTouchData10[1].yPos, txTouchData10[2].xPos, txTouchData10[2].yPos, txTouchData10[3].xPos, txTouchData10[3].yPos, txTouchData10[4].xPos, txTouchData10[4].yPos, txTouchData10[5].xPos, txTouchData10[5].yPos, txTouchData10[6].xPos, txTouchData10[6].yPos, txTouchData10[7].xPos, txTouchData10[7].yPos, txTouchData10[8].xPos, txTouchData10[8].yPos, txTouchData10[9].xPos, txTouchData10[9].yPos);
-        //     strcpy(Test.topic, "topic/esp32atTx");
-        //     MQTT_Publish(Test);
-        //     dataReady = false;
-        //     txTouchIdx = 0;
+        //     if (frame100Hz)
+        //     {
+        //         fillRect(rxTouchData10[rxTouchIdx].xPos, rxTouchData10[rxTouchIdx].yPos, 5, 5, GREEN);
+        //         if (++rxTouchIdx > 10)
+        //         {
+        //             rxTouchIdx = 0;
+        //             dataRecv = false;
+        //             memset(rxTouchData10, '\0', sizeof(rxTouchData10));
+        //         }
+        //     }
         // }
+        // TODO: Figure out how to have part of the data sent if a whole second wasn't recorded so we can clear buffer
+        // readAndSendTouches(&MQTT_TxPacket);
     }
-    /* USER CODE END 3 */
 }
+/* USER CODE END 3 */
 
 /**
  * @brief System Clock Configuration

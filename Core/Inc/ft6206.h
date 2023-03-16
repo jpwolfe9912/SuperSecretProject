@@ -1,7 +1,8 @@
 #ifndef __FT6206_H__
 #define __FT6206_H__
 
-#include "main.h"
+#include "ft6206.h"
+#include "super_secret_project.h"
 
 #define FT62XX_TOUCH_IRQ EXTI9_5_IRQHandler
 
@@ -41,22 +42,6 @@ typedef struct
     uint16_t xPos;
     uint16_t yPos;
 } TouchData_t;
-
-// typedef struct
-// {
-//     TouchData_t touch1;
-//     TouchData_t touch2;
-//     TouchData_t touch3;
-//     TouchData_t touch4;
-//     TouchData_t touch5;
-//     TouchData_t touch6;
-//     TouchData_t touch7;
-//     TouchData_t touch8;
-//     TouchData_t touch9;
-//     TouchData_t touch10;
-//     uint8_t touchIdx;
-//     bool dataReady;
-// } TouchData10_t;
 
 extern TouchData_t touchData;
 bool ft6206Init(void);

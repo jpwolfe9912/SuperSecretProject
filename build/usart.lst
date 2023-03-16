@@ -1,4 +1,4 @@
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
   28:Core/Src/usart.c **** 
   29:Core/Src/usart.c **** uint8_t rx_buf;
   30:Core/Src/usart.c **** /* USER CODE END 0 */
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 2
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 2
 
 
   31:Core/Src/usart.c **** 
@@ -118,7 +118,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
    7:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   * @attention
    8:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   *
    9:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   * Copyright (c) 2017 STMicroelectronics.
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 3
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 3
 
 
   10:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   * All rights reserved.
@@ -178,7 +178,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
   64:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h **** /* Exported types ------------------------------------------------------------*/
   65:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h **** #if defined(USE_FULL_LL_DRIVER)
   66:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h **** /** @defgroup RCC_LL_Exported_Types RCC Exported Types
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 4
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 4
 
 
   67:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   * @{
@@ -238,7 +238,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  121:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h **** 
  122:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h **** #if !defined  (HSI48_VALUE)
  123:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h **** #define HSI48_VALUE  48000000U  /*!< Value of the HSI48 oscillator in Hz */
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 5
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 5
 
 
  124:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h **** #endif /* HSI48_VALUE */
@@ -298,7 +298,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  178:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h **** #endif /* RCC_PLLSAI1_SUPPORT */
  179:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h **** #if defined(RCC_PLLSAI2_SUPPORT)
  180:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h **** #define LL_RCC_CIFR_PLLSAI2RDYF            RCC_CIFR_PLLSAI2RDYF /*!< PLLSAI2 Ready Interrupt flag *
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 6
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 6
 
 
  181:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h **** #endif /* RCC_PLLSAI2_SUPPORT */
@@ -358,7 +358,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  235:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h **** #define LL_RCC_MSIRANGE_1                  RCC_CR_MSIRANGE_1  /*!< MSI = 200 KHz  */
  236:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h **** #define LL_RCC_MSIRANGE_2                  RCC_CR_MSIRANGE_2  /*!< MSI = 400 KHz  */
  237:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h **** #define LL_RCC_MSIRANGE_3                  RCC_CR_MSIRANGE_3  /*!< MSI = 800 KHz  */
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 7
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 7
 
 
  238:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h **** #define LL_RCC_MSIRANGE_4                  RCC_CR_MSIRANGE_4  /*!< MSI = 1 MHz    */
@@ -418,7 +418,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  292:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h **** /** @defgroup RCC_LL_EC_SYSCLK_DIV  AHB prescaler
  293:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   * @{
  294:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   */
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 8
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 8
 
 
  295:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h **** #define LL_RCC_SYSCLK_DIV_1                RCC_CFGR_HPRE_DIV1   /*!< SYSCLK not divided */
@@ -478,7 +478,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  349:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h **** #define LL_RCC_MCO1SOURCE_PLLCLK           (RCC_CFGR_MCOSEL_0|RCC_CFGR_MCOSEL_2)  /*!< Main PLL sel
  350:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h **** #define LL_RCC_MCO1SOURCE_LSI              (RCC_CFGR_MCOSEL_1|RCC_CFGR_MCOSEL_2)  /*!< LSI selectio
  351:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h **** #define LL_RCC_MCO1SOURCE_LSE              (RCC_CFGR_MCOSEL_0|RCC_CFGR_MCOSEL_1|RCC_CFGR_MCOSEL_2) 
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 9
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 9
 
 
  352:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h **** #if defined(RCC_HSI48_SUPPORT)
@@ -538,7 +538,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  406:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   */
  407:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h **** #if defined(RCC_CCIPR_UART4SEL)
  408:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h **** #define LL_RCC_UART4_CLKSOURCE_PCLK1       (RCC_CCIPR_UART4SEL << 16U)                           /*
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 10
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 10
 
 
  409:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h **** #define LL_RCC_UART4_CLKSOURCE_SYSCLK      ((RCC_CCIPR_UART4SEL << 16U) | RCC_CCIPR_UART4SEL_0)  /*
@@ -598,7 +598,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  463:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h **** #define LL_RCC_LPTIM1_CLKSOURCE_HSI        (RCC_CCIPR_LPTIM1SEL | (RCC_CCIPR_LPTIM1SEL_1 >> 16U)) /
  464:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h **** #define LL_RCC_LPTIM1_CLKSOURCE_LSE        (RCC_CCIPR_LPTIM1SEL | (RCC_CCIPR_LPTIM1SEL >> 16U))   /
  465:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h **** #define LL_RCC_LPTIM2_CLKSOURCE_PCLK1      RCC_CCIPR_LPTIM2SEL                                    /
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 11
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 11
 
 
  466:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h **** #define LL_RCC_LPTIM2_CLKSOURCE_LSI        (RCC_CCIPR_LPTIM2SEL | (RCC_CCIPR_LPTIM2SEL_0 >> 16U)) /
@@ -658,7 +658,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  520:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h **** #if defined(SDMMC1)
  521:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h **** /** @defgroup RCC_LL_EC_SDMMC1_CLKSOURCE  Peripheral SDMMC clock source selection
  522:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   * @{
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 12
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 12
 
 
  523:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   */
@@ -718,7 +718,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  577:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   * @{
  578:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   */
  579:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h **** #define LL_RCC_ADC_CLKSOURCE_NONE          0x00000000U          /*!< No clock used as ADC clock sou
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 13
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 13
 
 
  580:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h **** #if defined(RCC_PLLSAI1_SUPPORT)
@@ -778,7 +778,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  634:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h **** #if defined(DSI)
  635:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h **** /** @defgroup RCC_LL_EC_DSI_CLKSOURCE  Peripheral DSI clock source selection
  636:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   * @{
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 14
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 14
 
 
  637:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   */
@@ -838,7 +838,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  691:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h **** #endif /* RCC_CCIPR_UART5SEL */
  692:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h **** /**
  693:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   * @}
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 15
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 15
 
 
  694:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   */
@@ -898,7 +898,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  748:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h **** #if defined(SDMMC1)
  749:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h **** #if defined(RCC_CCIPR2_SDMMCSEL)
  750:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h **** /** @defgroup RCC_LL_EC_SDMMC1_KERNEL  Peripheral SDMMC get kernel clock source
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 16
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 16
 
 
  751:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   * @{
@@ -958,7 +958,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  805:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   */
  806:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h **** #endif /* SWPMI1 */
  807:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h **** 
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 17
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 17
 
 
  808:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h **** #if defined(DFSDM1_Channel0)
@@ -1018,7 +1018,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  862:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h **** 
  863:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h **** /** @defgroup RCC_LL_EC_RTC_CLKSOURCE  RTC clock source selection
  864:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   * @{
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 18
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 18
 
 
  865:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   */
@@ -1078,7 +1078,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  919:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   * @}
  920:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   */
  921:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h **** 
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 19
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 19
 
 
  922:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h **** #if defined(RCC_PLLP_SUPPORT)
@@ -1138,7 +1138,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  976:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h **** 
  977:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h **** #if defined(RCC_PLLSAI1M_DIV_1_16_SUPPORT)
  978:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h **** /** @defgroup RCC_LL_EC_PLLSAI1M  PLLSAI1 division factor (PLLSAI1M)
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 20
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 20
 
 
  979:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   * @{
@@ -1198,7 +1198,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 1033:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h **** #define LL_RCC_PLLSAI1P_DIV_17             (RCC_PLLSAI1CFGR_PLLSAI1PDIV_4|RCC_PLLSAI1CFGR_PLLSAI1PD
 1034:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h **** #define LL_RCC_PLLSAI1P_DIV_18             (RCC_PLLSAI1CFGR_PLLSAI1PDIV_4|RCC_PLLSAI1CFGR_PLLSAI1PD
 1035:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h **** #define LL_RCC_PLLSAI1P_DIV_19             (RCC_PLLSAI1CFGR_PLLSAI1PDIV_4|RCC_PLLSAI1CFGR_PLLSAI1PD
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 21
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 21
 
 
 1036:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h **** #define LL_RCC_PLLSAI1P_DIV_20             (RCC_PLLSAI1CFGR_PLLSAI1PDIV_4|RCC_PLLSAI1CFGR_PLLSAI1PD
@@ -1258,7 +1258,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 1090:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   * @}
 1091:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   */
 1092:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h **** #endif /* RCC_PLLSAI2M_DIV_1_16_SUPPORT */
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 22
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 22
 
 
 1093:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h **** 
@@ -1318,7 +1318,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 1147:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   */
 1148:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h **** 
 1149:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h **** /** @defgroup RCC_LL_EC_PLLSAI2R  PLLSAI2 division factor (PLLSAI2R)
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 23
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 23
 
 
 1150:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   * @{
@@ -1378,7 +1378,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 1204:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h **** #define LL_RCC_SWPMI1_CLKSOURCE_PCLK       LL_RCC_SWPMI1_CLKSOURCE_PCLK1
 1205:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h **** #endif /* SWPMI1 */
 1206:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h **** /**
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 24
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 24
 
 
 1207:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h **** @endcond
@@ -1438,7 +1438,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 1261:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   *         @arg @ref LL_RCC_PLLM_DIV_11 (*)
 1262:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   *         @arg @ref LL_RCC_PLLM_DIV_12 (*)
 1263:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   *         @arg @ref LL_RCC_PLLM_DIV_13 (*)
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 25
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 25
 
 
 1264:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   *         @arg @ref LL_RCC_PLLM_DIV_14 (*)
@@ -1498,7 +1498,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 1318:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   *         @arg @ref LL_RCC_PLLP_DIV_12
 1319:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   *         @arg @ref LL_RCC_PLLP_DIV_13
 1320:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   *         @arg @ref LL_RCC_PLLP_DIV_14
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 26
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 26
 
 
 1321:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   *         @arg @ref LL_RCC_PLLP_DIV_15
@@ -1558,7 +1558,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 1375:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   * @param  __PLLM__ This parameter can be one of the following values:
 1376:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   *         @arg @ref LL_RCC_PLLM_DIV_1
 1377:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   *         @arg @ref LL_RCC_PLLM_DIV_2
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 27
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 27
 
 
 1378:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   *         @arg @ref LL_RCC_PLLM_DIV_3
@@ -1618,7 +1618,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 1432:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   *         @arg @ref LL_RCC_PLLSAI1P_DIV_3
 1433:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   *         @arg @ref LL_RCC_PLLSAI1P_DIV_4
 1434:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   *         @arg @ref LL_RCC_PLLSAI1P_DIV_5
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 28
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 28
 
 
 1435:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   *         @arg @ref LL_RCC_PLLSAI1P_DIV_6
@@ -1678,7 +1678,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 1489:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   *         @arg @ref LL_RCC_PLLSAI1P_DIV_7
 1490:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   *         @arg @ref LL_RCC_PLLSAI1P_DIV_8
 1491:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   *         @arg @ref LL_RCC_PLLSAI1P_DIV_9
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 29
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 29
 
 
 1492:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   *         @arg @ref LL_RCC_PLLSAI1P_DIV_10
@@ -1738,7 +1738,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 1546:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h **** 
 1547:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h **** #if defined(RCC_PLLSAI1M_DIV_1_16_SUPPORT)
 1548:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h **** /**
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 30
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 30
 
 
 1549:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   * @brief  Helper macro to calculate the PLLSAI1 frequency used on 48M domain
@@ -1798,7 +1798,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 1603:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   * @retval PLLSAI1 clock frequency (in Hz)
 1604:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   */
 1605:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h **** #define __LL_RCC_CALC_PLLSAI1_48M_FREQ(__INPUTFREQ__, __PLLM__, __PLLSAI1N__, __PLLSAI1Q__) \
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 31
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 31
 
 
 1606:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****                    ((__INPUTFREQ__) / ((((__PLLM__)>> RCC_PLLCFGR_PLLM_Pos) + 1U)) * (__PLLSAI1N__)
@@ -1858,7 +1858,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 1660:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   *         @arg @ref LL_RCC_PLLM_DIV_8
 1661:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   * @param  __PLLSAI1N__ Between 8 and 86
 1662:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   * @param  __PLLSAI1R__ This parameter can be one of the following values:
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 32
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 32
 
 
 1663:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   *         @arg @ref LL_RCC_PLLSAI1R_DIV_2
@@ -1918,7 +1918,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 1717:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   *         @arg @ref LL_RCC_PLLSAI2P_DIV_18
 1718:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   *         @arg @ref LL_RCC_PLLSAI2P_DIV_19
 1719:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   *         @arg @ref LL_RCC_PLLSAI2P_DIV_20
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 33
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 33
 
 
 1720:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   *         @arg @ref LL_RCC_PLLSAI2P_DIV_21
@@ -1978,7 +1978,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 1774:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   *         @arg @ref LL_RCC_PLLSAI2P_DIV_22
 1775:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   *         @arg @ref LL_RCC_PLLSAI2P_DIV_23
 1776:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   *         @arg @ref LL_RCC_PLLSAI2P_DIV_24
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 34
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 34
 
 
 1777:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   *         @arg @ref LL_RCC_PLLSAI2P_DIV_25
@@ -2038,7 +2038,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 1831:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   *         @arg @ref LL_RCC_PLLSAI2M_DIV_8
 1832:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   *         @arg @ref LL_RCC_PLLSAI2M_DIV_9
 1833:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   *         @arg @ref LL_RCC_PLLSAI2M_DIV_10
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 35
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 35
 
 
 1834:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   *         @arg @ref LL_RCC_PLLSAI2M_DIV_11
@@ -2098,7 +2098,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 1888:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   * @note ex: @ref __LL_RCC_CALC_PLLSAI2_DSI_FREQ (HSE_VALUE,@ref LL_RCC_PLLSAI2_GetDivider (),
 1889:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   *             @ref LL_RCC_PLLSAI2_GetN (), @ref LL_RCC_PLLSAI2_GetQ ());
 1890:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   * @param  __INPUTFREQ__ PLL Input frequency (based on HSE/HSI/MSI)
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 36
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 36
 
 
 1891:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   * @param  __PLLSAI2M__ This parameter can be one of the following values:
@@ -2158,7 +2158,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 1945:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   *         @arg @ref LL_RCC_APB1_DIV_2
 1946:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   *         @arg @ref LL_RCC_APB1_DIV_4
 1947:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   *         @arg @ref LL_RCC_APB1_DIV_8
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 37
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 37
 
 
 1948:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   *         @arg @ref LL_RCC_APB1_DIV_16
@@ -2218,7 +2218,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 2002:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h **** /**
 2003:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   * @}
 2004:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   */
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 38
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 38
 
 
 2005:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h **** 
@@ -2278,7 +2278,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 2059:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h **** /**
 2060:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   * @brief  Disable HSE crystal oscillator (HSE ON)
 2061:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   * @rmtoll CR           HSEON         LL_RCC_HSE_Disable
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 39
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 39
 
 
 2062:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   * @retval None
@@ -2338,7 +2338,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 2116:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h **** }
 2117:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h **** 
 2118:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h **** /**
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 40
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 40
 
 
 2119:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   * @brief  Enable HSI oscillator
@@ -2398,7 +2398,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 2173:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   */
 2174:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h **** __STATIC_INLINE uint32_t LL_RCC_HSI_GetCalibration(void)
 2175:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h **** {
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 41
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 41
 
 
 2176:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   return (uint32_t)(READ_BIT(RCC->ICSCR, RCC_ICSCR_HSICAL) >> RCC_ICSCR_HSICAL_Pos);
@@ -2458,7 +2458,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 2230:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h **** {
 2231:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   CLEAR_BIT(RCC->CRRCR, RCC_CRRCR_HSI48ON);
 2232:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h **** }
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 42
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 42
 
 
 2233:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h **** 
@@ -2518,7 +2518,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 2287:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   */
 2288:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h **** __STATIC_INLINE void LL_RCC_LSE_EnableBypass(void)
 2289:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h **** {
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 43
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 43
 
 
 2290:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   SET_BIT(RCC->BDCR, RCC_BDCR_LSEBYP);
@@ -2578,7 +2578,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 2344:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   * @brief  Disable Clock security system on LSE.
 2345:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   * @note Clock security system can be disabled only after a LSE
 2346:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   *       failure detection. In that case it MUST be disabled by software.
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 44
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 44
 
 
 2347:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   * @rmtoll BDCR         LSECSSON      LL_RCC_LSE_DisableCSS
@@ -2638,7 +2638,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 2401:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   * @rmtoll BDCR         LSESYSDIS     LL_RCC_LSE_IsPropagationEnabled
 2402:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   * @retval State of bit (1 or 0).
 2403:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   */
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 45
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 45
 
 
 2404:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h **** __STATIC_INLINE uint32_t LL_RCC_LSE_IsPropagationEnabled(void)
@@ -2698,7 +2698,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 2458:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   MODIFY_REG(RCC->CSR, RCC_CSR_LSIPREDIV, LSI_PREDIV);
 2459:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h **** }
 2460:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h **** 
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 46
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 46
 
 
 2461:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h **** /**
@@ -2758,7 +2758,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 2515:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   *       and ready (LSERDY set by hardware)
 2516:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   * @note hardware protection to avoid enabling MSIPLLEN if LSE is not
 2517:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   *       ready
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 47
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 47
 
 
 2518:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   * @rmtoll CR           MSIPLLEN      LL_RCC_MSI_EnablePLLMode
@@ -2818,7 +2818,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 2572:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   *         @arg @ref LL_RCC_MSIRANGE_7
 2573:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   *         @arg @ref LL_RCC_MSIRANGE_8
 2574:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   *         @arg @ref LL_RCC_MSIRANGE_9
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 48
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 48
 
 
 2575:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   *         @arg @ref LL_RCC_MSIRANGE_10
@@ -2878,7 +2878,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 2629:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   */
 2630:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h **** __STATIC_INLINE uint32_t LL_RCC_MSI_GetRangeAfterStandby(void)
 2631:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h **** {
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 49
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 49
 
 
 2632:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   return (uint32_t)(READ_BIT(RCC->CSR, RCC_CSR_MSISRANGE));
@@ -2938,7 +2938,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 2686:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h **** 
 2687:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h **** /**
 2688:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   * @brief  Disable Low speed clock
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 50
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 50
 
 
 2689:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   * @rmtoll BDCR         LSCOEN        LL_RCC_LSCO_Disable
@@ -2998,7 +2998,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 2743:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h **** }
 2744:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h **** 
 2745:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h **** /**
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 51
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 51
 
 
 2746:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   * @brief  Get the system clock source
@@ -3058,7 +3058,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 2800:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   *         @arg @ref LL_RCC_APB2_DIV_2
 2801:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   *         @arg @ref LL_RCC_APB2_DIV_4
 2802:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   *         @arg @ref LL_RCC_APB2_DIV_8
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 52
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 52
 
 
 2803:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   *         @arg @ref LL_RCC_APB2_DIV_16
@@ -3118,7 +3118,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 2857:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   return (uint32_t)(READ_BIT(RCC->CFGR, RCC_CFGR_PPRE2));
 2858:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h **** }
 2859:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h **** 
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 53
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 53
 
 
 2860:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h **** /**
@@ -3178,7 +3178,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 2914:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   *         @arg @ref LL_RCC_MCO1_DIV_16
 2915:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   * @retval None
 2916:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h ****   */
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 54
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 54
 
 
 2917:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_rcc.h **** __STATIC_INLINE void LL_RCC_ConfigMCO(uint32_t MCOxSource, uint32_t MCOxPrescaler)
@@ -3238,7 +3238,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
   77              		.file 3 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h"
    1:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h **** /**
    2:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   ******************************************************************************
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 55
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 55
 
 
    3:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   * @file    stm32l4xx_ll_bus.h
@@ -3298,7 +3298,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
   57:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h **** /* Private variables ---------------------------------------------------------*/
   58:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h **** 
   59:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h **** /* Private constants ---------------------------------------------------------*/
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 56
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 56
 
 
   60:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h **** 
@@ -3358,7 +3358,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  114:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h **** #endif /* GPIOI */
  115:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h **** #if defined(USB_OTG_FS)
  116:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h **** #define LL_AHB2_GRP1_PERIPH_OTGFS          RCC_AHB2ENR_OTGFSEN
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 57
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 57
 
 
  117:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h **** #endif /* USB_OTG_FS */
@@ -3418,7 +3418,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  171:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h **** #if defined(TIM3)
  172:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h **** #define LL_APB1_GRP1_PERIPH_TIM3           RCC_APB1ENR1_TIM3EN
  173:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h **** #endif /* TIM3 */
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 58
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 58
 
 
  174:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h **** #if defined(TIM4)
@@ -3478,7 +3478,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  228:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   * @{
  229:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   */
  230:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h **** #define LL_APB1_GRP2_PERIPH_ALL            0xFFFFFFFFU
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 59
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 59
 
 
  231:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h **** #define LL_APB1_GRP2_PERIPH_LPUART1        RCC_APB1ENR2_LPUART1EN
@@ -3538,7 +3538,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  285:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h **** #endif /* DFSDM1_Channel0 */
  286:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h **** /**
  287:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h **** @endcond
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 60
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 60
 
 
  288:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   */
@@ -3598,7 +3598,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  342:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   *         AHB1ENR      CRCEN         LL_AHB1_GRP1_IsEnabledClock\n
  343:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   *         AHB1ENR      TSCEN         LL_AHB1_GRP1_IsEnabledClock\n
  344:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   *         AHB1ENR      DMA2DEN       LL_AHB1_GRP1_IsEnabledClock\n
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 61
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 61
 
 
  345:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   *         AHB1ENR      GFXMMUEN      LL_AHB1_GRP1_IsEnabledClock
@@ -3658,7 +3658,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  399:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   *         AHB1RSTR     TSCRST        LL_AHB1_GRP1_ForceReset\n
  400:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   *         AHB1RSTR     DMA2DRST      LL_AHB1_GRP1_ForceReset\n
  401:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   *         AHB1RSTR     GFXMMURST     LL_AHB1_GRP1_ForceReset
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 62
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 62
 
 
  402:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   * @param  Periphs This parameter can be a combination of the following values:
@@ -3718,7 +3718,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  456:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   *         AHB1SMENR    SRAM1SMEN     LL_AHB1_GRP1_EnableClockStopSleep\n
  457:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   *         AHB1SMENR    CRCSMEN       LL_AHB1_GRP1_EnableClockStopSleep\n
  458:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   *         AHB1SMENR    TSCSMEN       LL_AHB1_GRP1_EnableClockStopSleep\n
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 63
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 63
 
 
  459:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   *         AHB1SMENR    DMA2DSMEN     LL_AHB1_GRP1_EnableClockStopSleep\n
@@ -3778,7 +3778,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  513:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h **** 
  514:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h **** /**
  515:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   * @}
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 64
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 64
 
 
  516:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   */
@@ -3838,7 +3838,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  570:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h **** }
  571:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h **** 
  572:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h **** /**
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 65
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 65
 
 
  573:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   * @brief  Check if AHB2 peripheral clock is enabled or not
@@ -3898,7 +3898,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  627:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   *         AHB2ENR      GPIOHEN       LL_AHB2_GRP1_DisableClock\n
  628:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   *         AHB2ENR      GPIOIEN       LL_AHB2_GRP1_DisableClock\n
  629:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   *         AHB2ENR      OTGFSEN       LL_AHB2_GRP1_DisableClock\n
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 66
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 66
 
 
  630:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   *         AHB2ENR      ADCEN         LL_AHB2_GRP1_DisableClock\n
@@ -3958,7 +3958,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  684:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   *         @arg @ref LL_AHB2_GRP1_PERIPH_ALL
  685:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   *         @arg @ref LL_AHB2_GRP1_PERIPH_GPIOA
  686:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   *         @arg @ref LL_AHB2_GRP1_PERIPH_GPIOB
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 67
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 67
 
 
  687:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   *         @arg @ref LL_AHB2_GRP1_PERIPH_GPIOC
@@ -4018,7 +4018,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  741:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   *         @arg @ref LL_AHB2_GRP1_PERIPH_OTGFS (*)
  742:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   *         @arg @ref LL_AHB2_GRP1_PERIPH_ADC
  743:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   *         @arg @ref LL_AHB2_GRP1_PERIPH_DCMI (*)
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 68
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 68
 
 
  744:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   *         @arg @ref LL_AHB2_GRP1_PERIPH_AES (*)
@@ -4078,7 +4078,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  798:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   *         @arg @ref LL_AHB2_GRP1_PERIPH_SDMMC1 (*)
  799:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   *
  800:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   *         (*) value not defined in all devices.
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 69
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 69
 
 
  801:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   * @retval None
@@ -4138,7 +4138,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  855:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   * @retval None
  856:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h **** */
  857:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h **** __STATIC_INLINE void LL_AHB2_GRP1_DisableClockStopSleep(uint32_t Periphs)
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 70
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 70
 
 
  858:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h **** {
@@ -4198,7 +4198,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  912:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h **** }
  913:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h **** 
  914:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h **** /**
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 71
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 71
 
 
  915:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   * @brief  Disable AHB3 peripherals clock.
@@ -4258,7 +4258,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  969:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   * @retval None
  970:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h **** */
  971:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h **** __STATIC_INLINE void LL_AHB3_GRP1_ReleaseReset(uint32_t Periphs)
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 72
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 72
 
 
  972:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h **** {
@@ -4318,7 +4318,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 1026:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   */
 1027:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h **** 
 1028:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h **** /**
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 73
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 73
 
 
 1029:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   * @brief  Enable APB1 peripherals clock.
@@ -4378,7 +4378,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 1083:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   *
 1084:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   *         (*) value not defined in all devices.
 1085:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   * @retval None
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 74
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 74
 
 
 1086:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h **** */
@@ -4438,7 +4438,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 1140:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   *         APB1ENR1     CRSEN         LL_APB1_GRP1_IsEnabledClock\n
 1141:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   *         APB1ENR1     CAN1EN        LL_APB1_GRP1_IsEnabledClock\n
 1142:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   *         APB1ENR1     USBFSEN       LL_APB1_GRP1_IsEnabledClock\n
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 75
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 75
 
 
 1143:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   *         APB1ENR1     CAN2EN        LL_APB1_GRP1_IsEnabledClock\n
@@ -4498,7 +4498,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 1197:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   * @retval State of Periphs (1 or 0).
 1198:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h **** */
 1199:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h **** __STATIC_INLINE uint32_t LL_APB1_GRP2_IsEnabledClock(uint32_t Periphs)
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 76
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 76
 
 
 1200:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h **** {
@@ -4558,7 +4558,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 1254:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   *         @arg @ref LL_APB1_GRP1_PERIPH_USB (*)
 1255:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   *         @arg @ref LL_APB1_GRP1_PERIPH_PWR
 1256:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   *         @arg @ref LL_APB1_GRP1_PERIPH_DAC1
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 77
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 77
 
 
 1257:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   *         @arg @ref LL_APB1_GRP1_PERIPH_OPAMP
@@ -4618,7 +4618,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 1311:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   *         APB1RSTR1    DAC1RST       LL_APB1_GRP1_ForceReset\n
 1312:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   *         APB1RSTR1    OPAMPRST      LL_APB1_GRP1_ForceReset\n
 1313:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   *         APB1RSTR1    LPTIM1RST     LL_APB1_GRP1_ForceReset
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 78
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 78
 
 
 1314:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   * @param  Periphs This parameter can be a combination of the following values:
@@ -4678,7 +4678,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 1368:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h **** }
 1369:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h **** 
 1370:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h **** /**
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 79
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 79
 
 
 1371:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   * @brief  Release APB1 peripherals reset.
@@ -4738,7 +4738,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 1425:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h **** */
 1426:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h **** __STATIC_INLINE void LL_APB1_GRP1_ReleaseReset(uint32_t Periphs)
 1427:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h **** {
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 80
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 80
 
 
 1428:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   CLEAR_BIT(RCC->APB1RSTR1, Periphs);
@@ -4798,7 +4798,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 1482:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   *         @arg @ref LL_APB1_GRP1_PERIPH_TIM3 (*)
 1483:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   *         @arg @ref LL_APB1_GRP1_PERIPH_TIM4 (*)
 1484:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   *         @arg @ref LL_APB1_GRP1_PERIPH_TIM5 (*)
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 81
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 81
 
 
 1485:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   *         @arg @ref LL_APB1_GRP1_PERIPH_TIM6
@@ -4858,7 +4858,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 1539:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   /* Delay after an RCC peripheral clock enabling */
 1540:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   tmpreg = READ_BIT(RCC->APB1SMENR2, Periphs);
 1541:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   (void)tmpreg;
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 82
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 82
 
 
 1542:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h **** }
@@ -4918,7 +4918,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 1596:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   *         @arg @ref LL_APB1_GRP1_PERIPH_DAC1
 1597:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   *         @arg @ref LL_APB1_GRP1_PERIPH_OPAMP
 1598:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   *         @arg @ref LL_APB1_GRP1_PERIPH_LPTIM1
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 83
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 83
 
 
 1599:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   *
@@ -4978,7 +4978,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 1653:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   * @param  Periphs This parameter can be a combination of the following values:
 1654:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   *         @arg @ref LL_APB2_GRP1_PERIPH_SYSCFG
 1655:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   *         @arg @ref LL_APB2_GRP1_PERIPH_FW
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 84
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 84
 
 
 1656:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   *         @arg @ref LL_APB2_GRP1_PERIPH_SDMMC1 (*)
@@ -5038,7 +5038,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  103              		.loc 3 566 3 view .LVU21
  104 0046 DA6C     		ldr	r2, [r3, #76]
  105 0048 42F00102 		orr	r2, r2, #1
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 85
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 85
 
 
  106 004c DA64     		str	r2, [r3, #76]
@@ -5098,7 +5098,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
   64:Core/Src/usart.c **** 
   65:Core/Src/usart.c ****     /* USART1_RX Init */
   66:Core/Src/usart.c ****     LL_DMA_SetPeriphRequest(DMA1, LL_DMA_CHANNEL_5, LL_DMA_REQUEST_2);
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 86
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 86
 
 
  142              		.loc 1 66 5 view .LVU38
@@ -5158,7 +5158,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
   51:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****   (uint8_t)(DMA1_Channel1_BASE - DMA1_BASE),
   52:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****   (uint8_t)(DMA1_Channel2_BASE - DMA1_BASE),
   53:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****   (uint8_t)(DMA1_Channel3_BASE - DMA1_BASE),
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 87
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 87
 
 
   54:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****   (uint8_t)(DMA1_Channel4_BASE - DMA1_BASE),
@@ -5218,7 +5218,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  108:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h **** #if defined(USE_FULL_LL_DRIVER)
  109:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h **** /** @defgroup DMA_LL_ES_INIT DMA Exported Init structure
  110:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****   * @{
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 88
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 88
 
 
  111:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****   */
@@ -5278,7 +5278,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  165:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h **** 
  166:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****                                         This feature can be modified afterwards using unitary funct
  167:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h **** 
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 89
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 89
 
 
  168:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h **** #if defined(DMAMUX1)
@@ -5338,7 +5338,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  222:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h **** #define LL_DMA_IFCR_CTEIF6                DMA_IFCR_CTEIF6       /*!< Channel 6 transfer error flag 
  223:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h **** #define LL_DMA_IFCR_CGIF7                 DMA_IFCR_CGIF7        /*!< Channel 7 global flag         
  224:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h **** #define LL_DMA_IFCR_CTCIF7                DMA_IFCR_CTCIF7       /*!< Channel 7 transfer complete fl
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 90
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 90
 
 
  225:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h **** #define LL_DMA_IFCR_CHTIF7                DMA_IFCR_CHTIF7       /*!< Channel 7 half transfer flag  
@@ -5398,7 +5398,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  279:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****   * @{
  280:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****   */
  281:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h **** #define LL_DMA_CHANNEL_1                  0x00000000U /*!< DMA Channel 1 */
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 91
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 91
 
 
  282:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h **** #define LL_DMA_CHANNEL_2                  0x00000001U /*!< DMA Channel 2 */
@@ -5458,7 +5458,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  336:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h **** #define LL_DMA_PDATAALIGN_HALFWORD        DMA_CCR_PSIZE_0         /*!< Peripheral data alignment : 
  337:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h **** #define LL_DMA_PDATAALIGN_WORD            DMA_CCR_PSIZE_1         /*!< Peripheral data alignment : 
  338:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h **** /**
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 92
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 92
 
 
  339:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****   * @}
@@ -5518,7 +5518,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  393:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****   * @param  __INSTANCE__ DMA Instance
  394:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****   * @param  __REG__ Register to be written
  395:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****   * @param  __VALUE__ Value to be written in the register
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 93
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 93
 
 
  396:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****   * @retval None
@@ -5578,7 +5578,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  450:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****  ((uint32_t)(__CHANNEL_INSTANCE__) == ((uint32_t)DMA2_Channel1)) ? LL_DMA_CHANNEL_1 : \
  451:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****  ((uint32_t)(__CHANNEL_INSTANCE__) == ((uint32_t)DMA1_Channel2)) ? LL_DMA_CHANNEL_2 : \
  452:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****  ((uint32_t)(__CHANNEL_INSTANCE__) == ((uint32_t)DMA2_Channel2)) ? LL_DMA_CHANNEL_2 : \
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 94
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 94
 
 
  453:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****  ((uint32_t)(__CHANNEL_INSTANCE__) == ((uint32_t)DMA1_Channel3)) ? LL_DMA_CHANNEL_3 : \
@@ -5638,7 +5638,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  507:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****  (((uint32_t)(__DMA_INSTANCE__) == ((uint32_t)DMA2)) && ((uint32_t)(__CHANNEL__) == ((uint32_t)LL_D
  508:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****  (((uint32_t)(__DMA_INSTANCE__) == ((uint32_t)DMA1)) && ((uint32_t)(__CHANNEL__) == ((uint32_t)LL_D
  509:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****  DMA1_Channel7)
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 95
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 95
 
 
  510:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h **** #endif
@@ -5698,7 +5698,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  564:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****   *         @arg @ref LL_DMA_CHANNEL_2
  565:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****   *         @arg @ref LL_DMA_CHANNEL_3
  566:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****   *         @arg @ref LL_DMA_CHANNEL_4
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 96
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 96
 
 
  567:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****   *         @arg @ref LL_DMA_CHANNEL_5
@@ -5758,7 +5758,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  621:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****   *         @arg @ref LL_DMA_PERIPH_INCREMENT or @ref LL_DMA_PERIPH_NOINCREMENT
  622:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****   *         @arg @ref LL_DMA_MEMORY_INCREMENT or @ref LL_DMA_MEMORY_NOINCREMENT
  623:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****   *         @arg @ref LL_DMA_PDATAALIGN_BYTE or @ref LL_DMA_PDATAALIGN_HALFWORD or @ref LL_DMA_PDAT
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 97
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 97
 
 
  624:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****   *         @arg @ref LL_DMA_MDATAALIGN_BYTE or @ref LL_DMA_MDATAALIGN_HALFWORD or @ref LL_DMA_MDAT
@@ -5818,7 +5818,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  678:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****   *         @arg @ref LL_DMA_DIRECTION_MEMORY_TO_MEMORY
  679:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****   */
  680:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h **** __STATIC_INLINE uint32_t LL_DMA_GetDataTransferDirection(DMA_TypeDef *DMAx, uint32_t Channel)
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 98
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 98
 
 
  681:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h **** {
@@ -5878,7 +5878,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  735:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h **** 
  736:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h **** /**
  737:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****   * @brief  Set Peripheral increment mode.
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 99
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 99
 
 
  738:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****   * @rmtoll CCR          PINC          LL_DMA_SetPeriphIncMode
@@ -5938,7 +5938,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  792:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****   *         @arg @ref LL_DMA_CHANNEL_5
  793:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****   *         @arg @ref LL_DMA_CHANNEL_6
  794:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****   *         @arg @ref LL_DMA_CHANNEL_7
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 100
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 100
 
 
  795:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****   * @param  MemoryOrM2MDstIncMode This parameter can be one of the following values:
@@ -5998,7 +5998,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  849:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h **** {
  850:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****   uint32_t dma_base_addr = (uint32_t)DMAx;
  851:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****   MODIFY_REG(((DMA_Channel_TypeDef *)(dma_base_addr + CHANNEL_OFFSET_TAB[Channel]))->CCR, DMA_CCR_P
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 101
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 101
 
 
  852:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****              PeriphOrM2MSrcDataSize);
@@ -6058,7 +6058,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  906:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****   * @rmtoll CCR          MSIZE         LL_DMA_GetMemorySize
  907:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****   * @param  DMAx DMAx Instance
  908:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****   * @param  Channel This parameter can be one of the following values:
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 102
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 102
 
 
  909:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****   *         @arg @ref LL_DMA_CHANNEL_1
@@ -6118,7 +6118,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  963:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****   *         @arg @ref LL_DMA_CHANNEL_5
  964:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****   *         @arg @ref LL_DMA_CHANNEL_6
  965:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****   *         @arg @ref LL_DMA_CHANNEL_7
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 103
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 103
 
 
  966:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****   * @retval Returned value can be one of the following values:
@@ -6178,7 +6178,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 1020:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h **** {
 1021:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****   uint32_t dma_base_addr = (uint32_t)DMAx;
 1022:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****   return (READ_BIT(((DMA_Channel_TypeDef *)(dma_base_addr + CHANNEL_OFFSET_TAB[Channel]))->CNDTR,
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 104
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 104
 
 
 1023:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****                    DMA_CNDTR_NDT));
@@ -6238,7 +6238,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 1077:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****   *         @arg @ref LL_DMA_CHANNEL_4
 1078:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****   *         @arg @ref LL_DMA_CHANNEL_5
 1079:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****   *         @arg @ref LL_DMA_CHANNEL_6
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 105
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 105
 
 
 1080:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****   *         @arg @ref LL_DMA_CHANNEL_7
@@ -6298,7 +6298,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 1134:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h **** /**
 1135:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****   * @brief  Get Peripheral address.
 1136:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****   * @note   Interface used for direction LL_DMA_DIRECTION_PERIPH_TO_MEMORY or LL_DMA_DIRECTION_MEMO
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 106
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 106
 
 
 1137:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****   * @rmtoll CPAR         PA            LL_DMA_GetPeriphAddress
@@ -6358,7 +6358,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 1191:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****   *         @arg @ref LL_DMA_CHANNEL_7
 1192:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****   * @param  MemoryAddress Between Min_Data = 0 and Max_Data = 0xFFFFFFFF
 1193:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****   * @retval None
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 107
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 107
 
 
 1194:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****   */
@@ -6418,7 +6418,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 1248:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****   * @rmtoll CxCR         DMAREQ_ID     LL_DMA_SetPeriphRequest
 1249:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****   * @param  DMAx DMAx Instance
 1250:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****   * @param  Channel This parameter can be one of the following values:
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 108
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 108
 
 
 1251:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****   *         @arg @ref LL_DMA_CHANNEL_1
@@ -6478,7 +6478,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 1305:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****   *         @arg @ref LL_DMAMUX_REQ_TIM1_CH4
 1306:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****   *         @arg @ref LL_DMAMUX_REQ_TIM1_UP
 1307:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****   *         @arg @ref LL_DMAMUX_REQ_TIM1_TRIG
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 109
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 109
 
 
 1308:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****   *         @arg @ref LL_DMAMUX_REQ_TIM1_COM
@@ -6538,7 +6538,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 1362:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h **** 
 1363:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h **** /**
 1364:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****   * @brief  Get DMA request for DMA Channels on DMAMUX Channel x.
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 110
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 110
 
 
 1365:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****   * @note   DMAMUX channel 0 to 6 are mapped to DMA1 channel 1 to 7.
@@ -6598,7 +6598,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 1419:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****   *         @arg @ref LL_DMAMUX_REQ_OSPI1
 1420:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****   *         @arg @ref LL_DMAMUX_REQ_OSPI2
 1421:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****   *         @arg @ref LL_DMAMUX_REQ_TIM1_CH1
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 111
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 111
 
 
 1422:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****   *         @arg @ref LL_DMAMUX_REQ_TIM1_CH2
@@ -6658,7 +6658,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 1476:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h **** {
 1477:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****   uint32_t dmamux_ccr_offset = ((((uint32_t)DMAx ^ (uint32_t)DMA1) >> 10U) * 7U);
 1478:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****   return (READ_BIT((DMAMUX1_Channel0 + Channel + dmamux_ccr_offset)->CCR, DMAMUX_CxCR_DMAREQ_ID));
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 112
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 112
 
 
 1479:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h **** }
@@ -6718,7 +6718,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
    9:Drivers/CMSIS/Include/cmsis_gcc.h ****  *
   10:Drivers/CMSIS/Include/cmsis_gcc.h ****  * SPDX-License-Identifier: Apache-2.0
   11:Drivers/CMSIS/Include/cmsis_gcc.h ****  *
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 113
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 113
 
 
   12:Drivers/CMSIS/Include/cmsis_gcc.h ****  * Licensed under the Apache License, Version 2.0 (the License); you may
@@ -6778,7 +6778,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
   66:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
   67:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __PACKED_UNION
   68:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __PACKED_UNION                         union __attribute__((packed, aligned(1)))
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 114
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 114
 
 
   69:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
@@ -6838,7 +6838,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  123:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  124:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
  125:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   Initializes data and bss sections
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 115
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 115
 
 
  126:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details This default implementations initialized all data and additional bss
@@ -6898,7 +6898,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  180:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  181:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef __VECTOR_TABLE_ATTRIBUTE
  182:Drivers/CMSIS/Include/cmsis_gcc.h **** #define __VECTOR_TABLE_ATTRIBUTE  __attribute((used, section(".vectors")))
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 116
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 116
 
 
  183:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
@@ -6958,7 +6958,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  237:Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("MRS %0, control_ns" : "=r" (result) );
  238:Drivers/CMSIS/Include/cmsis_gcc.h ****   return(result);
  239:Drivers/CMSIS/Include/cmsis_gcc.h **** }
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 117
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 117
 
 
  240:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
@@ -7018,7 +7018,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  294:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  295:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
  296:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   Get xPSR Register
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 118
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 118
 
 
  297:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Returns the content of the xPSR Register.
@@ -7078,7 +7078,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  351:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
  352:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   Set Process Stack Pointer (non-secure)
  353:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Assigns the given value to the non-secure Process Stack Pointer (PSP) when in secure sta
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 119
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 119
 
 
  354:Drivers/CMSIS/Include/cmsis_gcc.h ****   \param [in]    topOfProcStack  Process Stack Pointer value to set
@@ -7138,7 +7138,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  408:Drivers/CMSIS/Include/cmsis_gcc.h ****   \param [in]    topOfMainStack  Main Stack Pointer value to set
  409:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
  410:Drivers/CMSIS/Include/cmsis_gcc.h **** __STATIC_FORCEINLINE void __TZ_set_MSP_NS(uint32_t topOfMainStack)
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 120
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 120
 
 
  411:Drivers/CMSIS/Include/cmsis_gcc.h **** {
@@ -7198,7 +7198,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  465:Drivers/CMSIS/Include/cmsis_gcc.h **** {
  466:Drivers/CMSIS/Include/cmsis_gcc.h ****   uint32_t result;
  467:Drivers/CMSIS/Include/cmsis_gcc.h **** 
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 121
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 121
 
 
  468:Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("MRS %0, primask_ns" : "=r" (result) :: "memory");
@@ -7258,7 +7258,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  522:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  523:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
  524:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   Get Base Priority
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 122
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 122
 
 
  525:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Returns the current value of the Base Priority register.
@@ -7318,7 +7318,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  579:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Assigns the given value to the Base Priority register only if BASEPRI masking is disable
  580:Drivers/CMSIS/Include/cmsis_gcc.h ****            or the new value increases the BASEPRI priority level.
  581:Drivers/CMSIS/Include/cmsis_gcc.h ****   \param [in]    basePri  Base Priority value to set
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 123
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 123
 
 
  582:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
@@ -7378,7 +7378,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  636:Drivers/CMSIS/Include/cmsis_gcc.h **** __STATIC_FORCEINLINE void __TZ_set_FAULTMASK_NS(uint32_t faultMask)
  637:Drivers/CMSIS/Include/cmsis_gcc.h **** {
  638:Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("MSR faultmask_ns, %0" : : "r" (faultMask) : "memory");
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 124
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 124
 
 
  639:Drivers/CMSIS/Include/cmsis_gcc.h **** }
@@ -7438,7 +7438,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  693:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  694:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  695:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 125
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 125
 
 
  696:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   Set Process Stack Pointer Limit
@@ -7498,7 +7498,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  750:Drivers/CMSIS/Include/cmsis_gcc.h ****   // without main extensions, the non-secure MSPLIM is RAZ/WI
  751:Drivers/CMSIS/Include/cmsis_gcc.h ****   return 0U;
  752:Drivers/CMSIS/Include/cmsis_gcc.h **** #else
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 126
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 126
 
 
  753:Drivers/CMSIS/Include/cmsis_gcc.h ****   uint32_t result;
@@ -7558,7 +7558,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  807:Drivers/CMSIS/Include/cmsis_gcc.h ****   Devices without ARMv8-M Main Extensions (i.e. Cortex-M23) lack the non-secure
  808:Drivers/CMSIS/Include/cmsis_gcc.h ****   Stack Pointer Limit register hence the write is silently ignored.
  809:Drivers/CMSIS/Include/cmsis_gcc.h **** 
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 127
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 127
 
 
  810:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Assigns the given value to the non-secure Main Stack Pointer Limit (MSPLIM) when in secu
@@ -7618,7 +7618,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  864:Drivers/CMSIS/Include/cmsis_gcc.h **** // Re-enable using built-in when GCC has been fixed
  865:Drivers/CMSIS/Include/cmsis_gcc.h **** // || (__GNUC__ > 7) || (__GNUC__ == 7 && __GNUC_MINOR__ >= 2)
  866:Drivers/CMSIS/Include/cmsis_gcc.h ****   /* see https://gcc.gnu.org/ml/gcc-patches/2017-04/msg00443.html */
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 128
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 128
 
 
  867:Drivers/CMSIS/Include/cmsis_gcc.h ****   __builtin_arm_set_fpscr(fpscr);
@@ -7678,7 +7678,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  921:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   Send Event
  922:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Send Event is a hint instruction. It causes an event to be signaled to the CPU.
  923:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 129
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 129
 
 
  924:Drivers/CMSIS/Include/cmsis_gcc.h **** #define __SEV()                             __ASM volatile ("sev")
@@ -7738,7 +7738,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  978:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  979:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  980:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 130
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 130
 
 
  981:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   Reverse byte order (16 bit)
@@ -7798,7 +7798,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 1035:Drivers/CMSIS/Include/cmsis_gcc.h ****            Debug tools can use this to investigate system state when the instruction at a particula
 1036:Drivers/CMSIS/Include/cmsis_gcc.h ****   \param [in]    value  is ignored by the processor.
 1037:Drivers/CMSIS/Include/cmsis_gcc.h ****                  If required, a debugger can use it to store additional information about the break
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 131
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 131
 
 
 1038:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
@@ -7858,7 +7858,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 1074:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Counts the number of leading zeros of a data value.
 1075:Drivers/CMSIS/Include/cmsis_gcc.h ****   \param [in]  value  Value to count the leading zeros
 1076:Drivers/CMSIS/Include/cmsis_gcc.h ****   \return             number of leading zeros in value
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 132
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 132
 
 
 1077:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
@@ -7918,7 +7918,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  206 00a0 22F48042 		bic	r2, r2, #16384
  207 00a4 22F01002 		bic	r2, r2, #16
  208 00a8 9A65     		str	r2, [r3, #88]
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 133
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 133
 
 
  209              	.LVL9:
@@ -7978,7 +7978,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  246              		.loc 4 755 5 view .LVU71
  756:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****              PeriphOrM2MSrcIncMode);
  247              		.loc 4 756 5 view .LVU72
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 134
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 134
 
 
  248 00ba 9A6D     		ldr	r2, [r3, #88]
@@ -8038,7 +8038,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  286              		.loc 4 897 22 view .LVU85
  287              	.LBB198:
  899:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****   MODIFY_REG(((DMA_Channel_TypeDef *)(dma_base_addr + CHANNEL_OFFSET_TAB[Channel]))->CCR, DMA_CCR_M
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 135
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 135
 
 
  288              		.loc 4 899 3 view .LVU86
@@ -8098,7 +8098,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 1089:Drivers/CMSIS/Include/cmsis_gcc.h ****   {
  329              		.loc 5 1089 6 is_stmt 0 view .LVU99
  330 00ea 002B     		cmp	r3, #0
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 136
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 136
 
 
  331 00ec 67D0     		beq	.L5
@@ -8158,7 +8158,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  374 0112 22F44052 		bic	r2, r2, #12288
  375 0116 5A64     		str	r2, [r3, #68]
  376              	.LVL21:
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 137
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 137
 
 
  950:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****              Priority);
@@ -8218,7 +8218,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  803:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****              MemoryOrM2MDstIncMode);
  414              		.loc 4 803 3 view .LVU128
  415 0128 5A6C     		ldr	r2, [r3, #68]
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 138
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 138
 
 
  416 012a 42F08002 		orr	r2, r2, #128
@@ -8278,7 +8278,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
    1:Drivers/CMSIS/Include/core_cm4.h **** /**************************************************************************//**
    2:Drivers/CMSIS/Include/core_cm4.h ****  * @file     core_cm4.h
    3:Drivers/CMSIS/Include/core_cm4.h ****  * @brief    CMSIS Cortex-M4 Core Peripheral Access Layer Header File
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 139
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 139
 
 
    4:Drivers/CMSIS/Include/core_cm4.h ****  * @version  V5.1.0
@@ -8338,7 +8338,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
   58:Drivers/CMSIS/Include/core_cm4.h **** /**
   59:Drivers/CMSIS/Include/core_cm4.h ****   \ingroup Cortex_M4
   60:Drivers/CMSIS/Include/core_cm4.h ****   @{
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 140
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 140
 
 
   61:Drivers/CMSIS/Include/core_cm4.h ****  */
@@ -8398,7 +8398,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  115:Drivers/CMSIS/Include/core_cm4.h ****       #define __FPU_USED       1U
  116:Drivers/CMSIS/Include/core_cm4.h ****     #else
  117:Drivers/CMSIS/Include/core_cm4.h ****       #error "Compiler generates FPU instructions for a device without an FPU (check __FPU_PRESENT)
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 141
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 141
 
 
  118:Drivers/CMSIS/Include/core_cm4.h ****       #define __FPU_USED       0U
@@ -8458,7 +8458,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  172:Drivers/CMSIS/Include/core_cm4.h **** 
  173:Drivers/CMSIS/Include/core_cm4.h **** #ifndef __CORE_CM4_H_DEPENDANT
  174:Drivers/CMSIS/Include/core_cm4.h **** #define __CORE_CM4_H_DEPENDANT
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 142
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 142
 
 
  175:Drivers/CMSIS/Include/core_cm4.h **** 
@@ -8518,7 +8518,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  229:Drivers/CMSIS/Include/core_cm4.h **** /*@} end of group Cortex_M4 */
  230:Drivers/CMSIS/Include/core_cm4.h **** 
  231:Drivers/CMSIS/Include/core_cm4.h **** 
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 143
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 143
 
 
  232:Drivers/CMSIS/Include/core_cm4.h **** 
@@ -8578,7 +8578,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  286:Drivers/CMSIS/Include/core_cm4.h **** #define APSR_V_Msk                         (1UL << APSR_V_Pos)                            /*!< APSR
  287:Drivers/CMSIS/Include/core_cm4.h **** 
  288:Drivers/CMSIS/Include/core_cm4.h **** #define APSR_Q_Pos                         27U                                            /*!< APSR
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 144
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 144
 
 
  289:Drivers/CMSIS/Include/core_cm4.h **** #define APSR_Q_Msk                         (1UL << APSR_Q_Pos)                            /*!< APSR
@@ -8638,7 +8638,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  343:Drivers/CMSIS/Include/core_cm4.h **** #define xPSR_C_Pos                         29U                                            /*!< xPSR
  344:Drivers/CMSIS/Include/core_cm4.h **** #define xPSR_C_Msk                         (1UL << xPSR_C_Pos)                            /*!< xPSR
  345:Drivers/CMSIS/Include/core_cm4.h **** 
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 145
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 145
 
 
  346:Drivers/CMSIS/Include/core_cm4.h **** #define xPSR_V_Pos                         28U                                            /*!< xPSR
@@ -8698,7 +8698,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  400:Drivers/CMSIS/Include/core_cm4.h ****   @{
  401:Drivers/CMSIS/Include/core_cm4.h ****  */
  402:Drivers/CMSIS/Include/core_cm4.h **** 
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 146
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 146
 
 
  403:Drivers/CMSIS/Include/core_cm4.h **** /**
@@ -8758,7 +8758,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  457:Drivers/CMSIS/Include/core_cm4.h ****   __IM  uint32_t DFR;                    /*!< Offset: 0x048 (R/ )  Debug Feature Register */
  458:Drivers/CMSIS/Include/core_cm4.h ****   __IM  uint32_t ADR;                    /*!< Offset: 0x04C (R/ )  Auxiliary Feature Register */
  459:Drivers/CMSIS/Include/core_cm4.h ****   __IM  uint32_t MMFR[4U];               /*!< Offset: 0x050 (R/ )  Memory Model Feature Register */
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 147
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 147
 
 
  460:Drivers/CMSIS/Include/core_cm4.h ****   __IM  uint32_t ISAR[5U];               /*!< Offset: 0x060 (R/ )  Instruction Set Attributes Regis
@@ -8818,7 +8818,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  514:Drivers/CMSIS/Include/core_cm4.h **** #define SCB_VTOR_TBLOFF_Msk                (0x1FFFFFFUL << SCB_VTOR_TBLOFF_Pos)           /*!< SCB 
  515:Drivers/CMSIS/Include/core_cm4.h **** 
  516:Drivers/CMSIS/Include/core_cm4.h **** /* SCB Application Interrupt and Reset Control Register Definitions */
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 148
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 148
 
 
  517:Drivers/CMSIS/Include/core_cm4.h **** #define SCB_AIRCR_VECTKEY_Pos              16U                                            /*!< SCB 
@@ -8878,7 +8878,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  571:Drivers/CMSIS/Include/core_cm4.h **** #define SCB_SHCSR_BUSFAULTENA_Pos          17U                                            /*!< SCB 
  572:Drivers/CMSIS/Include/core_cm4.h **** #define SCB_SHCSR_BUSFAULTENA_Msk          (1UL << SCB_SHCSR_BUSFAULTENA_Pos)             /*!< SCB 
  573:Drivers/CMSIS/Include/core_cm4.h **** 
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 149
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 149
 
 
  574:Drivers/CMSIS/Include/core_cm4.h **** #define SCB_SHCSR_MEMFAULTENA_Pos          16U                                            /*!< SCB 
@@ -8938,7 +8938,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  628:Drivers/CMSIS/Include/core_cm4.h **** #define SCB_CFSR_MSTKERR_Msk               (1UL << SCB_CFSR_MSTKERR_Pos)                  /*!< SCB 
  629:Drivers/CMSIS/Include/core_cm4.h **** 
  630:Drivers/CMSIS/Include/core_cm4.h **** #define SCB_CFSR_MUNSTKERR_Pos             (SCB_SHCSR_MEMFAULTACT_Pos + 3U)               /*!< SCB 
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 150
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 150
 
 
  631:Drivers/CMSIS/Include/core_cm4.h **** #define SCB_CFSR_MUNSTKERR_Msk             (1UL << SCB_CFSR_MUNSTKERR_Pos)                /*!< SCB 
@@ -8998,7 +8998,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  685:Drivers/CMSIS/Include/core_cm4.h **** #define SCB_HFSR_FORCED_Msk                (1UL << SCB_HFSR_FORCED_Pos)                   /*!< SCB 
  686:Drivers/CMSIS/Include/core_cm4.h **** 
  687:Drivers/CMSIS/Include/core_cm4.h **** #define SCB_HFSR_VECTTBL_Pos                1U                                            /*!< SCB 
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 151
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 151
 
 
  688:Drivers/CMSIS/Include/core_cm4.h **** #define SCB_HFSR_VECTTBL_Msk               (1UL << SCB_HFSR_VECTTBL_Pos)                  /*!< SCB 
@@ -9058,7 +9058,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  742:Drivers/CMSIS/Include/core_cm4.h **** 
  743:Drivers/CMSIS/Include/core_cm4.h **** #define SCnSCB_ACTLR_DISMCYCINT_Pos         0U                                         /*!< ACTLR: 
  744:Drivers/CMSIS/Include/core_cm4.h **** #define SCnSCB_ACTLR_DISMCYCINT_Msk        (1UL /*<< SCnSCB_ACTLR_DISMCYCINT_Pos*/)    /*!< ACTLR: 
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 152
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 152
 
 
  745:Drivers/CMSIS/Include/core_cm4.h **** 
@@ -9118,7 +9118,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  799:Drivers/CMSIS/Include/core_cm4.h **** 
  800:Drivers/CMSIS/Include/core_cm4.h **** 
  801:Drivers/CMSIS/Include/core_cm4.h **** /**
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 153
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 153
 
 
  802:Drivers/CMSIS/Include/core_cm4.h ****   \ingroup  CMSIS_core_register
@@ -9178,7 +9178,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  856:Drivers/CMSIS/Include/core_cm4.h **** #define ITM_TCR_GTSFREQ_Msk                (3UL << ITM_TCR_GTSFREQ_Pos)                   /*!< ITM 
  857:Drivers/CMSIS/Include/core_cm4.h **** 
  858:Drivers/CMSIS/Include/core_cm4.h **** #define ITM_TCR_TSPrescale_Pos              8U                                            /*!< ITM 
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 154
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 154
 
 
  859:Drivers/CMSIS/Include/core_cm4.h **** #define ITM_TCR_TSPrescale_Msk             (3UL << ITM_TCR_TSPrescale_Pos)                /*!< ITM 
@@ -9238,7 +9238,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  913:Drivers/CMSIS/Include/core_cm4.h ****   __IOM uint32_t COMP1;                  /*!< Offset: 0x030 (R/W)  Comparator Register 1 */
  914:Drivers/CMSIS/Include/core_cm4.h ****   __IOM uint32_t MASK1;                  /*!< Offset: 0x034 (R/W)  Mask Register 1 */
  915:Drivers/CMSIS/Include/core_cm4.h ****   __IOM uint32_t FUNCTION1;              /*!< Offset: 0x038 (R/W)  Function Register 1 */
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 155
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 155
 
 
  916:Drivers/CMSIS/Include/core_cm4.h ****         uint32_t RESERVED1[1U];
@@ -9298,7 +9298,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  970:Drivers/CMSIS/Include/core_cm4.h **** #define DWT_CTRL_CYCTAP_Msk                (0x1UL << DWT_CTRL_CYCTAP_Pos)              /*!< DWT CTR
  971:Drivers/CMSIS/Include/core_cm4.h **** 
  972:Drivers/CMSIS/Include/core_cm4.h **** #define DWT_CTRL_POSTINIT_Pos               5U                                         /*!< DWT CTR
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 156
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 156
 
 
  973:Drivers/CMSIS/Include/core_cm4.h **** #define DWT_CTRL_POSTINIT_Msk              (0xFUL << DWT_CTRL_POSTINIT_Pos)            /*!< DWT CTR
@@ -9358,7 +9358,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 1027:Drivers/CMSIS/Include/core_cm4.h **** #define DWT_FUNCTION_EMITRANGE_Pos          5U                                         /*!< DWT FUN
 1028:Drivers/CMSIS/Include/core_cm4.h **** #define DWT_FUNCTION_EMITRANGE_Msk         (0x1UL << DWT_FUNCTION_EMITRANGE_Pos)       /*!< DWT FUN
 1029:Drivers/CMSIS/Include/core_cm4.h **** 
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 157
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 157
 
 
 1030:Drivers/CMSIS/Include/core_cm4.h **** #define DWT_FUNCTION_FUNCTION_Pos           0U                                         /*!< DWT FUN
@@ -9418,7 +9418,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 1084:Drivers/CMSIS/Include/core_cm4.h **** #define TPI_FFSR_FtNonStop_Msk             (0x1UL << TPI_FFSR_FtNonStop_Pos)           /*!< TPI FFS
 1085:Drivers/CMSIS/Include/core_cm4.h **** 
 1086:Drivers/CMSIS/Include/core_cm4.h **** #define TPI_FFSR_TCPresent_Pos              2U                                         /*!< TPI FFS
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 158
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 158
 
 
 1087:Drivers/CMSIS/Include/core_cm4.h **** #define TPI_FFSR_TCPresent_Msk             (0x1UL << TPI_FFSR_TCPresent_Pos)           /*!< TPI FFS
@@ -9478,7 +9478,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 1141:Drivers/CMSIS/Include/core_cm4.h **** 
 1142:Drivers/CMSIS/Include/core_cm4.h **** #define TPI_FIFO1_ETM_ATVALID_Pos          26U                                         /*!< TPI FIF
 1143:Drivers/CMSIS/Include/core_cm4.h **** #define TPI_FIFO1_ETM_ATVALID_Msk          (0x1UL << TPI_FIFO1_ETM_ATVALID_Pos)        /*!< TPI FIF
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 159
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 159
 
 
 1144:Drivers/CMSIS/Include/core_cm4.h **** 
@@ -9538,7 +9538,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 1198:Drivers/CMSIS/Include/core_cm4.h **** /**
 1199:Drivers/CMSIS/Include/core_cm4.h ****   \ingroup  CMSIS_core_register
 1200:Drivers/CMSIS/Include/core_cm4.h ****   \defgroup CMSIS_MPU     Memory Protection Unit (MPU)
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 160
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 160
 
 
 1201:Drivers/CMSIS/Include/core_cm4.h ****   \brief    Type definitions for the Memory Protection Unit (MPU)
@@ -9598,7 +9598,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 1255:Drivers/CMSIS/Include/core_cm4.h **** 
 1256:Drivers/CMSIS/Include/core_cm4.h **** #define MPU_RBAR_REGION_Pos                 0U                                            /*!< MPU 
 1257:Drivers/CMSIS/Include/core_cm4.h **** #define MPU_RBAR_REGION_Msk                (0xFUL /*<< MPU_RBAR_REGION_Pos*/)             /*!< MPU 
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 161
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 161
 
 
 1258:Drivers/CMSIS/Include/core_cm4.h **** 
@@ -9658,7 +9658,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 1312:Drivers/CMSIS/Include/core_cm4.h ****   __IM  uint32_t MVFR2;                  /*!< Offset: 0x018 (R/ )  Media and FP Feature Register 2 
 1313:Drivers/CMSIS/Include/core_cm4.h **** } FPU_Type;
 1314:Drivers/CMSIS/Include/core_cm4.h **** 
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 162
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 162
 
 
 1315:Drivers/CMSIS/Include/core_cm4.h **** /* Floating-Point Context Control Register Definitions */
@@ -9718,7 +9718,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 1369:Drivers/CMSIS/Include/core_cm4.h **** 
 1370:Drivers/CMSIS/Include/core_cm4.h **** #define FPU_MVFR0_Divide_Pos               16U                                            /*!< MVFR
 1371:Drivers/CMSIS/Include/core_cm4.h **** #define FPU_MVFR0_Divide_Msk               (0xFUL << FPU_MVFR0_Divide_Pos)                /*!< MVFR
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 163
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 163
 
 
 1372:Drivers/CMSIS/Include/core_cm4.h **** 
@@ -9778,7 +9778,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 1426:Drivers/CMSIS/Include/core_cm4.h **** #define CoreDebug_DHCSR_DBGKEY_Msk         (0xFFFFUL << CoreDebug_DHCSR_DBGKEY_Pos)       /*!< Core
 1427:Drivers/CMSIS/Include/core_cm4.h **** 
 1428:Drivers/CMSIS/Include/core_cm4.h **** #define CoreDebug_DHCSR_S_RESET_ST_Pos     25U                                            /*!< Core
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 164
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 164
 
 
 1429:Drivers/CMSIS/Include/core_cm4.h **** #define CoreDebug_DHCSR_S_RESET_ST_Msk     (1UL << CoreDebug_DHCSR_S_RESET_ST_Pos)        /*!< Core
@@ -9838,7 +9838,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 1483:Drivers/CMSIS/Include/core_cm4.h **** 
 1484:Drivers/CMSIS/Include/core_cm4.h **** #define CoreDebug_DEMCR_VC_HARDERR_Pos     10U                                            /*!< Core
 1485:Drivers/CMSIS/Include/core_cm4.h **** #define CoreDebug_DEMCR_VC_HARDERR_Msk     (1UL << CoreDebug_DEMCR_VC_HARDERR_Pos)        /*!< Core
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 165
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 165
 
 
 1486:Drivers/CMSIS/Include/core_cm4.h **** 
@@ -9898,7 +9898,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 1540:Drivers/CMSIS/Include/core_cm4.h ****   \brief      Definitions for base addresses, unions, and structures.
 1541:Drivers/CMSIS/Include/core_cm4.h ****   @{
 1542:Drivers/CMSIS/Include/core_cm4.h ****  */
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 166
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 166
 
 
 1543:Drivers/CMSIS/Include/core_cm4.h **** 
@@ -9958,7 +9958,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 1597:Drivers/CMSIS/Include/core_cm4.h **** #ifdef CMSIS_NVIC_VIRTUAL
 1598:Drivers/CMSIS/Include/core_cm4.h ****   #ifndef CMSIS_NVIC_VIRTUAL_HEADER_FILE
 1599:Drivers/CMSIS/Include/core_cm4.h ****     #define CMSIS_NVIC_VIRTUAL_HEADER_FILE "cmsis_nvic_virtual.h"
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 167
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 167
 
 
 1600:Drivers/CMSIS/Include/core_cm4.h ****   #endif
@@ -10018,7 +10018,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 1654:Drivers/CMSIS/Include/core_cm4.h ****   reg_value &= ~((uint32_t)(SCB_AIRCR_VECTKEY_Msk | SCB_AIRCR_PRIGROUP_Msk)); /* clear bits to chan
 1655:Drivers/CMSIS/Include/core_cm4.h ****   reg_value  =  (reg_value                                   |
 1656:Drivers/CMSIS/Include/core_cm4.h ****                 ((uint32_t)0x5FAUL << SCB_AIRCR_VECTKEY_Pos) |
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 168
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 168
 
 
 1657:Drivers/CMSIS/Include/core_cm4.h ****                 (PriorityGroupTmp << SCB_AIRCR_PRIGROUP_Pos)  );              /* Insert write key a
@@ -10078,7 +10078,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 1699:Drivers/CMSIS/Include/core_cm4.h **** {
 1700:Drivers/CMSIS/Include/core_cm4.h ****   if ((int32_t)(IRQn) >= 0)
 1701:Drivers/CMSIS/Include/core_cm4.h ****   {
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 169
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 169
 
 
 1702:Drivers/CMSIS/Include/core_cm4.h ****     return((uint32_t)(((NVIC->ISER[(((uint32_t)IRQn) >> 5UL)] & (1UL << (((uint32_t)IRQn) & 0x1FUL)
@@ -10138,7 +10138,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 1756:Drivers/CMSIS/Include/core_cm4.h **** {
 1757:Drivers/CMSIS/Include/core_cm4.h ****   if ((int32_t)(IRQn) >= 0)
 1758:Drivers/CMSIS/Include/core_cm4.h ****   {
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 170
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 170
 
 
 1759:Drivers/CMSIS/Include/core_cm4.h ****     NVIC->ISPR[(((uint32_t)IRQn) >> 5UL)] = (uint32_t)(1UL << (((uint32_t)IRQn) & 0x1FUL));
@@ -10198,7 +10198,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 1813:Drivers/CMSIS/Include/core_cm4.h ****     NVIC->IP[((uint32_t)IRQn)]               = (uint8_t)((priority << (8U - __NVIC_PRIO_BITS)) & (u
 1814:Drivers/CMSIS/Include/core_cm4.h ****   }
 1815:Drivers/CMSIS/Include/core_cm4.h ****   else
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 171
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 171
 
 
 1816:Drivers/CMSIS/Include/core_cm4.h ****   {
@@ -10258,7 +10258,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  472              		.loc 6 1863 3 view .LVU150
 1864:Drivers/CMSIS/Include/core_cm4.h **** 
 1865:Drivers/CMSIS/Include/core_cm4.h ****   return (
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 172
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 172
 
 
  473              		.loc 6 1865 3 view .LVU151
@@ -10318,7 +10318,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  105:Core/Src/usart.c ****     DMA1_Channel5->CPAR = (uint32_t)(&(USART1->RDR));
  511              		.loc 1 105 5 is_stmt 1 view .LVU168
  512              		.loc 1 105 25 is_stmt 0 view .LVU169
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 173
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 173
 
 
  513 0154 0439     		subs	r1, r1, #4
@@ -10378,7 +10378,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 1561:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h **** /**
 1562:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****   * @brief  Get Channel 1 global interrupt flag.
 1563:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****   * @rmtoll ISR          GIF1          LL_DMA_IsActiveFlag_GI1
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 174
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 174
 
 
 1564:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****   * @param  DMAx DMAx Instance
@@ -10438,7 +10438,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 1618:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****   * @rmtoll ISR          GIF6          LL_DMA_IsActiveFlag_GI6
 1619:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****   * @param  DMAx DMAx Instance
 1620:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****   * @retval State of bit (1 or 0).
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 175
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 175
 
 
 1621:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****   */
@@ -10498,7 +10498,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 1675:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****   * @retval State of bit (1 or 0).
 1676:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****   */
 1677:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h **** __STATIC_INLINE uint32_t LL_DMA_IsActiveFlag_TC4(DMA_TypeDef *DMAx)
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 176
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 176
 
 
 1678:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h **** {
@@ -10558,7 +10558,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 1732:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h **** __STATIC_INLINE uint32_t LL_DMA_IsActiveFlag_HT2(DMA_TypeDef *DMAx)
 1733:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h **** {
 1734:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****   return ((READ_BIT(DMAx->ISR, DMA_ISR_HTIF2) == (DMA_ISR_HTIF2)) ? 1UL : 0UL);
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 177
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 177
 
 
 1735:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h **** }
@@ -10618,7 +10618,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 1789:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****   return ((READ_BIT(DMAx->ISR, DMA_ISR_HTIF7) == (DMA_ISR_HTIF7)) ? 1UL : 0UL);
 1790:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h **** }
 1791:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h **** 
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 178
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 178
 
 
 1792:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h **** /**
@@ -10678,7 +10678,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 1846:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h **** 
 1847:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h **** /**
 1848:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****   * @brief  Get Channel 6 transfer error flag.
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 179
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 179
 
 
 1849:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****   * @rmtoll ISR          TEIF6         LL_DMA_IsActiveFlag_TE6
@@ -10738,7 +10738,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 1903:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****     error flag with LL_DMA_ClearFlag_TC3, LL_DMA_ClearFlag_HT3,
 1904:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****     LL_DMA_ClearFlag_TE3. bug id 2.4.1/2.5.1 in Product Errata Sheet.
 1905:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****   * @rmtoll IFCR         CGIF3         LL_DMA_ClearFlag_GI3
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 180
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 180
 
 
 1906:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****   * @param  DMAx DMAx Instance
@@ -10798,7 +10798,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 1960:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****   * @brief  Clear Channel 7 global interrupt flag.
 1961:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****   * @note Do not Clear Channel 7 global interrupt flag when the channel in ON.
 1962:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****     Instead clear specific flags transfer complete, half transfer & transfer
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 181
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 181
 
 
 1963:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****     error flag with LL_DMA_ClearFlag_TC7, LL_DMA_ClearFlag_HT7,
@@ -10858,7 +10858,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 2017:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h **** 
 2018:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h **** /**
 2019:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****   * @brief  Clear Channel 5  transfer complete flag.
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 182
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 182
 
 
 2020:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****   * @rmtoll IFCR         CTCIF5        LL_DMA_ClearFlag_TC5
@@ -10918,7 +10918,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 2074:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****   * @brief  Clear Channel 3  half transfer flag.
 2075:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****   * @rmtoll IFCR         CHTIF3        LL_DMA_ClearFlag_HT3
 2076:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****   * @param  DMAx DMAx Instance
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 183
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 183
 
 
 2077:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****   * @retval None
@@ -10978,7 +10978,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 2131:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****   * @param  DMAx DMAx Instance
 2132:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****   * @retval None
 2133:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****   */
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 184
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 184
 
 
 2134:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h **** __STATIC_INLINE void LL_DMA_ClearFlag_TE1(DMA_TypeDef *DMAx)
@@ -11038,7 +11038,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 2188:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****   */
 2189:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h **** __STATIC_INLINE void LL_DMA_ClearFlag_TE6(DMA_TypeDef *DMAx)
 2190:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h **** {
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 185
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 185
 
 
 2191:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****   WRITE_REG(DMAx->IFCR, DMA_IFCR_CTEIF6);
@@ -11098,7 +11098,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 2230:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h **** }
 2231:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h **** 
 2232:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h **** /**
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 186
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 186
 
 
 2233:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****   * @brief  Enable Half transfer interrupt.
@@ -11158,7 +11158,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  548              	.LBB235:
 2228:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h ****   SET_BIT(((DMA_Channel_TypeDef *)(dma_base_addr + CHANNEL_OFFSET_TAB[Channel]))->CCR, DMA_CCR_TCIE
  549              		.loc 4 2228 3 view .LVU182
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 187
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 187
 
 
 2229:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h **** }
@@ -11218,7 +11218,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  591 0188 0E92     		str	r2, [sp, #56]
  119:Core/Src/usart.c ****     USART_InitStruct.OverSampling = LL_USART_OVERSAMPLING_16;
  592              		.loc 1 119 5 is_stmt 1 view .LVU202
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 188
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 188
 
 
  593              		.loc 1 119 35 is_stmt 0 view .LVU203
@@ -11278,7 +11278,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
   41:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** /* Private variables ---------------------------------------------------------*/
   42:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** #if defined(USART_PRESC_PRESCALER)
   43:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** /** @defgroup USART_LL_Private_Variables USART Private Variables
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 189
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 189
 
 
   44:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @{
@@ -11338,7 +11338,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
   98:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** 
   99:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****                                            This feature can be modified afterwards using unitary
  100:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****                                            function @ref LL_USART_SetBaudRate().*/
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 190
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 190
 
 
  101:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** 
@@ -11398,7 +11398,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  155:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****                                            USART HW configuration can be modified afterwards using 
  156:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****                                            functions @ref LL_USART_SetClockPolarity().
  157:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****                                            For more details, refer to description of this function.
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 191
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 191
 
 
  158:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** 
@@ -11458,7 +11458,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  212:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @}
  213:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   */
  214:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** 
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 192
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 192
 
 
  215:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** /** @defgroup USART_LL_EC_GET_FLAG Get Flags Defines
@@ -11518,7 +11518,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  269:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @{
  270:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   */
  271:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** #define LL_USART_CR1_IDLEIE                     USART_CR1_IDLEIE              /*!< IDLE interrupt e
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 193
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 193
 
 
  272:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** #if defined(USART_CR1_FIFOEN)
@@ -11578,7 +11578,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  326:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** #define LL_USART_DIRECTION_NONE                 0x00000000U                        /*!< Transmitter
  327:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** #define LL_USART_DIRECTION_RX                   USART_CR1_RE                       /*!< Transmitter
  328:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** #define LL_USART_DIRECTION_TX                   USART_CR1_TE                       /*!< Transmitter
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 194
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 194
 
 
  329:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** #define LL_USART_DIRECTION_TX_RX                (USART_CR1_TE |USART_CR1_RE)       /*!< Transmitter
@@ -11638,7 +11638,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  383:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** 
  384:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** /** @defgroup USART_LL_EC_LASTCLKPULSE Last Clock Pulse
  385:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @{
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 195
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 195
 
 
  386:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   */
@@ -11698,7 +11698,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  440:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @}
  441:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   */
  442:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** 
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 196
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 196
 
 
  443:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** /** @defgroup USART_LL_EC_TXRX TX RX Pins Swap
@@ -11758,7 +11758,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  497:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   */
  498:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** 
  499:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** /** @defgroup USART_LL_EC_ADDRESS_DETECT Address Length Detection
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 197
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 197
 
 
  500:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @{
@@ -11818,7 +11818,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  554:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   */
  555:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** 
  556:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** /** @defgroup USART_LL_EC_DMA_REG_DATA DMA Register Data
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 198
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 198
 
 
  557:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @{
@@ -11878,7 +11878,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  611:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   *         @arg @ref LL_USART_PRESCALER_DIV6
  612:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   *         @arg @ref LL_USART_PRESCALER_DIV8
  613:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   *         @arg @ref LL_USART_PRESCALER_DIV10
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 199
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 199
 
 
  614:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   *         @arg @ref LL_USART_PRESCALER_DIV12
@@ -11938,7 +11938,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  668:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @}
  669:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   */
  670:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** 
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 200
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 200
 
 
  671:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** /* Exported functions --------------------------------------------------------*/
@@ -11998,7 +11998,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  725:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   */
  726:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** __STATIC_INLINE void LL_USART_EnableFIFO(USART_TypeDef *USARTx)
  727:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** {
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 201
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 201
 
 
  728:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   SET_BIT(USARTx->CR1, USART_CR1_FIFOEN);
@@ -12058,7 +12058,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  782:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @param  USARTx USART Instance
  783:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @retval Returned value can be one of the following values:
  784:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   *         @arg @ref LL_USART_FIFOTHRESHOLD_1_8
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 202
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 202
 
 
  785:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   *         @arg @ref LL_USART_FIFOTHRESHOLD_1_4
@@ -12118,7 +12118,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  839:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @rmtoll CR3          TXFTCFG       LL_USART_ConfigFIFOsThreshold\n
  840:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   *         CR3          RXFTCFG       LL_USART_ConfigFIFOsThreshold
  841:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @param  USARTx USART Instance
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 203
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 203
 
 
  842:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @param  TXThreshold This parameter can be one of the following values:
@@ -12178,7 +12178,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  896:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @note   Macro IS_UART_WAKEUP_FROMSTOP_INSTANCE(USARTx) can be used to check whether or not
  897:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   *         Wake-up from Stop mode feature is supported by the USARTx instance.
  898:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @rmtoll CR1          UESM          LL_USART_IsEnabledInStopMode
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 204
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 204
 
 
  899:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @param  USARTx USART Instance
@@ -12238,7 +12238,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  953:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** }
  954:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** 
  955:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** /**
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 205
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 205
 
 
  956:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @brief  Receiver Disable
@@ -12298,7 +12298,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 1010:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @param  USARTx USART Instance
 1011:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @retval Returned value can be one of the following values:
 1012:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   *         @arg @ref LL_USART_DIRECTION_NONE
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 206
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 206
 
 
 1013:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   *         @arg @ref LL_USART_DIRECTION_RX
@@ -12358,7 +12358,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 1067:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   MODIFY_REG(USARTx->CR1, USART_CR1_WAKE, Method);
 1068:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** }
 1069:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** 
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 207
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 207
 
 
 1070:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** /**
@@ -12418,7 +12418,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 1124:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** 
 1125:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** /**
 1126:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @brief  Prevent Mute Mode use. Set Receiver in active mode permanently.
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 208
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 208
 
 
 1127:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @rmtoll CR1          MME           LL_USART_DisableMuteMode
@@ -12478,7 +12478,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 1181:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   *         @arg @ref LL_USART_LASTCLKPULSE_NO_OUTPUT
 1182:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   *         @arg @ref LL_USART_LASTCLKPULSE_OUTPUT
 1183:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @retval None
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 209
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 209
 
 
 1184:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   */
@@ -12538,7 +12538,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 1238:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @brief  Select the polarity of the clock output on the SCLK pin in synchronous mode
 1239:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @note   Macro IS_USART_INSTANCE(USARTx) can be used to check whether or not
 1240:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   *         Synchronous mode is supported by the USARTx instance.
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 210
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 210
 
 
 1241:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @rmtoll CR2          CPOL          LL_USART_SetClockPolarity
@@ -12598,7 +12598,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 1295:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** 
 1296:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** #if defined(USART_PRESC_PRESCALER)
 1297:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** /**
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 211
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 211
 
 
 1298:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @brief  Configure Clock source prescaler for baudrate generator and oversampling
@@ -12658,7 +12658,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 1352:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   *         Synchronous mode is supported by the USARTx instance.
 1353:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @rmtoll CR2          CLKEN         LL_USART_EnableSCLKOutput
 1354:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @param  USARTx USART Instance
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 212
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 212
 
 
 1355:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @retval None
@@ -12718,7 +12718,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 1409:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   *         @arg @ref LL_USART_STOPBITS_0_5
 1410:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   *         @arg @ref LL_USART_STOPBITS_1
 1411:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   *         @arg @ref LL_USART_STOPBITS_1_5
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 213
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 213
 
 
 1412:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   *         @arg @ref LL_USART_STOPBITS_2
@@ -12778,7 +12778,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 1466:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** 
 1467:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** /**
 1468:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @brief  Retrieve TX/RX pins swapping configuration.
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 214
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 214
 
 
 1469:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @rmtoll CR2          SWAP          LL_USART_GetTXRXSwap
@@ -12838,7 +12838,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 1523:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @rmtoll CR2          TXINV         LL_USART_GetTXPinLevel
 1524:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @param  USARTx USART Instance
 1525:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @retval Returned value can be one of the following values:
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 215
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 215
 
 
 1526:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   *         @arg @ref LL_USART_TXPIN_LEVEL_STANDARD
@@ -12898,7 +12898,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 1580:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @brief  Return transfer bit order (either Less or Most Significant Bit First)
 1581:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @note   MSB First means data is transmitted/received with the MSB first, following the start bi
 1582:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   *         LSB First means data is transmitted/received with data bit 0 first, following the start
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 216
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 216
 
 
 1583:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @rmtoll CR2          MSBFIRST      LL_USART_GetTransferBitOrder
@@ -12958,7 +12958,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 1637:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @rmtoll CR2          ABRMODE       LL_USART_SetAutoBaudRateMode
 1638:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @param  USARTx USART Instance
 1639:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @param  AutoBaudRateMode This parameter can be one of the following values:
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 217
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 217
 
 
 1640:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   *         @arg @ref LL_USART_AUTOBAUD_DETECT_ON_STARTBIT
@@ -13018,7 +13018,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 1694:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @retval State of bit (1 or 0).
 1695:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   */
 1696:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** __STATIC_INLINE uint32_t LL_USART_IsEnabledRxTimeout(const USART_TypeDef *USARTx)
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 218
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 218
 
 
 1697:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** {
@@ -13078,7 +13078,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 1751:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   *         @arg @ref LL_USART_ADDRESS_DETECT_7B
 1752:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   */
 1753:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** __STATIC_INLINE uint32_t LL_USART_GetNodeAddressLen(const USART_TypeDef *USARTx)
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 219
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 219
 
 
 1754:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** {
@@ -13138,7 +13138,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 1808:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** }
 1809:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** 
 1810:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** /**
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 220
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 220
 
 
 1811:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @brief  Configure HW Flow Control mode (both CTS and RTS)
@@ -13198,7 +13198,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 1865:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** {
 1866:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   CLEAR_BIT(USARTx->CR3, USART_CR3_ONEBIT);
 1867:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** }
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 221
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 221
 
 
 1868:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** 
@@ -13258,7 +13258,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 1922:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   *         @arg @ref LL_USART_WAKEUP_ON_RXNE
 1923:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @retval None
 1924:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   */
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 222
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 222
 
 
 1925:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** __STATIC_INLINE void LL_USART_SetWKUPType(USART_TypeDef *USARTx, uint32_t Type)
@@ -13318,7 +13318,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 1979:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****                                           uint32_t OverSampling,
 1980:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****                                           uint32_t BaudRate)
 1981:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** #else
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 223
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 223
 
 
 1982:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** __STATIC_INLINE void LL_USART_SetBaudRate(USART_TypeDef *USARTx, uint32_t PeriphClk, uint32_t OverS
@@ -13378,7 +13378,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 2036:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   *         @arg @ref LL_USART_PRESCALER_DIV8
 2037:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   *         @arg @ref LL_USART_PRESCALER_DIV10
 2038:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   *         @arg @ref LL_USART_PRESCALER_DIV12
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 224
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 224
 
 
 2039:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   *         @arg @ref LL_USART_PRESCALER_DIV16
@@ -13438,7 +13438,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 2093:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** }
 2094:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** 
 2095:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** /**
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 225
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 225
 
 
 2096:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @brief  Set Receiver Time Out Value (expressed in nb of bits duration)
@@ -13498,7 +13498,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 2150:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @brief  Enable IrDA mode
 2151:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @note   Macro IS_IRDA_INSTANCE(USARTx) can be used to check whether or not
 2152:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   *         IrDA feature is supported by the USARTx instance.
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 226
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 226
 
 
 2153:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @rmtoll CR3          IREN          LL_USART_EnableIrda
@@ -13558,7 +13558,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 2207:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   *         IrDA feature is supported by the USARTx instance.
 2208:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @rmtoll CR3          IRLP          LL_USART_GetIrdaPowerMode
 2209:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @param  USARTx USART Instance
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 227
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 227
 
 
 2210:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @retval Returned value can be one of the following values:
@@ -13618,7 +13618,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 2264:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** __STATIC_INLINE void LL_USART_EnableSmartcardNACK(USART_TypeDef *USARTx)
 2265:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** {
 2266:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   SET_BIT(USARTx->CR3, USART_CR3_NACK);
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 228
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 228
 
 
 2267:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** }
@@ -13678,7 +13678,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 2321:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** /**
 2322:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @brief  Indicate if Smartcard mode is enabled
 2323:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @note   Macro IS_SMARTCARD_INSTANCE(USARTx) can be used to check whether or not
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 229
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 229
 
 
 2324:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   *         Smartcard feature is supported by the USARTx instance.
@@ -13738,7 +13738,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 2378:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   MODIFY_REG(USARTx->GTPR, USART_GTPR_PSC, (uint16_t)PrescalerValue);
 2379:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** }
 2380:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** 
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 230
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 230
 
 
 2381:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** /**
@@ -13798,7 +13798,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 2435:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   *         Half-Duplex mode is supported by the USARTx instance.
 2436:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @rmtoll CR3          HDSEL         LL_USART_EnableHalfDuplex
 2437:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @param  USARTx USART Instance
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 231
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 231
 
 
 2438:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @retval None
@@ -13858,7 +13858,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 2492:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** /**
 2493:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @brief  Disable SPI Synchronous Slave mode
 2494:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @note   Macro IS_UART_SPI_SLAVE_INSTANCE(USARTx) can be used to check whether or not
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 232
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 232
 
 
 2495:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   *         SPI Slave mode feature is supported by the USARTx instance.
@@ -13918,7 +13918,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 2549:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @note   Macro IS_UART_SPI_SLAVE_INSTANCE(USARTx) can be used to check whether or not
 2550:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   *         SPI Slave mode feature is supported by the USARTx instance.
 2551:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @rmtoll CR2          DIS_NSS       LL_USART_IsEnabledSPISlaveSelect
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 233
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 233
 
 
 2552:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @param  USARTx USART Instance
@@ -13978,7 +13978,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 2606:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @retval None
 2607:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   */
 2608:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** __STATIC_INLINE void LL_USART_EnableLIN(USART_TypeDef *USARTx)
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 234
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 234
 
 
 2609:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** {
@@ -14038,7 +14038,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 2663:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @note   Macro IS_UART_DRIVER_ENABLE_INSTANCE(USARTx) can be used to check whether or not
 2664:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   *         Driver Enable feature is supported by the USARTx instance.
 2665:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @rmtoll CR1          DEDT          LL_USART_GetDEDeassertionTime
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 235
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 235
 
 
 2666:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @param  USARTx USART Instance
@@ -14098,7 +14098,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 2720:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @retval None
 2721:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   */
 2722:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** __STATIC_INLINE void LL_USART_DisableDEMode(USART_TypeDef *USARTx)
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 236
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 236
 
 
 2723:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** {
@@ -14158,7 +14158,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 2777:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   */
 2778:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** 
 2779:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** /**
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 237
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 237
 
 
 2780:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @brief  Perform basic configuration of USART for enabling use in Asynchronous Mode (UART)
@@ -14218,7 +14218,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  624              		.loc 7 689 3 view .LVU212
  625 01a6 2368     		ldr	r3, [r4]
  626 01a8 43F00103 		orr	r3, r3, #1
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 238
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 238
 
 
  627 01ac 2360     		str	r3, [r4]
@@ -14278,7 +14278,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  672              	.L7:
  673 01c4 00000240 		.word	1073872896
  674 01c8 00ED00E0 		.word	-536810240
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 239
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 239
 
 
  675 01cc 00E100E0 		.word	-536813312
@@ -14338,7 +14338,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  718              		.loc 1 139 25 is_stmt 0 view .LVU225
  719 0014 0394     		str	r4, [sp, #12]
  720 0016 0494     		str	r4, [sp, #16]
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 240
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 240
 
 
  721 0018 0594     		str	r4, [sp, #20]
@@ -14398,7 +14398,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  761              	.LBE246:
  145:Core/Src/usart.c **** 
  146:Core/Src/usart.c ****     LL_AHB2_GRP1_EnableClock(LL_AHB2_GRP1_PERIPH_GPIOA);
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 241
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 241
 
 
  762              		.loc 1 146 5 is_stmt 1 view .LVU239
@@ -14458,7 +14458,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  798              		.loc 1 156 5 view .LVU256
  799              		.loc 1 156 31 is_stmt 0 view .LVU257
  800 005e 0723     		movs	r3, #7
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 242
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 242
 
 
  801 0060 0893     		str	r3, [sp, #32]
@@ -14518,7 +14518,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  839              		.loc 1 172 31 is_stmt 0 view .LVU277
  840 008e 0B94     		str	r4, [sp, #44]
  173:Core/Src/usart.c ****     USART_InitStruct.Parity = LL_USART_PARITY_NONE;
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 243
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 243
 
 
  841              		.loc 1 173 5 is_stmt 1 view .LVU278
@@ -14578,7 +14578,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  885 00ba 2360     		str	r3, [r4]
  886              	.LVL50:
  689:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** }
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 244
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 244
 
 
  887              		.loc 7 689 3 is_stmt 0 view .LVU295
@@ -14638,7 +14638,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  925              		.loc 1 193 11 discriminator 1 view .LVU301
  926 0004 13F0800F 		tst	r3, #128
  927 0008 FAD0     		beq	.L14
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 245
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 245
 
 
  195:Core/Src/usart.c ****     USART2->TDR = ch; // transfers the value of the data register into ch
@@ -14698,7 +14698,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  972              	.LVL53:
  204:Core/Src/usart.c **** }
  973              		.loc 1 204 1 view .LVU313
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 246
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 246
 
 
  974 000e C0B2     		uxtb	r0, r0
@@ -14758,7 +14758,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  212:Core/Src/usart.c ****     DMA1_Channel4->CMAR = (uint32_t)pData;
  1020              		.loc 1 212 5 is_stmt 1 view .LVU325
  1021              		.loc 1 212 25 is_stmt 0 view .LVU326
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 247
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 247
 
 
  1022 0018 1865     		str	r0, [r3, #80]
@@ -14818,7 +14818,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 2859:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   *           - HDSEL bit in the USART_CR3 register.
 2860:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   *         This function also set the UART/USART in LIN mode.
 2861:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @note   Macro IS_UART_LIN_INSTANCE(USARTx) can be used to check whether or not
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 248
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 248
 
 
 2862:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   *         LIN feature is supported by the USARTx instance.
@@ -14878,7 +14878,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 2916:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   *         CR3          SCEN          LL_USART_ConfigHalfDuplexMode\n
 2917:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   *         CR3          IREN          LL_USART_ConfigHalfDuplexMode
 2918:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @param  USARTx USART Instance
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 249
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 249
 
 
 2919:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @retval None
@@ -14938,7 +14938,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 2973:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   /* set the UART/USART in Smartcard mode */
 2974:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   SET_BIT(USARTx->CR3, USART_CR3_SCEN);
 2975:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** }
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 250
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 250
 
 
 2976:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** 
@@ -14998,7 +14998,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 3030:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   *         - Clear CLKEN in CR2 using @ref LL_USART_DisableSCLKOutput() function
 3031:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   *         - Clear SCEN in CR3 using @ref LL_USART_DisableSmartcard() function
 3032:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   *         - Clear IREN in CR3 using @ref LL_USART_DisableIrda() function
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 251
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 251
 
 
 3033:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   *         - Clear HDSEL in CR3 using @ref LL_USART_DisableHalfDuplex() function
@@ -15058,7 +15058,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 3087:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @rmtoll ISR          NE            LL_USART_IsActiveFlag_NE
 3088:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @param  USARTx USART Instance
 3089:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @retval State of bit (1 or 0).
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 252
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 252
 
 
 3090:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   */
@@ -15118,7 +15118,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 3144:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   return ((READ_BIT(USARTx->ISR, USART_ISR_RXNE) == (USART_ISR_RXNE)) ? 1UL : 0UL);
 3145:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** }
 3146:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** 
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 253
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 253
 
 
 3147:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** #endif /* USART_CR1_FIFOEN */
@@ -15178,7 +15178,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 3201:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** 
 3202:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** /**
 3203:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @brief  Check if the USART CTS interrupt Flag is set or not
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 254
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 254
 
 
 3204:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @note   Macro IS_UART_HWFLOW_INSTANCE(USARTx) can be used to check whether or not
@@ -15238,7 +15238,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 3258:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @param  USARTx USART Instance
 3259:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @retval State of bit (1 or 0).
 3260:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   */
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 255
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 255
 
 
 3261:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** __STATIC_INLINE uint32_t LL_USART_IsActiveFlag_UDR(const USART_TypeDef *USARTx)
@@ -15298,7 +15298,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 3315:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** /**
 3316:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @brief  Check if the USART Send Break Flag is set or not
 3317:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @rmtoll ISR          SBKF          LL_USART_IsActiveFlag_SBK
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 256
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 256
 
 
 3318:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @param  USARTx USART Instance
@@ -15358,7 +15358,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 3372:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** #if defined(USART_CR1_FIFOEN)
 3373:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** /**
 3374:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @brief  Check if the USART TX FIFO Empty Flag is set or not
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 257
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 257
 
 
 3375:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @note   Macro IS_UART_FIFO_INSTANCE(USARTx) can be used to check whether or not
@@ -15418,7 +15418,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 3429:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @brief  Check if the USART RX FIFO Threshold Flag is set or not
 3430:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @note   Macro IS_UART_FIFO_INSTANCE(USARTx) can be used to check whether or not
 3431:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   *         FIFO mode feature is supported by the USARTx instance.
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 258
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 258
 
 
 3432:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @rmtoll ISR          RXFT          LL_USART_IsActiveFlag_RXFT
@@ -15478,7 +15478,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 3486:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** /**
 3487:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @brief  Clear IDLE line detected Flag
 3488:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @rmtoll ICR          IDLECF        LL_USART_ClearFlag_IDLE
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 259
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 259
 
 
 3489:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @param  USARTx USART Instance
@@ -15538,7 +15538,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 3543:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @retval None
 3544:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   */
 3545:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** __STATIC_INLINE void LL_USART_ClearFlag_LBD(USART_TypeDef *USARTx)
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 260
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 260
 
 
 3546:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** {
@@ -15598,7 +15598,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 3600:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** 
 3601:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** #endif /* USART_CR2_SLVEN */
 3602:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** /**
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 261
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 261
 
 
 3603:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @brief  Clear Character Match Flag
@@ -15658,7 +15658,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 3657:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** __STATIC_INLINE void LL_USART_EnableIT_RXNE_RXFNE(USART_TypeDef *USARTx)
 3658:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** {
 3659:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   ATOMIC_SET_BIT(USARTx->CR1, USART_CR1_RXNEIE_RXFNEIE);
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 262
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 262
 
 
 3660:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** }
@@ -15718,7 +15718,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 3714:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** 
 3715:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** #endif /* USART_CR1_FIFOEN */
 3716:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** /**
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 263
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 263
 
 
 3717:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @brief  Enable Parity Error Interrupt
@@ -15778,7 +15778,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 3771:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** __STATIC_INLINE void LL_USART_EnableIT_TXFE(USART_TypeDef *USARTx)
 3772:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** {
 3773:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   ATOMIC_SET_BIT(USARTx->CR1, USART_CR1_TXFEIE);
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 264
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 264
 
 
 3774:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** }
@@ -15838,7 +15838,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 3828:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** 
 3829:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** /**
 3830:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @brief  Enable Wake Up from Stop Mode Interrupt
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 265
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 265
 
 
 3831:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @note   Macro IS_UART_WAKEUP_FROMSTOP_INSTANCE(USARTx) can be used to check whether or not
@@ -15898,7 +15898,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 3885:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** }
 3886:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** 
 3887:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** #endif /* USART_CR1_FIFOEN */
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 266
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 266
 
 
 3888:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** /**
@@ -15958,7 +15958,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 3942:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** #define LL_USART_DisableIT_TXE  LL_USART_DisableIT_TXE_TXFNF
 3943:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** 
 3944:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** /**
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 267
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 267
 
 
 3945:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @brief  Disable TX Empty and TX FIFO Not Full Interrupt
@@ -16018,7 +16018,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 3999:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** {
 4000:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   ATOMIC_CLEAR_BIT(USARTx->CR1, USART_CR1_RTOIE);
 4001:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** }
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 268
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 268
 
 
 4002:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** 
@@ -16078,7 +16078,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 4056:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** 
 4057:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** /**
 4058:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @brief  Disable Error Interrupt
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 269
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 269
 
 
 4059:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @note   When set, Error Interrupt Enable Bit is enabling interrupt generation in case of a fram
@@ -16138,7 +16138,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 4113:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** #if defined(USART_TCBGT_SUPPORT)
 4114:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** /* Function available only on devices supporting Transmit Complete before Guard Time feature */
 4115:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** /**
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 270
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 270
 
 
 4116:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @brief  Disable Smartcard Transmission Complete Before Guard Time Interrupt
@@ -16198,7 +16198,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 4170:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** }
 4171:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** 
 4172:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** #else
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 271
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 271
 
 
 4173:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** /**
@@ -16258,7 +16258,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 4227:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @brief  Check if the USART Parity Error Interrupt is enabled or disabled.
 4228:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @rmtoll CR1          PEIE          LL_USART_IsEnabledIT_PE
 4229:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @param  USARTx USART Instance
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 272
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 272
 
 
 4230:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @retval State of bit (1 or 0).
@@ -16318,7 +16318,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 4284:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** }
 4285:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** 
 4286:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** /**
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 273
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 273
 
 
 4287:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @brief  Check if the USART RX FIFO Full Interrupt is enabled or disabled
@@ -16378,7 +16378,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 4341:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @rmtoll CR3          WUFIE         LL_USART_IsEnabledIT_WKUP
 4342:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @param  USARTx USART Instance
 4343:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @retval State of bit (1 or 0).
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 274
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 274
 
 
 4344:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   */
@@ -16438,7 +16438,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 4398:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   */
 4399:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** 
 4400:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h **** /** @defgroup USART_LL_EF_DMA_Management DMA_Management
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 275
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 275
 
 
 4401:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h ****   * @{
@@ -16498,7 +16498,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  1036              		.loc 7 4445 3 view .LVU333
  1037 001a 0C4A     		ldr	r2, .L25+4
  1038              	.LVL56:
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 276
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 276
 
 
  1039              	.LBB256:
@@ -16558,7 +16558,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 1146:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   LDR Exclusive (32 bit)
 1147:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Executes a exclusive LDR instruction for 32 bit values.
 1148:Drivers/CMSIS/Include/cmsis_gcc.h ****   \param [in]    ptr  Pointer to data
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 277
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 277
 
 
 1149:Drivers/CMSIS/Include/cmsis_gcc.h ****   \return        value of type uint32_t at (*ptr)
@@ -16618,7 +16618,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
 1182:Drivers/CMSIS/Include/cmsis_gcc.h ****   \return          0  Function succeeded
 1183:Drivers/CMSIS/Include/cmsis_gcc.h ****   \return          1  Function failed
 1184:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 278
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 278
 
 
 1185:Drivers/CMSIS/Include/cmsis_gcc.h **** __STATIC_FORCEINLINE uint32_t __STREXH(uint16_t value, volatile uint16_t *addr)
@@ -16678,7 +16678,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  218:Core/Src/usart.c ****     while (!utx_finished)
  1090              		.loc 1 218 5 is_stmt 1 view .LVU350
  1091              	.L24:
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 279
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 279
 
 
  219:Core/Src/usart.c ****         ;
@@ -16738,7 +16738,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  226:Core/Src/usart.c ****     while (DMA1_Channel5->CCR & DMA_CCR_EN)
  1138              		.loc 1 226 5 is_stmt 1 view .LVU361
  1139              	.L28:
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 280
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 280
 
 
  227:Core/Src/usart.c ****         ;
@@ -16798,7 +16798,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  1177              		.syntax unified
  1178              	@ 1155 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
  1179 001c 52E8003F 		ldrex r3, [r2]
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 281
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 281
 
 
  1180              	@ 0 "" 2
@@ -16858,7 +16858,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  235:Core/Src/usart.c ****     while (!urx_finished)
  1222              		.loc 1 235 5 is_stmt 1 view .LVU393
  1223              	.L30:
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 282
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 282
 
 
  236:Core/Src/usart.c ****         ;
@@ -16918,7 +16918,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  1269              		.loc 1 243 1 view .LVU404
  1270 000a 7047     		bx	lr
  1271              	.L35:
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 283
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 283
 
 
  1272              		.align	2
@@ -16978,7 +16978,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  1311              	.LFE1162:
  1313              		.section	.text.USART1_IRQHandler,"ax",%progbits
  1314              		.align	1
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 284
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 284
 
 
  1315              		.global	USART1_IRQHandler
@@ -17038,7 +17038,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  1358              	.L38:
  273:Core/Src/usart.c **** }
  1359              		.loc 1 273 1 view .LVU423
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 285
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 285
 
 
  1360 002a 08BD     		pop	{r3, pc}
@@ -17098,7 +17098,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  1402              		.loc 1 279 1 view -0
  1403              		.cfi_startproc
  1404              		@ args = 0, pretend = 0, frame = 0
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 286
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 286
 
 
  1405              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -17158,7 +17158,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  295:Core/Src/usart.c ****  */
  296:Core/Src/usart.c **** void DMA1_Channel5_IRQHandler(void)
  297:Core/Src/usart.c **** {
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 287
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 287
 
 
  1446              		.loc 1 297 1 is_stmt 1 view -0
@@ -17218,7 +17218,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  1493              	rx_buf:
  1494 0000 00       		.space	1
  1495              		.section	.bss.urx_finished,"aw",%nobits
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 288
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 288
 
 
  1496              		.set	.LANCHOR1,. + 0
@@ -17237,51 +17237,51 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 1
  1513              		.file 12 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_gpio.h"
  1514              		.file 13 "Core/Inc/esp32.h"
  1515              		.file 14 "Core/Inc/usart.h"
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s 			page 289
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s 			page 289
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 usart.c
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s:18     .text.MX_USART1_UART_Init:0000000000000000 $t
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s:26     .text.MX_USART1_UART_Init:0000000000000000 MX_USART1_UART_Init
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s:673    .text.MX_USART1_UART_Init:00000000000001c4 $d
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s:686    .text.MX_USART2_UART_Init:0000000000000000 $t
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s:693    .text.MX_USART2_UART_Init:0000000000000000 MX_USART2_UART_Init
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s:898    .text.MX_USART2_UART_Init:00000000000000c0 $d
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s:904    .text.serialWrite:0000000000000000 $t
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s:911    .text.serialWrite:0000000000000000 serialWrite
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s:940    .text.serialWrite:0000000000000014 $d
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s:945    .text.serialRead:0000000000000000 $t
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s:952    .text.serialRead:0000000000000000 serialRead
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s:980    .text.serialRead:0000000000000014 $d
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s:985    .text.usart1TransmitDma:0000000000000000 $t
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s:992    .text.usart1TransmitDma:0000000000000000 usart1TransmitDma
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s:1110   .text.usart1TransmitDma:0000000000000048 $d
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s:1117   .text.usart1ReceiveDma:0000000000000000 $t
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s:1124   .text.usart1ReceiveDma:0000000000000000 usart1ReceiveDma
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s:1242   .text.usart1ReceiveDma:0000000000000048 $d
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s:1249   .text.usart1StartRxIt:0000000000000000 $t
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s:1256   .text.usart1StartRxIt:0000000000000000 usart1StartRxIt
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s:1274   .text.usart1StartRxIt:000000000000000c $d
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s:1279   .text.__io_putchar:0000000000000000 $t
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s:1286   .text.__io_putchar:0000000000000000 __io_putchar
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s:1314   .text.USART1_IRQHandler:0000000000000000 $t
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s:1321   .text.USART1_IRQHandler:0000000000000000 USART1_IRQHandler
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s:1386   .text.USART1_IRQHandler:0000000000000048 $d
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s:1393   .text.DMA1_Channel4_IRQHandler:0000000000000000 $t
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s:1400   .text.DMA1_Channel4_IRQHandler:0000000000000000 DMA1_Channel4_IRQHandler
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s:1431   .text.DMA1_Channel4_IRQHandler:000000000000001c $d
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s:1437   .text.DMA1_Channel5_IRQHandler:0000000000000000 $t
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s:1444   .text.DMA1_Channel5_IRQHandler:0000000000000000 DMA1_Channel5_IRQHandler
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s:1475   .text.DMA1_Channel5_IRQHandler:000000000000001c $d
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s:1493   .bss.rx_buf:0000000000000000 rx_buf
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s:1488   .bss.char_irq_recv:0000000000000000 char_irq_recv
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s:1499   .bss.urx_finished:0000000000000000 urx_finished
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s:1505   .bss.utx_finished:0000000000000000 utx_finished
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s:1489   .bss.char_irq_recv:0000000000000000 $d
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s:1494   .bss.rx_buf:0000000000000000 $d
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s:1500   .bss.urx_finished:0000000000000000 $d
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccJHfjCv.s:1506   .bss.utx_finished:0000000000000000 $d
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s:18     .text.MX_USART1_UART_Init:0000000000000000 $t
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s:26     .text.MX_USART1_UART_Init:0000000000000000 MX_USART1_UART_Init
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s:673    .text.MX_USART1_UART_Init:00000000000001c4 $d
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s:686    .text.MX_USART2_UART_Init:0000000000000000 $t
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s:693    .text.MX_USART2_UART_Init:0000000000000000 MX_USART2_UART_Init
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s:898    .text.MX_USART2_UART_Init:00000000000000c0 $d
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s:904    .text.serialWrite:0000000000000000 $t
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s:911    .text.serialWrite:0000000000000000 serialWrite
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s:940    .text.serialWrite:0000000000000014 $d
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s:945    .text.serialRead:0000000000000000 $t
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s:952    .text.serialRead:0000000000000000 serialRead
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s:980    .text.serialRead:0000000000000014 $d
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s:985    .text.usart1TransmitDma:0000000000000000 $t
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s:992    .text.usart1TransmitDma:0000000000000000 usart1TransmitDma
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s:1110   .text.usart1TransmitDma:0000000000000048 $d
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s:1117   .text.usart1ReceiveDma:0000000000000000 $t
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s:1124   .text.usart1ReceiveDma:0000000000000000 usart1ReceiveDma
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s:1242   .text.usart1ReceiveDma:0000000000000048 $d
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s:1249   .text.usart1StartRxIt:0000000000000000 $t
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s:1256   .text.usart1StartRxIt:0000000000000000 usart1StartRxIt
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s:1274   .text.usart1StartRxIt:000000000000000c $d
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s:1279   .text.__io_putchar:0000000000000000 $t
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s:1286   .text.__io_putchar:0000000000000000 __io_putchar
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s:1314   .text.USART1_IRQHandler:0000000000000000 $t
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s:1321   .text.USART1_IRQHandler:0000000000000000 USART1_IRQHandler
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s:1386   .text.USART1_IRQHandler:0000000000000048 $d
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s:1393   .text.DMA1_Channel4_IRQHandler:0000000000000000 $t
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s:1400   .text.DMA1_Channel4_IRQHandler:0000000000000000 DMA1_Channel4_IRQHandler
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s:1431   .text.DMA1_Channel4_IRQHandler:000000000000001c $d
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s:1437   .text.DMA1_Channel5_IRQHandler:0000000000000000 $t
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s:1444   .text.DMA1_Channel5_IRQHandler:0000000000000000 DMA1_Channel5_IRQHandler
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s:1475   .text.DMA1_Channel5_IRQHandler:000000000000001c $d
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s:1493   .bss.rx_buf:0000000000000000 rx_buf
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s:1488   .bss.char_irq_recv:0000000000000000 char_irq_recv
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s:1499   .bss.urx_finished:0000000000000000 urx_finished
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s:1505   .bss.utx_finished:0000000000000000 utx_finished
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s:1489   .bss.char_irq_recv:0000000000000000 $d
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s:1494   .bss.rx_buf:0000000000000000 $d
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s:1500   .bss.urx_finished:0000000000000000 $d
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccfdg8dk.s:1506   .bss.utx_finished:0000000000000000 $d
 
 UNDEFINED SYMBOLS
 LL_GPIO_Init

@@ -1,0 +1,646 @@
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccIkdkeX.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"data_transfer.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.rodata.initTxTouches.str1.4,"aMS",%progbits,1
+  18              		.align	2
+  19              	.LC0:
+  20 0000 746F7069 		.ascii	"topic/esp32atTx\000"
+  20      632F6573 
+  20      70333261 
+  20      74547800 
+  21              		.align	2
+  22              	.LC1:
+  23 0010 48656C6C 		.ascii	"Hello from STM32L432\000"
+  23      6F206672 
+  23      6F6D2053 
+  23      544D3332 
+  23      4C343332 
+  24              		.section	.text.initTxTouches,"ax",%progbits
+  25              		.align	1
+  26              		.global	initTxTouches
+  27              		.arch armv7e-m
+  28              		.syntax unified
+  29              		.thumb
+  30              		.thumb_func
+  31              		.fpu fpv4-sp-d16
+  33              	initTxTouches:
+  34              	.LVL0:
+  35              	.LFB1155:
+  36              		.file 1 "Core/Src/data_transfer.c"
+   1:Core/Src/data_transfer.c **** #include "data_transfer.h"
+   2:Core/Src/data_transfer.c **** 
+   3:Core/Src/data_transfer.c **** uint8_t txTouchIdx = 0;
+   4:Core/Src/data_transfer.c **** bool txDataReady = false;
+   5:Core/Src/data_transfer.c **** uint32_t sendIdx = 0;
+   6:Core/Src/data_transfer.c **** 
+   7:Core/Src/data_transfer.c **** uint8_t touchCounter = 0;
+   8:Core/Src/data_transfer.c **** uint8_t loopCounter = 0;
+   9:Core/Src/data_transfer.c **** bool touchRecv = false;
+  10:Core/Src/data_transfer.c **** 
+  11:Core/Src/data_transfer.c **** uint32_t last_touch_time = 0;
+  12:Core/Src/data_transfer.c **** uint32_t prev_touch_time = 0;
+  13:Core/Src/data_transfer.c **** uint32_t elap_touch_time = 0;
+  14:Core/Src/data_transfer.c **** uint32_t last_loop_time = 0;
+  15:Core/Src/data_transfer.c **** 
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccIkdkeX.s 			page 2
+
+
+  16:Core/Src/data_transfer.c **** TouchData_t txTouchData[100];
+  17:Core/Src/data_transfer.c **** 
+  18:Core/Src/data_transfer.c **** void initTxTouches(MQTT_Message_t *MQTT_TxPacket)
+  19:Core/Src/data_transfer.c **** {
+  37              		.loc 1 19 1 view -0
+  38              		.cfi_startproc
+  39              		@ args = 0, pretend = 0, frame = 0
+  40              		@ frame_needed = 0, uses_anonymous_args = 0
+  41              		.loc 1 19 1 is_stmt 0 view .LVU1
+  42 0000 70B5     		push	{r4, r5, r6, lr}
+  43              		.cfi_def_cfa_offset 16
+  44              		.cfi_offset 4, -16
+  45              		.cfi_offset 5, -12
+  46              		.cfi_offset 6, -8
+  47              		.cfi_offset 14, -4
+  48 0002 9EB0     		sub	sp, sp, #120
+  49              		.cfi_def_cfa_offset 136
+  50 0004 0446     		mov	r4, r0
+  20:Core/Src/data_transfer.c ****     MQTT_TxPacket->data = malloc(_MQTT_SIZE);
+  51              		.loc 1 20 5 is_stmt 1 view .LVU2
+  52              		.loc 1 20 27 is_stmt 0 view .LVU3
+  53 0006 4FF40070 		mov	r0, #512
+  54              	.LVL1:
+  55              		.loc 1 20 27 view .LVU4
+  56 000a FFF7FEFF 		bl	malloc
+  57              	.LVL2:
+  58 000e 0546     		mov	r5, r0
+  59              		.loc 1 20 25 view .LVU5
+  60 0010 C4F88000 		str	r0, [r4, #128]
+  21:Core/Src/data_transfer.c ****     strcpy(MQTT_TxPacket->topic, "topic/esp32atTx");
+  61              		.loc 1 21 5 is_stmt 1 view .LVU6
+  62 0014 0D4E     		ldr	r6, .L3
+  63 0016 0FCE     		ldmia	r6!, {r0, r1, r2, r3}
+  64 0018 2060     		str	r0, [r4]	@ unaligned
+  65 001a 6160     		str	r1, [r4, #4]	@ unaligned
+  66 001c A260     		str	r2, [r4, #8]	@ unaligned
+  67 001e E360     		str	r3, [r4, #12]	@ unaligned
+  22:Core/Src/data_transfer.c ****     strcpy(MQTT_TxPacket->data, "Hello from STM32L432");
+  68              		.loc 1 22 5 view .LVU7
+  69 0020 0B4E     		ldr	r6, .L3+4
+  70 0022 0FCE     		ldmia	r6!, {r0, r1, r2, r3}
+  71 0024 2860     		str	r0, [r5]	@ unaligned
+  72 0026 6960     		str	r1, [r5, #4]	@ unaligned
+  73 0028 AA60     		str	r2, [r5, #8]	@ unaligned
+  74 002a EB60     		str	r3, [r5, #12]	@ unaligned
+  75 002c 3068     		ldr	r0, [r6]
+  76 002e 2861     		str	r0, [r5, #16]	@ unaligned
+  77 0030 3379     		ldrb	r3, [r6, #4]	@ zero_extendqisi2
+  78 0032 2B75     		strb	r3, [r5, #20]
+  23:Core/Src/data_transfer.c ****     MQTT_Unsubscribe(*MQTT_TxPacket);
+  79              		.loc 1 23 5 view .LVU8
+  80 0034 7822     		movs	r2, #120
+  81 0036 04F11001 		add	r1, r4, #16
+  82 003a 6846     		mov	r0, sp
+  83 003c FFF7FEFF 		bl	memcpy
+  84              	.LVL3:
+  85 0040 94E80F00 		ldm	r4, {r0, r1, r2, r3}
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccIkdkeX.s 			page 3
+
+
+  86 0044 FFF7FEFF 		bl	MQTT_Unsubscribe
+  87              	.LVL4:
+  24:Core/Src/data_transfer.c **** }
+  88              		.loc 1 24 1 is_stmt 0 view .LVU9
+  89 0048 1EB0     		add	sp, sp, #120
+  90              		.cfi_def_cfa_offset 16
+  91              		@ sp needed
+  92 004a 70BD     		pop	{r4, r5, r6, pc}
+  93              	.LVL5:
+  94              	.L4:
+  95              		.loc 1 24 1 view .LVU10
+  96              		.align	2
+  97              	.L3:
+  98 004c 00000000 		.word	.LC0
+  99 0050 10000000 		.word	.LC1
+ 100              		.cfi_endproc
+ 101              	.LFE1155:
+ 103              		.section	.text.readAndSendTouches,"ax",%progbits
+ 104              		.align	1
+ 105              		.global	readAndSendTouches
+ 106              		.syntax unified
+ 107              		.thumb
+ 108              		.thumb_func
+ 109              		.fpu fpv4-sp-d16
+ 111              	readAndSendTouches:
+ 112              	.LVL6:
+ 113              	.LFB1156:
+  25:Core/Src/data_transfer.c **** 
+  26:Core/Src/data_transfer.c **** void readAndSendTouches(MQTT_Message_t *Message)
+  27:Core/Src/data_transfer.c **** {
+ 114              		.loc 1 27 1 is_stmt 1 view -0
+ 115              		.cfi_startproc
+ 116              		@ args = 0, pretend = 0, frame = 0
+ 117              		@ frame_needed = 0, uses_anonymous_args = 0
+ 118              		.loc 1 27 1 is_stmt 0 view .LVU12
+ 119 0000 70B5     		push	{r4, r5, r6, lr}
+ 120              		.cfi_def_cfa_offset 16
+ 121              		.cfi_offset 4, -16
+ 122              		.cfi_offset 5, -12
+ 123              		.cfi_offset 6, -8
+ 124              		.cfi_offset 14, -4
+ 125 0002 9EB0     		sub	sp, sp, #120
+ 126              		.cfi_def_cfa_offset 136
+ 127 0004 0446     		mov	r4, r0
+  28:Core/Src/data_transfer.c ****     if (touchData.touched)
+ 128              		.loc 1 28 5 is_stmt 1 view .LVU13
+ 129              		.loc 1 28 18 is_stmt 0 view .LVU14
+ 130 0006 3F4B     		ldr	r3, .L17
+ 131 0008 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 132              		.loc 1 28 8 view .LVU15
+ 133 000a 2BB9     		cbnz	r3, .L14
+ 134              	.LVL7:
+ 135              	.L6:
+  29:Core/Src/data_transfer.c ****     {
+  30:Core/Src/data_transfer.c ****         // want to see how long it takes from one touch to the next
+  31:Core/Src/data_transfer.c ****         // if the time from the previous touch to the loop is > 10ms then we know touched wasn't ru
+  32:Core/Src/data_transfer.c ****         prev_touch_time = last_touch_time;
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccIkdkeX.s 			page 4
+
+
+  33:Core/Src/data_transfer.c ****         last_touch_time = millis();
+  34:Core/Src/data_transfer.c ****         elap_touch_time = last_touch_time - prev_touch_time;
+  35:Core/Src/data_transfer.c **** 
+  36:Core/Src/data_transfer.c ****         touchData.touched = false;
+  37:Core/Src/data_transfer.c ****         touchRecv = true;
+  38:Core/Src/data_transfer.c **** 
+  39:Core/Src/data_transfer.c ****         ft6206ReadData(); // read data
+  40:Core/Src/data_transfer.c **** 
+  41:Core/Src/data_transfer.c ****         txTouchData[txTouchIdx].xPos = touchData.xPos; // set x data to correct array index
+  42:Core/Src/data_transfer.c ****         txTouchData[txTouchIdx].yPos = touchData.yPos; // set x data to correct array index
+  43:Core/Src/data_transfer.c **** 
+  44:Core/Src/data_transfer.c ****         if (txTouchIdx == 0)
+  45:Core/Src/data_transfer.c ****             ili9341DrawPixel(touchData.xPos, touchData.yPos, RED); // draw pixel if first of index
+  46:Core/Src/data_transfer.c ****         else if ((txTouchData[txTouchIdx].xPos != txTouchData[txTouchIdx - 1].xPos) ||
+  47:Core/Src/data_transfer.c ****                  (txTouchData[txTouchIdx].yPos != txTouchData[txTouchIdx - 1].yPos))
+  48:Core/Src/data_transfer.c ****             ili9341DrawPixel(touchData.xPos, touchData.yPos, RED); // draw pixel if not the same as
+  49:Core/Src/data_transfer.c **** 
+  50:Core/Src/data_transfer.c ****         txTouchIdx++;
+  51:Core/Src/data_transfer.c ****     }
+  52:Core/Src/data_transfer.c ****     /* Check if Data is collected and put into string */
+  53:Core/Src/data_transfer.c ****     if (touchRecv)
+ 136              		.loc 1 53 5 is_stmt 1 view .LVU16
+ 137              		.loc 1 53 9 is_stmt 0 view .LVU17
+ 138 000c 3E4B     		ldr	r3, .L17+4
+ 139 000e 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 140              		.loc 1 53 8 view .LVU18
+ 141 0010 002B     		cmp	r3, #0
+ 142 0012 39D1     		bne	.L15
+ 143              	.L5:
+  54:Core/Src/data_transfer.c ****     {
+  55:Core/Src/data_transfer.c ****         last_loop_time = millis();
+  56:Core/Src/data_transfer.c **** 
+  57:Core/Src/data_transfer.c ****         if (((last_loop_time - last_touch_time) > (4 * elap_touch_time)) ||
+  58:Core/Src/data_transfer.c ****             (txTouchIdx >= 100))
+  59:Core/Src/data_transfer.c ****         {
+  60:Core/Src/data_transfer.c ****             loopCounter = touchCounter; // reset counters to be equal
+  61:Core/Src/data_transfer.c ****             touchRecv = false;          // reset touched check
+  62:Core/Src/data_transfer.c **** 
+  63:Core/Src/data_transfer.c ****             Message->data = coords2string(txTouchData, txTouchIdx);
+  64:Core/Src/data_transfer.c ****             Message->length = strlen(Message->data);
+  65:Core/Src/data_transfer.c ****             txTouchIdx = 0;
+  66:Core/Src/data_transfer.c ****             txDataReady = true;
+  67:Core/Src/data_transfer.c ****         }
+  68:Core/Src/data_transfer.c **** 
+  69:Core/Src/data_transfer.c ****         if (SEND_RATE && txDataReady) // if 1s has passed and data is ready
+  70:Core/Src/data_transfer.c ****         {
+  71:Core/Src/data_transfer.c ****             MQTT_PublishRaw(*Message);
+  72:Core/Src/data_transfer.c ****             SEND_RATE = false;
+  73:Core/Src/data_transfer.c ****             txDataReady = false;
+  74:Core/Src/data_transfer.c ****         }
+  75:Core/Src/data_transfer.c ****     }
+  76:Core/Src/data_transfer.c **** }...
+ 144              		.loc 1 76 1 view .LVU19
+ 145 0014 1EB0     		add	sp, sp, #120
+ 146              		.cfi_remember_state
+ 147              		.cfi_def_cfa_offset 16
+ 148              		@ sp needed
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccIkdkeX.s 			page 5
+
+
+ 149 0016 70BD     		pop	{r4, r5, r6, pc}
+ 150              	.LVL8:
+ 151              	.L14:
+ 152              		.cfi_restore_state
+  32:Core/Src/data_transfer.c ****         prev_touch_time = last_touch_time;
+ 153              		.loc 1 32 9 is_stmt 1 view .LVU20
+  32:Core/Src/data_transfer.c ****         prev_touch_time = last_touch_time;
+ 154              		.loc 1 32 25 is_stmt 0 view .LVU21
+ 155 0018 3C4D     		ldr	r5, .L17+8
+ 156 001a 3D4E     		ldr	r6, .L17+12
+ 157 001c 3368     		ldr	r3, [r6]
+ 158 001e 2B60     		str	r3, [r5]
+  33:Core/Src/data_transfer.c ****         last_touch_time = millis();
+ 159              		.loc 1 33 9 is_stmt 1 view .LVU22
+  33:Core/Src/data_transfer.c ****         last_touch_time = millis();
+ 160              		.loc 1 33 27 is_stmt 0 view .LVU23
+ 161 0020 FFF7FEFF 		bl	millis
+ 162              	.LVL9:
+  33:Core/Src/data_transfer.c ****         last_touch_time = millis();
+ 163              		.loc 1 33 25 view .LVU24
+ 164 0024 3060     		str	r0, [r6]
+  34:Core/Src/data_transfer.c ****         elap_touch_time = last_touch_time - prev_touch_time;
+ 165              		.loc 1 34 9 is_stmt 1 view .LVU25
+  34:Core/Src/data_transfer.c ****         elap_touch_time = last_touch_time - prev_touch_time;
+ 166              		.loc 1 34 43 is_stmt 0 view .LVU26
+ 167 0026 2B68     		ldr	r3, [r5]
+ 168 0028 C01A     		subs	r0, r0, r3
+  34:Core/Src/data_transfer.c ****         elap_touch_time = last_touch_time - prev_touch_time;
+ 169              		.loc 1 34 25 view .LVU27
+ 170 002a 3A4B     		ldr	r3, .L17+16
+ 171 002c 1860     		str	r0, [r3]
+  36:Core/Src/data_transfer.c ****         touchData.touched = false;
+ 172              		.loc 1 36 9 is_stmt 1 view .LVU28
+  36:Core/Src/data_transfer.c ****         touchData.touched = false;
+ 173              		.loc 1 36 27 is_stmt 0 view .LVU29
+ 174 002e 354D     		ldr	r5, .L17
+ 175 0030 0023     		movs	r3, #0
+ 176 0032 2B70     		strb	r3, [r5]
+  37:Core/Src/data_transfer.c ****         touchRecv = true;
+ 177              		.loc 1 37 9 is_stmt 1 view .LVU30
+  37:Core/Src/data_transfer.c ****         touchRecv = true;
+ 178              		.loc 1 37 19 is_stmt 0 view .LVU31
+ 179 0034 344B     		ldr	r3, .L17+4
+ 180 0036 0122     		movs	r2, #1
+ 181 0038 1A70     		strb	r2, [r3]
+  39:Core/Src/data_transfer.c ****         ft6206ReadData(); // read data
+ 182              		.loc 1 39 9 is_stmt 1 view .LVU32
+ 183 003a FFF7FEFF 		bl	ft6206ReadData
+ 184              	.LVL10:
+  41:Core/Src/data_transfer.c ****         txTouchData[txTouchIdx].xPos = touchData.xPos; // set x data to correct array index
+ 185              		.loc 1 41 9 view .LVU33
+  41:Core/Src/data_transfer.c ****         txTouchData[txTouchIdx].xPos = touchData.xPos; // set x data to correct array index
+ 186              		.loc 1 41 32 is_stmt 0 view .LVU34
+ 187 003e 364B     		ldr	r3, .L17+20
+ 188 0040 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+  41:Core/Src/data_transfer.c ****         txTouchData[txTouchIdx].xPos = touchData.xPos; // set x data to correct array index
+ 189              		.loc 1 41 49 view .LVU35
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccIkdkeX.s 			page 6
+
+
+ 190 0042 A888     		ldrh	r0, [r5, #4]
+  41:Core/Src/data_transfer.c ****         txTouchData[txTouchIdx].xPos = touchData.xPos; // set x data to correct array index
+ 191              		.loc 1 41 38 view .LVU36
+ 192 0044 354A     		ldr	r2, .L17+24
+ 193 0046 02EBC302 		add	r2, r2, r3, lsl #3
+ 194 004a 9080     		strh	r0, [r2, #4]	@ movhi
+  42:Core/Src/data_transfer.c ****         txTouchData[txTouchIdx].yPos = touchData.yPos; // set x data to correct array index
+ 195              		.loc 1 42 9 is_stmt 1 view .LVU37
+  42:Core/Src/data_transfer.c ****         txTouchData[txTouchIdx].yPos = touchData.yPos; // set x data to correct array index
+ 196              		.loc 1 42 49 is_stmt 0 view .LVU38
+ 197 004c E988     		ldrh	r1, [r5, #6]
+  42:Core/Src/data_transfer.c ****         txTouchData[txTouchIdx].yPos = touchData.yPos; // set x data to correct array index
+ 198              		.loc 1 42 38 view .LVU39
+ 199 004e D180     		strh	r1, [r2, #6]	@ movhi
+  44:Core/Src/data_transfer.c ****         if (txTouchIdx == 0)
+ 200              		.loc 1 44 9 is_stmt 1 view .LVU40
+  44:Core/Src/data_transfer.c ****         if (txTouchIdx == 0)
+ 201              		.loc 1 44 12 is_stmt 0 view .LVU41
+ 202 0050 ABB1     		cbz	r3, .L16
+  46:Core/Src/data_transfer.c ****         else if ((txTouchData[txTouchIdx].xPos != txTouchData[txTouchIdx - 1].xPos) ||
+ 203              		.loc 1 46 14 is_stmt 1 view .LVU42
+  46:Core/Src/data_transfer.c ****         else if ((txTouchData[txTouchIdx].xPos != txTouchData[txTouchIdx - 1].xPos) ||
+ 204              		.loc 1 46 74 is_stmt 0 view .LVU43
+ 205 0052 013B     		subs	r3, r3, #1
+  46:Core/Src/data_transfer.c ****         else if ((txTouchData[txTouchIdx].xPos != txTouchData[txTouchIdx - 1].xPos) ||
+ 206              		.loc 1 46 78 view .LVU44
+ 207 0054 314A     		ldr	r2, .L17+24
+ 208 0056 02EBC302 		add	r2, r2, r3, lsl #3
+ 209 005a 9288     		ldrh	r2, [r2, #4]
+  46:Core/Src/data_transfer.c ****         else if ((txTouchData[txTouchIdx].xPos != txTouchData[txTouchIdx - 1].xPos) ||
+ 210              		.loc 1 46 17 view .LVU45
+ 211 005c 9042     		cmp	r0, r2
+ 212 005e 05D1     		bne	.L9
+  47:Core/Src/data_transfer.c ****                  (txTouchData[txTouchIdx].yPos != txTouchData[txTouchIdx - 1].yPos))
+ 213              		.loc 1 47 78 discriminator 1 view .LVU46
+ 214 0060 2E4A     		ldr	r2, .L17+24
+ 215 0062 02EBC303 		add	r3, r2, r3, lsl #3
+ 216 0066 DB88     		ldrh	r3, [r3, #6]
+  46:Core/Src/data_transfer.c ****         else if ((txTouchData[txTouchIdx].xPos != txTouchData[txTouchIdx - 1].xPos) ||
+ 217              		.loc 1 46 85 discriminator 1 view .LVU47
+ 218 0068 9942     		cmp	r1, r3
+ 219 006a 03D0     		beq	.L8
+ 220              	.L9:
+  48:Core/Src/data_transfer.c ****             ili9341DrawPixel(touchData.xPos, touchData.yPos, RED); // draw pixel if not the same as
+ 221              		.loc 1 48 13 is_stmt 1 view .LVU48
+ 222 006c 4FF47842 		mov	r2, #63488
+ 223 0070 FFF7FEFF 		bl	ili9341DrawPixel
+ 224              	.LVL11:
+ 225              	.L8:
+  50:Core/Src/data_transfer.c ****         txTouchIdx++;
+ 226              		.loc 1 50 9 view .LVU49
+  50:Core/Src/data_transfer.c ****         txTouchIdx++;
+ 227              		.loc 1 50 19 is_stmt 0 view .LVU50
+ 228 0074 284A     		ldr	r2, .L17+20
+ 229 0076 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 230 0078 0133     		adds	r3, r3, #1
+ 231 007a 1370     		strb	r3, [r2]
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccIkdkeX.s 			page 7
+
+
+ 232 007c C6E7     		b	.L6
+ 233              	.L16:
+  45:Core/Src/data_transfer.c ****             ili9341DrawPixel(touchData.xPos, touchData.yPos, RED); // draw pixel if first of index
+ 234              		.loc 1 45 13 is_stmt 1 view .LVU51
+ 235 007e 4FF47842 		mov	r2, #63488
+ 236 0082 FFF7FEFF 		bl	ili9341DrawPixel
+ 237              	.LVL12:
+ 238 0086 F5E7     		b	.L8
+ 239              	.L15:
+  55:Core/Src/data_transfer.c ****         last_loop_time = millis();
+ 240              		.loc 1 55 9 view .LVU52
+  55:Core/Src/data_transfer.c ****         last_loop_time = millis();
+ 241              		.loc 1 55 26 is_stmt 0 view .LVU53
+ 242 0088 FFF7FEFF 		bl	millis
+ 243              	.LVL13:
+  55:Core/Src/data_transfer.c ****         last_loop_time = millis();
+ 244              		.loc 1 55 24 view .LVU54
+ 245 008c 244B     		ldr	r3, .L17+28
+ 246 008e 1860     		str	r0, [r3]
+  57:Core/Src/data_transfer.c ****         if (((last_loop_time - last_touch_time) > (4 * elap_touch_time)) ||
+ 247              		.loc 1 57 9 is_stmt 1 view .LVU55
+  57:Core/Src/data_transfer.c ****         if (((last_loop_time - last_touch_time) > (4 * elap_touch_time)) ||
+ 248              		.loc 1 57 30 is_stmt 0 view .LVU56
+ 249 0090 1F4B     		ldr	r3, .L17+12
+ 250 0092 1B68     		ldr	r3, [r3]
+ 251 0094 C01A     		subs	r0, r0, r3
+  57:Core/Src/data_transfer.c ****         if (((last_loop_time - last_touch_time) > (4 * elap_touch_time)) ||
+ 252              		.loc 1 57 54 view .LVU57
+ 253 0096 1F4B     		ldr	r3, .L17+16
+ 254 0098 1B68     		ldr	r3, [r3]
+  57:Core/Src/data_transfer.c ****         if (((last_loop_time - last_touch_time) > (4 * elap_touch_time)) ||
+ 255              		.loc 1 57 12 view .LVU58
+ 256 009a B0EB830F 		cmp	r0, r3, lsl #2
+ 257 009e 03D8     		bhi	.L11
+  58:Core/Src/data_transfer.c ****             (txTouchIdx >= 100))
+ 258              		.loc 1 58 25 discriminator 1 view .LVU59
+ 259 00a0 1D4B     		ldr	r3, .L17+20
+ 260 00a2 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+  57:Core/Src/data_transfer.c ****         if (((last_loop_time - last_touch_time) > (4 * elap_touch_time)) ||
+ 261              		.loc 1 57 74 discriminator 1 view .LVU60
+ 262 00a4 632B     		cmp	r3, #99
+ 263 00a6 15D9     		bls	.L12
+ 264              	.L11:
+  60:Core/Src/data_transfer.c ****             loopCounter = touchCounter; // reset counters to be equal
+ 265              		.loc 1 60 13 is_stmt 1 view .LVU61
+  60:Core/Src/data_transfer.c ****             loopCounter = touchCounter; // reset counters to be equal
+ 266              		.loc 1 60 25 is_stmt 0 view .LVU62
+ 267 00a8 1E4B     		ldr	r3, .L17+32
+ 268 00aa 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
+ 269 00ac 1E4B     		ldr	r3, .L17+36
+ 270 00ae 1A70     		strb	r2, [r3]
+  61:Core/Src/data_transfer.c ****             touchRecv = false;          // reset touched check
+ 271              		.loc 1 61 13 is_stmt 1 view .LVU63
+  61:Core/Src/data_transfer.c ****             touchRecv = false;          // reset touched check
+ 272              		.loc 1 61 23 is_stmt 0 view .LVU64
+ 273 00b0 0026     		movs	r6, #0
+ 274 00b2 154B     		ldr	r3, .L17+4
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccIkdkeX.s 			page 8
+
+
+ 275 00b4 1E70     		strb	r6, [r3]
+  63:Core/Src/data_transfer.c ****             Message->data = coords2string(txTouchData, txTouchIdx);
+ 276              		.loc 1 63 13 is_stmt 1 view .LVU65
+  63:Core/Src/data_transfer.c ****             Message->data = coords2string(txTouchData, txTouchIdx);
+ 277              		.loc 1 63 29 is_stmt 0 view .LVU66
+ 278 00b6 184D     		ldr	r5, .L17+20
+ 279 00b8 2978     		ldrb	r1, [r5]	@ zero_extendqisi2
+ 280 00ba 1848     		ldr	r0, .L17+24
+ 281 00bc FFF7FEFF 		bl	coords2string
+ 282              	.LVL14:
+  63:Core/Src/data_transfer.c ****             Message->data = coords2string(txTouchData, txTouchIdx);
+ 283              		.loc 1 63 27 view .LVU67
+ 284 00c0 C4F88000 		str	r0, [r4, #128]
+  64:Core/Src/data_transfer.c ****             Message->length = strlen(Message->data);
+ 285              		.loc 1 64 13 is_stmt 1 view .LVU68
+  64:Core/Src/data_transfer.c ****             Message->length = strlen(Message->data);
+ 286              		.loc 1 64 31 is_stmt 0 view .LVU69
+ 287 00c4 FFF7FEFF 		bl	strlen
+ 288              	.LVL15:
+  64:Core/Src/data_transfer.c ****             Message->length = strlen(Message->data);
+ 289              		.loc 1 64 29 view .LVU70
+ 290 00c8 A4F88400 		strh	r0, [r4, #132]	@ movhi
+  65:Core/Src/data_transfer.c ****             txTouchIdx = 0;
+ 291              		.loc 1 65 13 is_stmt 1 view .LVU71
+  65:Core/Src/data_transfer.c ****             txTouchIdx = 0;
+ 292              		.loc 1 65 24 is_stmt 0 view .LVU72
+ 293 00cc 2E70     		strb	r6, [r5]
+  66:Core/Src/data_transfer.c ****             txDataReady = true;
+ 294              		.loc 1 66 13 is_stmt 1 view .LVU73
+  66:Core/Src/data_transfer.c ****             txDataReady = true;
+ 295              		.loc 1 66 25 is_stmt 0 view .LVU74
+ 296 00ce 174B     		ldr	r3, .L17+40
+ 297 00d0 0122     		movs	r2, #1
+ 298 00d2 1A70     		strb	r2, [r3]
+ 299              	.L12:
+  69:Core/Src/data_transfer.c ****         if (SEND_RATE && txDataReady) // if 1s has passed and data is ready
+ 300              		.loc 1 69 9 is_stmt 1 view .LVU75
+  69:Core/Src/data_transfer.c ****         if (SEND_RATE && txDataReady) // if 1s has passed and data is ready
+ 301              		.loc 1 69 13 is_stmt 0 view .LVU76
+ 302 00d4 164B     		ldr	r3, .L17+44
+ 303 00d6 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+  69:Core/Src/data_transfer.c ****         if (SEND_RATE && txDataReady) // if 1s has passed and data is ready
+ 304              		.loc 1 69 12 view .LVU77
+ 305 00d8 002B     		cmp	r3, #0
+ 306 00da 9BD0     		beq	.L5
+  69:Core/Src/data_transfer.c ****         if (SEND_RATE && txDataReady) // if 1s has passed and data is ready
+ 307              		.loc 1 69 23 discriminator 1 view .LVU78
+ 308 00dc 134B     		ldr	r3, .L17+40
+ 309 00de 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 310 00e0 002B     		cmp	r3, #0
+ 311 00e2 97D0     		beq	.L5
+  71:Core/Src/data_transfer.c ****             MQTT_PublishRaw(*Message);
+ 312              		.loc 1 71 13 is_stmt 1 view .LVU79
+ 313 00e4 7822     		movs	r2, #120
+ 314 00e6 04F11001 		add	r1, r4, #16
+ 315 00ea 6846     		mov	r0, sp
+ 316 00ec FFF7FEFF 		bl	memcpy
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccIkdkeX.s 			page 9
+
+
+ 317              	.LVL16:
+ 318 00f0 94E80F00 		ldm	r4, {r0, r1, r2, r3}
+ 319 00f4 FFF7FEFF 		bl	MQTT_PublishRaw
+ 320              	.LVL17:
+  72:Core/Src/data_transfer.c ****             SEND_RATE = false;
+ 321              		.loc 1 72 13 view .LVU80
+  72:Core/Src/data_transfer.c ****             SEND_RATE = false;
+ 322              		.loc 1 72 23 is_stmt 0 view .LVU81
+ 323 00f8 0023     		movs	r3, #0
+ 324 00fa 0D4A     		ldr	r2, .L17+44
+ 325 00fc 1370     		strb	r3, [r2]
+  73:Core/Src/data_transfer.c ****             txDataReady = false;
+ 326              		.loc 1 73 13 is_stmt 1 view .LVU82
+  73:Core/Src/data_transfer.c ****             txDataReady = false;
+ 327              		.loc 1 73 25 is_stmt 0 view .LVU83
+ 328 00fe 0B4A     		ldr	r2, .L17+40
+ 329 0100 1370     		strb	r3, [r2]
+ 330              		.loc 1 76 1 view .LVU84
+ 331 0102 87E7     		b	.L5
+ 332              	.L18:
+ 333              		.align	2
+ 334              	.L17:
+ 335 0104 00000000 		.word	touchData
+ 336 0108 00000000 		.word	.LANCHOR3
+ 337 010c 00000000 		.word	.LANCHOR0
+ 338 0110 00000000 		.word	.LANCHOR1
+ 339 0114 00000000 		.word	.LANCHOR2
+ 340 0118 00000000 		.word	.LANCHOR4
+ 341 011c 00000000 		.word	.LANCHOR5
+ 342 0120 00000000 		.word	.LANCHOR6
+ 343 0124 00000000 		.word	.LANCHOR8
+ 344 0128 00000000 		.word	.LANCHOR7
+ 345 012c 00000000 		.word	.LANCHOR9
+ 346 0130 00000000 		.word	frame1Hz
+ 347              		.cfi_endproc
+ 348              	.LFE1156:
+ 350              		.global	txTouchData
+ 351              		.global	last_loop_time
+ 352              		.global	elap_touch_time
+ 353              		.global	prev_touch_time
+ 354              		.global	last_touch_time
+ 355              		.global	touchRecv
+ 356              		.global	loopCounter
+ 357              		.global	touchCounter
+ 358              		.global	sendIdx
+ 359              		.global	txDataReady
+ 360              		.global	txTouchIdx
+ 361              		.section	.bss.elap_touch_time,"aw",%nobits
+ 362              		.align	2
+ 363              		.set	.LANCHOR2,. + 0
+ 366              	elap_touch_time:
+ 367 0000 00000000 		.space	4
+ 368              		.section	.bss.last_loop_time,"aw",%nobits
+ 369              		.align	2
+ 370              		.set	.LANCHOR6,. + 0
+ 373              	last_loop_time:
+ 374 0000 00000000 		.space	4
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccIkdkeX.s 			page 10
+
+
+ 375              		.section	.bss.last_touch_time,"aw",%nobits
+ 376              		.align	2
+ 377              		.set	.LANCHOR1,. + 0
+ 380              	last_touch_time:
+ 381 0000 00000000 		.space	4
+ 382              		.section	.bss.loopCounter,"aw",%nobits
+ 383              		.set	.LANCHOR7,. + 0
+ 386              	loopCounter:
+ 387 0000 00       		.space	1
+ 388              		.section	.bss.prev_touch_time,"aw",%nobits
+ 389              		.align	2
+ 390              		.set	.LANCHOR0,. + 0
+ 393              	prev_touch_time:
+ 394 0000 00000000 		.space	4
+ 395              		.section	.bss.sendIdx,"aw",%nobits
+ 396              		.align	2
+ 399              	sendIdx:
+ 400 0000 00000000 		.space	4
+ 401              		.section	.bss.touchCounter,"aw",%nobits
+ 402              		.set	.LANCHOR8,. + 0
+ 405              	touchCounter:
+ 406 0000 00       		.space	1
+ 407              		.section	.bss.touchRecv,"aw",%nobits
+ 408              		.set	.LANCHOR3,. + 0
+ 411              	touchRecv:
+ 412 0000 00       		.space	1
+ 413              		.section	.bss.txDataReady,"aw",%nobits
+ 414              		.set	.LANCHOR9,. + 0
+ 417              	txDataReady:
+ 418 0000 00       		.space	1
+ 419              		.section	.bss.txTouchData,"aw",%nobits
+ 420              		.align	2
+ 421              		.set	.LANCHOR5,. + 0
+ 424              	txTouchData:
+ 425 0000 00000000 		.space	800
+ 425      00000000 
+ 425      00000000 
+ 425      00000000 
+ 425      00000000 
+ 426              		.section	.bss.txTouchIdx,"aw",%nobits
+ 427              		.set	.LANCHOR4,. + 0
+ 430              	txTouchIdx:
+ 431 0000 00       		.space	1
+ 432              		.text
+ 433              	.Letext0:
+ 434              		.file 2 "/opt/homebrew/Cellar/arm-none-eabi-gcc/10.3-2021.07/gcc/arm-none-eabi/include/machine/_de
+ 435              		.file 3 "/opt/homebrew/Cellar/arm-none-eabi-gcc/10.3-2021.07/gcc/arm-none-eabi/include/sys/_stdint
+ 436              		.file 4 "Core/Inc/esp32.h"
+ 437              		.file 5 "Core/Inc/ft6206.h"
+ 438              		.file 6 "Core/Inc/dwt_system.h"
+ 439              		.file 7 "Core/Inc/ili9341.h"
+ 440              		.file 8 "Core/Inc/utilities.h"
+ 441              		.file 9 "/opt/homebrew/Cellar/arm-none-eabi-gcc/10.3-2021.07/gcc/arm-none-eabi/include/string.h"
+ 442              		.file 10 "/opt/homebrew/Cellar/arm-none-eabi-gcc/10.3-2021.07/gcc/arm-none-eabi/include/stdlib.h"
+ 443              		.file 11 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h"
+ 444              		.file 12 "<built-in>"
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccIkdkeX.s 			page 11
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 data_transfer.c
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccIkdkeX.s:18     .rodata.initTxTouches.str1.4:0000000000000000 $d
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccIkdkeX.s:25     .text.initTxTouches:0000000000000000 $t
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccIkdkeX.s:33     .text.initTxTouches:0000000000000000 initTxTouches
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccIkdkeX.s:98     .text.initTxTouches:000000000000004c $d
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccIkdkeX.s:104    .text.readAndSendTouches:0000000000000000 $t
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccIkdkeX.s:111    .text.readAndSendTouches:0000000000000000 readAndSendTouches
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccIkdkeX.s:335    .text.readAndSendTouches:0000000000000104 $d
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccIkdkeX.s:424    .bss.txTouchData:0000000000000000 txTouchData
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccIkdkeX.s:373    .bss.last_loop_time:0000000000000000 last_loop_time
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccIkdkeX.s:366    .bss.elap_touch_time:0000000000000000 elap_touch_time
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccIkdkeX.s:393    .bss.prev_touch_time:0000000000000000 prev_touch_time
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccIkdkeX.s:380    .bss.last_touch_time:0000000000000000 last_touch_time
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccIkdkeX.s:411    .bss.touchRecv:0000000000000000 touchRecv
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccIkdkeX.s:386    .bss.loopCounter:0000000000000000 loopCounter
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccIkdkeX.s:405    .bss.touchCounter:0000000000000000 touchCounter
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccIkdkeX.s:399    .bss.sendIdx:0000000000000000 sendIdx
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccIkdkeX.s:417    .bss.txDataReady:0000000000000000 txDataReady
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccIkdkeX.s:430    .bss.txTouchIdx:0000000000000000 txTouchIdx
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccIkdkeX.s:362    .bss.elap_touch_time:0000000000000000 $d
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccIkdkeX.s:369    .bss.last_loop_time:0000000000000000 $d
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccIkdkeX.s:376    .bss.last_touch_time:0000000000000000 $d
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccIkdkeX.s:387    .bss.loopCounter:0000000000000000 $d
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccIkdkeX.s:389    .bss.prev_touch_time:0000000000000000 $d
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccIkdkeX.s:396    .bss.sendIdx:0000000000000000 $d
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccIkdkeX.s:406    .bss.touchCounter:0000000000000000 $d
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccIkdkeX.s:412    .bss.touchRecv:0000000000000000 $d
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccIkdkeX.s:418    .bss.txDataReady:0000000000000000 $d
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccIkdkeX.s:420    .bss.txTouchData:0000000000000000 $d
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccIkdkeX.s:431    .bss.txTouchIdx:0000000000000000 $d
+
+UNDEFINED SYMBOLS
+malloc
+memcpy
+MQTT_Unsubscribe
+millis
+ft6206ReadData
+ili9341DrawPixel
+coords2string
+strlen
+MQTT_PublishRaw
+touchData
+frame1Hz

@@ -208,7 +208,7 @@ bool Wifi_Init(void)
     {
         Wifi_RxClear();
 
-        if (Wifi_SendString("AT\r\n") == false)
+        if (Wifi_SendString("\r\nAT\r\n") == false)
             break;
         if (Wifi_WaitForString(_WIFI_WAIT_TIME_LOW, &result, 2, "OK", "ERROR") == false)
             break;
@@ -218,7 +218,6 @@ bool Wifi_Init(void)
         Wifi_RxClear();
         Wifi_TxClear();
         usart1StartRxIt();
-        // HAL_UART_Receive_IT(&_WIFI_USART, &Wifi.usartBuff, 1);
     } while (0);
     return returnVal;
 }
@@ -954,7 +953,7 @@ bool Wifi_TcpIp_SendDataTcp(uint8_t LinkId, uint16_t dataLen, uint8_t *data)
 bool SNTP_Init(void)
 {
     SNTP.enable = 1;
-    SNTP.timezone = -6;
+    SNTP.timezone = -7;
     SNTP.server1 = "pool.ntp.org";
 
     SNTP.time_updated = false;
@@ -964,6 +963,7 @@ bool SNTP_Init(void)
         SNTP_SetTimeZone(1);
         SNTP_QueryTime();
     }
+    return true;
 }
 // #########################################################################################################
 bool SNTP_SetTimeZone(size_t numServers)
@@ -1023,7 +1023,7 @@ bool SNTP_QueryTime(void)
 
         char *str = strstr((char *)Wifi.RxBuffer, "+CIPSNTPTIME:");
         // sscanf(str, "+CIPSNTPTIME:%[^\r]", SNTP.time);
-        sscanf(str, "+CIPSNTPTIME:%s %s %u %u:%u:%u %u", SNTP.time.day_of_week, SNTP.time.month, &SNTP.time.day, &SNTP.time.clocktime.hour, &SNTP.time.clocktime.min, &SNTP.time.clocktime.sec, &SNTP.time.year);
+        sscanf(str, "+CIPSNTPTIME:%s %s %u %u:%u:%u %hu", SNTP.time.day_of_week, SNTP.time.month, &SNTP.time.day, &SNTP.time.clocktime.hour, &SNTP.time.clocktime.min, &SNTP.time.clocktime.sec, &SNTP.time.year);
 
         returnVal = true;
     } while (0);
@@ -1053,6 +1053,7 @@ bool MQTT_Init(void)
         MQTT_Connect();
         MQTT_GetConnection();
     }
+    return true;
 }
 
 // #########################################################################################################
@@ -1192,7 +1193,7 @@ bool MQTT_GetConnection(void)
             break;
 
         char *str = strstr((char *)Wifi.RxBuffer, "+MQTTCONN:");
-        if (sscanf(str, "+MQTTCONN:0,%d,%d,\"%[^\"]\",\"%u\",\"\",%d", &MQTT.state, &MQTT.scheme, MQTT.host, &MQTT.port, &MQTT.reconnect) == false)
+        if (sscanf(str, "+MQTTCONN:0,%d,%d,\"%[^\"]\",\"%u\",\"\",%d", (int*)&MQTT.state, (int*)&MQTT.scheme, MQTT.host, (int*)&MQTT.port, (int*)&MQTT.reconnect) == false)
             break;
 
         // strcpy(MQTT.host, MQTT.host + 4); // offset by 4 bytes. unknown reason
@@ -1213,7 +1214,7 @@ bool MQTT_Publish(MQTT_Message_t Message)
     do
     {
         Wifi_RxClear();
-        sprintf((char *)Wifi.TxBuffer, "AT+MQTTPUB=%u,\"%s\",\"%s\",0,0\r\n", MQTT.link_id, Message.topic, Message.TxData);
+        sprintf((char *)Wifi.TxBuffer, "AT+MQTTPUB=%u,\"%s\",\"%s\",0,0\r\n", MQTT.link_id, Message.topic, Message.data);
         if (Wifi_SendString((char *)Wifi.TxBuffer) == false)
             break;
         if (Wifi_WaitForString(_WIFI_WAIT_TIME_LOW, &result, 2, "OK", "ERROR") == false)
@@ -1235,13 +1236,12 @@ bool MQTT_PublishRaw(MQTT_Message_t Message)
         sprintf((char *)Wifi.TxBuffer, "AT+MQTTPUBRAW=%u,\"%s\",%u,0,0\r\n", MQTT.link_id, Message.topic, Message.length);
         if (Wifi_SendString((char *)Wifi.TxBuffer) == false)
             break;
-        if (Wifi_WaitForString(_WIFI_WAIT_TIME_LOW, &result, 2, "OK\n>", "ERROR") == false)
+        if (Wifi_WaitForString(_WIFI_WAIT_TIME_LOW, &result, 2, "OK", "ERROR") == false)
             break;       // The timeout was completed and the string was not there
         if (result == 2) // It was find the "ERROR" String in the receiving information
             break;
-        /* Send all data byte by byte */
-        for (uint16_t idx = 0; idx < Message.length; idx++)
-            usart1TransmitDma((uint8_t *)&Message.TxData[idx], 1);
+        /* Send all data */
+        usart1TransmitDma((uint8_t*)Message.data, (size_t)Message.length);
         /* Wait for response */
         if (Wifi_WaitForString(_WIFI_WAIT_TIME_LOW, &result, 2, "+MQTTPUB:OK", "+MQTTPUB:FAIL") == false)
             break;       // The timeout was completed and the string was not there
@@ -1340,12 +1340,12 @@ bool MQTT_WaitForMessage(MQTT_Message_t *Message, uint32_t waitTime)
     do
     {
         Wifi_RxClear();
-        memset(Message->RxData, '\0', sizeof(Message->RxData));
+        memset(Message->data, '\0', strlen(Message->data));
         if (Wifi_WaitForString(waitTime, &result, 1, "+MQTTSUBRECV") == false)
             break; // The timeout was completed and the string was not there
 
         char *str = strstr((char *)Wifi.RxBuffer, "+MQTTSUBRECV");
-        if (sscanf(str, "+MQTTSUBRECV:0,\"%[^\"]\",%u,%[^\r]", Message->topic, &Message->length, Message->RxData) == false)
+        if (sscanf(str, "+MQTTSUBRECV:0,\"%[^\"]\",%hu,%[^\r]", Message->topic, &Message->length, Message->data) == false)
             break;
 
         returnVal = true;
@@ -1360,7 +1360,7 @@ bool MQTT_ListenForMessage(MQTT_Message_t *Message)
     do
     {
         Wifi_RxClear();
-        memset(Message->RxData, '\0', sizeof(Message->RxData));
+        memset(Message->data, '\0', strlen(Message->data));
 
         if (char_irq_recv)
         {
@@ -1370,7 +1370,7 @@ bool MQTT_ListenForMessage(MQTT_Message_t *Message)
                 break; // The timeout was completed and the string was not there 
 
             char *str = strstr((char *)Wifi.RxBuffer, "+MQTTSUBRECV");
-            if (sscanf(str, "+MQTTSUBRECV:0,\"%[^\"]\",%u,%[^\r]", Message->topic, &Message->length, Message->RxData) == false)
+            if (sscanf(str, "+MQTTSUBRECV:0,\"%[^\"]\",%hu,%[^\r]", Message->topic, &Message->length, Message->data) == false)
                 break;
 
             returnVal = true;
@@ -1379,17 +1379,17 @@ bool MQTT_ListenForMessage(MQTT_Message_t *Message)
     } while (0);
     return returnVal;
 }
-void MQTT_MessageParser(MQTT_Message_t *Message, TouchData_t TouchData[10])
-{
-    // see stackoverflow question on parser data faster than sscanf
-    char *resstr = Message->RxData;// strchr(token, '=') + 1;
-    TouchData[0].xPos = (int16_t)atoi(resstr);
-    resstr = strchr(resstr, ';') + 1;
-    *res2 = (int16_t)atoi(resstr);
+// void MQTT_MessageParser(MQTT_Message_t *Message, TouchData_t TouchData[10])
+// {
+//     // see stackoverflow question on parser data faster than sscanf
+//     char *resstr = Message->data;// strchr(token, '=') + 1;
+//     TouchData[0].xPos = (int16_t)atoi(resstr);
+//     resstr = strchr(resstr, ';') + 1;
+//     *res2 = (int16_t)atoi(resstr);
 
-    resstr = strchr(resstr, ',') + 1;
-    *res3 = (int16_t)atoi(resstr);
+//     resstr = strchr(resstr, ',') + 1;
+//     *res3 = (int16_t)atoi(resstr);
 
-    resstr = strchr(resstr, ',') + 1;
-    *res4 = (int16_t)atoi(resstr);
-}
+//     resstr = strchr(resstr, ',') + 1;
+//     *res4 = (int16_t)atoi(resstr);
+// }

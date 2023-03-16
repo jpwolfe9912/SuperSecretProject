@@ -13,7 +13,7 @@
 ######################################
 # target
 ######################################
-TARGET = LCD_TFT
+TARGET = SuperSecretProject
 
 
 ######################################
@@ -36,6 +36,7 @@ BUILD_DIR = build
 ######################################
 # C sources
 C_SOURCES =  \
+Core/Src/data_transfer.c \
 Core/Src/dma.c \
 Core/Src/dwt_system.c \
 Core/Src/esp32.c \
@@ -53,6 +54,7 @@ Core/Src/stm32l4xx_it.c \
 Core/Src/syscalls.c \
 Core/Src/system_stm32l4xx.c \
 Core/Src/usart.c \
+Core/Src/utilities.c \
 Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal.c \
 Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_cortex.c \
 Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_dma.c \

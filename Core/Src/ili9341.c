@@ -68,15 +68,14 @@ void ili9341SetAddress(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1)
 }
 
 /*HARDWARE RESET*/
-// TODO: Implement reset pin
-// void ili9341_Reset(void)
-// {
-// HAL_GPIO_WritePin(LCD_RST_PORT, LCD_RST_PIN, GPIO_PIN_RESET);
-// delay(200);
-// ILI9341_CS_RESET;
-// delay(200);
-// HAL_GPIO_WritePin(LCD_RST_PORT, LCD_RST_PIN, GPIO_PIN_SET);
-// }
+void ili9341_Reset(void)
+{
+    GPIOB->BSRR |= GPIO_BSRR_BR1;
+    delay(200);
+    ILI9341_CS_RESET;
+    delay(200);
+    GPIOB->BSRR |= GPIO_BSRR_BS1;
+}
 
 /*Ser rotation of the screen - changes x0 and y0*/
 void ili9341SetRotation(uint8_t rotation)
@@ -128,8 +127,7 @@ void ili9341SetRotation(uint8_t rotation)
 /*Initialize LCD display*/
 void ili9341Init(void)
 {
-    // ili9341_Enable();
-    // ili9341_Reset();
+    ili9341_Reset();
     ILI9341_CS_SET;
 
     // SOFTWARE RESET
@@ -374,7 +372,7 @@ void ili9341DrawPixel(uint16_t x, uint16_t y, uint16_t color)
     ili9341WriteData(temp_buffer2, 2);
 }
 
-void ili9341DrawImage(uint16_t x, uint16_t y, uint16_t w, uint16_t h, const uint16_t *image)
+void ili9341DrawImage(uint16_t x, uint16_t y, uint16_t w, uint16_t h, const uint16_t image[240][320])
 {
     if ((x >= ILI9341_SCREEN_WIDTH) || (y >= ILI9341_SCREEN_HEIGHT))
         return;
@@ -440,7 +438,7 @@ void ili9341WriteCharFromUART(uint16_t startX, uint16_t startY, FontDef font, ui
     {
         ch = serialRead();
         ili9341DrawHorizontalLine(locX * font.width, (locY * font.height) + font.height, font.width, bgcolor);
-        if (ch == 0x08)  // delete key
+        if (ch == 0x08) // delete key
         {
             ch = ' ';
             if ((locX == 0) && (locY != 0)) // deleting at the beginning of a line
@@ -457,7 +455,7 @@ void ili9341WriteCharFromUART(uint16_t startX, uint16_t startY, FontDef font, ui
                 locX--;
             ili9341WriteChar(startX + (locX * font.width), startY + (locY * font.height), ch, font, color, bgcolor);
         }
-        else if (ch == 0x0D)    // return key
+        else if (ch == 0x0D) // return key
         {
             if (locY + 1 == maxLocY)
             {
@@ -470,7 +468,7 @@ void ili9341WriteCharFromUART(uint16_t startX, uint16_t startY, FontDef font, ui
                 locY++;
             }
         }
-        else if(ch >= 0x20)   // normal character
+        else if (ch >= 0x20) // normal character
         {
             ili9341WriteChar(startX + (locX * font.width), startY + (locY * font.height), ch, font, color, bgcolor);
             locX++;

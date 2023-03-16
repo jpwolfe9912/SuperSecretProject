@@ -27,7 +27,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "main.h"
+#include "super_secret_project.h"
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/

@@ -1,7 +1,7 @@
 #ifndef _ESP32_H
 #define _ESP32_H
 
-#include "main.h"
+#include "super_secret_project.h"
 #include "esp32Config.h"
 
 // ###################################################################################################
@@ -144,8 +144,7 @@ typedef struct
 typedef struct
 {
     char topic[128];
-    char TxData[_MQTT_TX_SIZE];
-    char RxData[_MQTT_RX_SIZE];
+    char* data; //[_MQTT_SIZE];
     uint16_t length;
 } MQTT_Message_t;
 

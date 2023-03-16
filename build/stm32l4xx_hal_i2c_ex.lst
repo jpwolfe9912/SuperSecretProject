@@ -1,4 +1,4 @@
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccOhNPw5.s 			page 1
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHX5Mz7.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccOhNPw5.s 			page 1
   27:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_i2c_ex.c **** 
   28:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_i2c_ex.c ****   [..] Comparing to other previous devices, the I2C interface for STM32L4xx
   29:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_i2c_ex.c ****        devices contains the following additional features
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccOhNPw5.s 			page 2
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHX5Mz7.s 			page 2
 
 
   30:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_i2c_ex.c **** 
@@ -118,7 +118,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccOhNPw5.s 			page 1
   84:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_i2c_ex.c **** 
   85:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_i2c_ex.c **** @endverbatim
   86:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_i2c_ex.c ****   * @{
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccOhNPw5.s 			page 3
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHX5Mz7.s 			page 3
 
 
   87:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_i2c_ex.c ****   */
@@ -178,7 +178,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccOhNPw5.s 			page 1
   60 0022 23F00103 		bic	r3, r3, #1
   61 0026 1360     		str	r3, [r2]
  111:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_i2c_ex.c **** 
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccOhNPw5.s 			page 4
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHX5Mz7.s 			page 4
 
 
  112:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_i2c_ex.c ****     /* Reset I2Cx ANOFF bit */
@@ -238,7 +238,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccOhNPw5.s 			page 1
  128:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_i2c_ex.c ****   {
  129:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_i2c_ex.c ****     return HAL_BUSY;
  100              		.loc 1 129 12 view .LVU29
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccOhNPw5.s 			page 5
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHX5Mz7.s 			page 5
 
 
  101 0054 0220     		movs	r0, #2
@@ -298,7 +298,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccOhNPw5.s 			page 1
  137 0004 DBB2     		uxtb	r3, r3
  138              		.loc 1 148 6 view .LVU39
  139 0006 202B     		cmp	r3, #32
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccOhNPw5.s 			page 6
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHX5Mz7.s 			page 6
 
 
  140 0008 22D1     		bne	.L7
@@ -358,7 +358,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccOhNPw5.s 			page 1
  174              		.loc 1 168 25 is_stmt 0 discriminator 2 view .LVU55
  175 0034 1160     		str	r1, [r2]
  169:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_i2c_ex.c **** 
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccOhNPw5.s 			page 7
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHX5Mz7.s 			page 7
 
 
  170:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_i2c_ex.c ****     __HAL_I2C_ENABLE(hi2c);
@@ -418,7 +418,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccOhNPw5.s 			page 1
  216              		.syntax unified
  217              		.thumb
  218              		.thumb_func
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccOhNPw5.s 			page 8
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHX5Mz7.s 			page 8
 
 
  219              		.fpu fpv4-sp-d16
@@ -478,7 +478,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccOhNPw5.s 			page 1
  241 0010 1ED0     		beq	.L12
  242              		.loc 1 216 5 discriminator 2 view .LVU76
  243 0012 0123     		movs	r3, #1
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccOhNPw5.s 			page 9
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHX5Mz7.s 			page 9
 
 
  244 0014 80F84030 		strb	r3, [r0, #64]
@@ -538,7 +538,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccOhNPw5.s 			page 1
  281 004a 7047     		bx	lr
  282              	.LVL18:
  283              	.L11:
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccOhNPw5.s 			page 10
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHX5Mz7.s 			page 10
 
 
  234:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_i2c_ex.c ****   }
@@ -598,7 +598,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccOhNPw5.s 			page 1
  320              		.loc 1 252 6 view .LVU101
  321 0006 202B     		cmp	r3, #32
  322 0008 20D1     		bne	.L15
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccOhNPw5.s 			page 11
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHX5Mz7.s 			page 11
 
 
  253:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_i2c_ex.c ****   {
@@ -658,7 +658,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccOhNPw5.s 			page 1
  359 0042 0023     		movs	r3, #0
  360 0044 80F84030 		strb	r3, [r0, #64]
  361              		.loc 1 270 5 discriminator 2 view .LVU117
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccOhNPw5.s 			page 12
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHX5Mz7.s 			page 12
 
 
  271:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_i2c_ex.c **** 
@@ -718,7 +718,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccOhNPw5.s 			page 1
  292:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_i2c_ex.c **** 
  293:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_i2c_ex.c **** @endverbatim
  294:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_i2c_ex.c ****   * @{
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccOhNPw5.s 			page 13
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHX5Mz7.s 			page 13
 
 
  295:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_i2c_ex.c ****   */
@@ -778,7 +778,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccOhNPw5.s 			page 1
  421              		.loc 1 323 3 view .LVU134
  422 0016 044A     		ldr	r2, .L19+4
  423 0018 5368     		ldr	r3, [r2, #4]
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccOhNPw5.s 			page 14
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHX5Mz7.s 			page 14
 
 
  424 001a 0343     		orrs	r3, r3, r0
@@ -838,7 +838,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccOhNPw5.s 			page 1
  346:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_i2c_ex.c ****   assert_param(IS_I2C_FASTMODEPLUS(ConfigFastModePlus));
  458              		.loc 1 346 3 is_stmt 1 view .LVU138
  347:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_i2c_ex.c **** 
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccOhNPw5.s 			page 15
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHX5Mz7.s 			page 15
 
 
  348:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_i2c_ex.c ****   /* Enable SYSCFG clock */
@@ -888,24 +888,24 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccOhNPw5.s 			page 1
  498              		.file 5 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_def.h"
  499              		.file 6 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_dma.h"
  500              		.file 7 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_i2c.h"
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccOhNPw5.s 			page 16
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHX5Mz7.s 			page 16
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 stm32l4xx_hal_i2c_ex.c
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccOhNPw5.s:18     .text.HAL_I2CEx_ConfigAnalogFilter:0000000000000000 $t
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccOhNPw5.s:26     .text.HAL_I2CEx_ConfigAnalogFilter:0000000000000000 HAL_I2CEx_ConfigAnalogFilter
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccOhNPw5.s:116    .text.HAL_I2CEx_ConfigDigitalFilter:0000000000000000 $t
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccOhNPw5.s:123    .text.HAL_I2CEx_ConfigDigitalFilter:0000000000000000 HAL_I2CEx_ConfigDigitalFilter
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccOhNPw5.s:214    .text.HAL_I2CEx_EnableWakeUp:0000000000000000 $t
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccOhNPw5.s:221    .text.HAL_I2CEx_EnableWakeUp:0000000000000000 HAL_I2CEx_EnableWakeUp
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccOhNPw5.s:300    .text.HAL_I2CEx_DisableWakeUp:0000000000000000 $t
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccOhNPw5.s:307    .text.HAL_I2CEx_DisableWakeUp:0000000000000000 HAL_I2CEx_DisableWakeUp
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccOhNPw5.s:386    .text.HAL_I2CEx_EnableFastModePlus:0000000000000000 $t
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccOhNPw5.s:393    .text.HAL_I2CEx_EnableFastModePlus:0000000000000000 HAL_I2CEx_EnableFastModePlus
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccOhNPw5.s:434    .text.HAL_I2CEx_EnableFastModePlus:0000000000000024 $d
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccOhNPw5.s:440    .text.HAL_I2CEx_DisableFastModePlus:0000000000000000 $t
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccOhNPw5.s:447    .text.HAL_I2CEx_DisableFastModePlus:0000000000000000 HAL_I2CEx_DisableFastModePlus
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccOhNPw5.s:488    .text.HAL_I2CEx_DisableFastModePlus:0000000000000024 $d
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHX5Mz7.s:18     .text.HAL_I2CEx_ConfigAnalogFilter:0000000000000000 $t
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHX5Mz7.s:26     .text.HAL_I2CEx_ConfigAnalogFilter:0000000000000000 HAL_I2CEx_ConfigAnalogFilter
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHX5Mz7.s:116    .text.HAL_I2CEx_ConfigDigitalFilter:0000000000000000 $t
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHX5Mz7.s:123    .text.HAL_I2CEx_ConfigDigitalFilter:0000000000000000 HAL_I2CEx_ConfigDigitalFilter
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHX5Mz7.s:214    .text.HAL_I2CEx_EnableWakeUp:0000000000000000 $t
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHX5Mz7.s:221    .text.HAL_I2CEx_EnableWakeUp:0000000000000000 HAL_I2CEx_EnableWakeUp
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHX5Mz7.s:300    .text.HAL_I2CEx_DisableWakeUp:0000000000000000 $t
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHX5Mz7.s:307    .text.HAL_I2CEx_DisableWakeUp:0000000000000000 HAL_I2CEx_DisableWakeUp
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHX5Mz7.s:386    .text.HAL_I2CEx_EnableFastModePlus:0000000000000000 $t
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHX5Mz7.s:393    .text.HAL_I2CEx_EnableFastModePlus:0000000000000000 HAL_I2CEx_EnableFastModePlus
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHX5Mz7.s:434    .text.HAL_I2CEx_EnableFastModePlus:0000000000000024 $d
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHX5Mz7.s:440    .text.HAL_I2CEx_DisableFastModePlus:0000000000000000 $t
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHX5Mz7.s:447    .text.HAL_I2CEx_DisableFastModePlus:0000000000000000 HAL_I2CEx_DisableFastModePlus
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHX5Mz7.s:488    .text.HAL_I2CEx_DisableFastModePlus:0000000000000024 $d
 
 NO UNDEFINED SYMBOLS

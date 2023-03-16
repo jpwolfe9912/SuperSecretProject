@@ -1,7 +1,8 @@
 #ifndef __GRAPHICS_H__
 #define __GRAPHICS_H__
 
-#include "main.h"
+#include "super_secret_project.h"
+#include "ili9341.h"
 
 void drawLine(int16_t x0, int16_t y0, int16_t x1, int16_t y1, uint16_t color);
 void drawVerticalLine(uint16_t x, uint16_t y, uint16_t h, uint16_t color);

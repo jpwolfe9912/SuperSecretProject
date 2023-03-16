@@ -13,7 +13,7 @@
 ######################################
 # target
 ######################################
-TARGET = LCD TFT
+TARGET = SuperSecretProject
 
 
 ######################################
@@ -36,19 +36,7 @@ BUILD_DIR = build
 ######################################
 # C sources
 C_SOURCES =  \
-Core/Src/main.c \
-Core/Src/gpio.c \
-Core/Src/dma.c \
-Core/Src/i2c.c \
-Core/Src/spi.c \
-Core/Src/usart.c \
-Core/Src/image_reader.c \
-Core/Src/fonts.c \
-Core/Src/ft6206.c \
-Core/Src/graphics.c \
-Core/Src/esp32.c \
-Core/Src/stm32l4xx_it.c \
-Core/Src/stm32l4xx_hal_msp.c \
+Core/Src/*.c \
 Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_ll_utils.c \
 Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_ll_exti.c \
 Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_ll_gpio.c \
@@ -57,10 +45,6 @@ Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_ll_i2c.c \
 Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_ll_spi.c \
 Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_ll_usart.c \
 Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_ll_rcc.c \
-Core/Src/system_stm32l4xx.c \
-Core/Src/ili9341.c \
-Core/Src/dwt_system.c \
-Core/Src/stm32l4xx_hal_msp.c \
 FATFS/App/fatfs.c \
 FATFS/Target/user_diskio.c \
 FATFS/Target/user_diskio_spi.c \

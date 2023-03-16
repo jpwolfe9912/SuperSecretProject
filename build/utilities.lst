@@ -1,0 +1,310 @@
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cceyGj9y.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"utilities.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.rodata.coords2string.str1.4,"aMS",%progbits,1
+  18              		.align	2
+  19              	.LC0:
+  20 0000 25753B25 		.ascii	"%u;%u \000"
+  20      752000
+  21 0007 00       		.align	2
+  22              	.LC1:
+  23 0008 25753B25 		.ascii	"%u;%u\000"
+  23      7500
+  24              		.section	.text.coords2string,"ax",%progbits
+  25              		.align	1
+  26              		.global	coords2string
+  27              		.arch armv7e-m
+  28              		.syntax unified
+  29              		.thumb
+  30              		.thumb_func
+  31              		.fpu fpv4-sp-d16
+  33              	coords2string:
+  34              	.LVL0:
+  35              	.LFB1155:
+  36              		.file 1 "Core/Src/utilities.c"
+   1:Core/Src/utilities.c **** #include "utilities.h"
+   2:Core/Src/utilities.c **** 
+   3:Core/Src/utilities.c **** char *coords2string(TouchData_t txTouchData[100], size_t coords_size)
+   4:Core/Src/utilities.c **** {
+  37              		.loc 1 4 1 view -0
+  38              		.cfi_startproc
+  39              		@ args = 0, pretend = 0, frame = 16
+  40              		@ frame_needed = 0, uses_anonymous_args = 0
+  41              		.loc 1 4 1 is_stmt 0 view .LVU1
+  42 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+  43              		.cfi_def_cfa_offset 20
+  44              		.cfi_offset 4, -20
+  45              		.cfi_offset 5, -16
+  46              		.cfi_offset 6, -12
+  47              		.cfi_offset 7, -8
+  48              		.cfi_offset 14, -4
+  49 0002 85B0     		sub	sp, sp, #20
+  50              		.cfi_def_cfa_offset 40
+  51 0004 0746     		mov	r7, r0
+  52 0006 0D46     		mov	r5, r1
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cceyGj9y.s 			page 2
+
+
+   5:Core/Src/utilities.c ****     char *strBuff = calloc(_MQTT_SIZE, sizeof(uint8_t)); // allocate and clear memory
+  53              		.loc 1 5 5 is_stmt 1 view .LVU2
+  54              		.loc 1 5 21 is_stmt 0 view .LVU3
+  55 0008 0121     		movs	r1, #1
+  56              	.LVL1:
+  57              		.loc 1 5 21 view .LVU4
+  58 000a 4FF40070 		mov	r0, #512
+  59              	.LVL2:
+  60              		.loc 1 5 21 view .LVU5
+  61 000e FFF7FEFF 		bl	calloc
+  62              	.LVL3:
+  63 0012 0646     		mov	r6, r0
+  64              	.LVL4:
+   6:Core/Src/utilities.c ****     uint8_t coord_idx = 0;
+  65              		.loc 1 6 5 is_stmt 1 view .LVU6
+   7:Core/Src/utilities.c ****     while (coord_idx < coords_size)
+  66              		.loc 1 7 5 view .LVU7
+   6:Core/Src/utilities.c ****     uint8_t coord_idx = 0;
+  67              		.loc 1 6 13 is_stmt 0 view .LVU8
+  68 0014 0024     		movs	r4, #0
+  69              		.loc 1 7 11 view .LVU9
+  70 0016 09E0     		b	.L2
+  71              	.LVL5:
+  72              	.L3:
+  73              	.LBB2:
+   8:Core/Src/utilities.c ****     {
+   9:Core/Src/utilities.c ****         uint16_t xCoord = txTouchData[coord_idx].xPos;
+  10:Core/Src/utilities.c ****         uint16_t yCoord = txTouchData[coord_idx].yPos;
+  11:Core/Src/utilities.c ****         uint8_t str_size = 0;
+  12:Core/Src/utilities.c ****         uint8_t str_idx = 0;
+  13:Core/Src/utilities.c ****         char temp_str[10];
+  14:Core/Src/utilities.c **** 
+  15:Core/Src/utilities.c ****         if (coord_idx < (coords_size - 1))
+  16:Core/Src/utilities.c ****             str_size = sprintf(temp_str, "%u;%u ", xCoord, yCoord);
+  17:Core/Src/utilities.c ****         else
+  18:Core/Src/utilities.c ****         {
+  19:Core/Src/utilities.c ****             str_size = sprintf(temp_str, "%u;%u", xCoord, yCoord);
+  74              		.loc 1 19 13 is_stmt 1 view .LVU10
+  75              		.loc 1 19 24 is_stmt 0 view .LVU11
+  76 0018 0D49     		ldr	r1, .L8
+  77 001a 01A8     		add	r0, sp, #4
+  78 001c FFF7FEFF 		bl	sprintf
+  79              	.LVL6:
+  80              	.L4:
+  20:Core/Src/utilities.c ****         }
+  21:Core/Src/utilities.c ****         strcat(&strBuff[str_idx], temp_str);
+  81              		.loc 1 21 9 is_stmt 1 view .LVU12
+  82 0020 01A9     		add	r1, sp, #4
+  83 0022 3046     		mov	r0, r6
+  84 0024 FFF7FEFF 		bl	strcat
+  85              	.LVL7:
+  22:Core/Src/utilities.c ****         str_idx += str_size;
+  86              		.loc 1 22 9 view .LVU13
+  23:Core/Src/utilities.c **** 
+  24:Core/Src/utilities.c ****         coord_idx++;
+  87              		.loc 1 24 9 view .LVU14
+  88              		.loc 1 24 18 is_stmt 0 view .LVU15
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cceyGj9y.s 			page 3
+
+
+  89 0028 0134     		adds	r4, r4, #1
+  90              	.LVL8:
+  91              		.loc 1 24 18 view .LVU16
+  92 002a E4B2     		uxtb	r4, r4
+  93              	.LVL9:
+  94              	.L2:
+  95              		.loc 1 24 18 view .LVU17
+  96              	.LBE2:
+   7:Core/Src/utilities.c ****     {
+  97              		.loc 1 7 11 is_stmt 1 view .LVU18
+  98 002c AC42     		cmp	r4, r5
+  99 002e 0BD2     		bcs	.L7
+ 100              	.LBB3:
+   9:Core/Src/utilities.c ****         uint16_t yCoord = txTouchData[coord_idx].yPos;
+ 101              		.loc 1 9 9 view .LVU19
+   9:Core/Src/utilities.c ****         uint16_t yCoord = txTouchData[coord_idx].yPos;
+ 102              		.loc 1 9 38 is_stmt 0 view .LVU20
+ 103 0030 07EBC403 		add	r3, r7, r4, lsl #3
+   9:Core/Src/utilities.c ****         uint16_t yCoord = txTouchData[coord_idx].yPos;
+ 104              		.loc 1 9 18 view .LVU21
+ 105 0034 9A88     		ldrh	r2, [r3, #4]
+ 106              	.LVL10:
+  10:Core/Src/utilities.c ****         uint8_t str_size = 0;
+ 107              		.loc 1 10 9 is_stmt 1 view .LVU22
+  10:Core/Src/utilities.c ****         uint8_t str_size = 0;
+ 108              		.loc 1 10 18 is_stmt 0 view .LVU23
+ 109 0036 DB88     		ldrh	r3, [r3, #6]
+ 110              	.LVL11:
+  11:Core/Src/utilities.c ****         uint8_t str_idx = 0;
+ 111              		.loc 1 11 9 is_stmt 1 view .LVU24
+  12:Core/Src/utilities.c ****         char temp_str[10];
+ 112              		.loc 1 12 9 view .LVU25
+  13:Core/Src/utilities.c **** 
+ 113              		.loc 1 13 9 view .LVU26
+  15:Core/Src/utilities.c ****             str_size = sprintf(temp_str, "%u;%u ", xCoord, yCoord);
+ 114              		.loc 1 15 9 view .LVU27
+  15:Core/Src/utilities.c ****             str_size = sprintf(temp_str, "%u;%u ", xCoord, yCoord);
+ 115              		.loc 1 15 38 is_stmt 0 view .LVU28
+ 116 0038 691E     		subs	r1, r5, #1
+  15:Core/Src/utilities.c ****             str_size = sprintf(temp_str, "%u;%u ", xCoord, yCoord);
+ 117              		.loc 1 15 12 view .LVU29
+ 118 003a A142     		cmp	r1, r4
+ 119 003c ECD9     		bls	.L3
+  16:Core/Src/utilities.c ****         else
+ 120              		.loc 1 16 13 is_stmt 1 view .LVU30
+  16:Core/Src/utilities.c ****         else
+ 121              		.loc 1 16 24 is_stmt 0 view .LVU31
+ 122 003e 0549     		ldr	r1, .L8+4
+ 123 0040 01A8     		add	r0, sp, #4
+ 124 0042 FFF7FEFF 		bl	sprintf
+ 125              	.LVL12:
+  16:Core/Src/utilities.c ****         else
+ 126              		.loc 1 16 24 view .LVU32
+ 127 0046 EBE7     		b	.L4
+ 128              	.LVL13:
+ 129              	.L7:
+  16:Core/Src/utilities.c ****         else
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cceyGj9y.s 			page 4
+
+
+ 130              		.loc 1 16 24 view .LVU33
+ 131              	.LBE3:
+  25:Core/Src/utilities.c ****     }
+  26:Core/Src/utilities.c ****     return strBuff;
+ 132              		.loc 1 26 5 is_stmt 1 view .LVU34
+  27:Core/Src/utilities.c **** }
+ 133              		.loc 1 27 1 is_stmt 0 view .LVU35
+ 134 0048 3046     		mov	r0, r6
+ 135 004a 05B0     		add	sp, sp, #20
+ 136              		.cfi_def_cfa_offset 20
+ 137              		@ sp needed
+ 138 004c F0BD     		pop	{r4, r5, r6, r7, pc}
+ 139              	.LVL14:
+ 140              	.L9:
+ 141              		.loc 1 27 1 view .LVU36
+ 142 004e 00BF     		.align	2
+ 143              	.L8:
+ 144 0050 08000000 		.word	.LC1
+ 145 0054 00000000 		.word	.LC0
+ 146              		.cfi_endproc
+ 147              	.LFE1155:
+ 149              		.section	.text.num2digits,"ax",%progbits
+ 150              		.align	1
+ 151              		.global	num2digits
+ 152              		.syntax unified
+ 153              		.thumb
+ 154              		.thumb_func
+ 155              		.fpu fpv4-sp-d16
+ 157              	num2digits:
+ 158              	.LVL15:
+ 159              	.LFB1156:
+  28:Core/Src/utilities.c **** 
+  29:Core/Src/utilities.c **** int num2digits(int num)
+  30:Core/Src/utilities.c **** {
+ 160              		.loc 1 30 1 is_stmt 1 view -0
+ 161              		.cfi_startproc
+ 162              		@ args = 0, pretend = 0, frame = 0
+ 163              		@ frame_needed = 0, uses_anonymous_args = 0
+ 164              		@ link register save eliminated.
+ 165              		.loc 1 30 1 is_stmt 0 view .LVU38
+ 166 0000 0146     		mov	r1, r0
+  31:Core/Src/utilities.c ****     int digits = 1;
+ 167              		.loc 1 31 5 is_stmt 1 view .LVU39
+ 168              	.LVL16:
+  32:Core/Src/utilities.c ****     int divisor = 10;
+ 169              		.loc 1 32 5 view .LVU40
+ 170              		.loc 1 32 9 is_stmt 0 view .LVU41
+ 171 0002 0A23     		movs	r3, #10
+  31:Core/Src/utilities.c ****     int digits = 1;
+ 172              		.loc 1 31 9 view .LVU42
+ 173 0004 0120     		movs	r0, #1
+ 174              	.LVL17:
+  31:Core/Src/utilities.c ****     int digits = 1;
+ 175              		.loc 1 31 9 view .LVU43
+ 176 0006 03E0     		b	.L12
+ 177              	.LVL18:
+ 178              	.L14:
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cceyGj9y.s 			page 5
+
+
+  33:Core/Src/utilities.c **** 
+  34:Core/Src/utilities.c ****     while (1)
+  35:Core/Src/utilities.c ****     {
+  36:Core/Src/utilities.c ****         if ((num / divisor) == 0)
+  37:Core/Src/utilities.c ****             return digits;
+  38:Core/Src/utilities.c ****         else
+  39:Core/Src/utilities.c ****         {
+  40:Core/Src/utilities.c ****             divisor *= 10;
+ 179              		.loc 1 40 13 is_stmt 1 view .LVU44
+ 180              		.loc 1 40 21 is_stmt 0 view .LVU45
+ 181 0008 03EB8303 		add	r3, r3, r3, lsl #2
+ 182              	.LVL19:
+ 183              		.loc 1 40 21 view .LVU46
+ 184 000c 5B00     		lsls	r3, r3, #1
+ 185              	.LVL20:
+  41:Core/Src/utilities.c ****             digits++;
+ 186              		.loc 1 41 13 is_stmt 1 view .LVU47
+ 187              		.loc 1 41 19 is_stmt 0 view .LVU48
+ 188 000e 0130     		adds	r0, r0, #1
+ 189              	.LVL21:
+  34:Core/Src/utilities.c ****     {
+ 190              		.loc 1 34 11 is_stmt 1 view .LVU49
+ 191              	.L12:
+  34:Core/Src/utilities.c ****     {
+ 192              		.loc 1 34 5 view .LVU50
+  36:Core/Src/utilities.c ****             return digits;
+ 193              		.loc 1 36 9 view .LVU51
+  36:Core/Src/utilities.c ****             return digits;
+ 194              		.loc 1 36 18 is_stmt 0 view .LVU52
+ 195 0010 91FBF3F2 		sdiv	r2, r1, r3
+  36:Core/Src/utilities.c ****             return digits;
+ 196              		.loc 1 36 12 view .LVU53
+ 197 0014 002A     		cmp	r2, #0
+ 198 0016 F7D1     		bne	.L14
+  42:Core/Src/utilities.c ****         }
+  43:Core/Src/utilities.c ****     }
+  44:Core/Src/utilities.c **** }...
+ 199              		.loc 1 44 1 view .LVU54
+ 200 0018 7047     		bx	lr
+ 201              		.cfi_endproc
+ 202              	.LFE1156:
+ 204              		.text
+ 205              	.Letext0:
+ 206              		.file 2 "/opt/homebrew/Cellar/arm-none-eabi-gcc/10.3-2021.07/gcc/arm-none-eabi/include/machine/_de
+ 207              		.file 3 "/opt/homebrew/Cellar/arm-none-eabi-gcc/10.3-2021.07/gcc/arm-none-eabi/include/sys/_stdint
+ 208              		.file 4 "/opt/homebrew/Cellar/arm-none-eabi-gcc/10.3-2021.07/gcc/lib/gcc/arm-none-eabi/10.3.1/incl
+ 209              		.file 5 "Core/Inc/ft6206.h"
+ 210              		.file 6 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h"
+ 211              		.file 7 "/opt/homebrew/Cellar/arm-none-eabi-gcc/10.3-2021.07/gcc/arm-none-eabi/include/stdio.h"
+ 212              		.file 8 "/opt/homebrew/Cellar/arm-none-eabi-gcc/10.3-2021.07/gcc/arm-none-eabi/include/string.h"
+ 213              		.file 9 "/opt/homebrew/Cellar/arm-none-eabi-gcc/10.3-2021.07/gcc/arm-none-eabi/include/stdlib.h"
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cceyGj9y.s 			page 6
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 utilities.c
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cceyGj9y.s:18     .rodata.coords2string.str1.4:0000000000000000 $d
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cceyGj9y.s:25     .text.coords2string:0000000000000000 $t
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cceyGj9y.s:33     .text.coords2string:0000000000000000 coords2string
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cceyGj9y.s:144    .text.coords2string:0000000000000050 $d
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cceyGj9y.s:150    .text.num2digits:0000000000000000 $t
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cceyGj9y.s:157    .text.num2digits:0000000000000000 num2digits
+
+UNDEFINED SYMBOLS
+calloc
+sprintf
+strcat

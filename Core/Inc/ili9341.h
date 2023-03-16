@@ -1,7 +1,9 @@
 #ifndef __ILI9341_H__
 #define __ILI9341_H__
 
-#include "main.h"
+#include "super_secret_project.h"
+#include "fonts.h"
+
 
 #define ILI9341_COMMAND (GPIOA->BSRR |= GPIO_BSRR_BR3)
 #define ILI9341_DATA (GPIOA->BSRR |= GPIO_BSRR_BS3)
@@ -135,10 +137,9 @@ extern volatile uint16_t _lcd_width;
 void ili9341WriteCommand(uint8_t command);
 void ili9341WriteData(uint8_t *pData, size_t size);
 void ili9341Read8(uint8_t reg, uint8_t *pData);
-// void ili9341Reset(void);
+void ili9341Reset(void);
 void ili9341SetAddress(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1);
 void ili9341SetRotation(uint8_t rotation);
-// void ili9341Enable(void);
 void ili9341Init(void);
 void ili9341FillScreen(uint16_t color);
 void ili9341DrawColor(uint16_t color);
@@ -149,7 +150,7 @@ void ili9341DrawRectangle(uint16_t x, uint16_t y, uint16_t width, uint16_t heigh
 void ili9341DrawHorizontalLine(uint16_t x, uint16_t y, uint16_t width, uint16_t color);
 void ili9341DrawVerticalLine(uint16_t x, uint16_t y, uint16_t height, uint16_t color);
 
-void ili9341DrawImage(uint16_t x, uint16_t y, uint16_t w, uint16_t h, const uint16_t* image);
+void ili9341DrawImage(uint16_t x, uint16_t y, uint16_t w, uint16_t h, const uint16_t image[240][320]);
 void ili9341WriteString(uint16_t x, uint16_t y, const char *str, FontDef font, uint16_t color, uint16_t bgcolor);
 void ili9341WriteCharFromUART(uint16_t startX, uint16_t startY, FontDef font, uint16_t color, uint16_t bgcolor);
 void ili9341InvertColors(bool invert);

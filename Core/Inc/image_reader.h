@@ -15,7 +15,7 @@
 // #ifndef __ADAFRUIT_IMAGE_READER_H__
 // #define __ADAFRUIT_IMAGE_READER_H__
 
-// #include "main.h"
+// #include "super_secret_project.h"
 // #include "fatfs.h"
 
 // /** Status codes returned by drawBMP() and loadBMP() */

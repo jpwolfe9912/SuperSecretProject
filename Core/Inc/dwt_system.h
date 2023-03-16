@@ -11,9 +11,12 @@
 #ifndef __DWT_SYSTEM_H__
 #define __DWT_SYSTEM_H__
 
-#include "main.h"
+#include "super_secret_project.h"
 
+extern volatile bool frame1Hz;
+extern volatile bool frame10Hz;
 extern volatile bool frame100Hz;
+extern volatile bool frame1000Hz;
 
 /* Function Prototypes */
 void cycleCounterInit(void);

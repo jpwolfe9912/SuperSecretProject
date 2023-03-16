@@ -1,4 +1,5 @@
-build/main.o: Core/Src/main.c Core/Inc/main.h \
+build/main.o: Core/Src/main.c Core/Inc/data_transfer.h \
+ Core/Inc/data_transfer.h Core/Inc/super_secret_project.h Core/Inc/main.h \
  Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h \
  Core/Inc/stm32l4xx_hal_conf.h \
  Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_rcc.h \
@@ -36,16 +37,21 @@ build/main.o: Core/Src/main.c Core/Inc/main.h \
  Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_spi.h \
  Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h \
  Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_gpio.h \
- Core/Inc/stm32l4xx_it.h Core/Inc/main.h Core/Inc/dwt_system.h \
- Core/Inc/dma.h Core/Inc/i2c.h Core/Inc/spi.h Core/Inc/usart.h \
- Core/Inc/gpio.h Core/Inc/fonts.h Core/Inc/ili9341.h Core/Inc/ft6206.h \
- Core/Inc/esp32.h Core/Inc/esp32Config.h Core/Inc/graphics.h \
+ Core/Inc/stm32l4xx_it.h Core/Inc/dwt_system.h Core/Inc/dma.h \
+ Core/Inc/i2c.h Core/Inc/spi.h Core/Inc/usart.h Core/Inc/esp32.h \
+ Core/Inc/esp32Config.h Core/Inc/gpio.h Core/Inc/ft6206.h \
+ Core/Inc/ili9341.h Core/Inc/fonts.h Core/Inc/utilities.h \
  FATFS/App/fatfs.h Middlewares/Third_Party/FatFs/src/ff.h \
  Middlewares/Third_Party/FatFs/src/integer.h FATFS/Target/ffconf.h \
+ Core/Inc/super_secret_project.h \
  Middlewares/Third_Party/FatFs/src/ff_gen_drv.h \
  Middlewares/Third_Party/FatFs/src/diskio.h \
  Middlewares/Third_Party/FatFs/src/ff.h FATFS/Target/user_diskio.h \
- Core/Inc/images.h
+ Core/Inc/esp32.h Core/Inc/ft6206.h Core/Inc/ili9341.h \
+ Core/Inc/graphics.h Core/Inc/images.h
+Core/Inc/data_transfer.h:
+Core/Inc/data_transfer.h:
+Core/Inc/super_secret_project.h:
 Core/Inc/main.h:
 Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h:
 Core/Inc/stm32l4xx_hal_conf.h:
@@ -87,25 +93,29 @@ Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_spi.h:
 Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_usart.h:
 Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_gpio.h:
 Core/Inc/stm32l4xx_it.h:
-Core/Inc/main.h:
 Core/Inc/dwt_system.h:
 Core/Inc/dma.h:
 Core/Inc/i2c.h:
 Core/Inc/spi.h:
 Core/Inc/usart.h:
-Core/Inc/gpio.h:
-Core/Inc/fonts.h:
-Core/Inc/ili9341.h:
-Core/Inc/ft6206.h:
 Core/Inc/esp32.h:
 Core/Inc/esp32Config.h:
-Core/Inc/graphics.h:
+Core/Inc/gpio.h:
+Core/Inc/ft6206.h:
+Core/Inc/ili9341.h:
+Core/Inc/fonts.h:
+Core/Inc/utilities.h:
 FATFS/App/fatfs.h:
 Middlewares/Third_Party/FatFs/src/ff.h:
 Middlewares/Third_Party/FatFs/src/integer.h:
 FATFS/Target/ffconf.h:
+Core/Inc/super_secret_project.h:
 Middlewares/Third_Party/FatFs/src/ff_gen_drv.h:
 Middlewares/Third_Party/FatFs/src/diskio.h:
 Middlewares/Third_Party/FatFs/src/ff.h:
 FATFS/Target/user_diskio.h:
+Core/Inc/esp32.h:
+Core/Inc/ft6206.h:
+Core/Inc/ili9341.h:
+Core/Inc/graphics.h:
 Core/Inc/images.h:

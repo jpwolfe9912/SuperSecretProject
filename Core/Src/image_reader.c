@@ -729,7 +729,7 @@
 // */
 // uint16_t readLE16(void)
 // {
-// #if !defined(ESP32) && !defined(ESP8266) && \
+// #if !defined(ESP32) && !defined(ESP8266) && 
 //     (__BYTE_ORDER__ == __ORDER_LITTLE_ENDIAN__)
 //     // Read directly into result -- BMP data and variable both little-endian.
 //     uint16_t result;

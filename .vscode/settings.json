@@ -28,6 +28,12 @@
         "esp32.h": "c",
         "esp8266config.h": "c",
         "esp32config.h": "c",
-        "usart.h": "c"
+        "usart.h": "c",
+        "dwt_system.h": "c",
+        "utilities.h": "c",
+        "gpio.h": "c",
+        "super_secret_project.h": "c",
+        "data_transfer.h": "c",
+        "ili9341.h": "c"
     }
 }

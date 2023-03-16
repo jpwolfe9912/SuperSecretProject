@@ -26,7 +26,8 @@ extern "C" {
 #endif
 
 /* Includes ------------------------------------------------------------------*/
-#include "main.h"
+#include "super_secret_project.h"
+#include "esp32.h"
 
 /* USER CODE BEGIN Includes */
 
