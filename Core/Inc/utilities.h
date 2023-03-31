@@ -8,7 +8,7 @@
 #include "ft6206.h"
 #include "ili9341.h"
 
-char *coords2string(TouchData_t txTouchData[100], size_t coords_size);
+void coords2string(TouchData_t txTouchData[100], size_t coords_size, char* output_str);
 int num2digits(int num);
 
 #endif

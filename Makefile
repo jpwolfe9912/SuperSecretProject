@@ -68,7 +68,8 @@ Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_tim_ex.c \
 Middlewares/Third_Party/FatFs/src/diskio.c \
 Middlewares/Third_Party/FatFs/src/ff.c \
 Middlewares/Third_Party/FatFs/src/ff_gen_drv.c \
-Middlewares/Third_Party/FatFs/src/option/syscall.c
+Middlewares/Third_Party/FatFs/src/option/syscall.c \
+Middlewares/Third_Party/lwrb/lwrb.c
 
 # ASM sources
 ASM_SOURCES =  \
@@ -133,7 +134,8 @@ C_INCLUDES =  \
 -IDrivers/STM32L4xx_HAL_Driver/Inc/Legacy \
 -IMiddlewares/Third_Party/FatFs/src \
 -IDrivers/CMSIS/Device/ST/STM32L4xx/Include \
--IDrivers/CMSIS/Include
+-IDrivers/CMSIS/Include \
+-IMiddlewares/Third_Party/lwrb
 
 
 # compile gcc flags

@@ -27,6 +27,7 @@ extern "C" {
 
 /* Includes ------------------------------------------------------------------*/
 #include "super_secret_project.h"
+#include "../lwrb/lwrb.h"
 #include "esp32.h"
 
 /* USER CODE BEGIN Includes */
@@ -34,8 +35,23 @@ extern "C" {
 /* USER CODE END Includes */
 
 /* USER CODE BEGIN Private defines */
-extern volatile bool char_irq_recv;
+#define RX_DMA_SIZE 2048
+#define RX_RB_SIZE 1024
+#define TX_SIZE 1024
+
+typedef struct 
+{
+    uint8_t RxBuffer_DMA[RX_DMA_SIZE];
+    lwrb_t RxBuffer;
+    uint8_t RxBuffer_Data[RX_RB_SIZE];
+
+    uint8_t TxBuffer[TX_SIZE];
+} UsartBuffs_t;
+
+
 /* USER CODE END Private defines */
+
+extern UsartBuffs_t Buffs;
 
 void MX_USART1_UART_Init(void);
 void MX_USART2_UART_Init(void);
@@ -44,9 +60,9 @@ void MX_USART2_UART_Init(void);
 void serialWrite(uint8_t ch);
 char serialRead(void);
 
-void usart1TransmitDma(uint8_t *pData, size_t size);
-void usart1ReceiveDma(uint8_t *pData, size_t size);
-void usart1StartRxIt(void);
+void usart_rx_check(void);
+void usart_process_data(const void* data, size_t len);
+void usart_transmit_dma(const char *str);
 /* USER CODE END Prototypes */
 
 #ifdef __cplusplus

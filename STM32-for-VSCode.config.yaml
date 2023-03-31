@@ -79,6 +79,7 @@ includeDirectories:
   - Drivers/STM32L4xx_HAL_Driver/Inc/Legacy
   - Middlewares/Third_Party/FatFs/src/**
   - Middlewares/Third_Party/FatFs/src/option/**
+  - Middlewares/Third_Party/lwrb
   - Drivers/CMSIS/Device/ST/STM32L4xx/Include
   - Drivers/CMSIS/Include
   - Inc/**

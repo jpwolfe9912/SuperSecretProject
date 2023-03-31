@@ -125,5 +125,5 @@ void SysTick_Handler(void)
         frame10Hz = true;
     if (!(frameCounter % 1000))
         frame1Hz = true;
-    HAL_IncTick();
+    // HAL_IncTick();
 }

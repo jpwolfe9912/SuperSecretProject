@@ -21,12 +21,13 @@
 #include "usart.h"
 
 /* USER CODE BEGIN 0 */
+/**
+ * \brief           Calculate length of statically allocated array
+ */
+#define ARRAY_LEN(x) (sizeof(x) / sizeof((x)[0]))
+
 volatile bool utx_finished = false;
-volatile bool urx_finished = false;
-
-volatile bool char_irq_recv = false;
-
-uint8_t rx_buf;
+UsartBuffs_t Buffs;
 /* USER CODE END 0 */
 
 /* USART1 init function */
@@ -64,52 +65,31 @@ void MX_USART1_UART_Init(void)
 
     /* USART1_RX Init */
     LL_DMA_SetPeriphRequest(DMA1, LL_DMA_CHANNEL_5, LL_DMA_REQUEST_2);
-
     LL_DMA_SetDataTransferDirection(DMA1, LL_DMA_CHANNEL_5, LL_DMA_DIRECTION_PERIPH_TO_MEMORY);
-
     LL_DMA_SetChannelPriorityLevel(DMA1, LL_DMA_CHANNEL_5, LL_DMA_PRIORITY_LOW);
-
     LL_DMA_SetMode(DMA1, LL_DMA_CHANNEL_5, LL_DMA_MODE_NORMAL);
-
     LL_DMA_SetPeriphIncMode(DMA1, LL_DMA_CHANNEL_5, LL_DMA_PERIPH_NOINCREMENT);
-
     LL_DMA_SetMemoryIncMode(DMA1, LL_DMA_CHANNEL_5, LL_DMA_MEMORY_INCREMENT);
-
     LL_DMA_SetPeriphSize(DMA1, LL_DMA_CHANNEL_5, LL_DMA_PDATAALIGN_BYTE);
-
     LL_DMA_SetMemorySize(DMA1, LL_DMA_CHANNEL_5, LL_DMA_MDATAALIGN_BYTE);
-
+    LL_DMA_SetPeriphAddress(DMA1, LL_DMA_CHANNEL_5, LL_USART_DMA_GetRegAddr(USART1, LL_USART_DMA_REG_DATA_RECEIVE));
+    LL_DMA_SetMemoryAddress(DMA1, LL_DMA_CHANNEL_5, (uint32_t)Buffs.RxBuffer_DMA);
+    LL_DMA_SetDataLength(DMA1, LL_DMA_CHANNEL_5, ARRAY_LEN(Buffs.RxBuffer_DMA));
     /* USART1_TX Init */
     LL_DMA_SetPeriphRequest(DMA1, LL_DMA_CHANNEL_4, LL_DMA_REQUEST_2);
-
     LL_DMA_SetDataTransferDirection(DMA1, LL_DMA_CHANNEL_4, LL_DMA_DIRECTION_MEMORY_TO_PERIPH);
-
     LL_DMA_SetChannelPriorityLevel(DMA1, LL_DMA_CHANNEL_4, LL_DMA_PRIORITY_LOW);
-
     LL_DMA_SetMode(DMA1, LL_DMA_CHANNEL_4, LL_DMA_MODE_NORMAL);
-
     LL_DMA_SetPeriphIncMode(DMA1, LL_DMA_CHANNEL_4, LL_DMA_PERIPH_NOINCREMENT);
-
     LL_DMA_SetMemoryIncMode(DMA1, LL_DMA_CHANNEL_4, LL_DMA_MEMORY_INCREMENT);
-
     LL_DMA_SetPeriphSize(DMA1, LL_DMA_CHANNEL_4, LL_DMA_PDATAALIGN_BYTE);
-
     LL_DMA_SetMemorySize(DMA1, LL_DMA_CHANNEL_4, LL_DMA_MDATAALIGN_BYTE);
-
-    /* USART1 interrupt Init */
-    NVIC_SetPriority(USART1_IRQn, NVIC_EncodePriority(NVIC_GetPriorityGrouping(), 0, 0));
-    NVIC_EnableIRQ(USART1_IRQn);
-
-    /* USER CODE BEGIN USART1_Init 1 */
-    DMA1_Channel4->CPAR = (uint32_t)(&(USART1->TDR));
-    DMA1_Channel5->CPAR = (uint32_t)(&(USART1->RDR));
+    LL_DMA_SetPeriphAddress(DMA1, LL_DMA_CHANNEL_4, LL_USART_DMA_GetRegAddr(USART1, LL_USART_DMA_REG_DATA_TRANSMIT));
 
     LL_DMA_EnableIT_TC(DMA1, LL_DMA_CHANNEL_4);
-    LL_DMA_EnableIT_TE(DMA1, LL_DMA_CHANNEL_4);
+    LL_DMA_EnableIT_HT(DMA1, LL_DMA_CHANNEL_5);
     LL_DMA_EnableIT_TC(DMA1, LL_DMA_CHANNEL_5);
-    LL_DMA_EnableIT_TE(DMA1, LL_DMA_CHANNEL_5);
 
-    /* USER CODE END USART1_Init 1 */
     USART_InitStruct.BaudRate = 115200;
     USART_InitStruct.DataWidth = LL_USART_DATAWIDTH_8B;
     USART_InitStruct.StopBits = LL_USART_STOPBITS_1;
@@ -119,10 +99,16 @@ void MX_USART1_UART_Init(void)
     USART_InitStruct.OverSampling = LL_USART_OVERSAMPLING_16;
     LL_USART_Init(USART1, &USART_InitStruct);
     LL_USART_ConfigAsyncMode(USART1);
+    LL_USART_EnableDMAReq_RX(USART1);
+    LL_USART_EnableDMAReq_TX(USART1);
+    LL_USART_EnableIT_IDLE(USART1);
+
+    /* USART2 interrupt Init */
+    NVIC_SetPriority(USART1_IRQn, NVIC_EncodePriority(NVIC_GetPriorityGrouping(), 0, 0));
+    NVIC_EnableIRQ(USART1_IRQn);
+
+    LL_DMA_EnableChannel(DMA1, LL_DMA_CHANNEL_5);
     LL_USART_Enable(USART1);
-    /* USER CODE BEGIN USART1_Init 2 */
-    USART1->CR1 &= ~USART_CR1_RXNEIE;
-    /* USER CODE END USART1_Init 2 */
 }
 
 /* USART2 init function */
@@ -182,7 +168,6 @@ void MX_USART2_UART_Init(void)
     /* USER CODE END USART2_Init 2 */
 }
 
-/* USER CODE BEGIN 1 */
 /** @brief Uses polling to write data to the transmit buffer.
  *
  *  @param ch The character to send.
@@ -203,13 +188,108 @@ char serialRead(void)
     return ch = (char)USART2->RDR;
 }
 
-void usart1TransmitDma(uint8_t *pData, size_t size)
+/**
+ * \brief           Check for new data received with DMA
+ *
+ * User must select context to call this function from:
+ * - Only interrupts (DMA HT, DMA TC, UART IDLE) with same preemption priority level
+ * - Only thread context (outside interrupts)
+ *
+ * If called from both context-es, exclusive access protection must be implemented
+ * This mode is not advised as it usually means architecture design problems
+ *
+ * When IDLE interrupt is not present, application must rely only on thread context,
+ * by manually calling function as quickly as possible, to make sure
+ * data are read from raw buffer and processed.
+ *
+ * Not doing reads fast enough may cause DMA to overflow unread received bytes,
+ * hence application will lost useful data.
+ *
+ * Solutions to this are:
+ * - Improve architecture design to achieve faster reads
+ * - Increase raw buffer size and allow DMA to write more data before this function is called
+ */
+void usart_rx_check(void)
 {
+    static size_t old_pos;
+    size_t pos;
+
+    /* Calculate current position in buffer and check for new data available */
+    pos = ARRAY_LEN(Buffs.RxBuffer_DMA) - LL_DMA_GetDataLength(DMA1, LL_DMA_CHANNEL_5);
+    if (pos != old_pos)
+    { /* Check change in received data */
+        if (pos > old_pos)
+        { /* Current position is over previous one */
+            /*
+             * Processing is done in "linear" mode.
+             *
+             * Application processing is fast with single data block,
+             * length is simply calculated by subtracting pointers
+             *
+             * [   0   ]
+             * [   1   ] <- old_pos |------------------------------------|
+             * [   2   ]            |                                    |
+             * [   3   ]            | Single block (len = pos - old_pos) |
+             * [   4   ]            |                                    |
+             * [   5   ]            |------------------------------------|
+             * [   6   ] <- pos
+             * [   7   ]
+             * [ N - 1 ]
+             */
+            usart_process_data(&Buffs.RxBuffer_DMA[old_pos], pos - old_pos);
+        }
+        else
+        {
+            /*
+             * Processing is done in "overflow" mode..
+             *
+             * Application must process data twice,
+             * since there are 2 linear memory blocks to handle
+             *
+             * [   0   ]            |---------------------------------|
+             * [   1   ]            | Second block (len = pos)        |
+             * [   2   ]            |---------------------------------|
+             * [   3   ] <- pos
+             * [   4   ] <- old_pos |---------------------------------|
+             * [   5   ]            |                                 |
+             * [   6   ]            | First block (len = N - old_pos) |
+             * [   7   ]            |                                 |
+             * [ N - 1 ]            |---------------------------------|
+             */
+            usart_process_data(&Buffs.RxBuffer_DMA[old_pos], ARRAY_LEN(Buffs.RxBuffer_DMA) - old_pos);
+            if (pos > 0)
+            {
+                usart_process_data(&Buffs.RxBuffer_DMA[0], pos);
+            }
+        }
+        old_pos = pos; /* Save current position as old for next transfers */
+    }
+}
+
+/**
+ * \brief           Process received data over UART
+ * \note            Either process them directly or copy to other bigger buffer
+ * \param[in]       data: Data to process
+ * \param[in]       len: Length in units of bytes
+ */
+void usart_process_data(const void *data, size_t len)
+{
+    /* Write data to buffer */
+    lwrb_write(&Buffs.RxBuffer, data, len);
+}
+
+/**
+ * \brief           Send string to USART
+ * \param[in]       str: String to send
+ */
+void usart_transmit_dma(const char *str)
+{
+    size_t size = strlen(str);
     DMA1_Channel4->CCR &= ~DMA_CCR_EN;
     while (DMA1_Channel4->CCR & DMA_CCR_EN)
         ;
     DMA1_Channel4->CNDTR = size;
-    DMA1_Channel4->CMAR = (uint32_t)pData;
+    DMA1_Channel4->CMAR = (uint32_t)str;
 
     LL_USART_EnableDMAReq_TX(USART1);
 
@@ -218,28 +298,6 @@ void usart1TransmitDma(uint8_t *pData, size_t size)
     while (!utx_finished)
         ;
     utx_finished = false;
-}
-
-void usart1ReceiveDma(uint8_t *pData, size_t size)
-{
-    DMA1_Channel5->CCR &= ~DMA_CCR_EN;
-    while (DMA1_Channel5->CCR & DMA_CCR_EN)
-        ;
-    DMA1_Channel5->CNDTR = size;
-    DMA1_Channel5->CMAR = (uint32_t)pData;
-
-    LL_USART_EnableDMAReq_RX(USART1);
-
-    DMA1_Channel5->CCR |= DMA_CCR_EN;
-
-    while (!urx_finished)
-        ;
-    urx_finished = false;
-}
-
-void usart1StartRxIt(void)
-{
-    USART1->CR1 |= USART_CR1_RXNEIE;
 }
 
 /*	This is required to use printf											*/
@@ -261,51 +319,44 @@ PUTCHAR_PROTOTYPE
 
 void USART1_IRQHandler(void)
 {
-    if ((USART1->ISR & USART_ISR_RXNE) && (USART1->CR1 & USART_CR1_RXNEIE))
+    if (LL_USART_IsEnabledIT_IDLE(USART1) && LL_USART_IsActiveFlag_IDLE(USART1))
     {
-        USART1->CR1 &= ~USART_CR1_RXNEIE;
-        char_irq_recv = true;
-        Wifi.usartBuff = (uint8_t)USART1->RDR;
-        Wifi_RxCallBack();
+        LL_USART_ClearFlag_IDLE(USART1); /* Clear IDLE line flag */
+        usart_rx_check();                /* Check for data to process */
     }
-    if(USART1->ISR & USART_ISR_ORE)
+    if (USART1->ISR & USART_ISR_ORE)
         USART1->ICR |= USART_ICR_ORECF;
 }
 
 /**
- * @brief This function handles DMA1 channel4 global interrupt.
+ * @brief This function handles DMA1 channel4 global interrupt for USART TX.
  */
 void DMA1_Channel4_IRQHandler(void)
 {
-    /* USER CODE BEGIN DMA1_Channel4_IRQn 0 */
-    if (DMA1->ISR & DMA_ISR_TCIF4)
+    if (LL_DMA_IsEnabledIT_TC(DMA1, LL_DMA_CHANNEL_4) && LL_DMA_IsActiveFlag_TC4(DMA1))
     {
-        DMA1->IFCR |= DMA_IFCR_CTCIF4;
+        LL_DMA_ClearFlag_TC4(DMA1);                        /* Clear transfer complete flag */
         utx_finished = true;
     }
-    /* USER CODE END DMA1_Channel4_IRQn 0 */
-
-    /* USER CODE BEGIN DMA1_Channel4_IRQn 1 */
-
-    /* USER CODE END DMA1_Channel4_IRQn 1 */
 }
 
 /**
- * @brief This function handles DMA1 channel5 global interrupt.
+ * @brief This function handles DMA1 channel5 global interrupt for USART RX.
  */
 void DMA1_Channel5_IRQHandler(void)
 {
-    /* USER CODE BEGIN DMA1_Channel5_IRQn 0 */
-    if (DMA1->ISR & DMA_ISR_TCIF5)
+    /* Check half-transfer complete interrupt */
+    if (LL_DMA_IsEnabledIT_HT(DMA1, LL_DMA_CHANNEL_5) && LL_DMA_IsActiveFlag_HT5(DMA1))
     {
-        DMA1->IFCR |= DMA_IFCR_CTCIF5;
-        urx_finished = true;
+        LL_DMA_ClearFlag_HT5(DMA1); /* Clear half-transfer complete flag */
+        usart_rx_check();           /* Check for data to process */
     }
-    /* USER CODE END DMA1_Channel5_IRQn 0 */
 
-    /* USER CODE BEGIN DMA1_Channel5_IRQn 1 */
-
-    /* USER CODE END DMA1_Channel5_IRQn 1 */
+    /* Check transfer-complete interrupt */
+    if (LL_DMA_IsEnabledIT_TC(DMA1, LL_DMA_CHANNEL_5) && LL_DMA_IsActiveFlag_TC5(DMA1))
+    {
+        LL_DMA_ClearFlag_TC5(DMA1); /* Clear transfer complete flag */
+        usart_rx_check();           /* Check for data to process */
+    }
 }
 
-/* USER CODE END 1 */

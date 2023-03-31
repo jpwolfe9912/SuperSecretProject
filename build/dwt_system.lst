@@ -1,4 +1,4 @@
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccTFr1rc.s 			page 1
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccTFr1rc.s 			page 1
   28:Core/Src/dwt_system.c ****  *		This can be called from within IRQ Handlers, so uses LDREX/STREX.
   29:Core/Src/dwt_system.c ****  *		If a higher priority IRQ or DMA or anything happens the STREX will fail
   30:Core/Src/dwt_system.c ****  *		and restart the loop. Otherwise the same number that was read is harmlessly
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccTFr1rc.s 			page 2
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s 			page 2
 
 
   31:Core/Src/dwt_system.c ****  *		written back.
@@ -118,7 +118,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccTFr1rc.s 			page 1
   27:Drivers/CMSIS/Include/cmsis_gcc.h **** 
   28:Drivers/CMSIS/Include/cmsis_gcc.h **** /* ignore some GCC warnings */
   29:Drivers/CMSIS/Include/cmsis_gcc.h **** #pragma GCC diagnostic push
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccTFr1rc.s 			page 3
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s 			page 3
 
 
   30:Drivers/CMSIS/Include/cmsis_gcc.h **** #pragma GCC diagnostic ignored "-Wsign-conversion"
@@ -178,7 +178,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccTFr1rc.s 			page 1
   84:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __UNALIGNED_UINT16_WRITE(addr, val)    (void)((((struct T_UINT16_WRITE *)(void *)(addr))-
   85:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
   86:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __UNALIGNED_UINT16_READ
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccTFr1rc.s 			page 4
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s 			page 4
 
 
   87:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic push
@@ -238,7 +238,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccTFr1rc.s 			page 1
  141:Drivers/CMSIS/Include/cmsis_gcc.h ****   typedef struct {
  142:Drivers/CMSIS/Include/cmsis_gcc.h ****     uint32_t* dest;
  143:Drivers/CMSIS/Include/cmsis_gcc.h ****     uint32_t  wlen;
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccTFr1rc.s 			page 5
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s 			page 5
 
 
  144:Drivers/CMSIS/Include/cmsis_gcc.h ****   } __zero_table_t;
@@ -298,7 +298,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccTFr1rc.s 			page 1
  198:Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("cpsie i" : : : "memory");
  199:Drivers/CMSIS/Include/cmsis_gcc.h **** }
  200:Drivers/CMSIS/Include/cmsis_gcc.h **** 
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccTFr1rc.s 			page 6
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s 			page 6
 
 
  201:Drivers/CMSIS/Include/cmsis_gcc.h **** 
@@ -358,7 +358,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccTFr1rc.s 			page 1
  255:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
  256:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   Set Control Register (non-secure)
  257:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Writes the given value to the non-secure Control Register when in secure state.
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccTFr1rc.s 			page 7
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s 			page 7
 
 
  258:Drivers/CMSIS/Include/cmsis_gcc.h ****   \param [in]    control  Control Register value to set
@@ -418,7 +418,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccTFr1rc.s 			page 1
  312:Drivers/CMSIS/Include/cmsis_gcc.h ****   \return               PSP Register value
  313:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
  314:Drivers/CMSIS/Include/cmsis_gcc.h **** __STATIC_FORCEINLINE uint32_t __get_PSP(void)
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccTFr1rc.s 			page 8
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s 			page 8
 
 
  315:Drivers/CMSIS/Include/cmsis_gcc.h **** {
@@ -478,7 +478,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccTFr1rc.s 			page 1
  369:Drivers/CMSIS/Include/cmsis_gcc.h **** {
  370:Drivers/CMSIS/Include/cmsis_gcc.h ****   uint32_t result;
  371:Drivers/CMSIS/Include/cmsis_gcc.h **** 
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccTFr1rc.s 			page 9
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s 			page 9
 
 
  372:Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("MRS %0, msp" : "=r" (result) );
@@ -538,7 +538,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccTFr1rc.s 			page 1
  426:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  427:Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("MRS %0, sp_ns" : "=r" (result) );
  428:Drivers/CMSIS/Include/cmsis_gcc.h ****   return(result);
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccTFr1rc.s 			page 10
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s 			page 10
 
 
  429:Drivers/CMSIS/Include/cmsis_gcc.h **** }
@@ -598,7 +598,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccTFr1rc.s 			page 1
  483:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  484:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  485:Drivers/CMSIS/Include/cmsis_gcc.h **** #if (defined (__ARM_FEATURE_CMSE ) && (__ARM_FEATURE_CMSE == 3))
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccTFr1rc.s 			page 11
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s 			page 11
 
 
  486:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
@@ -658,7 +658,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccTFr1rc.s 			page 1
  540:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Returns the current value of the non-secure Base Priority register when in secure state.
  541:Drivers/CMSIS/Include/cmsis_gcc.h ****   \return               Base Priority register value
  542:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccTFr1rc.s 			page 12
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s 			page 12
 
 
  543:Drivers/CMSIS/Include/cmsis_gcc.h **** __STATIC_FORCEINLINE uint32_t __TZ_get_BASEPRI_NS(void)
@@ -718,7 +718,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccTFr1rc.s 			page 1
  597:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  598:Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("MRS %0, faultmask" : "=r" (result) );
  599:Drivers/CMSIS/Include/cmsis_gcc.h ****   return(result);
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccTFr1rc.s 			page 13
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s 			page 13
 
 
  600:Drivers/CMSIS/Include/cmsis_gcc.h **** }
@@ -778,7 +778,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccTFr1rc.s 			page 1
  654:Drivers/CMSIS/Include/cmsis_gcc.h ****   mode.
  655:Drivers/CMSIS/Include/cmsis_gcc.h ****   
  656:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Returns the current value of the Process Stack Pointer Limit (PSPLIM).
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccTFr1rc.s 			page 14
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s 			page 14
 
 
  657:Drivers/CMSIS/Include/cmsis_gcc.h ****   \return               PSPLIM Register value
@@ -838,7 +838,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccTFr1rc.s 			page 1
  711:Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("MSR psplim, %0" : : "r" (ProcStackPtrLimit));
  712:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
  713:Drivers/CMSIS/Include/cmsis_gcc.h **** }
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccTFr1rc.s 			page 15
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s 			page 15
 
 
  714:Drivers/CMSIS/Include/cmsis_gcc.h **** 
@@ -898,7 +898,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccTFr1rc.s 			page 1
  768:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
  769:Drivers/CMSIS/Include/cmsis_gcc.h **** __STATIC_FORCEINLINE uint32_t __TZ_get_MSPLIM_NS(void)
  770:Drivers/CMSIS/Include/cmsis_gcc.h **** {
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccTFr1rc.s 			page 16
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s 			page 16
 
 
  771:Drivers/CMSIS/Include/cmsis_gcc.h **** #if (!(defined (__ARM_ARCH_8M_MAIN__ ) && (__ARM_ARCH_8M_MAIN__ == 1)))
@@ -958,7 +958,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccTFr1rc.s 			page 1
  825:Drivers/CMSIS/Include/cmsis_gcc.h ****            (defined (__ARM_ARCH_8M_BASE__ ) && (__ARM_ARCH_8M_BASE__ == 1))    ) */
  826:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  827:Drivers/CMSIS/Include/cmsis_gcc.h **** 
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccTFr1rc.s 			page 17
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s 			page 17
 
 
  828:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
@@ -1018,7 +1018,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccTFr1rc.s 			page 1
  882:Drivers/CMSIS/Include/cmsis_gcc.h ****   Access to dedicated instructions
  883:Drivers/CMSIS/Include/cmsis_gcc.h ****   @{
  884:Drivers/CMSIS/Include/cmsis_gcc.h **** */
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccTFr1rc.s 			page 18
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s 			page 18
 
 
  885:Drivers/CMSIS/Include/cmsis_gcc.h **** 
@@ -1078,7 +1078,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccTFr1rc.s 			page 1
  939:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
  940:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   Data Synchronization Barrier
  941:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Acts as a special kind of Data Memory Barrier.
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccTFr1rc.s 			page 19
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s 			page 19
 
 
  942:Drivers/CMSIS/Include/cmsis_gcc.h ****            It completes when all explicit memory accesses before this instruction complete.
@@ -1138,7 +1138,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccTFr1rc.s 			page 1
  996:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   Reverse byte order (16 bit)
  997:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Reverses the byte order in a 16-bit value and returns the signed 16-bit result. For exam
  998:Drivers/CMSIS/Include/cmsis_gcc.h ****   \param [in]    value  Value to reverse
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccTFr1rc.s 			page 20
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s 			page 20
 
 
  999:Drivers/CMSIS/Include/cmsis_gcc.h ****   \return               Reversed value
@@ -1198,7 +1198,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccTFr1rc.s 			page 1
 1053:Drivers/CMSIS/Include/cmsis_gcc.h ****      (defined (__ARM_ARCH_7EM__     ) && (__ARM_ARCH_7EM__     == 1)) || \
 1054:Drivers/CMSIS/Include/cmsis_gcc.h ****      (defined (__ARM_ARCH_8M_MAIN__ ) && (__ARM_ARCH_8M_MAIN__ == 1))    )
 1055:Drivers/CMSIS/Include/cmsis_gcc.h ****    __ASM volatile ("rbit %0, %1" : "=r" (result) : "r" (value) );
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccTFr1rc.s 			page 21
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s 			page 21
 
 
 1056:Drivers/CMSIS/Include/cmsis_gcc.h **** #else
@@ -1258,7 +1258,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccTFr1rc.s 			page 1
 1110:Drivers/CMSIS/Include/cmsis_gcc.h **** 
 1111:Drivers/CMSIS/Include/cmsis_gcc.h **** #if (__GNUC__ > 4) || (__GNUC__ == 4 && __GNUC_MINOR__ >= 8)
 1112:Drivers/CMSIS/Include/cmsis_gcc.h ****    __ASM volatile ("ldrexb %0, %1" : "=r" (result) : "Q" (*addr) );
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccTFr1rc.s 			page 22
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s 			page 22
 
 
 1113:Drivers/CMSIS/Include/cmsis_gcc.h **** #else
@@ -1318,7 +1318,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccTFr1rc.s 			page 1
   55              		.loc 2 1156 4 discriminator 1 view .LVU7
   56              		.loc 2 1156 4 is_stmt 0 discriminator 1 view .LVU8
   57              		.thumb
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccTFr1rc.s 			page 23
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s 			page 23
 
 
   58              		.syntax unified
@@ -1378,7 +1378,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccTFr1rc.s 			page 1
 1192:Drivers/CMSIS/Include/cmsis_gcc.h **** 
 1193:Drivers/CMSIS/Include/cmsis_gcc.h **** 
 1194:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccTFr1rc.s 			page 24
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s 			page 24
 
 
 1195:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   STR Exclusive (32 bit)
@@ -1438,7 +1438,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccTFr1rc.s 			page 1
  112 0030 00000000 		.word	.LANCHOR0
  113 0034 001000E0 		.word	-536866816
  114 0038 00000000 		.word	.LANCHOR1
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccTFr1rc.s 			page 25
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s 			page 25
 
 
  115 003c 00000000 		.word	.LANCHOR2
@@ -1498,7 +1498,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccTFr1rc.s 			page 1
   64:Core/Src/dwt_system.c **** void delayMicroseconds(uint32_t us)
   65:Core/Src/dwt_system.c **** {
  158              		.loc 1 65 1 is_stmt 1 view -0
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccTFr1rc.s 			page 26
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s 			page 26
 
 
  159              		.cfi_startproc
@@ -1558,7 +1558,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccTFr1rc.s 			page 1
   69:Core/Src/dwt_system.c ****     {
  190              		.loc 1 69 11 is_stmt 1 view .LVU40
  191              	.LBB11:
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccTFr1rc.s 			page 27
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s 			page 27
 
 
   76:Core/Src/dwt_system.c **** 
@@ -1618,7 +1618,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccTFr1rc.s 			page 1
  228 002c 7047     		bx	lr
  229              	.L14:
  230 002e 00BF     		.align	2
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccTFr1rc.s 			page 28
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s 			page 28
 
 
  231              	.L13:
@@ -1678,7 +1678,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccTFr1rc.s 			page 1
  274              		.loc 1 97 11 view .LVU66
  275 0010 0028     		cmp	r0, #0
  276 0012 F7D1     		bne	.L17
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccTFr1rc.s 			page 29
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s 			page 29
 
 
   99:Core/Src/dwt_system.c **** }
@@ -1738,7 +1738,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccTFr1rc.s 			page 1
  318 0024 43F00103 		orr	r3, r3, #1
  319 0028 1360     		str	r3, [r2]
  114:Core/Src/dwt_system.c **** }
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccTFr1rc.s 			page 30
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s 			page 30
 
 
  320              		.loc 1 114 1 view .LVU77
@@ -1768,215 +1768,207 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccTFr1rc.s 			page 1
  343              		.cfi_startproc
  344              		@ args = 0, pretend = 0, frame = 0
  345              		@ frame_needed = 0, uses_anonymous_args = 0
- 346 0000 08B5     		push	{r3, lr}
- 347              		.cfi_def_cfa_offset 8
- 348              		.cfi_offset 3, -8
- 349              		.cfi_offset 14, -4
+ 346              		@ link register save eliminated.
  118:Core/Src/dwt_system.c ****     sysTickCycleCounter = DWT->CYCCNT;
- 350              		.loc 1 118 5 view .LVU79
- 351              		.loc 1 118 30 is_stmt 0 view .LVU80
- 352 0002 1C4B     		ldr	r3, .L27
- 353 0004 5A68     		ldr	r2, [r3, #4]
- 354              		.loc 1 118 25 view .LVU81
- 355 0006 1C4B     		ldr	r3, .L27+4
- 356 0008 1A60     		str	r2, [r3]
+ 347              		.loc 1 118 5 view .LVU79
+ 348              		.loc 1 118 30 is_stmt 0 view .LVU80
+ 349 0000 1B4B     		ldr	r3, .L26
+ 350 0002 5A68     		ldr	r2, [r3, #4]
+ 351              		.loc 1 118 25 view .LVU81
+ 352 0004 1B4B     		ldr	r3, .L26+4
+ 353 0006 1A60     		str	r2, [r3]
  119:Core/Src/dwt_system.c ****     sysTickUptime++;
- 357              		.loc 1 119 5 is_stmt 1 view .LVU82
- 358              		.loc 1 119 18 is_stmt 0 view .LVU83
- 359 000a 1C4A     		ldr	r2, .L27+8
- 360 000c 1368     		ldr	r3, [r2]
- 361 000e 0133     		adds	r3, r3, #1
- 362 0010 1360     		str	r3, [r2]
+ 354              		.loc 1 119 5 is_stmt 1 view .LVU82
+ 355              		.loc 1 119 18 is_stmt 0 view .LVU83
+ 356 0008 1B4A     		ldr	r2, .L26+8
+ 357 000a 1368     		ldr	r3, [r2]
+ 358 000c 0133     		adds	r3, r3, #1
+ 359 000e 1360     		str	r3, [r2]
  120:Core/Src/dwt_system.c ****     frameCounter++;
- 363              		.loc 1 120 5 is_stmt 1 view .LVU84
- 364              		.loc 1 120 17 is_stmt 0 view .LVU85
- 365 0012 1B4A     		ldr	r2, .L27+12
- 366 0014 1388     		ldrh	r3, [r2]
- 367 0016 0133     		adds	r3, r3, #1
- 368 0018 9BB2     		uxth	r3, r3
- 369 001a 1380     		strh	r3, [r2]	@ movhi
+ 360              		.loc 1 120 5 is_stmt 1 view .LVU84
+ 361              		.loc 1 120 17 is_stmt 0 view .LVU85
+ 362 0010 1A4A     		ldr	r2, .L26+12
+ 363 0012 1388     		ldrh	r3, [r2]
+ 364 0014 0133     		adds	r3, r3, #1
+ 365 0016 9BB2     		uxth	r3, r3
+ 366 0018 1380     		strh	r3, [r2]	@ movhi
  121:Core/Src/dwt_system.c ****     frame1000Hz = true;
- 370              		.loc 1 121 5 is_stmt 1 view .LVU86
- 371              		.loc 1 121 17 is_stmt 0 view .LVU87
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccTFr1rc.s 			page 31
+ 367              		.loc 1 121 5 is_stmt 1 view .LVU86
+ 368              		.loc 1 121 17 is_stmt 0 view .LVU87
+ 369 001a 194A     		ldr	r2, .L26+16
+ 370 001c 0121     		movs	r1, #1
+ 371 001e 1170     		strb	r1, [r2]
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s 			page 31
 
 
- 372 001c 194A     		ldr	r2, .L27+16
- 373 001e 0121     		movs	r1, #1
- 374 0020 1170     		strb	r1, [r2]
  122:Core/Src/dwt_system.c ****     if (!(frameCounter % 10))
- 375              		.loc 1 122 5 is_stmt 1 view .LVU88
- 376              		.loc 1 122 9 is_stmt 0 view .LVU89
- 377 0022 194A     		ldr	r2, .L27+20
- 378 0024 A2FB0312 		umull	r1, r2, r2, r3
- 379 0028 D208     		lsrs	r2, r2, #3
- 380 002a 02EB8202 		add	r2, r2, r2, lsl #2
- 381 002e 5100     		lsls	r1, r2, #1
- 382 0030 591A     		subs	r1, r3, r1
- 383 0032 89B2     		uxth	r1, r1
- 384              		.loc 1 122 8 view .LVU90
- 385 0034 11B9     		cbnz	r1, .L23
+ 372              		.loc 1 122 5 is_stmt 1 view .LVU88
+ 373              		.loc 1 122 9 is_stmt 0 view .LVU89
+ 374 0020 184A     		ldr	r2, .L26+20
+ 375 0022 A2FB0312 		umull	r1, r2, r2, r3
+ 376 0026 D208     		lsrs	r2, r2, #3
+ 377 0028 02EB8202 		add	r2, r2, r2, lsl #2
+ 378 002c 5100     		lsls	r1, r2, #1
+ 379 002e 591A     		subs	r1, r3, r1
+ 380 0030 89B2     		uxth	r1, r1
+ 381              		.loc 1 122 8 view .LVU90
+ 382 0032 11B9     		cbnz	r1, .L23
  123:Core/Src/dwt_system.c ****         frame100Hz = true;
- 386              		.loc 1 123 9 is_stmt 1 view .LVU91
- 387              		.loc 1 123 20 is_stmt 0 view .LVU92
- 388 0036 154A     		ldr	r2, .L27+24
- 389 0038 0121     		movs	r1, #1
- 390 003a 1170     		strb	r1, [r2]
- 391              	.L23:
+ 383              		.loc 1 123 9 is_stmt 1 view .LVU91
+ 384              		.loc 1 123 20 is_stmt 0 view .LVU92
+ 385 0034 144A     		ldr	r2, .L26+24
+ 386 0036 0121     		movs	r1, #1
+ 387 0038 1170     		strb	r1, [r2]
+ 388              	.L23:
  124:Core/Src/dwt_system.c ****     if (!(frameCounter % 100))
- 392              		.loc 1 124 5 is_stmt 1 view .LVU93
- 393              		.loc 1 124 9 is_stmt 0 view .LVU94
- 394 003c 144A     		ldr	r2, .L27+28
- 395 003e A2FB0312 		umull	r1, r2, r2, r3
- 396 0042 5209     		lsrs	r2, r2, #5
- 397 0044 6421     		movs	r1, #100
- 398 0046 01FB1232 		mls	r2, r1, r2, r3
- 399 004a 92B2     		uxth	r2, r2
- 400              		.loc 1 124 8 view .LVU95
- 401 004c 12B9     		cbnz	r2, .L24
+ 389              		.loc 1 124 5 is_stmt 1 view .LVU93
+ 390              		.loc 1 124 9 is_stmt 0 view .LVU94
+ 391 003a 144A     		ldr	r2, .L26+28
+ 392 003c A2FB0312 		umull	r1, r2, r2, r3
+ 393 0040 5209     		lsrs	r2, r2, #5
+ 394 0042 6421     		movs	r1, #100
+ 395 0044 01FB1232 		mls	r2, r1, r2, r3
+ 396 0048 92B2     		uxth	r2, r2
+ 397              		.loc 1 124 8 view .LVU95
+ 398 004a 12B9     		cbnz	r2, .L24
  125:Core/Src/dwt_system.c ****         frame10Hz = true;
- 402              		.loc 1 125 9 is_stmt 1 view .LVU96
- 403              		.loc 1 125 19 is_stmt 0 view .LVU97
- 404 004e 114A     		ldr	r2, .L27+32
- 405 0050 0121     		movs	r1, #1
- 406 0052 1170     		strb	r1, [r2]
- 407              	.L24:
+ 399              		.loc 1 125 9 is_stmt 1 view .LVU96
+ 400              		.loc 1 125 19 is_stmt 0 view .LVU97
+ 401 004c 104A     		ldr	r2, .L26+32
+ 402 004e 0121     		movs	r1, #1
+ 403 0050 1170     		strb	r1, [r2]
+ 404              	.L24:
  126:Core/Src/dwt_system.c ****     if (!(frameCounter % 1000))
- 408              		.loc 1 126 5 is_stmt 1 view .LVU98
- 409              		.loc 1 126 9 is_stmt 0 view .LVU99
- 410 0054 104A     		ldr	r2, .L27+36
- 411 0056 A2FB0312 		umull	r1, r2, r2, r3
- 412 005a 9209     		lsrs	r2, r2, #6
- 413 005c 4FF47A71 		mov	r1, #1000
- 414 0060 01FB1233 		mls	r3, r1, r2, r3
- 415 0064 9BB2     		uxth	r3, r3
- 416              		.loc 1 126 8 view .LVU100
- 417 0066 13B9     		cbnz	r3, .L25
+ 405              		.loc 1 126 5 is_stmt 1 view .LVU98
+ 406              		.loc 1 126 9 is_stmt 0 view .LVU99
+ 407 0052 104A     		ldr	r2, .L26+36
+ 408 0054 A2FB0312 		umull	r1, r2, r2, r3
+ 409 0058 9209     		lsrs	r2, r2, #6
+ 410 005a 4FF47A71 		mov	r1, #1000
+ 411 005e 01FB1233 		mls	r3, r1, r2, r3
+ 412 0062 9BB2     		uxth	r3, r3
+ 413              		.loc 1 126 8 view .LVU100
+ 414 0064 13B9     		cbnz	r3, .L22
  127:Core/Src/dwt_system.c ****         frame1Hz = true;
- 418              		.loc 1 127 9 is_stmt 1 view .LVU101
- 419              		.loc 1 127 18 is_stmt 0 view .LVU102
- 420 0068 0C4B     		ldr	r3, .L27+40
- 421 006a 0122     		movs	r2, #1
- 422 006c 1A70     		strb	r2, [r3]
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccTFr1rc.s 			page 32
-
-
- 423              	.L25:
- 128:Core/Src/dwt_system.c ****     HAL_IncTick();
- 424              		.loc 1 128 5 is_stmt 1 view .LVU103
- 425 006e FFF7FEFF 		bl	HAL_IncTick
- 426              	.LVL23:
+ 415              		.loc 1 127 9 is_stmt 1 view .LVU101
+ 416              		.loc 1 127 18 is_stmt 0 view .LVU102
+ 417 0066 0C4B     		ldr	r3, .L26+40
+ 418 0068 0122     		movs	r2, #1
+ 419 006a 1A70     		strb	r2, [r3]
+ 420              	.L22:
+ 128:Core/Src/dwt_system.c ****     // HAL_IncTick();
  129:Core/Src/dwt_system.c **** }...
- 427              		.loc 1 129 1 is_stmt 0 view .LVU104
- 428 0072 08BD     		pop	{r3, pc}
- 429              	.L28:
- 430              		.align	2
- 431              	.L27:
- 432 0074 001000E0 		.word	-536866816
- 433 0078 00000000 		.word	.LANCHOR1
- 434 007c 00000000 		.word	.LANCHOR0
- 435 0080 00000000 		.word	.LANCHOR3
- 436 0084 00000000 		.word	.LANCHOR4
- 437 0088 CDCCCCCC 		.word	-858993459
- 438 008c 00000000 		.word	.LANCHOR5
- 439 0090 1F85EB51 		.word	1374389535
- 440 0094 00000000 		.word	.LANCHOR6
- 441 0098 D34D6210 		.word	274877907
- 442 009c 00000000 		.word	.LANCHOR7
- 443              		.cfi_endproc
- 444              	.LFE1160:
- 446              		.global	frame1000Hz
- 447              		.global	frame100Hz
- 448              		.global	frame10Hz
- 449              		.global	frame1Hz
- 450              		.global	frameCounter
- 451              		.section	.bss.frame1000Hz,"aw",%nobits
- 452              		.set	.LANCHOR4,. + 0
- 455              	frame1000Hz:
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s 			page 32
+
+
+ 421              		.loc 1 129 1 view .LVU103
+ 422 006c 7047     		bx	lr
+ 423              	.L27:
+ 424 006e 00BF     		.align	2
+ 425              	.L26:
+ 426 0070 001000E0 		.word	-536866816
+ 427 0074 00000000 		.word	.LANCHOR1
+ 428 0078 00000000 		.word	.LANCHOR0
+ 429 007c 00000000 		.word	.LANCHOR3
+ 430 0080 00000000 		.word	.LANCHOR4
+ 431 0084 CDCCCCCC 		.word	-858993459
+ 432 0088 00000000 		.word	.LANCHOR5
+ 433 008c 1F85EB51 		.word	1374389535
+ 434 0090 00000000 		.word	.LANCHOR6
+ 435 0094 D34D6210 		.word	274877907
+ 436 0098 00000000 		.word	.LANCHOR7
+ 437              		.cfi_endproc
+ 438              	.LFE1160:
+ 440              		.global	frame1000Hz
+ 441              		.global	frame100Hz
+ 442              		.global	frame10Hz
+ 443              		.global	frame1Hz
+ 444              		.global	frameCounter
+ 445              		.section	.bss.frame1000Hz,"aw",%nobits
+ 446              		.set	.LANCHOR4,. + 0
+ 449              	frame1000Hz:
+ 450 0000 00       		.space	1
+ 451              		.section	.bss.frame100Hz,"aw",%nobits
+ 452              		.set	.LANCHOR5,. + 0
+ 455              	frame100Hz:
  456 0000 00       		.space	1
- 457              		.section	.bss.frame100Hz,"aw",%nobits
- 458              		.set	.LANCHOR5,. + 0
- 461              	frame100Hz:
+ 457              		.section	.bss.frame10Hz,"aw",%nobits
+ 458              		.set	.LANCHOR6,. + 0
+ 461              	frame10Hz:
  462 0000 00       		.space	1
- 463              		.section	.bss.frame10Hz,"aw",%nobits
- 464              		.set	.LANCHOR6,. + 0
- 467              	frame10Hz:
+ 463              		.section	.bss.frame1Hz,"aw",%nobits
+ 464              		.set	.LANCHOR7,. + 0
+ 467              	frame1Hz:
  468 0000 00       		.space	1
- 469              		.section	.bss.frame1Hz,"aw",%nobits
- 470              		.set	.LANCHOR7,. + 0
- 473              	frame1Hz:
- 474 0000 00       		.space	1
- 475              		.section	.bss.frameCounter,"aw",%nobits
- 476              		.align	1
- 477              		.set	.LANCHOR3,. + 0
- 480              	frameCounter:
- 481 0000 0000     		.space	2
- 482              		.section	.bss.sysTickCycleCounter,"aw",%nobits
- 483              		.align	2
- 484              		.set	.LANCHOR1,. + 0
- 487              	sysTickCycleCounter:
- 488 0000 00000000 		.space	4
- 489              		.section	.bss.sysTickUptime,"aw",%nobits
- 490              		.align	2
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccTFr1rc.s 			page 33
+ 469              		.section	.bss.frameCounter,"aw",%nobits
+ 470              		.align	1
+ 471              		.set	.LANCHOR3,. + 0
+ 474              	frameCounter:
+ 475 0000 0000     		.space	2
+ 476              		.section	.bss.sysTickCycleCounter,"aw",%nobits
+ 477              		.align	2
+ 478              		.set	.LANCHOR1,. + 0
+ 481              	sysTickCycleCounter:
+ 482 0000 00000000 		.space	4
+ 483              		.section	.bss.sysTickUptime,"aw",%nobits
+ 484              		.align	2
+ 485              		.set	.LANCHOR0,. + 0
+ 488              	sysTickUptime:
+ 489 0000 00000000 		.space	4
+ 490              		.section	.bss.usTicks,"aw",%nobits
+ 491              		.align	2
+ 492              		.set	.LANCHOR2,. + 0
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s 			page 33
 
 
- 491              		.set	.LANCHOR0,. + 0
- 494              	sysTickUptime:
- 495 0000 00000000 		.space	4
- 496              		.section	.bss.usTicks,"aw",%nobits
- 497              		.align	2
- 498              		.set	.LANCHOR2,. + 0
- 501              	usTicks:
- 502 0000 00000000 		.space	4
- 503              		.text
- 504              	.Letext0:
- 505              		.file 3 "/opt/homebrew/Cellar/arm-none-eabi-gcc/10.3-2021.07/gcc/arm-none-eabi/include/machine/_de
- 506              		.file 4 "/opt/homebrew/Cellar/arm-none-eabi-gcc/10.3-2021.07/gcc/arm-none-eabi/include/sys/_stdint
- 507              		.file 5 "Drivers/CMSIS/Include/core_cm4.h"
- 508              		.file 6 "Drivers/CMSIS/Device/ST/STM32L4xx/Include/system_stm32l4xx.h"
- 509              		.file 7 "Core/Inc/dwt_system.h"
- 510              		.file 8 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h"
- 511              		.file 9 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h"
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccTFr1rc.s 			page 34
+ 495              	usTicks:
+ 496 0000 00000000 		.space	4
+ 497              		.text
+ 498              	.Letext0:
+ 499              		.file 3 "/opt/homebrew/Cellar/arm-none-eabi-gcc/10.3-2021.07/gcc/arm-none-eabi/include/machine/_de
+ 500              		.file 4 "/opt/homebrew/Cellar/arm-none-eabi-gcc/10.3-2021.07/gcc/arm-none-eabi/include/sys/_stdint
+ 501              		.file 5 "Drivers/CMSIS/Include/core_cm4.h"
+ 502              		.file 6 "Drivers/CMSIS/Device/ST/STM32L4xx/Include/system_stm32l4xx.h"
+ 503              		.file 7 "Core/Inc/dwt_system.h"
+ 504              		.file 8 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h"
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s 			page 34
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 dwt_system.c
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccTFr1rc.s:18     .text.micros:0000000000000000 $t
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccTFr1rc.s:26     .text.micros:0000000000000000 micros
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccTFr1rc.s:112    .text.micros:0000000000000030 $d
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccTFr1rc.s:120    .text.millis:0000000000000000 $t
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccTFr1rc.s:127    .text.millis:0000000000000000 millis
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccTFr1rc.s:143    .text.millis:0000000000000008 $d
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccTFr1rc.s:148    .text.delayMicroseconds:0000000000000000 $t
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccTFr1rc.s:155    .text.delayMicroseconds:0000000000000000 delayMicroseconds
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccTFr1rc.s:232    .text.delayMicroseconds:0000000000000030 $d
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccTFr1rc.s:238    .text.delay:0000000000000000 $t
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccTFr1rc.s:245    .text.delay:0000000000000000 delay
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccTFr1rc.s:284    .text.cycleCounterInit:0000000000000000 $t
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccTFr1rc.s:291    .text.cycleCounterInit:0000000000000000 cycleCounterInit
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccTFr1rc.s:325    .text.cycleCounterInit:000000000000002c $d
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccTFr1rc.s:333    .text.SysTick_Handler:0000000000000000 $t
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccTFr1rc.s:340    .text.SysTick_Handler:0000000000000000 SysTick_Handler
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccTFr1rc.s:432    .text.SysTick_Handler:0000000000000074 $d
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccTFr1rc.s:455    .bss.frame1000Hz:0000000000000000 frame1000Hz
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccTFr1rc.s:461    .bss.frame100Hz:0000000000000000 frame100Hz
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccTFr1rc.s:467    .bss.frame10Hz:0000000000000000 frame10Hz
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccTFr1rc.s:473    .bss.frame1Hz:0000000000000000 frame1Hz
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccTFr1rc.s:480    .bss.frameCounter:0000000000000000 frameCounter
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccTFr1rc.s:456    .bss.frame1000Hz:0000000000000000 $d
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccTFr1rc.s:462    .bss.frame100Hz:0000000000000000 $d
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccTFr1rc.s:468    .bss.frame10Hz:0000000000000000 $d
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccTFr1rc.s:474    .bss.frame1Hz:0000000000000000 $d
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccTFr1rc.s:476    .bss.frameCounter:0000000000000000 $d
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccTFr1rc.s:483    .bss.sysTickCycleCounter:0000000000000000 $d
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccTFr1rc.s:487    .bss.sysTickCycleCounter:0000000000000000 sysTickCycleCounter
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccTFr1rc.s:490    .bss.sysTickUptime:0000000000000000 $d
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccTFr1rc.s:494    .bss.sysTickUptime:0000000000000000 sysTickUptime
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccTFr1rc.s:497    .bss.usTicks:0000000000000000 $d
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccTFr1rc.s:501    .bss.usTicks:0000000000000000 usTicks
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s:18     .text.micros:0000000000000000 $t
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s:26     .text.micros:0000000000000000 micros
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s:112    .text.micros:0000000000000030 $d
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s:120    .text.millis:0000000000000000 $t
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s:127    .text.millis:0000000000000000 millis
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s:143    .text.millis:0000000000000008 $d
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s:148    .text.delayMicroseconds:0000000000000000 $t
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s:155    .text.delayMicroseconds:0000000000000000 delayMicroseconds
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s:232    .text.delayMicroseconds:0000000000000030 $d
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s:238    .text.delay:0000000000000000 $t
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s:245    .text.delay:0000000000000000 delay
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s:284    .text.cycleCounterInit:0000000000000000 $t
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s:291    .text.cycleCounterInit:0000000000000000 cycleCounterInit
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s:325    .text.cycleCounterInit:000000000000002c $d
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s:333    .text.SysTick_Handler:0000000000000000 $t
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s:340    .text.SysTick_Handler:0000000000000000 SysTick_Handler
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s:426    .text.SysTick_Handler:0000000000000070 $d
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s:449    .bss.frame1000Hz:0000000000000000 frame1000Hz
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s:455    .bss.frame100Hz:0000000000000000 frame100Hz
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s:461    .bss.frame10Hz:0000000000000000 frame10Hz
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s:467    .bss.frame1Hz:0000000000000000 frame1Hz
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s:474    .bss.frameCounter:0000000000000000 frameCounter
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s:450    .bss.frame1000Hz:0000000000000000 $d
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s:456    .bss.frame100Hz:0000000000000000 $d
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s:462    .bss.frame10Hz:0000000000000000 $d
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s:468    .bss.frame1Hz:0000000000000000 $d
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s:470    .bss.frameCounter:0000000000000000 $d
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s:477    .bss.sysTickCycleCounter:0000000000000000 $d
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s:481    .bss.sysTickCycleCounter:0000000000000000 sysTickCycleCounter
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s:484    .bss.sysTickUptime:0000000000000000 $d
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s:488    .bss.sysTickUptime:0000000000000000 sysTickUptime
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s:491    .bss.usTicks:0000000000000000 $d
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s:495    .bss.usTicks:0000000000000000 usTicks
 
 UNDEFINED SYMBOLS
 SystemCoreClock
-HAL_IncTick

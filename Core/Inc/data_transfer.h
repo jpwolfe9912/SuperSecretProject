@@ -8,8 +8,10 @@
 #include "ft6206.h"
 #include "ili9341.h"
 #include "utilities.h"
+#include "graphics.h"
 
-void initTxTouches(MQTT_Message_t *MQTT_TxPacket);
+void initTxPacket(MQTT_Message_t *MQTT_TxPacket);
+void initRxPacket(MQTT_Message_t *MQTT_RxPacket);
 void readAndSendTouches(MQTT_Message_t *Message);
 
 #endif

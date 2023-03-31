@@ -12,8 +12,8 @@
 #define _WIFI_TASK_SIZE 512
 #define _MAX_SEND_BYTES 2048
 
-#define _MQTT_SIZE 512
-#define _MQTT_SIZE 512
+#define _MQTT_RX_SIZE 2048
+#define _MQTT_TX_SIZE 2048
 
 // The times are defined in ms
 #define _WIFI_WAIT_TIME_LOW 1000

@@ -39,7 +39,8 @@ build/usart.o: Core/Src/usart.c Core/Inc/usart.h \
  Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_gpio.h \
  Core/Inc/stm32l4xx_it.h Core/Inc/dwt_system.h Core/Inc/dma.h \
  Core/Inc/i2c.h Core/Inc/spi.h Core/Inc/usart.h Core/Inc/gpio.h \
- Core/Inc/esp32.h Core/Inc/esp32Config.h
+ Middlewares/Third_Party/lwrb/../lwrb/lwrb.h Core/Inc/esp32.h \
+ Core/Inc/esp32Config.h
 Core/Inc/usart.h:
 Core/Inc/super_secret_project.h:
 Core/Inc/main.h:
@@ -89,5 +90,6 @@ Core/Inc/i2c.h:
 Core/Inc/spi.h:
 Core/Inc/usart.h:
 Core/Inc/gpio.h:
+Middlewares/Third_Party/lwrb/../lwrb/lwrb.h:
 Core/Inc/esp32.h:
 Core/Inc/esp32Config.h:

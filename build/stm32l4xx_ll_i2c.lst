@@ -1,4 +1,4 @@
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 1
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc0Xc2Zr.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 1
   27:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_ll_i2c.c **** #endif /* USE_FULL_ASSERT */
   28:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_ll_i2c.c **** 
   29:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_ll_i2c.c **** /** @addtogroup STM32L4xx_LL_Driver
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 2
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc0Xc2Zr.s 			page 2
 
 
   30:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_ll_i2c.c ****   * @{
@@ -118,7 +118,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 1
   84:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_ll_i2c.c ****   *          - ERROR: I2C registers are not de-initialized
   85:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_ll_i2c.c ****   */
   86:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_ll_i2c.c **** ErrorStatus LL_I2C_DeInit(I2C_TypeDef *I2Cx)
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 3
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc0Xc2Zr.s 			page 3
 
 
   87:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_ll_i2c.c **** {
@@ -178,7 +178,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 1
  124:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_ll_i2c.c ****     LL_APB1_GRP2_ForceReset(LL_APB1_GRP2_PERIPH_I2C4);
  125:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_ll_i2c.c **** 
  126:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_ll_i2c.c ****     /* Release reset of I2C clock */
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 4
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc0Xc2Zr.s 			page 4
 
 
  127:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_ll_i2c.c ****     LL_APB1_GRP2_ReleaseReset(LL_APB1_GRP2_PERIPH_I2C4);
@@ -238,7 +238,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 1
   32:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   ******************************************************************************
   33:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   */
   34:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h **** 
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 5
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc0Xc2Zr.s 			page 5
 
 
   35:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h **** /* Define to prevent recursive inclusion -------------------------------------*/
@@ -298,7 +298,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 1
   89:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   * @}
   90:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   */
   91:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h **** 
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 6
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc0Xc2Zr.s 			page 6
 
 
   92:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h **** /** @defgroup BUS_LL_EC_AHB2_GRP1_PERIPH  AHB2 GRP1 PERIPH
@@ -358,7 +358,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 1
  146:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h **** /** @defgroup BUS_LL_EC_AHB3_GRP1_PERIPH  AHB3 GRP1 PERIPH
  147:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   * @{
  148:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   */
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 7
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc0Xc2Zr.s 			page 7
 
 
  149:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h **** #define LL_AHB3_GRP1_PERIPH_ALL            0xFFFFFFFFU
@@ -418,7 +418,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 1
  203:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h **** #define LL_APB1_GRP1_PERIPH_I2C1           RCC_APB1ENR1_I2C1EN
  204:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h **** #if defined(I2C2)
  205:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h **** #define LL_APB1_GRP1_PERIPH_I2C2           RCC_APB1ENR1_I2C2EN
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 8
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc0Xc2Zr.s 			page 8
 
 
  206:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h **** #endif /* I2C2 */
@@ -478,7 +478,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 1
  260:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h **** #if defined(TIM17)
  261:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h **** #define LL_APB2_GRP1_PERIPH_TIM17          RCC_APB2ENR_TIM17EN
  262:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h **** #endif /* TIM17 */
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 9
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc0Xc2Zr.s 			page 9
 
 
  263:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h **** #define LL_APB2_GRP1_PERIPH_SAI1           RCC_APB2ENR_SAI1EN
@@ -538,7 +538,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 1
  317:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   *         @arg @ref LL_AHB1_GRP1_PERIPH_DMAMUX1 (*)
  318:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   *         @arg @ref LL_AHB1_GRP1_PERIPH_FLASH
  319:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   *         @arg @ref LL_AHB1_GRP1_PERIPH_CRC
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 10
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc0Xc2Zr.s 			page 10
 
 
  320:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   *         @arg @ref LL_AHB1_GRP1_PERIPH_TSC
@@ -598,7 +598,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 1
  374:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   * @param  Periphs This parameter can be a combination of the following values:
  375:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   *         @arg @ref LL_AHB1_GRP1_PERIPH_DMA1
  376:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   *         @arg @ref LL_AHB1_GRP1_PERIPH_DMA2
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 11
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc0Xc2Zr.s 			page 11
 
 
  377:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   *         @arg @ref LL_AHB1_GRP1_PERIPH_DMAMUX1 (*)
@@ -658,7 +658,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 1
  431:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   * @param  Periphs This parameter can be a combination of the following values:
  432:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   *         @arg @ref LL_AHB1_GRP1_PERIPH_ALL
  433:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   *         @arg @ref LL_AHB1_GRP1_PERIPH_DMA1
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 12
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc0Xc2Zr.s 			page 12
 
 
  434:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   *         @arg @ref LL_AHB1_GRP1_PERIPH_DMA2
@@ -718,7 +718,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 1
  488:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   *         AHB1SMENR    DMAMUX1SMEN   LL_AHB1_GRP1_DisableClockStopSleep\n
  489:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   *         AHB1SMENR    FLASHSMEN     LL_AHB1_GRP1_DisableClockStopSleep\n
  490:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   *         AHB1SMENR    SRAM1SMEN     LL_AHB1_GRP1_DisableClockStopSleep\n
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 13
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc0Xc2Zr.s 			page 13
 
 
  491:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   *         AHB1SMENR    CRCSMEN       LL_AHB1_GRP1_DisableClockStopSleep\n
@@ -778,7 +778,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 1
  545:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   *         @arg @ref LL_AHB2_GRP1_PERIPH_GPIOD (*)
  546:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   *         @arg @ref LL_AHB2_GRP1_PERIPH_GPIOE (*)
  547:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   *         @arg @ref LL_AHB2_GRP1_PERIPH_GPIOF (*)
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 14
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc0Xc2Zr.s 			page 14
 
 
  548:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   *         @arg @ref LL_AHB2_GRP1_PERIPH_GPIOG (*)
@@ -838,7 +838,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 1
  602:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   *         @arg @ref LL_AHB2_GRP1_PERIPH_ADC
  603:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   *         @arg @ref LL_AHB2_GRP1_PERIPH_DCMI (*)
  604:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   *         @arg @ref LL_AHB2_GRP1_PERIPH_AES (*)
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 15
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc0Xc2Zr.s 			page 15
 
 
  605:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   *         @arg @ref LL_AHB2_GRP1_PERIPH_HASH (*)
@@ -898,7 +898,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 1
  659:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h **** __STATIC_INLINE void LL_AHB2_GRP1_DisableClock(uint32_t Periphs)
  660:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h **** {
  661:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   CLEAR_BIT(RCC->AHB2ENR, Periphs);
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 16
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc0Xc2Zr.s 			page 16
 
 
  662:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h **** }
@@ -958,7 +958,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 1
  716:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   *         AHB2RSTR     GPIODRST      LL_AHB2_GRP1_ReleaseReset\n
  717:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   *         AHB2RSTR     GPIOERST      LL_AHB2_GRP1_ReleaseReset\n
  718:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   *         AHB2RSTR     GPIOFRST      LL_AHB2_GRP1_ReleaseReset\n
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 17
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc0Xc2Zr.s 			page 17
 
 
  719:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   *         AHB2RSTR     GPIOGRST      LL_AHB2_GRP1_ReleaseReset\n
@@ -1018,7 +1018,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 1
  773:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   *         AHB2SMENR    DCMISMEN      LL_AHB2_GRP1_EnableClockStopSleep\n
  774:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   *         AHB2SMENR    AESSMEN       LL_AHB2_GRP1_EnableClockStopSleep\n
  775:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   *         AHB2SMENR    HASHSMEN      LL_AHB2_GRP1_EnableClockStopSleep\n
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 18
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc0Xc2Zr.s 			page 18
 
 
  776:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   *         AHB2SMENR    RNGSMEN       LL_AHB2_GRP1_EnableClockStopSleep\n
@@ -1078,7 +1078,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 1
  830:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   *         AHB2SMENR    RNGSMEN       LL_AHB2_GRP1_DisableClockStopSleep\n
  831:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   *         AHB2SMENR    OSPIMSMEN     LL_AHB2_GRP1_DisableClockStopSleep\n
  832:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   *         AHB2SMENR    SDMMC1SMEN    LL_AHB2_GRP1_DisableClockStopSleep
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 19
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc0Xc2Zr.s 			page 19
 
 
  833:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   * @param  Periphs This parameter can be a combination of the following values:
@@ -1138,7 +1138,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 1
  887:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   __IO uint32_t tmpreg;
  888:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   SET_BIT(RCC->AHB3ENR, Periphs);
  889:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   /* Delay after an RCC peripheral clock enabling */
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 20
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc0Xc2Zr.s 			page 20
 
 
  890:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   tmpreg = READ_BIT(RCC->AHB3ENR, Periphs);
@@ -1198,7 +1198,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 1
  944:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   *         @arg @ref LL_AHB3_GRP1_PERIPH_OSPI1 (*)
  945:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   *         @arg @ref LL_AHB3_GRP1_PERIPH_OSPI2 (*)
  946:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   *
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 21
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc0Xc2Zr.s 			page 21
 
 
  947:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   *         (*) value not defined in all devices.
@@ -1258,7 +1258,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 1
 1001:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   * @brief  Disable AHB3 peripheral clocks in Sleep and Stop modes
 1002:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   * @rmtoll AHB3SMENR    FMCSMEN       LL_AHB3_GRP1_DisableClockStopSleep\n
 1003:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   *         AHB3SMENR    QSPISMEN      LL_AHB3_GRP1_DisableClockStopSleep\n
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 22
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc0Xc2Zr.s 			page 22
 
 
 1004:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   *         AHB3SMENR    OSPI1SMEN     LL_AHB3_GRP1_DisableClockStopSleep\n
@@ -1318,7 +1318,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 1
 1058:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   *         @arg @ref LL_APB1_GRP1_PERIPH_TIM3 (*)
 1059:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   *         @arg @ref LL_APB1_GRP1_PERIPH_TIM4 (*)
 1060:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   *         @arg @ref LL_APB1_GRP1_PERIPH_TIM5 (*)
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 23
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc0Xc2Zr.s 			page 23
 
 
 1061:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   *         @arg @ref LL_APB1_GRP1_PERIPH_TIM6
@@ -1378,7 +1378,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 1
 1115:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   /* Delay after an RCC peripheral clock enabling */
 1116:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   tmpreg = READ_BIT(RCC->APB1ENR2, Periphs);
 1117:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   (void)tmpreg;
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 24
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc0Xc2Zr.s 			page 24
 
 
 1118:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h **** }
@@ -1438,7 +1438,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 1
 1172:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   *         @arg @ref LL_APB1_GRP1_PERIPH_DAC1
 1173:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   *         @arg @ref LL_APB1_GRP1_PERIPH_OPAMP
 1174:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   *         @arg @ref LL_APB1_GRP1_PERIPH_LPTIM1
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 25
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc0Xc2Zr.s 			page 25
 
 
 1175:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   *
@@ -1498,7 +1498,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 1
 1229:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   *         APB1ENR1     DAC1EN        LL_APB1_GRP1_DisableClock\n
 1230:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   *         APB1ENR1     OPAMPEN       LL_APB1_GRP1_DisableClock\n
 1231:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   *         APB1ENR1     LPTIM1EN      LL_APB1_GRP1_DisableClock
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 26
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc0Xc2Zr.s 			page 26
 
 
 1232:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   * @param  Periphs This parameter can be a combination of the following values:
@@ -1558,7 +1558,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 1
 1286:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h **** }
 1287:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h **** 
 1288:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h **** /**
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 27
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc0Xc2Zr.s 			page 27
 
 
 1289:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   * @brief  Force APB1 peripherals reset.
@@ -1618,7 +1618,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 1
 1343:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h **** */
 1344:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h **** __STATIC_INLINE void LL_APB1_GRP1_ForceReset(uint32_t Periphs)
   59              		.loc 2 1344 22 view .LVU11
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 28
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc0Xc2Zr.s 			page 28
 
 
   60              	.LBB29:
@@ -1678,7 +1678,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 1
 1385:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   *         APB1RSTR1    I2C1RST       LL_APB1_GRP1_ReleaseReset\n
 1386:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   *         APB1RSTR1    I2C2RST       LL_APB1_GRP1_ReleaseReset\n
 1387:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   *         APB1RSTR1    I2C3RST       LL_APB1_GRP1_ReleaseReset\n
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 29
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc0Xc2Zr.s 			page 29
 
 
 1388:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h ****   *         APB1RSTR1    CRSRST        LL_APB1_GRP1_ReleaseReset\n
@@ -1738,7 +1738,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 1
   85              	.LBB32:
 1429:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_bus.h **** }
   86              		.loc 2 1429 1 view .LVU18
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 30
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc0Xc2Zr.s 			page 30
 
 
   87 0026 7047     		bx	lr
@@ -1798,7 +1798,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 1
  133              	.LFE308:
  135              		.section	.text.LL_I2C_Init,"ax",%progbits
  136              		.align	1
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 31
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc0Xc2Zr.s 			page 31
 
 
  137              		.global	LL_I2C_Init
@@ -1858,7 +1858,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 1
    2:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h ****   ******************************************************************************
    3:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h ****   * @file    stm32l4xx_ll_i2c.h
    4:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h ****   * @author  MCD Application Team
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 32
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc0Xc2Zr.s 			page 32
 
 
    5:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h ****   * @brief   Header file of I2C LL module.
@@ -1918,7 +1918,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 1
   59:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h **** #endif /*USE_FULL_LL_DRIVER*/
   60:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h **** 
   61:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h **** /* Exported types ------------------------------------------------------------*/
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 33
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc0Xc2Zr.s 			page 33
 
 
   62:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h **** #if defined(USE_FULL_LL_DRIVER)
@@ -1978,7 +1978,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 1
  116:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h **** 
  117:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h **** /* Exported constants --------------------------------------------------------*/
  118:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h **** /** @defgroup I2C_LL_Exported_Constants I2C Exported Constants
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 34
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc0Xc2Zr.s 			page 34
 
 
  119:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h ****   * @{
@@ -2038,7 +2038,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 1
  173:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h **** /**
  174:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h ****   * @}
  175:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h ****   */
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 35
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc0Xc2Zr.s 			page 35
 
 
  176:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h **** 
@@ -2098,7 +2098,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 1
  230:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h ****   */
  231:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h **** 
  232:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h **** /** @defgroup I2C_LL_EC_I2C_ACKNOWLEDGE Acknowledge Generation
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 36
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc0Xc2Zr.s 			page 36
 
 
  233:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h ****   * @{
@@ -2158,7 +2158,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 1
  287:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h **** /*!< Generate Stop condition (Size should be set to 0).      */
  288:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h **** #define LL_I2C_GENERATE_START_READ          (uint32_t)(0x80000000U | I2C_CR2_START | I2C_CR2_RD_WRN
  289:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h **** /*!< Generate Start for read request. */
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 37
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc0Xc2Zr.s 			page 37
 
 
  290:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h **** #define LL_I2C_GENERATE_START_WRITE         (uint32_t)(0x80000000U | I2C_CR2_START)
@@ -2218,7 +2218,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 1
  344:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h **** #define LL_I2C_SMBUS_ALL_TIMEOUT            (uint32_t)(I2C_TIMEOUTR_TIMOUTEN | \
  345:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h ****                                                        I2C_TIMEOUTR_TEXTEN)       /*!< TimeoutA and
  346:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h **** (extended clock) enable bits */
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 38
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc0Xc2Zr.s 			page 38
 
 
  347:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h **** /**
@@ -2278,7 +2278,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 1
  401:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h ****   ((((uint32_t)(__PRESCALER__)    << I2C_TIMINGR_PRESC_Pos)  & I2C_TIMINGR_PRESC)   | \
  402:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h ****    (((uint32_t)(__SETUP_TIME__)   << I2C_TIMINGR_SCLDEL_Pos) & I2C_TIMINGR_SCLDEL)  | \
  403:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h ****    (((uint32_t)(__HOLD_TIME__)    << I2C_TIMINGR_SDADEL_Pos) & I2C_TIMINGR_SDADEL)  | \
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 39
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc0Xc2Zr.s 			page 39
 
 
  404:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h ****    (((uint32_t)(__SCLH_PERIOD__)  << I2C_TIMINGR_SCLH_Pos)   & I2C_TIMINGR_SCLH)    | \
@@ -2338,7 +2338,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 1
  163:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_ll_i2c.c ****    * Configure the analog and digital noise filters with parameters :
  164:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_ll_i2c.c ****    * - AnalogFilter: I2C_CR1_ANFOFF bit
  165:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_ll_i2c.c ****    * - DigitalFilter: I2C_CR1_DNF[3:0] bits
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 40
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc0Xc2Zr.s 			page 40
 
 
  166:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_ll_i2c.c ****    */
@@ -2398,7 +2398,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 1
  168:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_ll_i2c.c **** 
  169:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_ll_i2c.c ****   /*---------------------------- I2Cx TIMINGR Configuration --------------------
  170:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_ll_i2c.c ****    * Configure the SDA setup, hold time and the SCL high, low period with parameter :
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 41
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc0Xc2Zr.s 			page 41
 
 
  171:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_ll_i2c.c ****    * - Timing: I2C_TIMINGR_PRESC[3:0], I2C_TIMINGR_SCLDEL[3:0], I2C_TIMINGR_SDADEL[3:0],
@@ -2458,7 +2458,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 1
  523:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h ****   * @rmtoll CR1          ANFOFF        LL_I2C_DisableAnalogFilter
  524:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h ****   * @param  I2Cx I2C Instance.
  525:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h ****   * @retval None
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 42
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc0Xc2Zr.s 			page 42
 
 
  526:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h ****   */
@@ -2518,7 +2518,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 1
  580:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h ****   * @retval None
  581:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h ****   */
  582:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h **** __STATIC_INLINE void LL_I2C_EnableDMAReq_RX(I2C_TypeDef *I2Cx)
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 43
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc0Xc2Zr.s 			page 43
 
 
  583:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h **** {
@@ -2578,7 +2578,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 1
  637:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h **** /**
  638:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h ****   * @brief  Enable Clock stretching.
  639:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h ****   * @note   This bit can only be programmed when the I2C is disabled (PE = 0).
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 44
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc0Xc2Zr.s 			page 44
 
 
  640:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h ****   * @rmtoll CR1          NOSTRETCH     LL_I2C_EnableClockStretching
@@ -2638,7 +2638,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 1
  694:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h **** /**
  695:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h ****   * @brief  Check if hardware byte control in slave mode is enabled or disabled.
  696:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h ****   * @rmtoll CR1          SBC           LL_I2C_IsEnabledSlaveByteControl
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 45
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc0Xc2Zr.s 			page 45
 
 
  697:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h ****   * @param  I2Cx I2C Instance.
@@ -2698,7 +2698,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 1
  751:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h ****   */
  752:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h **** __STATIC_INLINE void LL_I2C_EnableGeneralCall(I2C_TypeDef *I2Cx)
  753:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h **** {
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 46
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc0Xc2Zr.s 			page 46
 
 
  754:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h ****   SET_BIT(I2Cx->CR1, I2C_CR1_GCEN);
@@ -2758,7 +2758,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 1
  808:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h **** /**
  809:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h ****   * @brief  Set the Own Address1.
  810:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h ****   * @rmtoll OAR1         OA1           LL_I2C_SetOwnAddress1\n
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 47
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc0Xc2Zr.s 			page 47
 
 
  811:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h ****   *         OAR1         OA1MODE       LL_I2C_SetOwnAddress1
@@ -2818,7 +2818,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 1
  865:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h ****   *         @arg @ref LL_I2C_OWNADDRESS2_NOMASK
  866:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h ****   *         @arg @ref LL_I2C_OWNADDRESS2_MASK01
  867:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h ****   *         @arg @ref LL_I2C_OWNADDRESS2_MASK02
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 48
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc0Xc2Zr.s 			page 48
 
 
  868:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h ****   *         @arg @ref LL_I2C_OWNADDRESS2_MASK03
@@ -2878,7 +2878,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 1
  922:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h **** __STATIC_INLINE void LL_I2C_SetTiming(I2C_TypeDef *I2Cx, uint32_t Timing)
  202              		.loc 3 922 22 view .LVU48
  203              	.LBB45:
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 49
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc0Xc2Zr.s 			page 49
 
 
  923:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h **** {
@@ -2938,7 +2938,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 1
  239              	.LBB50:
  240              	.LBI50:
  819:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h **** {
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 50
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc0Xc2Zr.s 			page 50
 
 
  241              		.loc 3 819 22 view .LVU60
@@ -2998,7 +2998,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 1
  277              		.loc 1 197 3 is_stmt 1 view .LVU71
  278 0050 0B68     		ldr	r3, [r1]
  279              	.LVL23:
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 51
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc0Xc2Zr.s 			page 51
 
 
  280              	.LBB54:
@@ -3058,7 +3058,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 1
  977:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h **** __STATIC_INLINE uint32_t LL_I2C_GetDataSetupTime(I2C_TypeDef *I2Cx)
  978:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h **** {
  979:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h ****   return (uint32_t)(READ_BIT(I2Cx->TIMINGR, I2C_TIMINGR_SCLDEL) >> I2C_TIMINGR_SCLDEL_Pos);
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 52
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc0Xc2Zr.s 			page 52
 
 
  980:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h **** }
@@ -3118,7 +3118,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 1
 1009:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h ****   *         @arg @ref LL_I2C_MODE_I2C
 1010:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h ****   *         @arg @ref LL_I2C_MODE_SMBUS_HOST
 1011:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h ****   *         @arg @ref LL_I2C_MODE_SMBUS_DEVICE
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 53
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc0Xc2Zr.s 			page 53
 
 
 1012:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h ****   *         @arg @ref LL_I2C_MODE_SMBUS_DEVICE_ARP
@@ -3178,7 +3178,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 1
 1066:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h **** }
 1067:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h **** 
 1068:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h **** /**
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 54
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc0Xc2Zr.s 			page 54
 
 
 1069:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h ****   * @brief  Enable SMBus Packet Error Calculation (PEC).
@@ -3238,7 +3238,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 1
 1123:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h **** __STATIC_INLINE void LL_I2C_ConfigSMBusTimeout(I2C_TypeDef *I2Cx, uint32_t TimeoutA, uint32_t Timeo
 1124:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h ****                                                uint32_t TimeoutB)
 1125:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h **** {
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 55
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc0Xc2Zr.s 			page 55
 
 
 1126:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h ****   MODIFY_REG(I2Cx->TIMEOUTR, I2C_TIMEOUTR_TIMEOUTA | I2C_TIMEOUTR_TIDLE | I2C_TIMEOUTR_TIMEOUTB,
@@ -3298,7 +3298,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 1
 1180:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h ****   * @param  I2Cx I2C Instance.
 1181:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h ****   * @retval Returned value can be one of the following values:
 1182:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h ****   *         @arg @ref LL_I2C_SMBUS_TIMEOUTA_MODE_SCL_LOW
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 56
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc0Xc2Zr.s 			page 56
 
 
 1183:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h ****   *         @arg @ref LL_I2C_SMBUS_TIMEOUTA_MODE_SDA_SCL_HIGH
@@ -3358,7 +3358,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 1
 1237:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h ****   * @brief  Disable the SMBus Clock Timeout.
 1238:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h ****   * @note   The macro IS_SMBUS_ALL_INSTANCE(I2Cx) can be used to check whether or not
 1239:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h ****   *         SMBus feature is supported by the I2Cx Instance.
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 57
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc0Xc2Zr.s 			page 57
 
 
 1240:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h ****   * @rmtoll TIMEOUTR     TIMOUTEN      LL_I2C_DisableSMBusTimeout\n
@@ -3418,7 +3418,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 1
 1294:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h ****   * @rmtoll CR1          TXIE          LL_I2C_DisableIT_TX
 1295:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h ****   * @param  I2Cx I2C Instance.
 1296:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h ****   * @retval None
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 58
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc0Xc2Zr.s 			page 58
 
 
 1297:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h ****   */
@@ -3478,7 +3478,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 1
 1351:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h ****   * @retval None
 1352:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h ****   */
 1353:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h **** __STATIC_INLINE void LL_I2C_EnableIT_ADDR(I2C_TypeDef *I2Cx)
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 59
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc0Xc2Zr.s 			page 59
 
 
 1354:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h **** {
@@ -3538,7 +3538,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 1
 1408:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h **** __STATIC_INLINE uint32_t LL_I2C_IsEnabledIT_NACK(I2C_TypeDef *I2Cx)
 1409:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h **** {
 1410:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h ****   return ((READ_BIT(I2Cx->CR1, I2C_CR1_NACKIE) == (I2C_CR1_NACKIE)) ? 1UL : 0UL);
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 60
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc0Xc2Zr.s 			page 60
 
 
 1411:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h **** }
@@ -3598,7 +3598,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 1
 1465:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h ****   * @rmtoll CR1          TCIE          LL_I2C_DisableIT_TC
 1466:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h ****   * @param  I2Cx I2C Instance.
 1467:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h ****   * @retval None
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 61
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc0Xc2Zr.s 			page 61
 
 
 1468:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h ****   */
@@ -3658,7 +3658,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 1
 1522:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h ****   CLEAR_BIT(I2Cx->CR1, I2C_CR1_ERRIE);
 1523:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h **** }
 1524:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h **** 
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 62
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc0Xc2Zr.s 			page 62
 
 
 1525:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h **** /**
@@ -3718,7 +3718,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 1
 1579:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h **** {
 1580:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h ****   return ((READ_BIT(I2Cx->ISR, I2C_ISR_RXNE) == (I2C_ISR_RXNE)) ? 1UL : 0UL);
 1581:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h **** }
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 63
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc0Xc2Zr.s 			page 63
 
 
 1582:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h **** 
@@ -3778,7 +3778,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 1
 1636:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h ****   * @brief  Indicate the status of Transfer complete flag (master mode).
 1637:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h ****   * @note   RESET: Clear default value.
 1638:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h ****   *         SET: When RELOAD=1 and NBYTES date have been transferred.
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 64
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc0Xc2Zr.s 			page 64
 
 
 1639:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h ****   * @rmtoll ISR          TCR           LL_I2C_IsActiveFlag_TCR
@@ -3838,7 +3838,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 1
 1693:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h ****   * @rmtoll ISR          PECERR        LL_I2C_IsActiveSMBusFlag_PECERR
 1694:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h ****   * @param  I2Cx I2C Instance.
 1695:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h ****   * @retval State of bit (1 or 0).
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 65
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc0Xc2Zr.s 			page 65
 
 
 1696:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h ****   */
@@ -3898,7 +3898,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 1
 1750:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h ****   * @retval None
 1751:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h ****   */
 1752:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h **** __STATIC_INLINE void LL_I2C_ClearFlag_ADDR(I2C_TypeDef *I2Cx)
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 66
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc0Xc2Zr.s 			page 66
 
 
 1753:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h **** {
@@ -3958,7 +3958,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 1
 1807:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h ****   */
 1808:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h **** __STATIC_INLINE void LL_I2C_ClearFlag_ARLO(I2C_TypeDef *I2Cx)
 1809:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h **** {
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 67
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc0Xc2Zr.s 			page 67
 
 
 1810:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h ****   SET_BIT(I2Cx->ICR, I2C_ICR_ARLOCF);
@@ -4018,7 +4018,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 1
 1864:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h ****   * @}
 1865:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h ****   */
 1866:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h **** 
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 68
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc0Xc2Zr.s 			page 68
 
 
 1867:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h **** /** @defgroup I2C_LL_EF_Data_Management Data_Management
@@ -4078,7 +4078,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 1
 1921:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h ****   * @note   The transfer is completed after the NBYTES data transfer(STOP or RESTART will follow).
 1922:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h ****   * @rmtoll CR2          RELOAD       LL_I2C_DisableReloadMode
 1923:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h ****   * @param  I2Cx I2C Instance.
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 69
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc0Xc2Zr.s 			page 69
 
 
 1924:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h ****   * @retval None
@@ -4138,7 +4138,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 1
  300              		.loc 3 1977 22 view .LVU77
  301              	.LBB57:
 1978:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h **** {
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 70
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc0Xc2Zr.s 			page 70
 
 
 1979:Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_i2c.h ****   MODIFY_REG(I2Cx->CR2, I2C_CR2_NACK, TypeAcknowledge);
@@ -4198,7 +4198,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 1
  344 0002 0360     		str	r3, [r0]
  218:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_ll_i2c.c ****   I2C_InitStruct->Timing          = 0U;
  345              		.loc 1 218 3 is_stmt 1 view .LVU87
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 71
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc0Xc2Zr.s 			page 71
 
 
  346              		.loc 1 218 35 is_stmt 0 view .LVU88
@@ -4235,17 +4235,17 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 1
  372              		.file 5 "/opt/homebrew/Cellar/arm-none-eabi-gcc/10.3-2021.07/gcc/arm-none-eabi/include/sys/_stdint
  373              		.file 6 "Drivers/CMSIS/Device/ST/STM32L4xx/Include/stm32l432xx.h"
  374              		.file 7 "Drivers/CMSIS/Device/ST/STM32L4xx/Include/stm32l4xx.h"
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s 			page 72
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc0Xc2Zr.s 			page 72
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 stm32l4xx_ll_i2c.c
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s:18     .text.LL_I2C_DeInit:0000000000000000 $t
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s:26     .text.LL_I2C_DeInit:0000000000000000 LL_I2C_DeInit
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s:128    .text.LL_I2C_DeInit:0000000000000040 $d
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s:136    .text.LL_I2C_Init:0000000000000000 $t
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s:143    .text.LL_I2C_Init:0000000000000000 LL_I2C_Init
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s:326    .text.LL_I2C_StructInit:0000000000000000 $t
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccgJ8n4J.s:333    .text.LL_I2C_StructInit:0000000000000000 LL_I2C_StructInit
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc0Xc2Zr.s:18     .text.LL_I2C_DeInit:0000000000000000 $t
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc0Xc2Zr.s:26     .text.LL_I2C_DeInit:0000000000000000 LL_I2C_DeInit
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc0Xc2Zr.s:128    .text.LL_I2C_DeInit:0000000000000040 $d
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc0Xc2Zr.s:136    .text.LL_I2C_Init:0000000000000000 $t
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc0Xc2Zr.s:143    .text.LL_I2C_Init:0000000000000000 LL_I2C_Init
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc0Xc2Zr.s:326    .text.LL_I2C_StructInit:0000000000000000 $t
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc0Xc2Zr.s:333    .text.LL_I2C_StructInit:0000000000000000 LL_I2C_StructInit
 
 NO UNDEFINED SYMBOLS

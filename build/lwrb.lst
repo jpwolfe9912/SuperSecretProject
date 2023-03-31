@@ -1,0 +1,3038 @@
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccx4nf71.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"lwrb.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.lwrb_init,"ax",%progbits
+  18              		.align	1
+  19              		.global	lwrb_init
+  20              		.arch armv7e-m
+  21              		.syntax unified
+  22              		.thumb
+  23              		.thumb_func
+  24              		.fpu fpv4-sp-d16
+  26              	lwrb_init:
+  27              	.LVL0:
+  28              	.LFB0:
+  29              		.file 1 "Middlewares/Third_Party/lwrb/lwrb.c"
+   1:Middlewares/Third_Party/lwrb/lwrb.c **** /**
+   2:Middlewares/Third_Party/lwrb/lwrb.c ****  * \file            lwrb.c
+   3:Middlewares/Third_Party/lwrb/lwrb.c ****  * \brief           Lightweight ring buffer
+   4:Middlewares/Third_Party/lwrb/lwrb.c ****  */
+   5:Middlewares/Third_Party/lwrb/lwrb.c **** 
+   6:Middlewares/Third_Party/lwrb/lwrb.c **** /*
+   7:Middlewares/Third_Party/lwrb/lwrb.c ****  * Copyright (c) 2023 Tilen MAJERLE
+   8:Middlewares/Third_Party/lwrb/lwrb.c ****  *
+   9:Middlewares/Third_Party/lwrb/lwrb.c ****  * Permission is hereby granted, free of charge, to any person
+  10:Middlewares/Third_Party/lwrb/lwrb.c ****  * obtaining a copy of this software and associated documentation
+  11:Middlewares/Third_Party/lwrb/lwrb.c ****  * files (the "Software"), to deal in the Software without restriction,
+  12:Middlewares/Third_Party/lwrb/lwrb.c ****  * including without limitation the rights to use, copy, modify, merge,
+  13:Middlewares/Third_Party/lwrb/lwrb.c ****  * publish, distribute, sublicense, and/or sell copies of the Software,
+  14:Middlewares/Third_Party/lwrb/lwrb.c ****  * and to permit persons to whom the Software is furnished to do so,
+  15:Middlewares/Third_Party/lwrb/lwrb.c ****  * subject to the following conditions:
+  16:Middlewares/Third_Party/lwrb/lwrb.c ****  *
+  17:Middlewares/Third_Party/lwrb/lwrb.c ****  * The above copyright notice and this permission notice shall be
+  18:Middlewares/Third_Party/lwrb/lwrb.c ****  * included in all copies or substantial portions of the Software.
+  19:Middlewares/Third_Party/lwrb/lwrb.c ****  *
+  20:Middlewares/Third_Party/lwrb/lwrb.c ****  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+  21:Middlewares/Third_Party/lwrb/lwrb.c ****  * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+  22:Middlewares/Third_Party/lwrb/lwrb.c ****  * OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE
+  23:Middlewares/Third_Party/lwrb/lwrb.c ****  * AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+  24:Middlewares/Third_Party/lwrb/lwrb.c ****  * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+  25:Middlewares/Third_Party/lwrb/lwrb.c ****  * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  26:Middlewares/Third_Party/lwrb/lwrb.c ****  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+  27:Middlewares/Third_Party/lwrb/lwrb.c ****  * OTHER DEALINGS IN THE SOFTWARE.
+  28:Middlewares/Third_Party/lwrb/lwrb.c ****  *
+  29:Middlewares/Third_Party/lwrb/lwrb.c ****  * This file is part of LwRB - Lightweight ring buffer library.
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccx4nf71.s 			page 2
+
+
+  30:Middlewares/Third_Party/lwrb/lwrb.c ****  *
+  31:Middlewares/Third_Party/lwrb/lwrb.c ****  * Author:          Tilen MAJERLE <tilen@majerle.eu>
+  32:Middlewares/Third_Party/lwrb/lwrb.c ****  * Version:         v3.0.0-rc1
+  33:Middlewares/Third_Party/lwrb/lwrb.c ****  */
+  34:Middlewares/Third_Party/lwrb/lwrb.c **** #include "lwrb.h"
+  35:Middlewares/Third_Party/lwrb/lwrb.c **** 
+  36:Middlewares/Third_Party/lwrb/lwrb.c **** /* Memory set and copy functions */
+  37:Middlewares/Third_Party/lwrb/lwrb.c **** #define BUF_MEMSET memset
+  38:Middlewares/Third_Party/lwrb/lwrb.c **** #define BUF_MEMCPY memcpy
+  39:Middlewares/Third_Party/lwrb/lwrb.c **** 
+  40:Middlewares/Third_Party/lwrb/lwrb.c **** #define BUF_IS_VALID(b) ((b) != NULL && (b)->buff != NULL && (b)->size > 0)
+  41:Middlewares/Third_Party/lwrb/lwrb.c **** #define BUF_MIN(x, y) ((x) < (y) ? (x) : (y))
+  42:Middlewares/Third_Party/lwrb/lwrb.c **** #define BUF_MAX(x, y) ((x) > (y) ? (x) : (y))
+  43:Middlewares/Third_Party/lwrb/lwrb.c **** #define BUF_SEND_EVT(b, type, bp)                   \
+  44:Middlewares/Third_Party/lwrb/lwrb.c ****     do                                              \
+  45:Middlewares/Third_Party/lwrb/lwrb.c ****     {                                               \
+  46:Middlewares/Third_Party/lwrb/lwrb.c ****         if ((b)->evt_fn != NULL)                    \
+  47:Middlewares/Third_Party/lwrb/lwrb.c ****         {                                           \
+  48:Middlewares/Third_Party/lwrb/lwrb.c ****             (b)->evt_fn((void *)(b), (type), (bp)); \
+  49:Middlewares/Third_Party/lwrb/lwrb.c ****         }                                           \
+  50:Middlewares/Third_Party/lwrb/lwrb.c ****     } while (0)
+  51:Middlewares/Third_Party/lwrb/lwrb.c **** 
+  52:Middlewares/Third_Party/lwrb/lwrb.c **** /* Optional atomic opeartions */
+  53:Middlewares/Third_Party/lwrb/lwrb.c **** #ifdef LWRB_DISABLE_ATOMIC
+  54:Middlewares/Third_Party/lwrb/lwrb.c **** #define LWRB_INIT(var, val) (var) = (val)
+  55:Middlewares/Third_Party/lwrb/lwrb.c **** #define LWRB_LOAD(var, type) (var)
+  56:Middlewares/Third_Party/lwrb/lwrb.c **** #define LWRB_STORE(var, val, type) (var) = (val)
+  57:Middlewares/Third_Party/lwrb/lwrb.c **** #else
+  58:Middlewares/Third_Party/lwrb/lwrb.c **** #define LWRB_INIT(var, val) atomic_init(&(var), (val))
+  59:Middlewares/Third_Party/lwrb/lwrb.c **** #define LWRB_LOAD(var, type) atomic_load_explicit(&(var), (type))
+  60:Middlewares/Third_Party/lwrb/lwrb.c **** #define LWRB_STORE(var, val, type) atomic_store_explicit(&(var), (val), (type))
+  61:Middlewares/Third_Party/lwrb/lwrb.c **** #endif
+  62:Middlewares/Third_Party/lwrb/lwrb.c **** 
+  63:Middlewares/Third_Party/lwrb/lwrb.c **** /**
+  64:Middlewares/Third_Party/lwrb/lwrb.c ****  * \brief           Initialize buffer handle to default values with size and buffer data array
+  65:Middlewares/Third_Party/lwrb/lwrb.c ****  * \param[in]       buff: Buffer handle
+  66:Middlewares/Third_Party/lwrb/lwrb.c ****  * \param[in]       buffdata: Pointer to memory to use as buffer data
+  67:Middlewares/Third_Party/lwrb/lwrb.c ****  * \param[in]       size: Size of `buffdata` in units of bytes
+  68:Middlewares/Third_Party/lwrb/lwrb.c ****  *                      Maximum number of bytes buffer can hold is `size - 1`
+  69:Middlewares/Third_Party/lwrb/lwrb.c ****  * \return          `1` on success, `0` otherwise
+  70:Middlewares/Third_Party/lwrb/lwrb.c ****  */
+  71:Middlewares/Third_Party/lwrb/lwrb.c **** uint8_t
+  72:Middlewares/Third_Party/lwrb/lwrb.c **** lwrb_init(lwrb_t *buff, void *buffdata, size_t size)
+  73:Middlewares/Third_Party/lwrb/lwrb.c **** {
+  30              		.loc 1 73 1 view -0
+  31              		.cfi_startproc
+  32              		@ args = 0, pretend = 0, frame = 0
+  33              		@ frame_needed = 0, uses_anonymous_args = 0
+  34              		@ link register save eliminated.
+  74:Middlewares/Third_Party/lwrb/lwrb.c ****     if (buff == NULL || buffdata == NULL || size == 0)
+  35              		.loc 1 74 5 view .LVU1
+  36              		.loc 1 74 8 is_stmt 0 view .LVU2
+  37 0000 0346     		mov	r3, r0
+  38 0002 58B1     		cbz	r0, .L3
+  39              		.loc 1 74 22 discriminator 1 view .LVU3
+  40 0004 61B1     		cbz	r1, .L4
+  41              		.loc 1 74 42 discriminator 2 view .LVU4
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccx4nf71.s 			page 3
+
+
+  42 0006 0AB9     		cbnz	r2, .L6
+  75:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+  76:Middlewares/Third_Party/lwrb/lwrb.c ****         return 0;
+  43              		.loc 1 76 16 view .LVU5
+  44 0008 0020     		movs	r0, #0
+  45              	.LVL1:
+  77:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+  78:Middlewares/Third_Party/lwrb/lwrb.c **** 
+  79:Middlewares/Third_Party/lwrb/lwrb.c ****     buff->evt_fn = NULL;
+  80:Middlewares/Third_Party/lwrb/lwrb.c ****     buff->size = size;
+  81:Middlewares/Third_Party/lwrb/lwrb.c ****     buff->buff = buffdata;
+  82:Middlewares/Third_Party/lwrb/lwrb.c ****     LWRB_INIT(buff->w, 0);
+  83:Middlewares/Third_Party/lwrb/lwrb.c ****     LWRB_INIT(buff->r, 0);
+  84:Middlewares/Third_Party/lwrb/lwrb.c ****     return 1;
+  85:Middlewares/Third_Party/lwrb/lwrb.c **** }
+  46              		.loc 1 85 1 view .LVU6
+  47 000a 7047     		bx	lr
+  48              	.LVL2:
+  49              	.L6:
+  79:Middlewares/Third_Party/lwrb/lwrb.c ****     buff->size = size;
+  50              		.loc 1 79 5 is_stmt 1 view .LVU7
+  79:Middlewares/Third_Party/lwrb/lwrb.c ****     buff->size = size;
+  51              		.loc 1 79 18 is_stmt 0 view .LVU8
+  52 000c 0020     		movs	r0, #0
+  53              	.LVL3:
+  79:Middlewares/Third_Party/lwrb/lwrb.c ****     buff->size = size;
+  54              		.loc 1 79 18 view .LVU9
+  55 000e 1861     		str	r0, [r3, #16]
+  80:Middlewares/Third_Party/lwrb/lwrb.c ****     buff->buff = buffdata;
+  56              		.loc 1 80 5 is_stmt 1 view .LVU10
+  80:Middlewares/Third_Party/lwrb/lwrb.c ****     buff->buff = buffdata;
+  57              		.loc 1 80 16 is_stmt 0 view .LVU11
+  58 0010 5A60     		str	r2, [r3, #4]
+  81:Middlewares/Third_Party/lwrb/lwrb.c ****     LWRB_INIT(buff->w, 0);
+  59              		.loc 1 81 5 is_stmt 1 view .LVU12
+  81:Middlewares/Third_Party/lwrb/lwrb.c ****     LWRB_INIT(buff->w, 0);
+  60              		.loc 1 81 16 is_stmt 0 view .LVU13
+  61 0012 1960     		str	r1, [r3]
+  82:Middlewares/Third_Party/lwrb/lwrb.c ****     LWRB_INIT(buff->r, 0);
+  62              		.loc 1 82 5 is_stmt 1 view .LVU14
+  63              	.LBB2:
+  82:Middlewares/Third_Party/lwrb/lwrb.c ****     LWRB_INIT(buff->r, 0);
+  64              		.loc 1 82 5 view .LVU15
+  65              	.LVL4:
+  82:Middlewares/Third_Party/lwrb/lwrb.c ****     LWRB_INIT(buff->r, 0);
+  66              		.loc 1 82 5 view .LVU16
+  82:Middlewares/Third_Party/lwrb/lwrb.c ****     LWRB_INIT(buff->r, 0);
+  67              		.loc 1 82 5 view .LVU17
+  68 0014 D860     		str	r0, [r3, #12]
+  69              	.LBE2:
+  83:Middlewares/Third_Party/lwrb/lwrb.c ****     return 1;
+  70              		.loc 1 83 5 view .LVU18
+  71              	.LBB3:
+  83:Middlewares/Third_Party/lwrb/lwrb.c ****     return 1;
+  72              		.loc 1 83 5 view .LVU19
+  73              	.LVL5:
+  83:Middlewares/Third_Party/lwrb/lwrb.c ****     return 1;
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccx4nf71.s 			page 4
+
+
+  74              		.loc 1 83 5 view .LVU20
+  83:Middlewares/Third_Party/lwrb/lwrb.c ****     return 1;
+  75              		.loc 1 83 5 view .LVU21
+  76 0016 9860     		str	r0, [r3, #8]
+  77              	.LBE3:
+  84:Middlewares/Third_Party/lwrb/lwrb.c **** }
+  78              		.loc 1 84 5 view .LVU22
+  84:Middlewares/Third_Party/lwrb/lwrb.c **** }
+  79              		.loc 1 84 12 is_stmt 0 view .LVU23
+  80 0018 0120     		movs	r0, #1
+  81 001a 7047     		bx	lr
+  82              	.LVL6:
+  83              	.L3:
+  76:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+  84              		.loc 1 76 16 view .LVU24
+  85 001c 0020     		movs	r0, #0
+  86              	.LVL7:
+  76:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+  87              		.loc 1 76 16 view .LVU25
+  88 001e 7047     		bx	lr
+  89              	.LVL8:
+  90              	.L4:
+  76:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+  91              		.loc 1 76 16 view .LVU26
+  92 0020 0020     		movs	r0, #0
+  93              	.LVL9:
+  76:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+  94              		.loc 1 76 16 view .LVU27
+  95 0022 7047     		bx	lr
+  96              		.cfi_endproc
+  97              	.LFE0:
+  99              		.section	.text.lwrb_is_ready,"ax",%progbits
+ 100              		.align	1
+ 101              		.global	lwrb_is_ready
+ 102              		.syntax unified
+ 103              		.thumb
+ 104              		.thumb_func
+ 105              		.fpu fpv4-sp-d16
+ 107              	lwrb_is_ready:
+ 108              	.LVL10:
+ 109              	.LFB1:
+  86:Middlewares/Third_Party/lwrb/lwrb.c **** 
+  87:Middlewares/Third_Party/lwrb/lwrb.c **** /**
+  88:Middlewares/Third_Party/lwrb/lwrb.c ****  * \brief           Check if buff is initialized and ready to use
+  89:Middlewares/Third_Party/lwrb/lwrb.c ****  * \param[in]       buff: Buffer handle
+  90:Middlewares/Third_Party/lwrb/lwrb.c ****  * \return          `1` if ready, `0` otherwise
+  91:Middlewares/Third_Party/lwrb/lwrb.c ****  */
+  92:Middlewares/Third_Party/lwrb/lwrb.c **** uint8_t
+  93:Middlewares/Third_Party/lwrb/lwrb.c **** lwrb_is_ready(lwrb_t *buff)
+  94:Middlewares/Third_Party/lwrb/lwrb.c **** {
+ 110              		.loc 1 94 1 is_stmt 1 view -0
+ 111              		.cfi_startproc
+ 112              		@ args = 0, pretend = 0, frame = 0
+ 113              		@ frame_needed = 0, uses_anonymous_args = 0
+ 114              		@ link register save eliminated.
+  95:Middlewares/Third_Party/lwrb/lwrb.c ****     return BUF_IS_VALID(buff);
+ 115              		.loc 1 95 5 view .LVU29
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccx4nf71.s 			page 5
+
+
+ 116              		.loc 1 95 12 is_stmt 0 view .LVU30
+ 117 0000 28B1     		cbz	r0, .L9
+ 118              		.loc 1 95 12 discriminator 1 view .LVU31
+ 119 0002 0268     		ldr	r2, [r0]
+ 120 0004 2AB1     		cbz	r2, .L10
+ 121              		.loc 1 95 12 discriminator 3 view .LVU32
+ 122 0006 4368     		ldr	r3, [r0, #4]
+ 123 0008 2BB9     		cbnz	r3, .L11
+ 124              		.loc 1 95 12 view .LVU33
+ 125 000a 0020     		movs	r0, #0
+ 126              	.LVL11:
+ 127              		.loc 1 95 12 view .LVU34
+ 128 000c 7047     		bx	lr
+ 129              	.LVL12:
+ 130              	.L9:
+ 131              		.loc 1 95 12 view .LVU35
+ 132 000e 0020     		movs	r0, #0
+ 133              	.LVL13:
+ 134              		.loc 1 95 12 view .LVU36
+ 135 0010 7047     		bx	lr
+ 136              	.LVL14:
+ 137              	.L10:
+ 138              		.loc 1 95 12 view .LVU37
+ 139 0012 0020     		movs	r0, #0
+ 140              	.LVL15:
+ 141              		.loc 1 95 12 view .LVU38
+ 142 0014 7047     		bx	lr
+ 143              	.LVL16:
+ 144              	.L11:
+ 145              		.loc 1 95 12 view .LVU39
+ 146 0016 0120     		movs	r0, #1
+ 147              	.LVL17:
+  96:Middlewares/Third_Party/lwrb/lwrb.c **** }
+ 148              		.loc 1 96 1 view .LVU40
+ 149 0018 7047     		bx	lr
+ 150              		.cfi_endproc
+ 151              	.LFE1:
+ 153              		.section	.text.lwrb_free,"ax",%progbits
+ 154              		.align	1
+ 155              		.global	lwrb_free
+ 156              		.syntax unified
+ 157              		.thumb
+ 158              		.thumb_func
+ 159              		.fpu fpv4-sp-d16
+ 161              	lwrb_free:
+ 162              	.LVL18:
+ 163              	.LFB2:
+  97:Middlewares/Third_Party/lwrb/lwrb.c **** 
+  98:Middlewares/Third_Party/lwrb/lwrb.c **** /**
+  99:Middlewares/Third_Party/lwrb/lwrb.c ****  * \brief           Free buffer memory
+ 100:Middlewares/Third_Party/lwrb/lwrb.c ****  * \note            Since implementation does not use dynamic allocation,
+ 101:Middlewares/Third_Party/lwrb/lwrb.c ****  *                  it just sets buffer handle to `NULL`
+ 102:Middlewares/Third_Party/lwrb/lwrb.c ****  * \param[in]       buff: Buffer handle
+ 103:Middlewares/Third_Party/lwrb/lwrb.c ****  */
+ 104:Middlewares/Third_Party/lwrb/lwrb.c **** void lwrb_free(lwrb_t *buff)
+ 105:Middlewares/Third_Party/lwrb/lwrb.c **** {
+ 164              		.loc 1 105 1 is_stmt 1 view -0
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccx4nf71.s 			page 6
+
+
+ 165              		.cfi_startproc
+ 166              		@ args = 0, pretend = 0, frame = 0
+ 167              		@ frame_needed = 0, uses_anonymous_args = 0
+ 168              		@ link register save eliminated.
+ 106:Middlewares/Third_Party/lwrb/lwrb.c ****     if (BUF_IS_VALID(buff))
+ 169              		.loc 1 106 5 view .LVU42
+ 170              		.loc 1 106 8 is_stmt 0 view .LVU43
+ 171 0000 28B1     		cbz	r0, .L12
+ 172              		.loc 1 106 9 discriminator 1 view .LVU44
+ 173 0002 0268     		ldr	r2, [r0]
+ 174 0004 1AB1     		cbz	r2, .L12
+ 175              		.loc 1 106 9 discriminator 2 view .LVU45
+ 176 0006 4268     		ldr	r2, [r0, #4]
+ 177 0008 0AB1     		cbz	r2, .L12
+ 107:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 108:Middlewares/Third_Party/lwrb/lwrb.c ****         buff->buff = NULL;
+ 178              		.loc 1 108 9 is_stmt 1 view .LVU46
+ 179              		.loc 1 108 20 is_stmt 0 view .LVU47
+ 180 000a 0022     		movs	r2, #0
+ 181 000c 0260     		str	r2, [r0]
+ 182              	.L12:
+ 109:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 110:Middlewares/Third_Party/lwrb/lwrb.c **** }
+ 183              		.loc 1 110 1 view .LVU48
+ 184 000e 7047     		bx	lr
+ 185              		.cfi_endproc
+ 186              	.LFE2:
+ 188              		.section	.text.lwrb_set_evt_fn,"ax",%progbits
+ 189              		.align	1
+ 190              		.global	lwrb_set_evt_fn
+ 191              		.syntax unified
+ 192              		.thumb
+ 193              		.thumb_func
+ 194              		.fpu fpv4-sp-d16
+ 196              	lwrb_set_evt_fn:
+ 197              	.LVL19:
+ 198              	.LFB3:
+ 111:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 112:Middlewares/Third_Party/lwrb/lwrb.c **** /**
+ 113:Middlewares/Third_Party/lwrb/lwrb.c ****  * \brief           Set event function callback for different buffer operations
+ 114:Middlewares/Third_Party/lwrb/lwrb.c ****  * \param[in]       buff: Buffer handle
+ 115:Middlewares/Third_Party/lwrb/lwrb.c ****  * \param[in]       evt_fn: Callback function
+ 116:Middlewares/Third_Party/lwrb/lwrb.c ****  */
+ 117:Middlewares/Third_Party/lwrb/lwrb.c **** void lwrb_set_evt_fn(lwrb_t *buff, lwrb_evt_fn evt_fn)
+ 118:Middlewares/Third_Party/lwrb/lwrb.c **** {
+ 199              		.loc 1 118 1 is_stmt 1 view -0
+ 200              		.cfi_startproc
+ 201              		@ args = 0, pretend = 0, frame = 0
+ 202              		@ frame_needed = 0, uses_anonymous_args = 0
+ 203              		@ link register save eliminated.
+ 119:Middlewares/Third_Party/lwrb/lwrb.c ****     if (BUF_IS_VALID(buff))
+ 204              		.loc 1 119 5 view .LVU50
+ 205              		.loc 1 119 8 is_stmt 0 view .LVU51
+ 206 0000 20B1     		cbz	r0, .L14
+ 207              		.loc 1 119 9 discriminator 1 view .LVU52
+ 208 0002 0268     		ldr	r2, [r0]
+ 209 0004 12B1     		cbz	r2, .L14
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccx4nf71.s 			page 7
+
+
+ 210              		.loc 1 119 9 discriminator 2 view .LVU53
+ 211 0006 4268     		ldr	r2, [r0, #4]
+ 212 0008 02B1     		cbz	r2, .L14
+ 120:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 121:Middlewares/Third_Party/lwrb/lwrb.c ****         buff->evt_fn = evt_fn;
+ 213              		.loc 1 121 9 is_stmt 1 view .LVU54
+ 214              		.loc 1 121 22 is_stmt 0 view .LVU55
+ 215 000a 0161     		str	r1, [r0, #16]
+ 216              	.L14:
+ 122:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 123:Middlewares/Third_Party/lwrb/lwrb.c **** }
+ 217              		.loc 1 123 1 view .LVU56
+ 218 000c 7047     		bx	lr
+ 219              		.cfi_endproc
+ 220              	.LFE3:
+ 222              		.section	.text.lwrb_get_free,"ax",%progbits
+ 223              		.align	1
+ 224              		.global	lwrb_get_free
+ 225              		.syntax unified
+ 226              		.thumb
+ 227              		.thumb_func
+ 228              		.fpu fpv4-sp-d16
+ 230              	lwrb_get_free:
+ 231              	.LVL20:
+ 232              	.LFB8:
+ 124:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 125:Middlewares/Third_Party/lwrb/lwrb.c **** /**
+ 126:Middlewares/Third_Party/lwrb/lwrb.c ****  * \brief           Write data to buffer.
+ 127:Middlewares/Third_Party/lwrb/lwrb.c ****  * Copies data from `data` array to buffer and marks buffer as full for maximum `btw` number of byt
+ 128:Middlewares/Third_Party/lwrb/lwrb.c ****  *
+ 129:Middlewares/Third_Party/lwrb/lwrb.c ****  * \param[in]       buff: Buffer handle
+ 130:Middlewares/Third_Party/lwrb/lwrb.c ****  * \param[in]       data: Pointer to data to write into buffer
+ 131:Middlewares/Third_Party/lwrb/lwrb.c ****  * \param[in]       btw: Number of bytes to write
+ 132:Middlewares/Third_Party/lwrb/lwrb.c ****  * \return          Number of bytes written to buffer.
+ 133:Middlewares/Third_Party/lwrb/lwrb.c ****  *                      When returned value is less than `btw`, there was no enough memory availabl
+ 134:Middlewares/Third_Party/lwrb/lwrb.c ****  *                      to copy full data array
+ 135:Middlewares/Third_Party/lwrb/lwrb.c ****  */
+ 136:Middlewares/Third_Party/lwrb/lwrb.c **** size_t
+ 137:Middlewares/Third_Party/lwrb/lwrb.c **** lwrb_write(lwrb_t *buff, const void *data, size_t btw)
+ 138:Middlewares/Third_Party/lwrb/lwrb.c **** {
+ 139:Middlewares/Third_Party/lwrb/lwrb.c ****     size_t tocopy, free, buff_w_ptr;
+ 140:Middlewares/Third_Party/lwrb/lwrb.c ****     const uint8_t *d = data;
+ 141:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 142:Middlewares/Third_Party/lwrb/lwrb.c ****     if (!BUF_IS_VALID(buff) || data == NULL || btw == 0)
+ 143:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 144:Middlewares/Third_Party/lwrb/lwrb.c ****         return 0;
+ 145:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 146:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 147:Middlewares/Third_Party/lwrb/lwrb.c ****     /* Calculate maximum number of bytes available to write */
+ 148:Middlewares/Third_Party/lwrb/lwrb.c ****     free = lwrb_get_free(buff);
+ 149:Middlewares/Third_Party/lwrb/lwrb.c ****     btw = BUF_MIN(free, btw);
+ 150:Middlewares/Third_Party/lwrb/lwrb.c ****     if (btw == 0)
+ 151:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 152:Middlewares/Third_Party/lwrb/lwrb.c ****         return 0;
+ 153:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 154:Middlewares/Third_Party/lwrb/lwrb.c ****     buff_w_ptr = LWRB_LOAD(buff->w, memory_order_acquire);
+ 155:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccx4nf71.s 			page 8
+
+
+ 156:Middlewares/Third_Party/lwrb/lwrb.c ****     /* Step 1: Write data to linear part of buffer */
+ 157:Middlewares/Third_Party/lwrb/lwrb.c ****     tocopy = BUF_MIN(buff->size - buff_w_ptr, btw);
+ 158:Middlewares/Third_Party/lwrb/lwrb.c ****     BUF_MEMCPY(&buff->buff[buff_w_ptr], d, tocopy);
+ 159:Middlewares/Third_Party/lwrb/lwrb.c ****     buff_w_ptr += tocopy;
+ 160:Middlewares/Third_Party/lwrb/lwrb.c ****     btw -= tocopy;
+ 161:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 162:Middlewares/Third_Party/lwrb/lwrb.c ****     /* Step 2: Write data to beginning of buffer (overflow part) */
+ 163:Middlewares/Third_Party/lwrb/lwrb.c ****     if (btw > 0)
+ 164:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 165:Middlewares/Third_Party/lwrb/lwrb.c ****         BUF_MEMCPY(buff->buff, &d[tocopy], btw);
+ 166:Middlewares/Third_Party/lwrb/lwrb.c ****         buff_w_ptr = btw;
+ 167:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 168:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 169:Middlewares/Third_Party/lwrb/lwrb.c ****     /* Step 3: Check end of buffer */
+ 170:Middlewares/Third_Party/lwrb/lwrb.c ****     if (buff_w_ptr >= buff->size)
+ 171:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 172:Middlewares/Third_Party/lwrb/lwrb.c ****         buff_w_ptr = 0;
+ 173:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 174:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 175:Middlewares/Third_Party/lwrb/lwrb.c ****     /*
+ 176:Middlewares/Third_Party/lwrb/lwrb.c ****      * Write final value to the actual running variable.
+ 177:Middlewares/Third_Party/lwrb/lwrb.c ****      * This is to ensure no read operation can access intermediate data
+ 178:Middlewares/Third_Party/lwrb/lwrb.c ****      */
+ 179:Middlewares/Third_Party/lwrb/lwrb.c ****     LWRB_STORE(buff->w, buff_w_ptr, memory_order_release);
+ 180:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 181:Middlewares/Third_Party/lwrb/lwrb.c ****     BUF_SEND_EVT(buff, LWRB_EVT_WRITE, tocopy + btw);
+ 182:Middlewares/Third_Party/lwrb/lwrb.c ****     return tocopy + btw;
+ 183:Middlewares/Third_Party/lwrb/lwrb.c **** }
+ 184:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 185:Middlewares/Third_Party/lwrb/lwrb.c **** /**
+ 186:Middlewares/Third_Party/lwrb/lwrb.c ****  * \brief           Read data from buffer.
+ 187:Middlewares/Third_Party/lwrb/lwrb.c ****  * Copies data from buffer to `data` array and marks buffer as free for maximum `btr` number of byt
+ 188:Middlewares/Third_Party/lwrb/lwrb.c ****  *
+ 189:Middlewares/Third_Party/lwrb/lwrb.c ****  * \param[in]       buff: Buffer handle
+ 190:Middlewares/Third_Party/lwrb/lwrb.c ****  * \param[out]      data: Pointer to output memory to copy buffer data to
+ 191:Middlewares/Third_Party/lwrb/lwrb.c ****  * \param[in]       btr: Number of bytes to read
+ 192:Middlewares/Third_Party/lwrb/lwrb.c ****  * \return          Number of bytes read and copied to data array
+ 193:Middlewares/Third_Party/lwrb/lwrb.c ****  */
+ 194:Middlewares/Third_Party/lwrb/lwrb.c **** size_t
+ 195:Middlewares/Third_Party/lwrb/lwrb.c **** lwrb_read(lwrb_t *buff, void *data, size_t btr)
+ 196:Middlewares/Third_Party/lwrb/lwrb.c **** {
+ 197:Middlewares/Third_Party/lwrb/lwrb.c ****     size_t tocopy, full, buff_r_ptr;
+ 198:Middlewares/Third_Party/lwrb/lwrb.c ****     uint8_t *d = data;
+ 199:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 200:Middlewares/Third_Party/lwrb/lwrb.c ****     if (!BUF_IS_VALID(buff) || data == NULL || btr == 0)
+ 201:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 202:Middlewares/Third_Party/lwrb/lwrb.c ****         return 0;
+ 203:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 204:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 205:Middlewares/Third_Party/lwrb/lwrb.c ****     /* Calculate maximum number of bytes available to read */
+ 206:Middlewares/Third_Party/lwrb/lwrb.c ****     full = lwrb_get_full(buff);
+ 207:Middlewares/Third_Party/lwrb/lwrb.c ****     btr = BUF_MIN(full, btr);
+ 208:Middlewares/Third_Party/lwrb/lwrb.c ****     if (btr == 0)
+ 209:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 210:Middlewares/Third_Party/lwrb/lwrb.c ****         return 0;
+ 211:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 212:Middlewares/Third_Party/lwrb/lwrb.c ****     buff_r_ptr = LWRB_LOAD(buff->r, memory_order_acquire);
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccx4nf71.s 			page 9
+
+
+ 213:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 214:Middlewares/Third_Party/lwrb/lwrb.c ****     /* Step 1: Read data from linear part of buffer */
+ 215:Middlewares/Third_Party/lwrb/lwrb.c ****     tocopy = BUF_MIN(buff->size - buff_r_ptr, btr);
+ 216:Middlewares/Third_Party/lwrb/lwrb.c ****     BUF_MEMCPY(d, &buff->buff[buff_r_ptr], tocopy);
+ 217:Middlewares/Third_Party/lwrb/lwrb.c ****     buff_r_ptr += tocopy;
+ 218:Middlewares/Third_Party/lwrb/lwrb.c ****     btr -= tocopy;
+ 219:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 220:Middlewares/Third_Party/lwrb/lwrb.c ****     /* Step 2: Read data from beginning of buffer (overflow part) */
+ 221:Middlewares/Third_Party/lwrb/lwrb.c ****     if (btr > 0)
+ 222:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 223:Middlewares/Third_Party/lwrb/lwrb.c ****         BUF_MEMCPY(&d[tocopy], buff->buff, btr);
+ 224:Middlewares/Third_Party/lwrb/lwrb.c ****         buff_r_ptr = btr;
+ 225:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 226:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 227:Middlewares/Third_Party/lwrb/lwrb.c ****     /* Step 3: Check end of buffer */
+ 228:Middlewares/Third_Party/lwrb/lwrb.c ****     if (buff_r_ptr >= buff->size)
+ 229:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 230:Middlewares/Third_Party/lwrb/lwrb.c ****         buff_r_ptr = 0;
+ 231:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 232:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 233:Middlewares/Third_Party/lwrb/lwrb.c ****     /*
+ 234:Middlewares/Third_Party/lwrb/lwrb.c ****      * Write final value to the actual running variable.
+ 235:Middlewares/Third_Party/lwrb/lwrb.c ****      * This is to ensure no write operation can access intermediate data
+ 236:Middlewares/Third_Party/lwrb/lwrb.c ****      */
+ 237:Middlewares/Third_Party/lwrb/lwrb.c ****     LWRB_STORE(buff->r, buff_r_ptr, memory_order_release);
+ 238:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 239:Middlewares/Third_Party/lwrb/lwrb.c ****     BUF_SEND_EVT(buff, LWRB_EVT_READ, tocopy + btr);
+ 240:Middlewares/Third_Party/lwrb/lwrb.c ****     return tocopy + btr;
+ 241:Middlewares/Third_Party/lwrb/lwrb.c **** }
+ 242:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 243:Middlewares/Third_Party/lwrb/lwrb.c **** /**
+ 244:Middlewares/Third_Party/lwrb/lwrb.c ****  * \brief           Read from buffer without changing read pointer (peek only)
+ 245:Middlewares/Third_Party/lwrb/lwrb.c ****  * \param[in]       buff: Buffer handle
+ 246:Middlewares/Third_Party/lwrb/lwrb.c ****  * \param[in]       skip_count: Number of bytes to skip before reading data
+ 247:Middlewares/Third_Party/lwrb/lwrb.c ****  * \param[out]      data: Pointer to output memory to copy buffer data to
+ 248:Middlewares/Third_Party/lwrb/lwrb.c ****  * \param[in]       btp: Number of bytes to peek
+ 249:Middlewares/Third_Party/lwrb/lwrb.c ****  * \return          Number of bytes peeked and written to output array
+ 250:Middlewares/Third_Party/lwrb/lwrb.c ****  */
+ 251:Middlewares/Third_Party/lwrb/lwrb.c **** size_t
+ 252:Middlewares/Third_Party/lwrb/lwrb.c **** lwrb_peek(const lwrb_t *buff, size_t skip_count, void *data, size_t btp)
+ 253:Middlewares/Third_Party/lwrb/lwrb.c **** {
+ 254:Middlewares/Third_Party/lwrb/lwrb.c ****     size_t full, tocopy, r;
+ 255:Middlewares/Third_Party/lwrb/lwrb.c ****     uint8_t *d = data;
+ 256:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 257:Middlewares/Third_Party/lwrb/lwrb.c ****     if (!BUF_IS_VALID(buff) || data == NULL || btp == 0)
+ 258:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 259:Middlewares/Third_Party/lwrb/lwrb.c ****         return 0;
+ 260:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 261:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 262:Middlewares/Third_Party/lwrb/lwrb.c ****     /*
+ 263:Middlewares/Third_Party/lwrb/lwrb.c ****      * Calculate maximum number of bytes available to read
+ 264:Middlewares/Third_Party/lwrb/lwrb.c ****      * and check if we can even fit to it
+ 265:Middlewares/Third_Party/lwrb/lwrb.c ****      */
+ 266:Middlewares/Third_Party/lwrb/lwrb.c ****     full = lwrb_get_full(buff);
+ 267:Middlewares/Third_Party/lwrb/lwrb.c ****     if (skip_count >= full)
+ 268:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 269:Middlewares/Third_Party/lwrb/lwrb.c ****         return 0;
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccx4nf71.s 			page 10
+
+
+ 270:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 271:Middlewares/Third_Party/lwrb/lwrb.c ****     r = LWRB_LOAD(buff->r, memory_order_relaxed);
+ 272:Middlewares/Third_Party/lwrb/lwrb.c ****     r += skip_count;
+ 273:Middlewares/Third_Party/lwrb/lwrb.c ****     full -= skip_count;
+ 274:Middlewares/Third_Party/lwrb/lwrb.c ****     if (r >= buff->size)
+ 275:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 276:Middlewares/Third_Party/lwrb/lwrb.c ****         r -= buff->size;
+ 277:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 278:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 279:Middlewares/Third_Party/lwrb/lwrb.c ****     /* Check maximum number of bytes available to read after skip */
+ 280:Middlewares/Third_Party/lwrb/lwrb.c ****     btp = BUF_MIN(full, btp);
+ 281:Middlewares/Third_Party/lwrb/lwrb.c ****     if (btp == 0)
+ 282:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 283:Middlewares/Third_Party/lwrb/lwrb.c ****         return 0;
+ 284:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 285:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 286:Middlewares/Third_Party/lwrb/lwrb.c ****     /* Step 1: Read data from linear part of buffer */
+ 287:Middlewares/Third_Party/lwrb/lwrb.c ****     tocopy = BUF_MIN(buff->size - r, btp);
+ 288:Middlewares/Third_Party/lwrb/lwrb.c ****     BUF_MEMCPY(d, &buff->buff[r], tocopy);
+ 289:Middlewares/Third_Party/lwrb/lwrb.c ****     btp -= tocopy;
+ 290:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 291:Middlewares/Third_Party/lwrb/lwrb.c ****     /* Step 2: Read data from beginning of buffer (overflow part) */
+ 292:Middlewares/Third_Party/lwrb/lwrb.c ****     if (btp > 0)
+ 293:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 294:Middlewares/Third_Party/lwrb/lwrb.c ****         BUF_MEMCPY(&d[tocopy], buff->buff, btp);
+ 295:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 296:Middlewares/Third_Party/lwrb/lwrb.c ****     return tocopy + btp;
+ 297:Middlewares/Third_Party/lwrb/lwrb.c **** }
+ 298:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 299:Middlewares/Third_Party/lwrb/lwrb.c **** /**
+ 300:Middlewares/Third_Party/lwrb/lwrb.c ****  * \brief           Searches for a *needle* in an array, starting from given offset.
+ 301:Middlewares/Third_Party/lwrb/lwrb.c ****  *
+ 302:Middlewares/Third_Party/lwrb/lwrb.c ****  * \note            This function is not thread-safe.
+ 303:Middlewares/Third_Party/lwrb/lwrb.c ****  *
+ 304:Middlewares/Third_Party/lwrb/lwrb.c ****  * \param           buff: Ring buffer to search for needle in
+ 305:Middlewares/Third_Party/lwrb/lwrb.c ****  * \param           bts: Constant byte array sequence to search for in a buffer
+ 306:Middlewares/Third_Party/lwrb/lwrb.c ****  * \param           len: Length of the \arg bts array
+ 307:Middlewares/Third_Party/lwrb/lwrb.c ****  * \param           start_offset: Start offset in the buffer
+ 308:Middlewares/Third_Party/lwrb/lwrb.c ****  * \param           found_idx: Pointer to variable to write index in array where bts has been found
+ 309:Middlewares/Third_Party/lwrb/lwrb.c ****  *                      Must not be set to `NULL`
+ 310:Middlewares/Third_Party/lwrb/lwrb.c ****  * \return          `1` if \arg bts found, `0` otherwise
+ 311:Middlewares/Third_Party/lwrb/lwrb.c ****  */
+ 312:Middlewares/Third_Party/lwrb/lwrb.c **** uint8_t
+ 313:Middlewares/Third_Party/lwrb/lwrb.c **** lwrb_find(lwrb_t *buff, const void *bts, size_t len, size_t start_offset, size_t *found_idx)
+ 314:Middlewares/Third_Party/lwrb/lwrb.c **** {
+ 315:Middlewares/Third_Party/lwrb/lwrb.c ****     size_t full;
+ 316:Middlewares/Third_Party/lwrb/lwrb.c ****     uint8_t found = 0;
+ 317:Middlewares/Third_Party/lwrb/lwrb.c ****     const uint8_t *needle = bts;
+ 318:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 319:Middlewares/Third_Party/lwrb/lwrb.c ****     if (!BUF_IS_VALID(buff) || needle == NULL || len == 0 || found_idx == NULL)
+ 320:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 321:Middlewares/Third_Party/lwrb/lwrb.c ****         return 0;
+ 322:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 323:Middlewares/Third_Party/lwrb/lwrb.c ****     *found_idx = 0;
+ 324:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 325:Middlewares/Third_Party/lwrb/lwrb.c ****     full = lwrb_get_full(buff);
+ 326:Middlewares/Third_Party/lwrb/lwrb.c ****     /* Verify initial conditions */
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccx4nf71.s 			page 11
+
+
+ 327:Middlewares/Third_Party/lwrb/lwrb.c ****     if (full < (len + start_offset))
+ 328:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 329:Middlewares/Third_Party/lwrb/lwrb.c ****         return 0;
+ 330:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 331:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 332:Middlewares/Third_Party/lwrb/lwrb.c ****     /* TODO: Improve the algorithm by direct access to the buffer memory */
+ 333:Middlewares/Third_Party/lwrb/lwrb.c ****     for (size_t buff_x = start_offset; !found && buff_x < full; ++buff_x)
+ 334:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 335:Middlewares/Third_Party/lwrb/lwrb.c ****         uint8_t b;
+ 336:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 337:Middlewares/Third_Party/lwrb/lwrb.c ****         found = 1;
+ 338:Middlewares/Third_Party/lwrb/lwrb.c ****         for (size_t i = 0; i < len; ++i)
+ 339:Middlewares/Third_Party/lwrb/lwrb.c ****         {
+ 340:Middlewares/Third_Party/lwrb/lwrb.c ****             if (!lwrb_peek(buff, buff_x + i, &b, 1) || b != needle[i])
+ 341:Middlewares/Third_Party/lwrb/lwrb.c ****             {
+ 342:Middlewares/Third_Party/lwrb/lwrb.c ****                 found = 0;
+ 343:Middlewares/Third_Party/lwrb/lwrb.c ****                 break;
+ 344:Middlewares/Third_Party/lwrb/lwrb.c ****             }
+ 345:Middlewares/Third_Party/lwrb/lwrb.c ****         }
+ 346:Middlewares/Third_Party/lwrb/lwrb.c ****         if (found)
+ 347:Middlewares/Third_Party/lwrb/lwrb.c ****         {
+ 348:Middlewares/Third_Party/lwrb/lwrb.c ****             *found_idx = buff_x;
+ 349:Middlewares/Third_Party/lwrb/lwrb.c ****         }
+ 350:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 351:Middlewares/Third_Party/lwrb/lwrb.c ****     return found;
+ 352:Middlewares/Third_Party/lwrb/lwrb.c **** }
+ 353:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 354:Middlewares/Third_Party/lwrb/lwrb.c **** /**
+ 355:Middlewares/Third_Party/lwrb/lwrb.c ****  * \brief           Get available size in buffer for write operation
+ 356:Middlewares/Third_Party/lwrb/lwrb.c ****  * \param[in]       buff: Buffer handle
+ 357:Middlewares/Third_Party/lwrb/lwrb.c ****  * \return          Number of free bytes in memory
+ 358:Middlewares/Third_Party/lwrb/lwrb.c ****  */
+ 359:Middlewares/Third_Party/lwrb/lwrb.c **** size_t
+ 360:Middlewares/Third_Party/lwrb/lwrb.c **** lwrb_get_free(const lwrb_t *buff)
+ 361:Middlewares/Third_Party/lwrb/lwrb.c **** {
+ 233              		.loc 1 361 1 is_stmt 1 view -0
+ 234              		.cfi_startproc
+ 235              		@ args = 0, pretend = 0, frame = 0
+ 236              		@ frame_needed = 0, uses_anonymous_args = 0
+ 237              		@ link register save eliminated.
+ 362:Middlewares/Third_Party/lwrb/lwrb.c ****     size_t size, w, r;
+ 238              		.loc 1 362 5 view .LVU58
+ 363:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 364:Middlewares/Third_Party/lwrb/lwrb.c ****     if (!BUF_IS_VALID(buff))
+ 239              		.loc 1 364 5 view .LVU59
+ 240              		.loc 1 364 8 is_stmt 0 view .LVU60
+ 241 0000 0346     		mov	r3, r0
+ 242 0002 98B1     		cbz	r0, .L21
+ 243              		.loc 1 364 10 discriminator 1 view .LVU61
+ 244 0004 0268     		ldr	r2, [r0]
+ 245 0006 9AB1     		cbz	r2, .L22
+ 246              		.loc 1 364 10 discriminator 2 view .LVU62
+ 247 0008 4068     		ldr	r0, [r0, #4]
+ 248              	.LVL21:
+ 249              		.loc 1 364 9 discriminator 2 view .LVU63
+ 250 000a 00B9     		cbnz	r0, .L23
+ 251              	.L16:
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccx4nf71.s 			page 12
+
+
+ 365:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 366:Middlewares/Third_Party/lwrb/lwrb.c ****         return 0;
+ 367:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 368:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 369:Middlewares/Third_Party/lwrb/lwrb.c ****     /*
+ 370:Middlewares/Third_Party/lwrb/lwrb.c ****      * Copy buffer pointers to local variables with atomic access.
+ 371:Middlewares/Third_Party/lwrb/lwrb.c ****      *
+ 372:Middlewares/Third_Party/lwrb/lwrb.c ****      * To ensure thread safety (only when in single-entry, single-exit FIFO mode use case),
+ 373:Middlewares/Third_Party/lwrb/lwrb.c ****      * it is important to write buffer r and w values to local w and r variables.
+ 374:Middlewares/Third_Party/lwrb/lwrb.c ****      *
+ 375:Middlewares/Third_Party/lwrb/lwrb.c ****      * Local variables will ensure below if statements will always use the same value,
+ 376:Middlewares/Third_Party/lwrb/lwrb.c ****      * even if buff->w or buff->r get changed during interrupt processing.
+ 377:Middlewares/Third_Party/lwrb/lwrb.c ****      *
+ 378:Middlewares/Third_Party/lwrb/lwrb.c ****      * They may change during load operation, important is that
+ 379:Middlewares/Third_Party/lwrb/lwrb.c ****      * they do not change during if-elseif-else operations following these assignments.
+ 380:Middlewares/Third_Party/lwrb/lwrb.c ****      *
+ 381:Middlewares/Third_Party/lwrb/lwrb.c ****      * lwrb_get_free is only called for write purpose, and when in FIFO mode, then:
+ 382:Middlewares/Third_Party/lwrb/lwrb.c ****      * - buff->w pointer will not change by another process/interrupt because we are in write mode 
+ 383:Middlewares/Third_Party/lwrb/lwrb.c ****      * - buff->r pointer may change by another process. If it gets changed after buff->r has been l
+ 384:Middlewares/Third_Party/lwrb/lwrb.c ****      *    buffer will see "free size" less than it actually is. This is not a problem, application 
+ 385:Middlewares/Third_Party/lwrb/lwrb.c ****      *    always try again to write more data to remaining free memory that was read just during co
+ 386:Middlewares/Third_Party/lwrb/lwrb.c ****      */
+ 387:Middlewares/Third_Party/lwrb/lwrb.c ****     w = LWRB_LOAD(buff->w, memory_order_relaxed);
+ 388:Middlewares/Third_Party/lwrb/lwrb.c ****     r = LWRB_LOAD(buff->r, memory_order_relaxed);
+ 389:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 390:Middlewares/Third_Party/lwrb/lwrb.c ****     if (w == r)
+ 391:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 392:Middlewares/Third_Party/lwrb/lwrb.c ****         size = buff->size;
+ 393:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 394:Middlewares/Third_Party/lwrb/lwrb.c ****     else if (r > w)
+ 395:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 396:Middlewares/Third_Party/lwrb/lwrb.c ****         size = r - w;
+ 397:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 398:Middlewares/Third_Party/lwrb/lwrb.c ****     else
+ 399:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 400:Middlewares/Third_Party/lwrb/lwrb.c ****         size = buff->size - (w - r);
+ 401:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 402:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 403:Middlewares/Third_Party/lwrb/lwrb.c ****     /* Buffer free size is always 1 less than actual size */
+ 404:Middlewares/Third_Party/lwrb/lwrb.c ****     return size - 1;
+ 405:Middlewares/Third_Party/lwrb/lwrb.c **** }
+ 252              		.loc 1 405 1 view .LVU64
+ 253 000c 7047     		bx	lr
+ 254              	.L23:
+ 387:Middlewares/Third_Party/lwrb/lwrb.c ****     r = LWRB_LOAD(buff->r, memory_order_relaxed);
+ 255              		.loc 1 387 5 is_stmt 1 view .LVU65
+ 256              	.LBB4:
+ 387:Middlewares/Third_Party/lwrb/lwrb.c ****     r = LWRB_LOAD(buff->r, memory_order_relaxed);
+ 257              		.loc 1 387 9 view .LVU66
+ 258              	.LVL22:
+ 387:Middlewares/Third_Party/lwrb/lwrb.c ****     r = LWRB_LOAD(buff->r, memory_order_relaxed);
+ 259              		.loc 1 387 9 view .LVU67
+ 387:Middlewares/Third_Party/lwrb/lwrb.c ****     r = LWRB_LOAD(buff->r, memory_order_relaxed);
+ 260              		.loc 1 387 9 view .LVU68
+ 261 000e DA68     		ldr	r2, [r3, #12]
+ 262              	.LVL23:
+ 387:Middlewares/Third_Party/lwrb/lwrb.c ****     r = LWRB_LOAD(buff->r, memory_order_relaxed);
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccx4nf71.s 			page 13
+
+
+ 263              		.loc 1 387 9 view .LVU69
+ 387:Middlewares/Third_Party/lwrb/lwrb.c ****     r = LWRB_LOAD(buff->r, memory_order_relaxed);
+ 264              		.loc 1 387 9 is_stmt 0 view .LVU70
+ 265              	.LBE4:
+ 388:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 266              		.loc 1 388 5 is_stmt 1 view .LVU71
+ 267              	.LBB5:
+ 388:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 268              		.loc 1 388 9 view .LVU72
+ 388:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 269              		.loc 1 388 9 view .LVU73
+ 388:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 270              		.loc 1 388 9 view .LVU74
+ 271 0010 9868     		ldr	r0, [r3, #8]
+ 272              	.LVL24:
+ 388:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 273              		.loc 1 388 9 view .LVU75
+ 388:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 274              		.loc 1 388 9 is_stmt 0 view .LVU76
+ 275              	.LBE5:
+ 390:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 276              		.loc 1 390 5 is_stmt 1 view .LVU77
+ 390:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 277              		.loc 1 390 8 is_stmt 0 view .LVU78
+ 278 0012 8242     		cmp	r2, r0
+ 279 0014 03D0     		beq	.L24
+ 394:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 280              		.loc 1 394 10 is_stmt 1 view .LVU79
+ 394:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 281              		.loc 1 394 13 is_stmt 0 view .LVU80
+ 282 0016 8242     		cmp	r2, r0
+ 283 0018 04D2     		bcs	.L20
+ 396:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 284              		.loc 1 396 9 is_stmt 1 view .LVU81
+ 396:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 285              		.loc 1 396 14 is_stmt 0 view .LVU82
+ 286 001a 801A     		subs	r0, r0, r2
+ 287              	.LVL25:
+ 396:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 288              		.loc 1 396 14 view .LVU83
+ 289 001c 00E0     		b	.L19
+ 290              	.LVL26:
+ 291              	.L24:
+ 392:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 292              		.loc 1 392 9 is_stmt 1 view .LVU84
+ 392:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 293              		.loc 1 392 14 is_stmt 0 view .LVU85
+ 294 001e 5868     		ldr	r0, [r3, #4]
+ 295              	.LVL27:
+ 296              	.L19:
+ 404:Middlewares/Third_Party/lwrb/lwrb.c **** }
+ 297              		.loc 1 404 5 is_stmt 1 view .LVU86
+ 404:Middlewares/Third_Party/lwrb/lwrb.c **** }
+ 298              		.loc 1 404 17 is_stmt 0 view .LVU87
+ 299 0020 0138     		subs	r0, r0, #1
+ 300              	.LVL28:
+ 404:Middlewares/Third_Party/lwrb/lwrb.c **** }
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccx4nf71.s 			page 14
+
+
+ 301              		.loc 1 404 17 view .LVU88
+ 302 0022 7047     		bx	lr
+ 303              	.LVL29:
+ 304              	.L20:
+ 400:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 305              		.loc 1 400 9 is_stmt 1 view .LVU89
+ 400:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 306              		.loc 1 400 20 is_stmt 0 view .LVU90
+ 307 0024 5B68     		ldr	r3, [r3, #4]
+ 308              	.LVL30:
+ 400:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 309              		.loc 1 400 32 view .LVU91
+ 310 0026 801A     		subs	r0, r0, r2
+ 311              	.LVL31:
+ 400:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 312              		.loc 1 400 14 view .LVU92
+ 313 0028 1844     		add	r0, r0, r3
+ 314              	.LVL32:
+ 400:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 315              		.loc 1 400 14 view .LVU93
+ 316 002a F9E7     		b	.L19
+ 317              	.LVL33:
+ 318              	.L21:
+ 366:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 319              		.loc 1 366 16 view .LVU94
+ 320 002c 0020     		movs	r0, #0
+ 321              	.LVL34:
+ 366:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 322              		.loc 1 366 16 view .LVU95
+ 323 002e 7047     		bx	lr
+ 324              	.LVL35:
+ 325              	.L22:
+ 366:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 326              		.loc 1 366 16 view .LVU96
+ 327 0030 0020     		movs	r0, #0
+ 328              	.LVL36:
+ 366:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 329              		.loc 1 366 16 view .LVU97
+ 330 0032 EBE7     		b	.L16
+ 331              		.cfi_endproc
+ 332              	.LFE8:
+ 334              		.section	.text.lwrb_write,"ax",%progbits
+ 335              		.align	1
+ 336              		.global	lwrb_write
+ 337              		.syntax unified
+ 338              		.thumb
+ 339              		.thumb_func
+ 340              		.fpu fpv4-sp-d16
+ 342              	lwrb_write:
+ 343              	.LVL37:
+ 344              	.LFB4:
+ 138:Middlewares/Third_Party/lwrb/lwrb.c ****     size_t tocopy, free, buff_w_ptr;
+ 345              		.loc 1 138 1 is_stmt 1 view -0
+ 346              		.cfi_startproc
+ 347              		@ args = 0, pretend = 0, frame = 0
+ 348              		@ frame_needed = 0, uses_anonymous_args = 0
+ 138:Middlewares/Third_Party/lwrb/lwrb.c ****     size_t tocopy, free, buff_w_ptr;
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccx4nf71.s 			page 15
+
+
+ 349              		.loc 1 138 1 is_stmt 0 view .LVU99
+ 350 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
+ 351              		.cfi_def_cfa_offset 24
+ 352              		.cfi_offset 4, -24
+ 353              		.cfi_offset 5, -20
+ 354              		.cfi_offset 6, -16
+ 355              		.cfi_offset 7, -12
+ 356              		.cfi_offset 8, -8
+ 357              		.cfi_offset 14, -4
+ 139:Middlewares/Third_Party/lwrb/lwrb.c ****     const uint8_t *d = data;
+ 358              		.loc 1 139 5 is_stmt 1 view .LVU100
+ 140:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 359              		.loc 1 140 5 view .LVU101
+ 360              	.LVL38:
+ 142:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 361              		.loc 1 142 5 view .LVU102
+ 142:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 362              		.loc 1 142 8 is_stmt 0 view .LVU103
+ 363 0004 0028     		cmp	r0, #0
+ 364 0006 41D0     		beq	.L29
+ 365 0008 0F46     		mov	r7, r1
+ 366 000a 1546     		mov	r5, r2
+ 367 000c 0646     		mov	r6, r0
+ 142:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 368              		.loc 1 142 10 discriminator 1 view .LVU104
+ 369 000e 0368     		ldr	r3, [r0]
+ 370 0010 002B     		cmp	r3, #0
+ 371 0012 3DD0     		beq	.L30
+ 142:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 372              		.loc 1 142 10 discriminator 2 view .LVU105
+ 373 0014 4468     		ldr	r4, [r0, #4]
+ 142:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 374              		.loc 1 142 9 discriminator 2 view .LVU106
+ 375 0016 1CB1     		cbz	r4, .L25
+ 142:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 376              		.loc 1 142 29 discriminator 3 view .LVU107
+ 377 0018 0029     		cmp	r1, #0
+ 378 001a 3BD0     		beq	.L31
+ 142:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 379              		.loc 1 142 45 discriminator 4 view .LVU108
+ 380 001c 1AB9     		cbnz	r2, .L35
+ 144:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 381              		.loc 1 144 16 view .LVU109
+ 382 001e 1446     		mov	r4, r2
+ 383              	.LVL39:
+ 384              	.L25:
+ 183:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 385              		.loc 1 183 1 view .LVU110
+ 386 0020 2046     		mov	r0, r4
+ 387 0022 BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 388              	.LVL40:
+ 389              	.L35:
+ 148:Middlewares/Third_Party/lwrb/lwrb.c ****     btw = BUF_MIN(free, btw);
+ 390              		.loc 1 148 5 is_stmt 1 view .LVU111
+ 148:Middlewares/Third_Party/lwrb/lwrb.c ****     btw = BUF_MIN(free, btw);
+ 391              		.loc 1 148 12 is_stmt 0 view .LVU112
+ 392 0026 FFF7FEFF 		bl	lwrb_get_free
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccx4nf71.s 			page 16
+
+
+ 393              	.LVL41:
+ 149:Middlewares/Third_Party/lwrb/lwrb.c ****     if (btw == 0)
+ 394              		.loc 1 149 5 is_stmt 1 view .LVU113
+ 149:Middlewares/Third_Party/lwrb/lwrb.c ****     if (btw == 0)
+ 395              		.loc 1 149 9 is_stmt 0 view .LVU114
+ 396 002a 2C46     		mov	r4, r5
+ 397 002c 8542     		cmp	r5, r0
+ 398 002e 28BF     		it	cs
+ 399 0030 0446     		movcs	r4, r0
+ 400              	.LVL42:
+ 150:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 401              		.loc 1 150 5 is_stmt 1 view .LVU115
+ 150:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 402              		.loc 1 150 8 is_stmt 0 view .LVU116
+ 403 0032 002C     		cmp	r4, #0
+ 404 0034 F4D0     		beq	.L25
+ 154:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 405              		.loc 1 154 5 is_stmt 1 view .LVU117
+ 406              	.LBB6:
+ 154:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 407              		.loc 1 154 18 view .LVU118
+ 408              	.LVL43:
+ 154:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 409              		.loc 1 154 18 view .LVU119
+ 154:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 410              		.loc 1 154 18 view .LVU120
+ 411 0036 D6F80C80 		ldr	r8, [r6, #12]
+ 412 003a BFF35B8F 		dmb	ish
+ 413              	.LVL44:
+ 154:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 414              		.loc 1 154 18 view .LVU121
+ 154:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 415              		.loc 1 154 18 is_stmt 0 view .LVU122
+ 416              	.LBE6:
+ 157:Middlewares/Third_Party/lwrb/lwrb.c ****     BUF_MEMCPY(&buff->buff[buff_w_ptr], d, tocopy);
+ 417              		.loc 1 157 5 is_stmt 1 view .LVU123
+ 157:Middlewares/Third_Party/lwrb/lwrb.c ****     BUF_MEMCPY(&buff->buff[buff_w_ptr], d, tocopy);
+ 418              		.loc 1 157 14 is_stmt 0 view .LVU124
+ 419 003e 7568     		ldr	r5, [r6, #4]
+ 420 0040 A5EB0805 		sub	r5, r5, r8
+ 157:Middlewares/Third_Party/lwrb/lwrb.c ****     BUF_MEMCPY(&buff->buff[buff_w_ptr], d, tocopy);
+ 421              		.loc 1 157 12 view .LVU125
+ 422 0044 A542     		cmp	r5, r4
+ 423 0046 28BF     		it	cs
+ 424 0048 2546     		movcs	r5, r4
+ 425              	.LVL45:
+ 158:Middlewares/Third_Party/lwrb/lwrb.c ****     buff_w_ptr += tocopy;
+ 426              		.loc 1 158 5 is_stmt 1 view .LVU126
+ 158:Middlewares/Third_Party/lwrb/lwrb.c ****     buff_w_ptr += tocopy;
+ 427              		.loc 1 158 21 is_stmt 0 view .LVU127
+ 428 004a 3068     		ldr	r0, [r6]
+ 429              	.LVL46:
+ 158:Middlewares/Third_Party/lwrb/lwrb.c ****     buff_w_ptr += tocopy;
+ 430              		.loc 1 158 5 view .LVU128
+ 431 004c 2A46     		mov	r2, r5
+ 432 004e 3946     		mov	r1, r7
+ 433 0050 4044     		add	r0, r0, r8
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccx4nf71.s 			page 17
+
+
+ 434 0052 FFF7FEFF 		bl	memcpy
+ 435              	.LVL47:
+ 159:Middlewares/Third_Party/lwrb/lwrb.c ****     btw -= tocopy;
+ 436              		.loc 1 159 5 is_stmt 1 view .LVU129
+ 159:Middlewares/Third_Party/lwrb/lwrb.c ****     btw -= tocopy;
+ 437              		.loc 1 159 16 is_stmt 0 view .LVU130
+ 438 0056 08EB0503 		add	r3, r8, r5
+ 439              	.LVL48:
+ 160:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 440              		.loc 1 160 5 is_stmt 1 view .LVU131
+ 163:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 441              		.loc 1 163 5 view .LVU132
+ 163:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 442              		.loc 1 163 8 is_stmt 0 view .LVU133
+ 443 005a B4EB0508 		subs	r8, r4, r5
+ 444              	.LVL49:
+ 163:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 445              		.loc 1 163 8 view .LVU134
+ 446 005e 0ED1     		bne	.L36
+ 447              	.L27:
+ 170:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 448              		.loc 1 170 5 is_stmt 1 view .LVU135
+ 170:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 449              		.loc 1 170 27 is_stmt 0 view .LVU136
+ 450 0060 7268     		ldr	r2, [r6, #4]
+ 170:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 451              		.loc 1 170 8 view .LVU137
+ 452 0062 9A42     		cmp	r2, r3
+ 453 0064 00D8     		bhi	.L28
+ 172:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 454              		.loc 1 172 20 view .LVU138
+ 455 0066 0023     		movs	r3, #0
+ 456              	.LVL50:
+ 457              	.L28:
+ 179:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 458              		.loc 1 179 5 is_stmt 1 view .LVU139
+ 459              	.LBB7:
+ 179:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 460              		.loc 1 179 5 view .LVU140
+ 179:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 461              		.loc 1 179 5 view .LVU141
+ 179:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 462              		.loc 1 179 5 view .LVU142
+ 463 0068 BFF35B8F 		dmb	ish
+ 464 006c F360     		str	r3, [r6, #12]
+ 465              	.LBE7:
+ 181:Middlewares/Third_Party/lwrb/lwrb.c ****     return tocopy + btw;
+ 466              		.loc 1 181 5 view .LVU143
+ 181:Middlewares/Third_Party/lwrb/lwrb.c ****     return tocopy + btw;
+ 467              		.loc 1 181 5 view .LVU144
+ 468 006e 3369     		ldr	r3, [r6, #16]
+ 469              	.LVL51:
+ 181:Middlewares/Third_Party/lwrb/lwrb.c ****     return tocopy + btw;
+ 470              		.loc 1 181 5 is_stmt 0 view .LVU145
+ 471 0070 002B     		cmp	r3, #0
+ 472 0072 D5D0     		beq	.L25
+ 181:Middlewares/Third_Party/lwrb/lwrb.c ****     return tocopy + btw;
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccx4nf71.s 			page 18
+
+
+ 473              		.loc 1 181 5 is_stmt 1 discriminator 1 view .LVU146
+ 474 0074 2246     		mov	r2, r4
+ 475 0076 0121     		movs	r1, #1
+ 476 0078 3046     		mov	r0, r6
+ 477 007a 9847     		blx	r3
+ 478              	.LVL52:
+ 181:Middlewares/Third_Party/lwrb/lwrb.c ****     return tocopy + btw;
+ 479              		.loc 1 181 5 is_stmt 0 discriminator 1 view .LVU147
+ 480 007c D0E7     		b	.L25
+ 481              	.LVL53:
+ 482              	.L36:
+ 165:Middlewares/Third_Party/lwrb/lwrb.c ****         buff_w_ptr = btw;
+ 483              		.loc 1 165 9 is_stmt 1 view .LVU148
+ 484 007e 4246     		mov	r2, r8
+ 485 0080 7919     		adds	r1, r7, r5
+ 486 0082 3068     		ldr	r0, [r6]
+ 487 0084 FFF7FEFF 		bl	memcpy
+ 488              	.LVL54:
+ 166:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 489              		.loc 1 166 9 view .LVU149
+ 166:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 490              		.loc 1 166 20 is_stmt 0 view .LVU150
+ 491 0088 4346     		mov	r3, r8
+ 492 008a E9E7     		b	.L27
+ 493              	.LVL55:
+ 494              	.L29:
+ 144:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 495              		.loc 1 144 16 view .LVU151
+ 496 008c 0024     		movs	r4, #0
+ 497 008e C7E7     		b	.L25
+ 498              	.L30:
+ 144:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 499              		.loc 1 144 16 view .LVU152
+ 500 0090 0024     		movs	r4, #0
+ 501 0092 C5E7     		b	.L25
+ 502              	.L31:
+ 503 0094 0024     		movs	r4, #0
+ 504 0096 C3E7     		b	.L25
+ 505              		.cfi_endproc
+ 506              	.LFE4:
+ 508              		.section	.text.lwrb_get_full,"ax",%progbits
+ 509              		.align	1
+ 510              		.global	lwrb_get_full
+ 511              		.syntax unified
+ 512              		.thumb
+ 513              		.thumb_func
+ 514              		.fpu fpv4-sp-d16
+ 516              	lwrb_get_full:
+ 517              	.LVL56:
+ 518              	.LFB9:
+ 406:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 407:Middlewares/Third_Party/lwrb/lwrb.c **** /**
+ 408:Middlewares/Third_Party/lwrb/lwrb.c ****  * \brief           Get number of bytes currently available in buffer
+ 409:Middlewares/Third_Party/lwrb/lwrb.c ****  * \param[in]       buff: Buffer handle
+ 410:Middlewares/Third_Party/lwrb/lwrb.c ****  * \return          Number of bytes ready to be read
+ 411:Middlewares/Third_Party/lwrb/lwrb.c ****  */
+ 412:Middlewares/Third_Party/lwrb/lwrb.c **** size_t
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccx4nf71.s 			page 19
+
+
+ 413:Middlewares/Third_Party/lwrb/lwrb.c **** lwrb_get_full(const lwrb_t *buff)
+ 414:Middlewares/Third_Party/lwrb/lwrb.c **** {
+ 519              		.loc 1 414 1 is_stmt 1 view -0
+ 520              		.cfi_startproc
+ 521              		@ args = 0, pretend = 0, frame = 0
+ 522              		@ frame_needed = 0, uses_anonymous_args = 0
+ 523              		@ link register save eliminated.
+ 415:Middlewares/Third_Party/lwrb/lwrb.c ****     size_t size, w, r;
+ 524              		.loc 1 415 5 view .LVU154
+ 416:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 417:Middlewares/Third_Party/lwrb/lwrb.c ****     if (!BUF_IS_VALID(buff))
+ 525              		.loc 1 417 5 view .LVU155
+ 526              		.loc 1 417 8 is_stmt 0 view .LVU156
+ 527 0000 0346     		mov	r3, r0
+ 528 0002 78B1     		cbz	r0, .L40
+ 529              		.loc 1 417 10 discriminator 1 view .LVU157
+ 530 0004 0268     		ldr	r2, [r0]
+ 531 0006 7AB1     		cbz	r2, .L41
+ 532              		.loc 1 417 10 discriminator 2 view .LVU158
+ 533 0008 4068     		ldr	r0, [r0, #4]
+ 534              	.LVL57:
+ 535              		.loc 1 417 9 discriminator 2 view .LVU159
+ 536 000a 00B9     		cbnz	r0, .L43
+ 537              	.L37:
+ 418:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 419:Middlewares/Third_Party/lwrb/lwrb.c ****         return 0;
+ 420:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 421:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 422:Middlewares/Third_Party/lwrb/lwrb.c ****     /*
+ 423:Middlewares/Third_Party/lwrb/lwrb.c ****      * Copy buffer pointers to local variables.
+ 424:Middlewares/Third_Party/lwrb/lwrb.c ****      *
+ 425:Middlewares/Third_Party/lwrb/lwrb.c ****      * To ensure thread safety (only when in single-entry, single-exit FIFO mode use case),
+ 426:Middlewares/Third_Party/lwrb/lwrb.c ****      * it is important to write buffer r and w values to local w and r variables.
+ 427:Middlewares/Third_Party/lwrb/lwrb.c ****      *
+ 428:Middlewares/Third_Party/lwrb/lwrb.c ****      * Local variables will ensure below if statements will always use the same value,
+ 429:Middlewares/Third_Party/lwrb/lwrb.c ****      * even if buff->w or buff->r get changed during interrupt processing.
+ 430:Middlewares/Third_Party/lwrb/lwrb.c ****      *
+ 431:Middlewares/Third_Party/lwrb/lwrb.c ****      * They may change during load operation, important is that
+ 432:Middlewares/Third_Party/lwrb/lwrb.c ****      * they do not change during if-elseif-else operations following these assignments.
+ 433:Middlewares/Third_Party/lwrb/lwrb.c ****      *
+ 434:Middlewares/Third_Party/lwrb/lwrb.c ****      * lwrb_get_full is only called for read purpose, and when in FIFO mode, then:
+ 435:Middlewares/Third_Party/lwrb/lwrb.c ****      * - buff->r pointer will not change by another process/interrupt because we are in read mode j
+ 436:Middlewares/Third_Party/lwrb/lwrb.c ****      * - buff->w pointer may change by another process. If it gets changed after buff->w has been l
+ 437:Middlewares/Third_Party/lwrb/lwrb.c ****      *    buffer will see "full size" less than it really is. This is not a problem, application ca
+ 438:Middlewares/Third_Party/lwrb/lwrb.c ****      *    always try again to read more data from remaining full memory that was written just durin
+ 439:Middlewares/Third_Party/lwrb/lwrb.c ****      */
+ 440:Middlewares/Third_Party/lwrb/lwrb.c ****     w = LWRB_LOAD(buff->w, memory_order_relaxed);
+ 441:Middlewares/Third_Party/lwrb/lwrb.c ****     r = LWRB_LOAD(buff->r, memory_order_relaxed);
+ 442:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 443:Middlewares/Third_Party/lwrb/lwrb.c ****     if (w == r)
+ 444:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 445:Middlewares/Third_Party/lwrb/lwrb.c ****         size = 0;
+ 446:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 447:Middlewares/Third_Party/lwrb/lwrb.c ****     else if (w > r)
+ 448:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 449:Middlewares/Third_Party/lwrb/lwrb.c ****         size = w - r;
+ 450:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccx4nf71.s 			page 20
+
+
+ 451:Middlewares/Third_Party/lwrb/lwrb.c ****     else
+ 452:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 453:Middlewares/Third_Party/lwrb/lwrb.c ****         size = buff->size - (r - w);
+ 454:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 455:Middlewares/Third_Party/lwrb/lwrb.c ****     return size;
+ 456:Middlewares/Third_Party/lwrb/lwrb.c **** }
+ 538              		.loc 1 456 1 view .LVU160
+ 539 000c 7047     		bx	lr
+ 540              	.L43:
+ 440:Middlewares/Third_Party/lwrb/lwrb.c ****     r = LWRB_LOAD(buff->r, memory_order_relaxed);
+ 541              		.loc 1 440 5 is_stmt 1 view .LVU161
+ 542              	.LBB8:
+ 440:Middlewares/Third_Party/lwrb/lwrb.c ****     r = LWRB_LOAD(buff->r, memory_order_relaxed);
+ 543              		.loc 1 440 9 view .LVU162
+ 544              	.LVL58:
+ 440:Middlewares/Third_Party/lwrb/lwrb.c ****     r = LWRB_LOAD(buff->r, memory_order_relaxed);
+ 545              		.loc 1 440 9 view .LVU163
+ 440:Middlewares/Third_Party/lwrb/lwrb.c ****     r = LWRB_LOAD(buff->r, memory_order_relaxed);
+ 546              		.loc 1 440 9 view .LVU164
+ 547 000e D868     		ldr	r0, [r3, #12]
+ 548              	.LVL59:
+ 440:Middlewares/Third_Party/lwrb/lwrb.c ****     r = LWRB_LOAD(buff->r, memory_order_relaxed);
+ 549              		.loc 1 440 9 view .LVU165
+ 440:Middlewares/Third_Party/lwrb/lwrb.c ****     r = LWRB_LOAD(buff->r, memory_order_relaxed);
+ 550              		.loc 1 440 9 is_stmt 0 view .LVU166
+ 551              	.LBE8:
+ 441:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 552              		.loc 1 441 5 is_stmt 1 view .LVU167
+ 553              	.LBB9:
+ 441:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 554              		.loc 1 441 9 view .LVU168
+ 441:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 555              		.loc 1 441 9 view .LVU169
+ 441:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 556              		.loc 1 441 9 view .LVU170
+ 557 0010 9A68     		ldr	r2, [r3, #8]
+ 558              	.LVL60:
+ 441:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 559              		.loc 1 441 9 view .LVU171
+ 441:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 560              		.loc 1 441 9 is_stmt 0 view .LVU172
+ 561              	.LBE9:
+ 443:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 562              		.loc 1 443 5 is_stmt 1 view .LVU173
+ 443:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 563              		.loc 1 443 8 is_stmt 0 view .LVU174
+ 564 0012 9042     		cmp	r0, r2
+ 565 0014 0AD0     		beq	.L42
+ 447:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 566              		.loc 1 447 10 is_stmt 1 view .LVU175
+ 447:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 567              		.loc 1 447 13 is_stmt 0 view .LVU176
+ 568 0016 01D9     		bls	.L39
+ 449:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 569              		.loc 1 449 9 is_stmt 1 view .LVU177
+ 449:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 570              		.loc 1 449 14 is_stmt 0 view .LVU178
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccx4nf71.s 			page 21
+
+
+ 571 0018 801A     		subs	r0, r0, r2
+ 572              	.LVL61:
+ 449:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 573              		.loc 1 449 14 view .LVU179
+ 574 001a 7047     		bx	lr
+ 575              	.LVL62:
+ 576              	.L39:
+ 453:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 577              		.loc 1 453 9 is_stmt 1 view .LVU180
+ 453:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 578              		.loc 1 453 20 is_stmt 0 view .LVU181
+ 579 001c 5B68     		ldr	r3, [r3, #4]
+ 580              	.LVL63:
+ 453:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 581              		.loc 1 453 32 view .LVU182
+ 582 001e 801A     		subs	r0, r0, r2
+ 583              	.LVL64:
+ 453:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 584              		.loc 1 453 14 view .LVU183
+ 585 0020 1844     		add	r0, r0, r3
+ 586              	.LVL65:
+ 453:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 587              		.loc 1 453 14 view .LVU184
+ 588 0022 7047     		bx	lr
+ 589              	.LVL66:
+ 590              	.L40:
+ 419:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 591              		.loc 1 419 16 view .LVU185
+ 592 0024 0020     		movs	r0, #0
+ 593              	.LVL67:
+ 419:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 594              		.loc 1 419 16 view .LVU186
+ 595 0026 7047     		bx	lr
+ 596              	.LVL68:
+ 597              	.L41:
+ 419:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 598              		.loc 1 419 16 view .LVU187
+ 599 0028 0020     		movs	r0, #0
+ 600              	.LVL69:
+ 419:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 601              		.loc 1 419 16 view .LVU188
+ 602 002a 7047     		bx	lr
+ 603              	.LVL70:
+ 604              	.L42:
+ 445:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 605              		.loc 1 445 14 view .LVU189
+ 606 002c 0020     		movs	r0, #0
+ 607              	.LVL71:
+ 445:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 608              		.loc 1 445 14 view .LVU190
+ 609 002e EDE7     		b	.L37
+ 610              		.cfi_endproc
+ 611              	.LFE9:
+ 613              		.section	.text.lwrb_read,"ax",%progbits
+ 614              		.align	1
+ 615              		.global	lwrb_read
+ 616              		.syntax unified
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccx4nf71.s 			page 22
+
+
+ 617              		.thumb
+ 618              		.thumb_func
+ 619              		.fpu fpv4-sp-d16
+ 621              	lwrb_read:
+ 622              	.LVL72:
+ 623              	.LFB5:
+ 196:Middlewares/Third_Party/lwrb/lwrb.c ****     size_t tocopy, full, buff_r_ptr;
+ 624              		.loc 1 196 1 is_stmt 1 view -0
+ 625              		.cfi_startproc
+ 626              		@ args = 0, pretend = 0, frame = 0
+ 627              		@ frame_needed = 0, uses_anonymous_args = 0
+ 196:Middlewares/Third_Party/lwrb/lwrb.c ****     size_t tocopy, full, buff_r_ptr;
+ 628              		.loc 1 196 1 is_stmt 0 view .LVU192
+ 629 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
+ 630              		.cfi_def_cfa_offset 24
+ 631              		.cfi_offset 4, -24
+ 632              		.cfi_offset 5, -20
+ 633              		.cfi_offset 6, -16
+ 634              		.cfi_offset 7, -12
+ 635              		.cfi_offset 8, -8
+ 636              		.cfi_offset 14, -4
+ 197:Middlewares/Third_Party/lwrb/lwrb.c ****     uint8_t *d = data;
+ 637              		.loc 1 197 5 is_stmt 1 view .LVU193
+ 198:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 638              		.loc 1 198 5 view .LVU194
+ 639              	.LVL73:
+ 200:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 640              		.loc 1 200 5 view .LVU195
+ 200:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 641              		.loc 1 200 8 is_stmt 0 view .LVU196
+ 642 0004 0028     		cmp	r0, #0
+ 643 0006 41D0     		beq	.L48
+ 644 0008 0F46     		mov	r7, r1
+ 645 000a 1546     		mov	r5, r2
+ 646 000c 0646     		mov	r6, r0
+ 200:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 647              		.loc 1 200 10 discriminator 1 view .LVU197
+ 648 000e 0368     		ldr	r3, [r0]
+ 649 0010 002B     		cmp	r3, #0
+ 650 0012 3DD0     		beq	.L49
+ 200:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 651              		.loc 1 200 10 discriminator 2 view .LVU198
+ 652 0014 4468     		ldr	r4, [r0, #4]
+ 200:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 653              		.loc 1 200 9 discriminator 2 view .LVU199
+ 654 0016 1CB1     		cbz	r4, .L44
+ 200:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 655              		.loc 1 200 29 discriminator 3 view .LVU200
+ 656 0018 0029     		cmp	r1, #0
+ 657 001a 3BD0     		beq	.L50
+ 200:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 658              		.loc 1 200 45 discriminator 4 view .LVU201
+ 659 001c 1AB9     		cbnz	r2, .L54
+ 202:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 660              		.loc 1 202 16 view .LVU202
+ 661 001e 1446     		mov	r4, r2
+ 662              	.LVL74:
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccx4nf71.s 			page 23
+
+
+ 663              	.L44:
+ 241:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 664              		.loc 1 241 1 view .LVU203
+ 665 0020 2046     		mov	r0, r4
+ 666 0022 BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 667              	.LVL75:
+ 668              	.L54:
+ 206:Middlewares/Third_Party/lwrb/lwrb.c ****     btr = BUF_MIN(full, btr);
+ 669              		.loc 1 206 5 is_stmt 1 view .LVU204
+ 206:Middlewares/Third_Party/lwrb/lwrb.c ****     btr = BUF_MIN(full, btr);
+ 670              		.loc 1 206 12 is_stmt 0 view .LVU205
+ 671 0026 FFF7FEFF 		bl	lwrb_get_full
+ 672              	.LVL76:
+ 207:Middlewares/Third_Party/lwrb/lwrb.c ****     if (btr == 0)
+ 673              		.loc 1 207 5 is_stmt 1 view .LVU206
+ 207:Middlewares/Third_Party/lwrb/lwrb.c ****     if (btr == 0)
+ 674              		.loc 1 207 9 is_stmt 0 view .LVU207
+ 675 002a 2C46     		mov	r4, r5
+ 676 002c 8542     		cmp	r5, r0
+ 677 002e 28BF     		it	cs
+ 678 0030 0446     		movcs	r4, r0
+ 679              	.LVL77:
+ 208:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 680              		.loc 1 208 5 is_stmt 1 view .LVU208
+ 208:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 681              		.loc 1 208 8 is_stmt 0 view .LVU209
+ 682 0032 002C     		cmp	r4, #0
+ 683 0034 F4D0     		beq	.L44
+ 212:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 684              		.loc 1 212 5 is_stmt 1 view .LVU210
+ 685              	.LBB10:
+ 212:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 686              		.loc 1 212 18 view .LVU211
+ 687              	.LVL78:
+ 212:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 688              		.loc 1 212 18 view .LVU212
+ 212:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 689              		.loc 1 212 18 view .LVU213
+ 690 0036 D6F80880 		ldr	r8, [r6, #8]
+ 691 003a BFF35B8F 		dmb	ish
+ 692              	.LVL79:
+ 212:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 693              		.loc 1 212 18 view .LVU214
+ 212:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 694              		.loc 1 212 18 is_stmt 0 view .LVU215
+ 695              	.LBE10:
+ 215:Middlewares/Third_Party/lwrb/lwrb.c ****     BUF_MEMCPY(d, &buff->buff[buff_r_ptr], tocopy);
+ 696              		.loc 1 215 5 is_stmt 1 view .LVU216
+ 215:Middlewares/Third_Party/lwrb/lwrb.c ****     BUF_MEMCPY(d, &buff->buff[buff_r_ptr], tocopy);
+ 697              		.loc 1 215 14 is_stmt 0 view .LVU217
+ 698 003e 7568     		ldr	r5, [r6, #4]
+ 699 0040 A5EB0805 		sub	r5, r5, r8
+ 215:Middlewares/Third_Party/lwrb/lwrb.c ****     BUF_MEMCPY(d, &buff->buff[buff_r_ptr], tocopy);
+ 700              		.loc 1 215 12 view .LVU218
+ 701 0044 A542     		cmp	r5, r4
+ 702 0046 28BF     		it	cs
+ 703 0048 2546     		movcs	r5, r4
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccx4nf71.s 			page 24
+
+
+ 704              	.LVL80:
+ 216:Middlewares/Third_Party/lwrb/lwrb.c ****     buff_r_ptr += tocopy;
+ 705              		.loc 1 216 5 is_stmt 1 view .LVU219
+ 216:Middlewares/Third_Party/lwrb/lwrb.c ****     buff_r_ptr += tocopy;
+ 706              		.loc 1 216 24 is_stmt 0 view .LVU220
+ 707 004a 3168     		ldr	r1, [r6]
+ 216:Middlewares/Third_Party/lwrb/lwrb.c ****     buff_r_ptr += tocopy;
+ 708              		.loc 1 216 5 view .LVU221
+ 709 004c 2A46     		mov	r2, r5
+ 710 004e 4144     		add	r1, r1, r8
+ 711 0050 3846     		mov	r0, r7
+ 712              	.LVL81:
+ 216:Middlewares/Third_Party/lwrb/lwrb.c ****     buff_r_ptr += tocopy;
+ 713              		.loc 1 216 5 view .LVU222
+ 714 0052 FFF7FEFF 		bl	memcpy
+ 715              	.LVL82:
+ 217:Middlewares/Third_Party/lwrb/lwrb.c ****     btr -= tocopy;
+ 716              		.loc 1 217 5 is_stmt 1 view .LVU223
+ 217:Middlewares/Third_Party/lwrb/lwrb.c ****     btr -= tocopy;
+ 717              		.loc 1 217 16 is_stmt 0 view .LVU224
+ 718 0056 08EB0503 		add	r3, r8, r5
+ 719              	.LVL83:
+ 218:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 720              		.loc 1 218 5 is_stmt 1 view .LVU225
+ 221:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 721              		.loc 1 221 5 view .LVU226
+ 221:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 722              		.loc 1 221 8 is_stmt 0 view .LVU227
+ 723 005a B4EB0508 		subs	r8, r4, r5
+ 724              	.LVL84:
+ 221:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 725              		.loc 1 221 8 view .LVU228
+ 726 005e 0ED1     		bne	.L55
+ 727              	.L46:
+ 228:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 728              		.loc 1 228 5 is_stmt 1 view .LVU229
+ 228:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 729              		.loc 1 228 27 is_stmt 0 view .LVU230
+ 730 0060 7268     		ldr	r2, [r6, #4]
+ 228:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 731              		.loc 1 228 8 view .LVU231
+ 732 0062 9A42     		cmp	r2, r3
+ 733 0064 00D8     		bhi	.L47
+ 230:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 734              		.loc 1 230 20 view .LVU232
+ 735 0066 0023     		movs	r3, #0
+ 736              	.LVL85:
+ 737              	.L47:
+ 237:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 738              		.loc 1 237 5 is_stmt 1 view .LVU233
+ 739              	.LBB11:
+ 237:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 740              		.loc 1 237 5 view .LVU234
+ 237:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 741              		.loc 1 237 5 view .LVU235
+ 237:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 742              		.loc 1 237 5 view .LVU236
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccx4nf71.s 			page 25
+
+
+ 743 0068 BFF35B8F 		dmb	ish
+ 744 006c B360     		str	r3, [r6, #8]
+ 745              	.LBE11:
+ 239:Middlewares/Third_Party/lwrb/lwrb.c ****     return tocopy + btr;
+ 746              		.loc 1 239 5 view .LVU237
+ 239:Middlewares/Third_Party/lwrb/lwrb.c ****     return tocopy + btr;
+ 747              		.loc 1 239 5 view .LVU238
+ 748 006e 3369     		ldr	r3, [r6, #16]
+ 749              	.LVL86:
+ 239:Middlewares/Third_Party/lwrb/lwrb.c ****     return tocopy + btr;
+ 750              		.loc 1 239 5 is_stmt 0 view .LVU239
+ 751 0070 002B     		cmp	r3, #0
+ 752 0072 D5D0     		beq	.L44
+ 239:Middlewares/Third_Party/lwrb/lwrb.c ****     return tocopy + btr;
+ 753              		.loc 1 239 5 is_stmt 1 discriminator 1 view .LVU240
+ 754 0074 2246     		mov	r2, r4
+ 755 0076 0021     		movs	r1, #0
+ 756 0078 3046     		mov	r0, r6
+ 757 007a 9847     		blx	r3
+ 758              	.LVL87:
+ 239:Middlewares/Third_Party/lwrb/lwrb.c ****     return tocopy + btr;
+ 759              		.loc 1 239 5 is_stmt 0 discriminator 1 view .LVU241
+ 760 007c D0E7     		b	.L44
+ 761              	.LVL88:
+ 762              	.L55:
+ 223:Middlewares/Third_Party/lwrb/lwrb.c ****         buff_r_ptr = btr;
+ 763              		.loc 1 223 9 is_stmt 1 view .LVU242
+ 764 007e 4246     		mov	r2, r8
+ 765 0080 3168     		ldr	r1, [r6]
+ 766 0082 7819     		adds	r0, r7, r5
+ 767 0084 FFF7FEFF 		bl	memcpy
+ 768              	.LVL89:
+ 224:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 769              		.loc 1 224 9 view .LVU243
+ 224:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 770              		.loc 1 224 20 is_stmt 0 view .LVU244
+ 771 0088 4346     		mov	r3, r8
+ 772 008a E9E7     		b	.L46
+ 773              	.LVL90:
+ 774              	.L48:
+ 202:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 775              		.loc 1 202 16 view .LVU245
+ 776 008c 0024     		movs	r4, #0
+ 777 008e C7E7     		b	.L44
+ 778              	.L49:
+ 202:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 779              		.loc 1 202 16 view .LVU246
+ 780 0090 0024     		movs	r4, #0
+ 781 0092 C5E7     		b	.L44
+ 782              	.L50:
+ 783 0094 0024     		movs	r4, #0
+ 784 0096 C3E7     		b	.L44
+ 785              		.cfi_endproc
+ 786              	.LFE5:
+ 788              		.section	.text.lwrb_peek,"ax",%progbits
+ 789              		.align	1
+ 790              		.global	lwrb_peek
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccx4nf71.s 			page 26
+
+
+ 791              		.syntax unified
+ 792              		.thumb
+ 793              		.thumb_func
+ 794              		.fpu fpv4-sp-d16
+ 796              	lwrb_peek:
+ 797              	.LVL91:
+ 798              	.LFB6:
+ 253:Middlewares/Third_Party/lwrb/lwrb.c ****     size_t full, tocopy, r;
+ 799              		.loc 1 253 1 is_stmt 1 view -0
+ 800              		.cfi_startproc
+ 801              		@ args = 0, pretend = 0, frame = 0
+ 802              		@ frame_needed = 0, uses_anonymous_args = 0
+ 253:Middlewares/Third_Party/lwrb/lwrb.c ****     size_t full, tocopy, r;
+ 803              		.loc 1 253 1 is_stmt 0 view .LVU248
+ 804 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
+ 805              		.cfi_def_cfa_offset 24
+ 806              		.cfi_offset 4, -24
+ 807              		.cfi_offset 5, -20
+ 808              		.cfi_offset 6, -16
+ 809              		.cfi_offset 7, -12
+ 810              		.cfi_offset 8, -8
+ 811              		.cfi_offset 14, -4
+ 254:Middlewares/Third_Party/lwrb/lwrb.c ****     uint8_t *d = data;
+ 812              		.loc 1 254 5 is_stmt 1 view .LVU249
+ 255:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 813              		.loc 1 255 5 view .LVU250
+ 814              	.LVL92:
+ 257:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 815              		.loc 1 257 5 view .LVU251
+ 257:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 816              		.loc 1 257 8 is_stmt 0 view .LVU252
+ 817 0004 A0B3     		cbz	r0, .L59
+ 818 0006 0E46     		mov	r6, r1
+ 819 0008 1746     		mov	r7, r2
+ 820 000a 1D46     		mov	r5, r3
+ 821 000c 8046     		mov	r8, r0
+ 257:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 822              		.loc 1 257 10 discriminator 1 view .LVU253
+ 823 000e 0368     		ldr	r3, [r0]
+ 824              	.LVL93:
+ 257:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 825              		.loc 1 257 10 discriminator 1 view .LVU254
+ 826 0010 83B3     		cbz	r3, .L60
+ 257:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 827              		.loc 1 257 10 discriminator 2 view .LVU255
+ 828 0012 4468     		ldr	r4, [r0, #4]
+ 257:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 829              		.loc 1 257 9 discriminator 2 view .LVU256
+ 830 0014 14B1     		cbz	r4, .L56
+ 257:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 831              		.loc 1 257 29 discriminator 3 view .LVU257
+ 832 0016 7AB3     		cbz	r2, .L61
+ 257:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 833              		.loc 1 257 45 discriminator 4 view .LVU258
+ 834 0018 1DB9     		cbnz	r5, .L65
+ 259:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 835              		.loc 1 259 16 view .LVU259
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccx4nf71.s 			page 27
+
+
+ 836 001a 2C46     		mov	r4, r5
+ 837              	.LVL94:
+ 838              	.L56:
+ 297:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 839              		.loc 1 297 1 view .LVU260
+ 840 001c 2046     		mov	r0, r4
+ 841 001e BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 842              	.LVL95:
+ 843              	.L65:
+ 266:Middlewares/Third_Party/lwrb/lwrb.c ****     if (skip_count >= full)
+ 844              		.loc 1 266 5 is_stmt 1 view .LVU261
+ 266:Middlewares/Third_Party/lwrb/lwrb.c ****     if (skip_count >= full)
+ 845              		.loc 1 266 12 is_stmt 0 view .LVU262
+ 846 0022 FFF7FEFF 		bl	lwrb_get_full
+ 847              	.LVL96:
+ 267:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 848              		.loc 1 267 5 is_stmt 1 view .LVU263
+ 267:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 849              		.loc 1 267 8 is_stmt 0 view .LVU264
+ 850 0026 B042     		cmp	r0, r6
+ 851 0028 01D8     		bhi	.L66
+ 269:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 852              		.loc 1 269 16 view .LVU265
+ 853 002a 0024     		movs	r4, #0
+ 854 002c F6E7     		b	.L56
+ 855              	.L66:
+ 271:Middlewares/Third_Party/lwrb/lwrb.c ****     r += skip_count;
+ 856              		.loc 1 271 5 is_stmt 1 view .LVU266
+ 857              	.LBB12:
+ 271:Middlewares/Third_Party/lwrb/lwrb.c ****     r += skip_count;
+ 858              		.loc 1 271 9 view .LVU267
+ 859              	.LVL97:
+ 271:Middlewares/Third_Party/lwrb/lwrb.c ****     r += skip_count;
+ 860              		.loc 1 271 9 view .LVU268
+ 271:Middlewares/Third_Party/lwrb/lwrb.c ****     r += skip_count;
+ 861              		.loc 1 271 9 view .LVU269
+ 862 002e D8F80830 		ldr	r3, [r8, #8]
+ 863              	.LVL98:
+ 271:Middlewares/Third_Party/lwrb/lwrb.c ****     r += skip_count;
+ 864              		.loc 1 271 9 view .LVU270
+ 271:Middlewares/Third_Party/lwrb/lwrb.c ****     r += skip_count;
+ 865              		.loc 1 271 9 is_stmt 0 view .LVU271
+ 866              	.LBE12:
+ 272:Middlewares/Third_Party/lwrb/lwrb.c ****     full -= skip_count;
+ 867              		.loc 1 272 5 is_stmt 1 view .LVU272
+ 272:Middlewares/Third_Party/lwrb/lwrb.c ****     full -= skip_count;
+ 868              		.loc 1 272 7 is_stmt 0 view .LVU273
+ 869 0032 3344     		add	r3, r3, r6
+ 870              	.LVL99:
+ 273:Middlewares/Third_Party/lwrb/lwrb.c ****     if (r >= buff->size)
+ 871              		.loc 1 273 5 is_stmt 1 view .LVU274
+ 273:Middlewares/Third_Party/lwrb/lwrb.c ****     if (r >= buff->size)
+ 872              		.loc 1 273 10 is_stmt 0 view .LVU275
+ 873 0034 841B     		subs	r4, r0, r6
+ 874              	.LVL100:
+ 274:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 875              		.loc 1 274 5 is_stmt 1 view .LVU276
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccx4nf71.s 			page 28
+
+
+ 274:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 876              		.loc 1 274 18 is_stmt 0 view .LVU277
+ 877 0036 D8F80420 		ldr	r2, [r8, #4]
+ 274:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 878              		.loc 1 274 8 view .LVU278
+ 879 003a 9A42     		cmp	r2, r3
+ 880 003c 00D8     		bhi	.L58
+ 276:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 881              		.loc 1 276 9 is_stmt 1 view .LVU279
+ 276:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 882              		.loc 1 276 11 is_stmt 0 view .LVU280
+ 883 003e 9B1A     		subs	r3, r3, r2
+ 884              	.LVL101:
+ 885              	.L58:
+ 280:Middlewares/Third_Party/lwrb/lwrb.c ****     if (btp == 0)
+ 886              		.loc 1 280 5 is_stmt 1 view .LVU281
+ 280:Middlewares/Third_Party/lwrb/lwrb.c ****     if (btp == 0)
+ 887              		.loc 1 280 9 is_stmt 0 view .LVU282
+ 888 0040 AC42     		cmp	r4, r5
+ 889 0042 28BF     		it	cs
+ 890 0044 2C46     		movcs	r4, r5
+ 891              	.LVL102:
+ 281:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 892              		.loc 1 281 5 is_stmt 1 view .LVU283
+ 281:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 893              		.loc 1 281 8 is_stmt 0 view .LVU284
+ 894 0046 002C     		cmp	r4, #0
+ 895 0048 E8D0     		beq	.L56
+ 287:Middlewares/Third_Party/lwrb/lwrb.c ****     BUF_MEMCPY(d, &buff->buff[r], tocopy);
+ 896              		.loc 1 287 5 is_stmt 1 view .LVU285
+ 287:Middlewares/Third_Party/lwrb/lwrb.c ****     BUF_MEMCPY(d, &buff->buff[r], tocopy);
+ 897              		.loc 1 287 14 is_stmt 0 view .LVU286
+ 898 004a D51A     		subs	r5, r2, r3
+ 287:Middlewares/Third_Party/lwrb/lwrb.c ****     BUF_MEMCPY(d, &buff->buff[r], tocopy);
+ 899              		.loc 1 287 12 view .LVU287
+ 900 004c A542     		cmp	r5, r4
+ 901 004e 28BF     		it	cs
+ 902 0050 2546     		movcs	r5, r4
+ 903              	.LVL103:
+ 288:Middlewares/Third_Party/lwrb/lwrb.c ****     btp -= tocopy;
+ 904              		.loc 1 288 5 is_stmt 1 view .LVU288
+ 288:Middlewares/Third_Party/lwrb/lwrb.c ****     btp -= tocopy;
+ 905              		.loc 1 288 24 is_stmt 0 view .LVU289
+ 906 0052 D8F80010 		ldr	r1, [r8]
+ 288:Middlewares/Third_Party/lwrb/lwrb.c ****     btp -= tocopy;
+ 907              		.loc 1 288 5 view .LVU290
+ 908 0056 2A46     		mov	r2, r5
+ 909 0058 1944     		add	r1, r1, r3
+ 910 005a 3846     		mov	r0, r7
+ 911              	.LVL104:
+ 288:Middlewares/Third_Party/lwrb/lwrb.c ****     btp -= tocopy;
+ 912              		.loc 1 288 5 view .LVU291
+ 913 005c FFF7FEFF 		bl	memcpy
+ 914              	.LVL105:
+ 289:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 915              		.loc 1 289 5 is_stmt 1 view .LVU292
+ 292:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccx4nf71.s 			page 29
+
+
+ 916              		.loc 1 292 5 view .LVU293
+ 292:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 917              		.loc 1 292 8 is_stmt 0 view .LVU294
+ 918 0060 621B     		subs	r2, r4, r5
+ 919              	.LVL106:
+ 292:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 920              		.loc 1 292 8 view .LVU295
+ 921 0062 DBD0     		beq	.L56
+ 294:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 922              		.loc 1 294 9 is_stmt 1 view .LVU296
+ 923 0064 D8F80010 		ldr	r1, [r8]
+ 924 0068 7819     		adds	r0, r7, r5
+ 925 006a FFF7FEFF 		bl	memcpy
+ 926              	.LVL107:
+ 294:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 927              		.loc 1 294 9 is_stmt 0 view .LVU297
+ 928 006e D5E7     		b	.L56
+ 929              	.LVL108:
+ 930              	.L59:
+ 259:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 931              		.loc 1 259 16 view .LVU298
+ 932 0070 0024     		movs	r4, #0
+ 933 0072 D3E7     		b	.L56
+ 934              	.LVL109:
+ 935              	.L60:
+ 259:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 936              		.loc 1 259 16 view .LVU299
+ 937 0074 0024     		movs	r4, #0
+ 938 0076 D1E7     		b	.L56
+ 939              	.L61:
+ 940 0078 0024     		movs	r4, #0
+ 941 007a CFE7     		b	.L56
+ 942              		.cfi_endproc
+ 943              	.LFE6:
+ 945              		.section	.text.lwrb_find,"ax",%progbits
+ 946              		.align	1
+ 947              		.global	lwrb_find
+ 948              		.syntax unified
+ 949              		.thumb
+ 950              		.thumb_func
+ 951              		.fpu fpv4-sp-d16
+ 953              	lwrb_find:
+ 954              	.LVL110:
+ 955              	.LFB7:
+ 314:Middlewares/Third_Party/lwrb/lwrb.c ****     size_t full;
+ 956              		.loc 1 314 1 is_stmt 1 view -0
+ 957              		.cfi_startproc
+ 958              		@ args = 4, pretend = 0, frame = 8
+ 959              		@ frame_needed = 0, uses_anonymous_args = 0
+ 314:Middlewares/Third_Party/lwrb/lwrb.c ****     size_t full;
+ 960              		.loc 1 314 1 is_stmt 0 view .LVU301
+ 961 0000 2DE9F047 		push	{r4, r5, r6, r7, r8, r9, r10, lr}
+ 962              		.cfi_def_cfa_offset 32
+ 963              		.cfi_offset 4, -32
+ 964              		.cfi_offset 5, -28
+ 965              		.cfi_offset 6, -24
+ 966              		.cfi_offset 7, -20
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccx4nf71.s 			page 30
+
+
+ 967              		.cfi_offset 8, -16
+ 968              		.cfi_offset 9, -12
+ 969              		.cfi_offset 10, -8
+ 970              		.cfi_offset 14, -4
+ 971 0004 82B0     		sub	sp, sp, #8
+ 972              		.cfi_def_cfa_offset 40
+ 315:Middlewares/Third_Party/lwrb/lwrb.c ****     uint8_t found = 0;
+ 973              		.loc 1 315 5 is_stmt 1 view .LVU302
+ 316:Middlewares/Third_Party/lwrb/lwrb.c ****     const uint8_t *needle = bts;
+ 974              		.loc 1 316 5 view .LVU303
+ 975              	.LVL111:
+ 317:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 976              		.loc 1 317 5 view .LVU304
+ 319:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 977              		.loc 1 319 5 view .LVU305
+ 319:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 978              		.loc 1 319 8 is_stmt 0 view .LVU306
+ 979 0006 0028     		cmp	r0, #0
+ 980 0008 3CD0     		beq	.L74
+ 981 000a 0F46     		mov	r7, r1
+ 982 000c 1646     		mov	r6, r2
+ 983 000e 1D46     		mov	r5, r3
+ 984 0010 8046     		mov	r8, r0
+ 319:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 985              		.loc 1 319 10 discriminator 1 view .LVU307
+ 986 0012 0368     		ldr	r3, [r0]
+ 987              	.LVL112:
+ 319:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 988              		.loc 1 319 10 discriminator 1 view .LVU308
+ 989 0014 002B     		cmp	r3, #0
+ 990 0016 38D0     		beq	.L75
+ 319:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 991              		.loc 1 319 10 discriminator 2 view .LVU309
+ 992 0018 4368     		ldr	r3, [r0, #4]
+ 319:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 993              		.loc 1 319 9 discriminator 2 view .LVU310
+ 994 001a 002B     		cmp	r3, #0
+ 995 001c 38D0     		beq	.L76
+ 319:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 996              		.loc 1 319 29 discriminator 3 view .LVU311
+ 997 001e 0029     		cmp	r1, #0
+ 998 0020 3CD0     		beq	.L77
+ 319:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 999              		.loc 1 319 47 discriminator 4 view .LVU312
+ 1000 0022 002A     		cmp	r2, #0
+ 1001 0024 3DD0     		beq	.L78
+ 319:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 1002              		.loc 1 319 59 discriminator 5 view .LVU313
+ 1003 0026 0A9B     		ldr	r3, [sp, #40]
+ 1004 0028 002B     		cmp	r3, #0
+ 1005 002a 3DD0     		beq	.L79
+ 323:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 1006              		.loc 1 323 5 is_stmt 1 view .LVU314
+ 323:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 1007              		.loc 1 323 16 is_stmt 0 view .LVU315
+ 1008 002c 0023     		movs	r3, #0
+ 1009 002e 0A9A     		ldr	r2, [sp, #40]
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccx4nf71.s 			page 31
+
+
+ 1010              	.LVL113:
+ 323:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 1011              		.loc 1 323 16 view .LVU316
+ 1012 0030 1360     		str	r3, [r2]
+ 325:Middlewares/Third_Party/lwrb/lwrb.c ****     /* Verify initial conditions */
+ 1013              		.loc 1 325 5 is_stmt 1 view .LVU317
+ 325:Middlewares/Third_Party/lwrb/lwrb.c ****     /* Verify initial conditions */
+ 1014              		.loc 1 325 12 is_stmt 0 view .LVU318
+ 1015 0032 FFF7FEFF 		bl	lwrb_get_full
+ 1016              	.LVL114:
+ 325:Middlewares/Third_Party/lwrb/lwrb.c ****     /* Verify initial conditions */
+ 1017              		.loc 1 325 12 view .LVU319
+ 1018 0036 8246     		mov	r10, r0
+ 1019              	.LVL115:
+ 327:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 1020              		.loc 1 327 5 is_stmt 1 view .LVU320
+ 327:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 1021              		.loc 1 327 21 is_stmt 0 view .LVU321
+ 1022 0038 7319     		adds	r3, r6, r5
+ 327:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 1023              		.loc 1 327 8 view .LVU322
+ 1024 003a 8342     		cmp	r3, r0
+ 1025 003c 37D8     		bhi	.L80
+ 316:Middlewares/Third_Party/lwrb/lwrb.c ****     const uint8_t *needle = bts;
+ 1026              		.loc 1 316 13 view .LVU323
+ 1027 003e 4FF00009 		mov	r9, #0
+ 1028 0042 07E0     		b	.L69
+ 1029              	.LVL116:
+ 1030              	.L83:
+ 1031              	.LBB13:
+ 1032              	.LBB14:
+ 337:Middlewares/Third_Party/lwrb/lwrb.c ****         for (size_t i = 0; i < len; ++i)
+ 1033              		.loc 1 337 15 view .LVU324
+ 1034 0044 4FF00109 		mov	r9, #1
+ 1035              	.L70:
+ 1036              	.LVL117:
+ 346:Middlewares/Third_Party/lwrb/lwrb.c ****         {
+ 1037              		.loc 1 346 9 is_stmt 1 view .LVU325
+ 346:Middlewares/Third_Party/lwrb/lwrb.c ****         {
+ 1038              		.loc 1 346 12 is_stmt 0 view .LVU326
+ 1039 0048 B9F1000F 		cmp	r9, #0
+ 1040 004c 01D0     		beq	.L72
+ 348:Middlewares/Third_Party/lwrb/lwrb.c ****         }
+ 1041              		.loc 1 348 13 is_stmt 1 view .LVU327
+ 348:Middlewares/Third_Party/lwrb/lwrb.c ****         }
+ 1042              		.loc 1 348 24 is_stmt 0 view .LVU328
+ 1043 004e 0A9B     		ldr	r3, [sp, #40]
+ 1044 0050 1D60     		str	r5, [r3]
+ 1045              	.L72:
+ 348:Middlewares/Third_Party/lwrb/lwrb.c ****         }
+ 1046              		.loc 1 348 24 view .LVU329
+ 1047              	.LBE14:
+ 333:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 1048              		.loc 1 333 65 is_stmt 1 discriminator 2 view .LVU330
+ 1049 0052 0135     		adds	r5, r5, #1
+ 1050              	.LVL118:
+ 1051              	.L69:
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccx4nf71.s 			page 32
+
+
+ 333:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 1052              		.loc 1 333 40 discriminator 1 view .LVU331
+ 333:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 1053              		.loc 1 333 5 is_stmt 0 discriminator 1 view .LVU332
+ 1054 0054 B9F1000F 		cmp	r9, #0
+ 1055 0058 1CD1     		bne	.L68
+ 333:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 1056              		.loc 1 333 47 discriminator 3 view .LVU333
+ 1057 005a 5545     		cmp	r5, r10
+ 1058 005c 1AD2     		bcs	.L68
+ 1059              	.LBB16:
+ 1060              	.LBB15:
+ 338:Middlewares/Third_Party/lwrb/lwrb.c ****         {
+ 1061              		.loc 1 338 21 view .LVU334
+ 1062 005e 0024     		movs	r4, #0
+ 1063              	.LVL119:
+ 1064              	.L73:
+ 338:Middlewares/Third_Party/lwrb/lwrb.c ****         {
+ 1065              		.loc 1 338 28 is_stmt 1 discriminator 1 view .LVU335
+ 338:Middlewares/Third_Party/lwrb/lwrb.c ****         {
+ 1066              		.loc 1 338 9 is_stmt 0 discriminator 1 view .LVU336
+ 1067 0060 B442     		cmp	r4, r6
+ 1068 0062 EFD2     		bcs	.L83
+ 340:Middlewares/Third_Party/lwrb/lwrb.c ****             {
+ 1069              		.loc 1 340 13 is_stmt 1 view .LVU337
+ 340:Middlewares/Third_Party/lwrb/lwrb.c ****             {
+ 1070              		.loc 1 340 18 is_stmt 0 view .LVU338
+ 1071 0064 0123     		movs	r3, #1
+ 1072 0066 0DF10702 		add	r2, sp, #7
+ 1073 006a 2919     		adds	r1, r5, r4
+ 1074 006c 4046     		mov	r0, r8
+ 1075 006e FFF7FEFF 		bl	lwrb_peek
+ 1076              	.LVL120:
+ 340:Middlewares/Third_Party/lwrb/lwrb.c ****             {
+ 1077              		.loc 1 340 16 view .LVU339
+ 1078 0072 0028     		cmp	r0, #0
+ 1079 0074 E8D0     		beq	.L70
+ 340:Middlewares/Third_Party/lwrb/lwrb.c ****             {
+ 1080              		.loc 1 340 67 discriminator 1 view .LVU340
+ 1081 0076 3A5D     		ldrb	r2, [r7, r4]	@ zero_extendqisi2
+ 340:Middlewares/Third_Party/lwrb/lwrb.c ****             {
+ 1082              		.loc 1 340 58 discriminator 1 view .LVU341
+ 1083 0078 9DF80730 		ldrb	r3, [sp, #7]	@ zero_extendqisi2
+ 340:Middlewares/Third_Party/lwrb/lwrb.c ****             {
+ 1084              		.loc 1 340 53 discriminator 1 view .LVU342
+ 1085 007c 9A42     		cmp	r2, r3
+ 1086 007e E3D1     		bne	.L70
+ 338:Middlewares/Third_Party/lwrb/lwrb.c ****         {
+ 1087              		.loc 1 338 37 is_stmt 1 discriminator 2 view .LVU343
+ 1088 0080 0134     		adds	r4, r4, #1
+ 1089              	.LVL121:
+ 338:Middlewares/Third_Party/lwrb/lwrb.c ****         {
+ 1090              		.loc 1 338 37 is_stmt 0 discriminator 2 view .LVU344
+ 1091 0082 EDE7     		b	.L73
+ 1092              	.LVL122:
+ 1093              	.L74:
+ 338:Middlewares/Third_Party/lwrb/lwrb.c ****         {
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccx4nf71.s 			page 33
+
+
+ 1094              		.loc 1 338 37 discriminator 2 view .LVU345
+ 1095              	.LBE15:
+ 1096              	.LBE16:
+ 1097              	.LBE13:
+ 321:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 1098              		.loc 1 321 16 view .LVU346
+ 1099 0084 4FF00009 		mov	r9, #0
+ 1100 0088 04E0     		b	.L68
+ 1101              	.LVL123:
+ 1102              	.L75:
+ 321:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 1103              		.loc 1 321 16 view .LVU347
+ 1104 008a 4FF00009 		mov	r9, #0
+ 1105 008e 01E0     		b	.L68
+ 1106              	.L76:
+ 1107 0090 4FF00009 		mov	r9, #0
+ 1108              	.LVL124:
+ 1109              	.L68:
+ 352:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 1110              		.loc 1 352 1 view .LVU348
+ 1111 0094 4846     		mov	r0, r9
+ 1112 0096 02B0     		add	sp, sp, #8
+ 1113              		.cfi_remember_state
+ 1114              		.cfi_def_cfa_offset 32
+ 1115              		@ sp needed
+ 1116 0098 BDE8F087 		pop	{r4, r5, r6, r7, r8, r9, r10, pc}
+ 1117              	.LVL125:
+ 1118              	.L77:
+ 1119              		.cfi_restore_state
+ 321:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 1120              		.loc 1 321 16 view .LVU349
+ 1121 009c 4FF00009 		mov	r9, #0
+ 1122 00a0 F8E7     		b	.L68
+ 1123              	.L78:
+ 1124 00a2 4FF00009 		mov	r9, #0
+ 1125 00a6 F5E7     		b	.L68
+ 1126              	.L79:
+ 1127 00a8 4FF00009 		mov	r9, #0
+ 1128 00ac F2E7     		b	.L68
+ 1129              	.LVL126:
+ 1130              	.L80:
+ 329:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 1131              		.loc 1 329 16 view .LVU350
+ 1132 00ae 4FF00009 		mov	r9, #0
+ 1133 00b2 EFE7     		b	.L68
+ 1134              		.cfi_endproc
+ 1135              	.LFE7:
+ 1137              		.section	.text.lwrb_reset,"ax",%progbits
+ 1138              		.align	1
+ 1139              		.global	lwrb_reset
+ 1140              		.syntax unified
+ 1141              		.thumb
+ 1142              		.thumb_func
+ 1143              		.fpu fpv4-sp-d16
+ 1145              	lwrb_reset:
+ 1146              	.LVL127:
+ 1147              	.LFB10:
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccx4nf71.s 			page 34
+
+
+ 457:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 458:Middlewares/Third_Party/lwrb/lwrb.c **** /**
+ 459:Middlewares/Third_Party/lwrb/lwrb.c ****  * \brief           Resets buffer to default values. Buffer size is not modified
+ 460:Middlewares/Third_Party/lwrb/lwrb.c ****  * \note            This function is not thread safe.
+ 461:Middlewares/Third_Party/lwrb/lwrb.c ****  *                      When used, application must ensure there is no active read/write operation
+ 462:Middlewares/Third_Party/lwrb/lwrb.c ****  * \param[in]       buff: Buffer handle
+ 463:Middlewares/Third_Party/lwrb/lwrb.c ****  */
+ 464:Middlewares/Third_Party/lwrb/lwrb.c **** void lwrb_reset(lwrb_t *buff)
+ 465:Middlewares/Third_Party/lwrb/lwrb.c **** {
+ 1148              		.loc 1 465 1 is_stmt 1 view -0
+ 1149              		.cfi_startproc
+ 1150              		@ args = 0, pretend = 0, frame = 0
+ 1151              		@ frame_needed = 0, uses_anonymous_args = 0
+ 466:Middlewares/Third_Party/lwrb/lwrb.c ****     if (BUF_IS_VALID(buff))
+ 1152              		.loc 1 466 5 view .LVU352
+ 1153              		.loc 1 466 8 is_stmt 0 view .LVU353
+ 1154 0000 18B1     		cbz	r0, .L87
+ 1155              		.loc 1 466 9 discriminator 1 view .LVU354
+ 1156 0002 0268     		ldr	r2, [r0]
+ 1157 0004 0AB1     		cbz	r2, .L87
+ 1158              		.loc 1 466 9 discriminator 2 view .LVU355
+ 1159 0006 4268     		ldr	r2, [r0, #4]
+ 1160 0008 02B9     		cbnz	r2, .L90
+ 1161              	.L87:
+ 1162 000a 7047     		bx	lr
+ 1163              	.L90:
+ 465:Middlewares/Third_Party/lwrb/lwrb.c ****     if (BUF_IS_VALID(buff))
+ 1164              		.loc 1 465 1 view .LVU356
+ 1165 000c 10B5     		push	{r4, lr}
+ 1166              		.cfi_def_cfa_offset 8
+ 1167              		.cfi_offset 4, -8
+ 1168              		.cfi_offset 14, -4
+ 467:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 468:Middlewares/Third_Party/lwrb/lwrb.c ****         LWRB_STORE(buff->w, 0, memory_order_release);
+ 1169              		.loc 1 468 9 is_stmt 1 view .LVU357
+ 1170              	.LBB17:
+ 1171              		.loc 1 468 9 view .LVU358
+ 1172              	.LVL128:
+ 1173              		.loc 1 468 9 view .LVU359
+ 1174              		.loc 1 468 9 view .LVU360
+ 1175 000e BFF35B8F 		dmb	ish
+ 1176 0012 0022     		movs	r2, #0
+ 1177 0014 C260     		str	r2, [r0, #12]
+ 1178              	.LBE17:
+ 469:Middlewares/Third_Party/lwrb/lwrb.c ****         LWRB_STORE(buff->r, 0, memory_order_release);
+ 1179              		.loc 1 469 9 view .LVU361
+ 1180              	.LBB18:
+ 1181              		.loc 1 469 9 view .LVU362
+ 1182              	.LVL129:
+ 1183              		.loc 1 469 9 view .LVU363
+ 1184              		.loc 1 469 9 view .LVU364
+ 1185 0016 BFF35B8F 		dmb	ish
+ 1186 001a 8260     		str	r2, [r0, #8]
+ 1187              	.LBE18:
+ 470:Middlewares/Third_Party/lwrb/lwrb.c ****         BUF_SEND_EVT(buff, LWRB_EVT_RESET, 0);
+ 1188              		.loc 1 470 9 view .LVU365
+ 1189              		.loc 1 470 9 view .LVU366
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccx4nf71.s 			page 35
+
+
+ 1190 001c 0469     		ldr	r4, [r0, #16]
+ 1191 001e 0CB1     		cbz	r4, .L84
+ 1192              		.loc 1 470 9 discriminator 1 view .LVU367
+ 1193 0020 0221     		movs	r1, #2
+ 1194 0022 A047     		blx	r4
+ 1195              	.LVL130:
+ 1196              		.loc 1 470 9 discriminator 1 view .LVU368
+ 1197              	.L84:
+ 471:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 472:Middlewares/Third_Party/lwrb/lwrb.c **** }
+ 1198              		.loc 1 472 1 is_stmt 0 view .LVU369
+ 1199 0024 10BD     		pop	{r4, pc}
+ 1200              		.cfi_endproc
+ 1201              	.LFE10:
+ 1203              		.section	.text.lwrb_get_linear_block_read_address,"ax",%progbits
+ 1204              		.align	1
+ 1205              		.global	lwrb_get_linear_block_read_address
+ 1206              		.syntax unified
+ 1207              		.thumb
+ 1208              		.thumb_func
+ 1209              		.fpu fpv4-sp-d16
+ 1211              	lwrb_get_linear_block_read_address:
+ 1212              	.LVL131:
+ 1213              	.LFB11:
+ 473:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 474:Middlewares/Third_Party/lwrb/lwrb.c **** /**
+ 475:Middlewares/Third_Party/lwrb/lwrb.c ****  * \brief           Get linear address for buffer for fast read
+ 476:Middlewares/Third_Party/lwrb/lwrb.c ****  * \param[in]       buff: Buffer handle
+ 477:Middlewares/Third_Party/lwrb/lwrb.c ****  * \return          Linear buffer start address
+ 478:Middlewares/Third_Party/lwrb/lwrb.c ****  */
+ 479:Middlewares/Third_Party/lwrb/lwrb.c **** void *
+ 480:Middlewares/Third_Party/lwrb/lwrb.c **** lwrb_get_linear_block_read_address(const lwrb_t *buff)
+ 481:Middlewares/Third_Party/lwrb/lwrb.c **** {
+ 1214              		.loc 1 481 1 is_stmt 1 view -0
+ 1215              		.cfi_startproc
+ 1216              		@ args = 0, pretend = 0, frame = 0
+ 1217              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1218              		@ link register save eliminated.
+ 482:Middlewares/Third_Party/lwrb/lwrb.c ****     if (!BUF_IS_VALID(buff))
+ 1219              		.loc 1 482 5 view .LVU371
+ 1220              		.loc 1 482 8 is_stmt 0 view .LVU372
+ 1221 0000 0346     		mov	r3, r0
+ 1222 0002 30B1     		cbz	r0, .L93
+ 1223              		.loc 1 482 10 discriminator 1 view .LVU373
+ 1224 0004 0068     		ldr	r0, [r0]
+ 1225              	.LVL132:
+ 1226              		.loc 1 482 10 discriminator 1 view .LVU374
+ 1227 0006 30B1     		cbz	r0, .L91
+ 1228              		.loc 1 482 10 discriminator 2 view .LVU375
+ 1229 0008 5A68     		ldr	r2, [r3, #4]
+ 1230              		.loc 1 482 9 discriminator 2 view .LVU376
+ 1231 000a 1AB1     		cbz	r2, .L94
+ 483:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 484:Middlewares/Third_Party/lwrb/lwrb.c ****         return NULL;
+ 485:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 486:Middlewares/Third_Party/lwrb/lwrb.c ****     return &buff->buff[buff->r];
+ 1232              		.loc 1 486 5 is_stmt 1 view .LVU377
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccx4nf71.s 			page 36
+
+
+ 1233              		.loc 1 486 28 is_stmt 0 view .LVU378
+ 1234 000c 9B68     		ldr	r3, [r3, #8]
+ 1235              	.LVL133:
+ 1236              		.loc 1 486 12 view .LVU379
+ 1237 000e 1844     		add	r0, r0, r3
+ 1238 0010 7047     		bx	lr
+ 1239              	.LVL134:
+ 1240              	.L93:
+ 1241              		.loc 1 486 12 view .LVU380
+ 1242 0012 7047     		bx	lr
+ 1243              	.LVL135:
+ 1244              	.L94:
+ 484:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 1245              		.loc 1 484 16 view .LVU381
+ 1246 0014 0020     		movs	r0, #0
+ 1247              	.L91:
+ 487:Middlewares/Third_Party/lwrb/lwrb.c **** }
+ 1248              		.loc 1 487 1 view .LVU382
+ 1249 0016 7047     		bx	lr
+ 1250              		.cfi_endproc
+ 1251              	.LFE11:
+ 1253              		.section	.text.lwrb_get_linear_block_read_length,"ax",%progbits
+ 1254              		.align	1
+ 1255              		.global	lwrb_get_linear_block_read_length
+ 1256              		.syntax unified
+ 1257              		.thumb
+ 1258              		.thumb_func
+ 1259              		.fpu fpv4-sp-d16
+ 1261              	lwrb_get_linear_block_read_length:
+ 1262              	.LVL136:
+ 1263              	.LFB12:
+ 488:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 489:Middlewares/Third_Party/lwrb/lwrb.c **** /**
+ 490:Middlewares/Third_Party/lwrb/lwrb.c ****  * \brief           Get length of linear block address before it overflows for read operation
+ 491:Middlewares/Third_Party/lwrb/lwrb.c ****  * \param[in]       buff: Buffer handle
+ 492:Middlewares/Third_Party/lwrb/lwrb.c ****  * \return          Linear buffer size in units of bytes for read operation
+ 493:Middlewares/Third_Party/lwrb/lwrb.c ****  */
+ 494:Middlewares/Third_Party/lwrb/lwrb.c **** size_t
+ 495:Middlewares/Third_Party/lwrb/lwrb.c **** lwrb_get_linear_block_read_length(const lwrb_t *buff)
+ 496:Middlewares/Third_Party/lwrb/lwrb.c **** {
+ 1264              		.loc 1 496 1 is_stmt 1 view -0
+ 1265              		.cfi_startproc
+ 1266              		@ args = 0, pretend = 0, frame = 8
+ 1267              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1268              		@ link register save eliminated.
+ 497:Middlewares/Third_Party/lwrb/lwrb.c ****     size_t len;
+ 1269              		.loc 1 497 5 view .LVU384
+ 498:Middlewares/Third_Party/lwrb/lwrb.c ****     volatile size_t w, r;
+ 1270              		.loc 1 498 5 view .LVU385
+ 499:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 500:Middlewares/Third_Party/lwrb/lwrb.c ****     if (!BUF_IS_VALID(buff))
+ 1271              		.loc 1 500 5 view .LVU386
+ 1272              		.loc 1 500 8 is_stmt 0 view .LVU387
+ 1273 0000 D8B1     		cbz	r0, .L98
+ 1274 0002 0346     		mov	r3, r0
+ 1275              		.loc 1 500 10 discriminator 1 view .LVU388
+ 1276 0004 0268     		ldr	r2, [r0]
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccx4nf71.s 			page 37
+
+
+ 1277 0006 D2B1     		cbz	r2, .L99
+ 1278              		.loc 1 500 10 discriminator 2 view .LVU389
+ 1279 0008 4068     		ldr	r0, [r0, #4]
+ 1280              	.LVL137:
+ 1281              		.loc 1 500 9 discriminator 2 view .LVU390
+ 1282 000a 00B9     		cbnz	r0, .L105
+ 501:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 502:Middlewares/Third_Party/lwrb/lwrb.c ****         return 0;
+ 503:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 504:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 505:Middlewares/Third_Party/lwrb/lwrb.c ****     /*
+ 506:Middlewares/Third_Party/lwrb/lwrb.c ****      * Use temporary values in case they are changed during operations.
+ 507:Middlewares/Third_Party/lwrb/lwrb.c ****      * See lwrb_buff_free or lwrb_buff_full functions for more information why this is OK.
+ 508:Middlewares/Third_Party/lwrb/lwrb.c ****      */
+ 509:Middlewares/Third_Party/lwrb/lwrb.c ****     w = LWRB_LOAD(buff->w, memory_order_relaxed);
+ 510:Middlewares/Third_Party/lwrb/lwrb.c ****     r = LWRB_LOAD(buff->r, memory_order_relaxed);
+ 511:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 512:Middlewares/Third_Party/lwrb/lwrb.c ****     if (w > r)
+ 513:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 514:Middlewares/Third_Party/lwrb/lwrb.c ****         len = w - r;
+ 515:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 516:Middlewares/Third_Party/lwrb/lwrb.c ****     else if (r > w)
+ 517:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 518:Middlewares/Third_Party/lwrb/lwrb.c ****         len = buff->size - r;
+ 519:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 520:Middlewares/Third_Party/lwrb/lwrb.c ****     else
+ 521:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 522:Middlewares/Third_Party/lwrb/lwrb.c ****         len = 0;
+ 523:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 524:Middlewares/Third_Party/lwrb/lwrb.c ****     return len;
+ 525:Middlewares/Third_Party/lwrb/lwrb.c **** }
+ 1283              		.loc 1 525 1 view .LVU391
+ 1284 000c 7047     		bx	lr
+ 1285              	.L105:
+ 496:Middlewares/Third_Party/lwrb/lwrb.c ****     size_t len;
+ 1286              		.loc 1 496 1 view .LVU392
+ 1287 000e 82B0     		sub	sp, sp, #8
+ 1288              		.cfi_def_cfa_offset 8
+ 509:Middlewares/Third_Party/lwrb/lwrb.c ****     r = LWRB_LOAD(buff->r, memory_order_relaxed);
+ 1289              		.loc 1 509 5 is_stmt 1 view .LVU393
+ 1290              	.LBB19:
+ 509:Middlewares/Third_Party/lwrb/lwrb.c ****     r = LWRB_LOAD(buff->r, memory_order_relaxed);
+ 1291              		.loc 1 509 9 view .LVU394
+ 1292              	.LVL138:
+ 509:Middlewares/Third_Party/lwrb/lwrb.c ****     r = LWRB_LOAD(buff->r, memory_order_relaxed);
+ 1293              		.loc 1 509 9 view .LVU395
+ 509:Middlewares/Third_Party/lwrb/lwrb.c ****     r = LWRB_LOAD(buff->r, memory_order_relaxed);
+ 1294              		.loc 1 509 9 view .LVU396
+ 1295 0010 DA68     		ldr	r2, [r3, #12]
+ 1296              	.LVL139:
+ 509:Middlewares/Third_Party/lwrb/lwrb.c ****     r = LWRB_LOAD(buff->r, memory_order_relaxed);
+ 1297              		.loc 1 509 9 view .LVU397
+ 1298              	.LBE19:
+ 509:Middlewares/Third_Party/lwrb/lwrb.c ****     r = LWRB_LOAD(buff->r, memory_order_relaxed);
+ 1299              		.loc 1 509 7 is_stmt 0 view .LVU398
+ 1300 0012 0192     		str	r2, [sp, #4]
+ 510:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccx4nf71.s 			page 38
+
+
+ 1301              		.loc 1 510 5 is_stmt 1 view .LVU399
+ 1302              	.LBB20:
+ 510:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 1303              		.loc 1 510 9 view .LVU400
+ 1304              	.LVL140:
+ 510:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 1305              		.loc 1 510 9 view .LVU401
+ 510:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 1306              		.loc 1 510 9 view .LVU402
+ 1307 0014 9A68     		ldr	r2, [r3, #8]
+ 1308              	.LVL141:
+ 510:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 1309              		.loc 1 510 9 view .LVU403
+ 1310              	.LBE20:
+ 510:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 1311              		.loc 1 510 7 is_stmt 0 view .LVU404
+ 1312 0016 0092     		str	r2, [sp]
+ 1313              	.LVL142:
+ 512:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 1314              		.loc 1 512 5 is_stmt 1 view .LVU405
+ 512:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 1315              		.loc 1 512 11 is_stmt 0 view .LVU406
+ 1316 0018 0199     		ldr	r1, [sp, #4]
+ 1317 001a 009A     		ldr	r2, [sp]
+ 1318              	.LVL143:
+ 512:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 1319              		.loc 1 512 8 view .LVU407
+ 1320 001c 9142     		cmp	r1, r2
+ 1321 001e 04D9     		bls	.L97
+ 514:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 1322              		.loc 1 514 9 is_stmt 1 view .LVU408
+ 514:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 1323              		.loc 1 514 17 is_stmt 0 view .LVU409
+ 1324 0020 0198     		ldr	r0, [sp, #4]
+ 1325 0022 009B     		ldr	r3, [sp]
+ 1326              	.LVL144:
+ 514:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 1327              		.loc 1 514 13 view .LVU410
+ 1328 0024 C01A     		subs	r0, r0, r3
+ 1329              	.LVL145:
+ 1330              	.L95:
+ 1331              		.loc 1 525 1 view .LVU411
+ 1332 0026 02B0     		add	sp, sp, #8
+ 1333              		.cfi_remember_state
+ 1334              		.cfi_def_cfa_offset 0
+ 1335              	.LVL146:
+ 1336              		.loc 1 525 1 view .LVU412
+ 1337              		@ sp needed
+ 1338 0028 7047     		bx	lr
+ 1339              	.LVL147:
+ 1340              	.L97:
+ 1341              		.cfi_restore_state
+ 516:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 1342              		.loc 1 516 10 is_stmt 1 view .LVU413
+ 516:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 1343              		.loc 1 516 16 is_stmt 0 view .LVU414
+ 1344 002a 0099     		ldr	r1, [sp]
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccx4nf71.s 			page 39
+
+
+ 1345 002c 019A     		ldr	r2, [sp, #4]
+ 516:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 1346              		.loc 1 516 13 view .LVU415
+ 1347 002e 9142     		cmp	r1, r2
+ 1348 0030 07D9     		bls	.L100
+ 518:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 1349              		.loc 1 518 9 is_stmt 1 view .LVU416
+ 518:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 1350              		.loc 1 518 19 is_stmt 0 view .LVU417
+ 1351 0032 5868     		ldr	r0, [r3, #4]
+ 518:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 1352              		.loc 1 518 26 view .LVU418
+ 1353 0034 009B     		ldr	r3, [sp]
+ 1354              	.LVL148:
+ 518:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 1355              		.loc 1 518 13 view .LVU419
+ 1356 0036 C01A     		subs	r0, r0, r3
+ 1357              	.LVL149:
+ 518:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 1358              		.loc 1 518 13 view .LVU420
+ 1359 0038 F5E7     		b	.L95
+ 1360              	.LVL150:
+ 1361              	.L98:
+ 1362              		.cfi_def_cfa_offset 0
+ 502:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 1363              		.loc 1 502 16 view .LVU421
+ 1364 003a 0020     		movs	r0, #0
+ 1365              	.LVL151:
+ 502:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 1366              		.loc 1 502 16 view .LVU422
+ 1367 003c 7047     		bx	lr
+ 1368              	.LVL152:
+ 1369              	.L99:
+ 502:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 1370              		.loc 1 502 16 view .LVU423
+ 1371 003e 0020     		movs	r0, #0
+ 1372              	.LVL153:
+ 502:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 1373              		.loc 1 502 16 view .LVU424
+ 1374 0040 7047     		bx	lr
+ 1375              	.LVL154:
+ 1376              	.L100:
+ 1377              		.cfi_def_cfa_offset 8
+ 522:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 1378              		.loc 1 522 13 view .LVU425
+ 1379 0042 0020     		movs	r0, #0
+ 1380 0044 EFE7     		b	.L95
+ 1381              		.cfi_endproc
+ 1382              	.LFE12:
+ 1384              		.section	.text.lwrb_skip,"ax",%progbits
+ 1385              		.align	1
+ 1386              		.global	lwrb_skip
+ 1387              		.syntax unified
+ 1388              		.thumb
+ 1389              		.thumb_func
+ 1390              		.fpu fpv4-sp-d16
+ 1392              	lwrb_skip:
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccx4nf71.s 			page 40
+
+
+ 1393              	.LVL155:
+ 1394              	.LFB13:
+ 526:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 527:Middlewares/Third_Party/lwrb/lwrb.c **** /**
+ 528:Middlewares/Third_Party/lwrb/lwrb.c ****  * \brief           Skip (ignore; advance read pointer) buffer data
+ 529:Middlewares/Third_Party/lwrb/lwrb.c ****  * Marks data as read in the buffer and increases free memory for up to `len` bytes
+ 530:Middlewares/Third_Party/lwrb/lwrb.c ****  *
+ 531:Middlewares/Third_Party/lwrb/lwrb.c ****  * \note            Useful at the end of streaming transfer such as DMA
+ 532:Middlewares/Third_Party/lwrb/lwrb.c ****  * \param[in]       buff: Buffer handle
+ 533:Middlewares/Third_Party/lwrb/lwrb.c ****  * \param[in]       len: Number of bytes to skip and mark as read
+ 534:Middlewares/Third_Party/lwrb/lwrb.c ****  * \return          Number of bytes skipped
+ 535:Middlewares/Third_Party/lwrb/lwrb.c ****  */
+ 536:Middlewares/Third_Party/lwrb/lwrb.c **** size_t
+ 537:Middlewares/Third_Party/lwrb/lwrb.c **** lwrb_skip(lwrb_t *buff, size_t len)
+ 538:Middlewares/Third_Party/lwrb/lwrb.c **** {
+ 1395              		.loc 1 538 1 is_stmt 1 view -0
+ 1396              		.cfi_startproc
+ 1397              		@ args = 0, pretend = 0, frame = 0
+ 1398              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1399              		.loc 1 538 1 is_stmt 0 view .LVU427
+ 1400 0000 70B5     		push	{r4, r5, r6, lr}
+ 1401              		.cfi_def_cfa_offset 16
+ 1402              		.cfi_offset 4, -16
+ 1403              		.cfi_offset 5, -12
+ 1404              		.cfi_offset 6, -8
+ 1405              		.cfi_offset 14, -4
+ 539:Middlewares/Third_Party/lwrb/lwrb.c ****     size_t full, r;
+ 1406              		.loc 1 539 5 is_stmt 1 view .LVU428
+ 540:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 541:Middlewares/Third_Party/lwrb/lwrb.c ****     if (!BUF_IS_VALID(buff) || len == 0)
+ 1407              		.loc 1 541 5 view .LVU429
+ 1408              		.loc 1 541 8 is_stmt 0 view .LVU430
+ 1409 0002 00B3     		cbz	r0, .L109
+ 1410 0004 0D46     		mov	r5, r1
+ 1411 0006 0646     		mov	r6, r0
+ 1412              		.loc 1 541 10 discriminator 1 view .LVU431
+ 1413 0008 0368     		ldr	r3, [r0]
+ 1414 000a F3B1     		cbz	r3, .L110
+ 1415              		.loc 1 541 10 discriminator 2 view .LVU432
+ 1416 000c 4468     		ldr	r4, [r0, #4]
+ 1417              		.loc 1 541 9 discriminator 2 view .LVU433
+ 1418 000e 0CB1     		cbz	r4, .L106
+ 1419              		.loc 1 541 29 discriminator 3 view .LVU434
+ 1420 0010 11B9     		cbnz	r1, .L113
+ 542:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 543:Middlewares/Third_Party/lwrb/lwrb.c ****         return 0;
+ 1421              		.loc 1 543 16 view .LVU435
+ 1422 0012 0C46     		mov	r4, r1
+ 1423              	.LVL156:
+ 1424              	.L106:
+ 544:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 545:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 546:Middlewares/Third_Party/lwrb/lwrb.c ****     full = lwrb_get_full(buff);
+ 547:Middlewares/Third_Party/lwrb/lwrb.c ****     len = BUF_MIN(len, full);
+ 548:Middlewares/Third_Party/lwrb/lwrb.c ****     r = LWRB_LOAD(buff->r, memory_order_relaxed);
+ 549:Middlewares/Third_Party/lwrb/lwrb.c ****     r += len;
+ 550:Middlewares/Third_Party/lwrb/lwrb.c ****     if (r >= buff->size)
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccx4nf71.s 			page 41
+
+
+ 551:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 552:Middlewares/Third_Party/lwrb/lwrb.c ****         r -= buff->size;
+ 553:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 554:Middlewares/Third_Party/lwrb/lwrb.c ****     LWRB_STORE(buff->r, r, memory_order_release);
+ 555:Middlewares/Third_Party/lwrb/lwrb.c ****     BUF_SEND_EVT(buff, LWRB_EVT_READ, len);
+ 556:Middlewares/Third_Party/lwrb/lwrb.c ****     return len;
+ 557:Middlewares/Third_Party/lwrb/lwrb.c **** }
+ 1425              		.loc 1 557 1 view .LVU436
+ 1426 0014 2046     		mov	r0, r4
+ 1427 0016 70BD     		pop	{r4, r5, r6, pc}
+ 1428              	.LVL157:
+ 1429              	.L113:
+ 546:Middlewares/Third_Party/lwrb/lwrb.c ****     len = BUF_MIN(len, full);
+ 1430              		.loc 1 546 5 is_stmt 1 view .LVU437
+ 546:Middlewares/Third_Party/lwrb/lwrb.c ****     len = BUF_MIN(len, full);
+ 1431              		.loc 1 546 12 is_stmt 0 view .LVU438
+ 1432 0018 FFF7FEFF 		bl	lwrb_get_full
+ 1433              	.LVL158:
+ 547:Middlewares/Third_Party/lwrb/lwrb.c ****     r = LWRB_LOAD(buff->r, memory_order_relaxed);
+ 1434              		.loc 1 547 5 is_stmt 1 view .LVU439
+ 547:Middlewares/Third_Party/lwrb/lwrb.c ****     r = LWRB_LOAD(buff->r, memory_order_relaxed);
+ 1435              		.loc 1 547 9 is_stmt 0 view .LVU440
+ 1436 001c 2C46     		mov	r4, r5
+ 1437 001e 8542     		cmp	r5, r0
+ 1438 0020 28BF     		it	cs
+ 1439 0022 0446     		movcs	r4, r0
+ 1440              	.LVL159:
+ 548:Middlewares/Third_Party/lwrb/lwrb.c ****     r += len;
+ 1441              		.loc 1 548 5 is_stmt 1 view .LVU441
+ 1442              	.LBB21:
+ 548:Middlewares/Third_Party/lwrb/lwrb.c ****     r += len;
+ 1443              		.loc 1 548 9 view .LVU442
+ 548:Middlewares/Third_Party/lwrb/lwrb.c ****     r += len;
+ 1444              		.loc 1 548 9 view .LVU443
+ 548:Middlewares/Third_Party/lwrb/lwrb.c ****     r += len;
+ 1445              		.loc 1 548 9 view .LVU444
+ 1446 0024 B368     		ldr	r3, [r6, #8]
+ 1447              	.LVL160:
+ 548:Middlewares/Third_Party/lwrb/lwrb.c ****     r += len;
+ 1448              		.loc 1 548 9 view .LVU445
+ 548:Middlewares/Third_Party/lwrb/lwrb.c ****     r += len;
+ 1449              		.loc 1 548 9 is_stmt 0 view .LVU446
+ 1450              	.LBE21:
+ 549:Middlewares/Third_Party/lwrb/lwrb.c ****     if (r >= buff->size)
+ 1451              		.loc 1 549 5 is_stmt 1 view .LVU447
+ 549:Middlewares/Third_Party/lwrb/lwrb.c ****     if (r >= buff->size)
+ 1452              		.loc 1 549 7 is_stmt 0 view .LVU448
+ 1453 0026 2344     		add	r3, r3, r4
+ 1454              	.LVL161:
+ 550:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 1455              		.loc 1 550 5 is_stmt 1 view .LVU449
+ 550:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 1456              		.loc 1 550 18 is_stmt 0 view .LVU450
+ 1457 0028 7268     		ldr	r2, [r6, #4]
+ 550:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 1458              		.loc 1 550 8 view .LVU451
+ 1459 002a 9A42     		cmp	r2, r3
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccx4nf71.s 			page 42
+
+
+ 1460 002c 00D8     		bhi	.L108
+ 552:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 1461              		.loc 1 552 9 is_stmt 1 view .LVU452
+ 552:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 1462              		.loc 1 552 11 is_stmt 0 view .LVU453
+ 1463 002e 9B1A     		subs	r3, r3, r2
+ 1464              	.LVL162:
+ 1465              	.L108:
+ 554:Middlewares/Third_Party/lwrb/lwrb.c ****     BUF_SEND_EVT(buff, LWRB_EVT_READ, len);
+ 1466              		.loc 1 554 5 is_stmt 1 view .LVU454
+ 1467              	.LBB22:
+ 554:Middlewares/Third_Party/lwrb/lwrb.c ****     BUF_SEND_EVT(buff, LWRB_EVT_READ, len);
+ 1468              		.loc 1 554 5 view .LVU455
+ 554:Middlewares/Third_Party/lwrb/lwrb.c ****     BUF_SEND_EVT(buff, LWRB_EVT_READ, len);
+ 1469              		.loc 1 554 5 view .LVU456
+ 554:Middlewares/Third_Party/lwrb/lwrb.c ****     BUF_SEND_EVT(buff, LWRB_EVT_READ, len);
+ 1470              		.loc 1 554 5 view .LVU457
+ 1471 0030 BFF35B8F 		dmb	ish
+ 1472 0034 B360     		str	r3, [r6, #8]
+ 1473              	.LBE22:
+ 555:Middlewares/Third_Party/lwrb/lwrb.c ****     return len;
+ 1474              		.loc 1 555 5 view .LVU458
+ 555:Middlewares/Third_Party/lwrb/lwrb.c ****     return len;
+ 1475              		.loc 1 555 5 view .LVU459
+ 1476 0036 3369     		ldr	r3, [r6, #16]
+ 1477              	.LVL163:
+ 555:Middlewares/Third_Party/lwrb/lwrb.c ****     return len;
+ 1478              		.loc 1 555 5 is_stmt 0 view .LVU460
+ 1479 0038 002B     		cmp	r3, #0
+ 1480 003a EBD0     		beq	.L106
+ 555:Middlewares/Third_Party/lwrb/lwrb.c ****     return len;
+ 1481              		.loc 1 555 5 is_stmt 1 discriminator 1 view .LVU461
+ 1482 003c 2246     		mov	r2, r4
+ 1483 003e 0021     		movs	r1, #0
+ 1484 0040 3046     		mov	r0, r6
+ 1485              	.LVL164:
+ 555:Middlewares/Third_Party/lwrb/lwrb.c ****     return len;
+ 1486              		.loc 1 555 5 is_stmt 0 discriminator 1 view .LVU462
+ 1487 0042 9847     		blx	r3
+ 1488              	.LVL165:
+ 555:Middlewares/Third_Party/lwrb/lwrb.c ****     return len;
+ 1489              		.loc 1 555 5 discriminator 1 view .LVU463
+ 1490 0044 E6E7     		b	.L106
+ 1491              	.LVL166:
+ 1492              	.L109:
+ 543:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 1493              		.loc 1 543 16 view .LVU464
+ 1494 0046 0024     		movs	r4, #0
+ 1495 0048 E4E7     		b	.L106
+ 1496              	.L110:
+ 543:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 1497              		.loc 1 543 16 view .LVU465
+ 1498 004a 0024     		movs	r4, #0
+ 1499 004c E2E7     		b	.L106
+ 1500              		.cfi_endproc
+ 1501              	.LFE13:
+ 1503              		.section	.text.lwrb_get_linear_block_write_address,"ax",%progbits
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccx4nf71.s 			page 43
+
+
+ 1504              		.align	1
+ 1505              		.global	lwrb_get_linear_block_write_address
+ 1506              		.syntax unified
+ 1507              		.thumb
+ 1508              		.thumb_func
+ 1509              		.fpu fpv4-sp-d16
+ 1511              	lwrb_get_linear_block_write_address:
+ 1512              	.LVL167:
+ 1513              	.LFB14:
+ 558:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 559:Middlewares/Third_Party/lwrb/lwrb.c **** /**
+ 560:Middlewares/Third_Party/lwrb/lwrb.c ****  * \brief           Get linear address for buffer for fast read
+ 561:Middlewares/Third_Party/lwrb/lwrb.c ****  * \param[in]       buff: Buffer handle
+ 562:Middlewares/Third_Party/lwrb/lwrb.c ****  * \return          Linear buffer start address
+ 563:Middlewares/Third_Party/lwrb/lwrb.c ****  */
+ 564:Middlewares/Third_Party/lwrb/lwrb.c **** void *
+ 565:Middlewares/Third_Party/lwrb/lwrb.c **** lwrb_get_linear_block_write_address(const lwrb_t *buff)
+ 566:Middlewares/Third_Party/lwrb/lwrb.c **** {
+ 1514              		.loc 1 566 1 is_stmt 1 view -0
+ 1515              		.cfi_startproc
+ 1516              		@ args = 0, pretend = 0, frame = 0
+ 1517              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1518              		@ link register save eliminated.
+ 567:Middlewares/Third_Party/lwrb/lwrb.c ****     if (!BUF_IS_VALID(buff))
+ 1519              		.loc 1 567 5 view .LVU467
+ 1520              		.loc 1 567 8 is_stmt 0 view .LVU468
+ 1521 0000 0346     		mov	r3, r0
+ 1522 0002 30B1     		cbz	r0, .L116
+ 1523              		.loc 1 567 10 discriminator 1 view .LVU469
+ 1524 0004 0068     		ldr	r0, [r0]
+ 1525              	.LVL168:
+ 1526              		.loc 1 567 10 discriminator 1 view .LVU470
+ 1527 0006 30B1     		cbz	r0, .L114
+ 1528              		.loc 1 567 10 discriminator 2 view .LVU471
+ 1529 0008 5A68     		ldr	r2, [r3, #4]
+ 1530              		.loc 1 567 9 discriminator 2 view .LVU472
+ 1531 000a 1AB1     		cbz	r2, .L117
+ 568:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 569:Middlewares/Third_Party/lwrb/lwrb.c ****         return NULL;
+ 570:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 571:Middlewares/Third_Party/lwrb/lwrb.c ****     return &buff->buff[buff->w];
+ 1532              		.loc 1 571 5 is_stmt 1 view .LVU473
+ 1533              		.loc 1 571 28 is_stmt 0 view .LVU474
+ 1534 000c DB68     		ldr	r3, [r3, #12]
+ 1535              	.LVL169:
+ 1536              		.loc 1 571 12 view .LVU475
+ 1537 000e 1844     		add	r0, r0, r3
+ 1538 0010 7047     		bx	lr
+ 1539              	.LVL170:
+ 1540              	.L116:
+ 1541              		.loc 1 571 12 view .LVU476
+ 1542 0012 7047     		bx	lr
+ 1543              	.LVL171:
+ 1544              	.L117:
+ 569:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 1545              		.loc 1 569 16 view .LVU477
+ 1546 0014 0020     		movs	r0, #0
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccx4nf71.s 			page 44
+
+
+ 1547              	.L114:
+ 572:Middlewares/Third_Party/lwrb/lwrb.c **** }
+ 1548              		.loc 1 572 1 view .LVU478
+ 1549 0016 7047     		bx	lr
+ 1550              		.cfi_endproc
+ 1551              	.LFE14:
+ 1553              		.section	.text.lwrb_get_linear_block_write_length,"ax",%progbits
+ 1554              		.align	1
+ 1555              		.global	lwrb_get_linear_block_write_length
+ 1556              		.syntax unified
+ 1557              		.thumb
+ 1558              		.thumb_func
+ 1559              		.fpu fpv4-sp-d16
+ 1561              	lwrb_get_linear_block_write_length:
+ 1562              	.LVL172:
+ 1563              	.LFB15:
+ 573:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 574:Middlewares/Third_Party/lwrb/lwrb.c **** /**
+ 575:Middlewares/Third_Party/lwrb/lwrb.c ****  * \brief           Get length of linear block address before it overflows for write operation
+ 576:Middlewares/Third_Party/lwrb/lwrb.c ****  * \param[in]       buff: Buffer handle
+ 577:Middlewares/Third_Party/lwrb/lwrb.c ****  * \return          Linear buffer size in units of bytes for write operation
+ 578:Middlewares/Third_Party/lwrb/lwrb.c ****  */
+ 579:Middlewares/Third_Party/lwrb/lwrb.c **** size_t
+ 580:Middlewares/Third_Party/lwrb/lwrb.c **** lwrb_get_linear_block_write_length(const lwrb_t *buff)
+ 581:Middlewares/Third_Party/lwrb/lwrb.c **** {
+ 1564              		.loc 1 581 1 is_stmt 1 view -0
+ 1565              		.cfi_startproc
+ 1566              		@ args = 0, pretend = 0, frame = 8
+ 1567              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1568              		@ link register save eliminated.
+ 582:Middlewares/Third_Party/lwrb/lwrb.c ****     size_t len;
+ 1569              		.loc 1 582 5 view .LVU480
+ 583:Middlewares/Third_Party/lwrb/lwrb.c ****     volatile size_t w, r;
+ 1570              		.loc 1 583 5 view .LVU481
+ 584:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 585:Middlewares/Third_Party/lwrb/lwrb.c ****     if (!BUF_IS_VALID(buff))
+ 1571              		.loc 1 585 5 view .LVU482
+ 1572              		.loc 1 585 8 is_stmt 0 view .LVU483
+ 1573 0000 D0B1     		cbz	r0, .L121
+ 1574 0002 0346     		mov	r3, r0
+ 1575              		.loc 1 585 10 discriminator 1 view .LVU484
+ 1576 0004 0268     		ldr	r2, [r0]
+ 1577 0006 CAB1     		cbz	r2, .L122
+ 1578              		.loc 1 585 10 discriminator 2 view .LVU485
+ 1579 0008 4068     		ldr	r0, [r0, #4]
+ 1580              	.LVL173:
+ 1581              		.loc 1 585 9 discriminator 2 view .LVU486
+ 1582 000a 00B9     		cbnz	r0, .L127
+ 586:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 587:Middlewares/Third_Party/lwrb/lwrb.c ****         return 0;
+ 588:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 589:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 590:Middlewares/Third_Party/lwrb/lwrb.c ****     /*
+ 591:Middlewares/Third_Party/lwrb/lwrb.c ****      * Use temporary values in case they are changed during operations.
+ 592:Middlewares/Third_Party/lwrb/lwrb.c ****      * See lwrb_buff_free or lwrb_buff_full functions for more information why this is OK.
+ 593:Middlewares/Third_Party/lwrb/lwrb.c ****      */
+ 594:Middlewares/Third_Party/lwrb/lwrb.c ****     w = LWRB_LOAD(buff->w, memory_order_relaxed);
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccx4nf71.s 			page 45
+
+
+ 595:Middlewares/Third_Party/lwrb/lwrb.c ****     r = LWRB_LOAD(buff->r, memory_order_relaxed);
+ 596:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 597:Middlewares/Third_Party/lwrb/lwrb.c ****     if (w >= r)
+ 598:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 599:Middlewares/Third_Party/lwrb/lwrb.c ****         len = buff->size - w;
+ 600:Middlewares/Third_Party/lwrb/lwrb.c ****         /*
+ 601:Middlewares/Third_Party/lwrb/lwrb.c ****          * When read pointer is 0,
+ 602:Middlewares/Third_Party/lwrb/lwrb.c ****          * maximal length is one less as if too many bytes
+ 603:Middlewares/Third_Party/lwrb/lwrb.c ****          * are written, buffer would be considered empty again (r == w)
+ 604:Middlewares/Third_Party/lwrb/lwrb.c ****          */
+ 605:Middlewares/Third_Party/lwrb/lwrb.c ****         if (r == 0)
+ 606:Middlewares/Third_Party/lwrb/lwrb.c ****         {
+ 607:Middlewares/Third_Party/lwrb/lwrb.c ****             /*
+ 608:Middlewares/Third_Party/lwrb/lwrb.c ****              * Cannot overflow:
+ 609:Middlewares/Third_Party/lwrb/lwrb.c ****              * - If r is not 0, statement does not get called
+ 610:Middlewares/Third_Party/lwrb/lwrb.c ****              * - buff->size cannot be 0 and if r is 0, len is greater 0
+ 611:Middlewares/Third_Party/lwrb/lwrb.c ****              */
+ 612:Middlewares/Third_Party/lwrb/lwrb.c ****             --len;
+ 613:Middlewares/Third_Party/lwrb/lwrb.c ****         }
+ 614:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 615:Middlewares/Third_Party/lwrb/lwrb.c ****     else
+ 616:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 617:Middlewares/Third_Party/lwrb/lwrb.c ****         len = r - w - 1;
+ 618:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 619:Middlewares/Third_Party/lwrb/lwrb.c ****     return len;
+ 620:Middlewares/Third_Party/lwrb/lwrb.c **** }
+ 1583              		.loc 1 620 1 view .LVU487
+ 1584 000c 7047     		bx	lr
+ 1585              	.L127:
+ 581:Middlewares/Third_Party/lwrb/lwrb.c ****     size_t len;
+ 1586              		.loc 1 581 1 view .LVU488
+ 1587 000e 82B0     		sub	sp, sp, #8
+ 1588              		.cfi_def_cfa_offset 8
+ 594:Middlewares/Third_Party/lwrb/lwrb.c ****     r = LWRB_LOAD(buff->r, memory_order_relaxed);
+ 1589              		.loc 1 594 5 is_stmt 1 view .LVU489
+ 1590              	.LBB23:
+ 594:Middlewares/Third_Party/lwrb/lwrb.c ****     r = LWRB_LOAD(buff->r, memory_order_relaxed);
+ 1591              		.loc 1 594 9 view .LVU490
+ 1592              	.LVL174:
+ 594:Middlewares/Third_Party/lwrb/lwrb.c ****     r = LWRB_LOAD(buff->r, memory_order_relaxed);
+ 1593              		.loc 1 594 9 view .LVU491
+ 594:Middlewares/Third_Party/lwrb/lwrb.c ****     r = LWRB_LOAD(buff->r, memory_order_relaxed);
+ 1594              		.loc 1 594 9 view .LVU492
+ 1595 0010 DA68     		ldr	r2, [r3, #12]
+ 1596              	.LVL175:
+ 594:Middlewares/Third_Party/lwrb/lwrb.c ****     r = LWRB_LOAD(buff->r, memory_order_relaxed);
+ 1597              		.loc 1 594 9 view .LVU493
+ 1598              	.LBE23:
+ 594:Middlewares/Third_Party/lwrb/lwrb.c ****     r = LWRB_LOAD(buff->r, memory_order_relaxed);
+ 1599              		.loc 1 594 7 is_stmt 0 view .LVU494
+ 1600 0012 0192     		str	r2, [sp, #4]
+ 595:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 1601              		.loc 1 595 5 is_stmt 1 view .LVU495
+ 1602              	.LBB24:
+ 595:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 1603              		.loc 1 595 9 view .LVU496
+ 1604              	.LVL176:
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccx4nf71.s 			page 46
+
+
+ 595:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 1605              		.loc 1 595 9 view .LVU497
+ 595:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 1606              		.loc 1 595 9 view .LVU498
+ 1607 0014 9A68     		ldr	r2, [r3, #8]
+ 1608              	.LVL177:
+ 595:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 1609              		.loc 1 595 9 view .LVU499
+ 1610              	.LBE24:
+ 595:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 1611              		.loc 1 595 7 is_stmt 0 view .LVU500
+ 1612 0016 0092     		str	r2, [sp]
+ 1613              	.LVL178:
+ 597:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 1614              		.loc 1 597 5 is_stmt 1 view .LVU501
+ 597:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 1615              		.loc 1 597 11 is_stmt 0 view .LVU502
+ 1616 0018 0199     		ldr	r1, [sp, #4]
+ 1617 001a 009A     		ldr	r2, [sp]
+ 1618              	.LVL179:
+ 597:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 1619              		.loc 1 597 8 view .LVU503
+ 1620 001c 9142     		cmp	r1, r2
+ 1621 001e 05D3     		bcc	.L120
+ 599:Middlewares/Third_Party/lwrb/lwrb.c ****         /*
+ 1622              		.loc 1 599 9 is_stmt 1 view .LVU504
+ 599:Middlewares/Third_Party/lwrb/lwrb.c ****         /*
+ 1623              		.loc 1 599 26 is_stmt 0 view .LVU505
+ 1624 0020 019B     		ldr	r3, [sp, #4]
+ 1625              	.LVL180:
+ 599:Middlewares/Third_Party/lwrb/lwrb.c ****         /*
+ 1626              		.loc 1 599 13 view .LVU506
+ 1627 0022 C01A     		subs	r0, r0, r3
+ 1628              	.LVL181:
+ 605:Middlewares/Third_Party/lwrb/lwrb.c ****         {
+ 1629              		.loc 1 605 9 is_stmt 1 view .LVU507
+ 605:Middlewares/Third_Party/lwrb/lwrb.c ****         {
+ 1630              		.loc 1 605 15 is_stmt 0 view .LVU508
+ 1631 0024 009B     		ldr	r3, [sp]
+ 605:Middlewares/Third_Party/lwrb/lwrb.c ****         {
+ 1632              		.loc 1 605 12 view .LVU509
+ 1633 0026 2BB9     		cbnz	r3, .L118
+ 612:Middlewares/Third_Party/lwrb/lwrb.c ****         }
+ 1634              		.loc 1 612 13 is_stmt 1 view .LVU510
+ 1635 0028 0138     		subs	r0, r0, #1
+ 1636              	.LVL182:
+ 612:Middlewares/Third_Party/lwrb/lwrb.c ****         }
+ 1637              		.loc 1 612 13 is_stmt 0 view .LVU511
+ 1638 002a 03E0     		b	.L118
+ 1639              	.LVL183:
+ 1640              	.L120:
+ 617:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 1641              		.loc 1 617 9 is_stmt 1 view .LVU512
+ 617:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 1642              		.loc 1 617 17 is_stmt 0 view .LVU513
+ 1643 002c 0098     		ldr	r0, [sp]
+ 1644 002e 019B     		ldr	r3, [sp, #4]
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccx4nf71.s 			page 47
+
+
+ 1645              	.LVL184:
+ 617:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 1646              		.loc 1 617 17 view .LVU514
+ 1647 0030 C01A     		subs	r0, r0, r3
+ 617:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 1648              		.loc 1 617 13 view .LVU515
+ 1649 0032 0138     		subs	r0, r0, #1
+ 1650              	.LVL185:
+ 1651              	.L118:
+ 1652              		.loc 1 620 1 view .LVU516
+ 1653 0034 02B0     		add	sp, sp, #8
+ 1654              		.cfi_def_cfa_offset 0
+ 1655              	.LVL186:
+ 1656              		.loc 1 620 1 view .LVU517
+ 1657              		@ sp needed
+ 1658 0036 7047     		bx	lr
+ 1659              	.LVL187:
+ 1660              	.L121:
+ 587:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 1661              		.loc 1 587 16 view .LVU518
+ 1662 0038 0020     		movs	r0, #0
+ 1663              	.LVL188:
+ 587:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 1664              		.loc 1 587 16 view .LVU519
+ 1665 003a 7047     		bx	lr
+ 1666              	.LVL189:
+ 1667              	.L122:
+ 587:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 1668              		.loc 1 587 16 view .LVU520
+ 1669 003c 0020     		movs	r0, #0
+ 1670              	.LVL190:
+ 587:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 1671              		.loc 1 587 16 view .LVU521
+ 1672 003e 7047     		bx	lr
+ 1673              		.cfi_endproc
+ 1674              	.LFE15:
+ 1676              		.section	.text.lwrb_advance,"ax",%progbits
+ 1677              		.align	1
+ 1678              		.global	lwrb_advance
+ 1679              		.syntax unified
+ 1680              		.thumb
+ 1681              		.thumb_func
+ 1682              		.fpu fpv4-sp-d16
+ 1684              	lwrb_advance:
+ 1685              	.LVL191:
+ 1686              	.LFB16:
+ 621:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 622:Middlewares/Third_Party/lwrb/lwrb.c **** /**
+ 623:Middlewares/Third_Party/lwrb/lwrb.c ****  * \brief           Advance write pointer in the buffer.
+ 624:Middlewares/Third_Party/lwrb/lwrb.c ****  * Similar to skip function but modifies write pointer instead of read
+ 625:Middlewares/Third_Party/lwrb/lwrb.c ****  *
+ 626:Middlewares/Third_Party/lwrb/lwrb.c ****  * \note            Useful when hardware is writing to buffer and application needs to increase num
+ 627:Middlewares/Third_Party/lwrb/lwrb.c ****  *                      of bytes written to buffer by hardware
+ 628:Middlewares/Third_Party/lwrb/lwrb.c ****  * \param[in]       buff: Buffer handle
+ 629:Middlewares/Third_Party/lwrb/lwrb.c ****  * \param[in]       len: Number of bytes to advance
+ 630:Middlewares/Third_Party/lwrb/lwrb.c ****  * \return          Number of bytes advanced for write operation
+ 631:Middlewares/Third_Party/lwrb/lwrb.c ****  */
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccx4nf71.s 			page 48
+
+
+ 632:Middlewares/Third_Party/lwrb/lwrb.c **** size_t
+ 633:Middlewares/Third_Party/lwrb/lwrb.c **** lwrb_advance(lwrb_t *buff, size_t len)
+ 634:Middlewares/Third_Party/lwrb/lwrb.c **** {
+ 1687              		.loc 1 634 1 is_stmt 1 view -0
+ 1688              		.cfi_startproc
+ 1689              		@ args = 0, pretend = 0, frame = 0
+ 1690              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1691              		.loc 1 634 1 is_stmt 0 view .LVU523
+ 1692 0000 70B5     		push	{r4, r5, r6, lr}
+ 1693              		.cfi_def_cfa_offset 16
+ 1694              		.cfi_offset 4, -16
+ 1695              		.cfi_offset 5, -12
+ 1696              		.cfi_offset 6, -8
+ 1697              		.cfi_offset 14, -4
+ 635:Middlewares/Third_Party/lwrb/lwrb.c ****     size_t free, w;
+ 1698              		.loc 1 635 5 is_stmt 1 view .LVU524
+ 636:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 637:Middlewares/Third_Party/lwrb/lwrb.c ****     if (!BUF_IS_VALID(buff) || len == 0)
+ 1699              		.loc 1 637 5 view .LVU525
+ 1700              		.loc 1 637 8 is_stmt 0 view .LVU526
+ 1701 0002 00B3     		cbz	r0, .L131
+ 1702 0004 0D46     		mov	r5, r1
+ 1703 0006 0646     		mov	r6, r0
+ 1704              		.loc 1 637 10 discriminator 1 view .LVU527
+ 1705 0008 0368     		ldr	r3, [r0]
+ 1706 000a F3B1     		cbz	r3, .L132
+ 1707              		.loc 1 637 10 discriminator 2 view .LVU528
+ 1708 000c 4468     		ldr	r4, [r0, #4]
+ 1709              		.loc 1 637 9 discriminator 2 view .LVU529
+ 1710 000e 0CB1     		cbz	r4, .L128
+ 1711              		.loc 1 637 29 discriminator 3 view .LVU530
+ 1712 0010 11B9     		cbnz	r1, .L135
+ 638:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 639:Middlewares/Third_Party/lwrb/lwrb.c ****         return 0;
+ 1713              		.loc 1 639 16 view .LVU531
+ 1714 0012 0C46     		mov	r4, r1
+ 1715              	.LVL192:
+ 1716              	.L128:
+ 640:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 641:Middlewares/Third_Party/lwrb/lwrb.c **** 
+ 642:Middlewares/Third_Party/lwrb/lwrb.c ****     /* Use local variables before writing back to main structure */
+ 643:Middlewares/Third_Party/lwrb/lwrb.c ****     free = lwrb_get_free(buff);
+ 644:Middlewares/Third_Party/lwrb/lwrb.c ****     len = BUF_MIN(len, free);
+ 645:Middlewares/Third_Party/lwrb/lwrb.c ****     w = LWRB_LOAD(buff->w, memory_order_relaxed);
+ 646:Middlewares/Third_Party/lwrb/lwrb.c ****     w += len;
+ 647:Middlewares/Third_Party/lwrb/lwrb.c ****     if (w >= buff->size)
+ 648:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 649:Middlewares/Third_Party/lwrb/lwrb.c ****         w -= buff->size;
+ 650:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 651:Middlewares/Third_Party/lwrb/lwrb.c ****     LWRB_STORE(buff->w, w, memory_order_release);
+ 652:Middlewares/Third_Party/lwrb/lwrb.c ****     BUF_SEND_EVT(buff, LWRB_EVT_WRITE, len);
+ 653:Middlewares/Third_Party/lwrb/lwrb.c ****     return len;
+ 654:Middlewares/Third_Party/lwrb/lwrb.c **** }
+ 1717              		.loc 1 654 1 view .LVU532
+ 1718 0014 2046     		mov	r0, r4
+ 1719 0016 70BD     		pop	{r4, r5, r6, pc}
+ 1720              	.LVL193:
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccx4nf71.s 			page 49
+
+
+ 1721              	.L135:
+ 643:Middlewares/Third_Party/lwrb/lwrb.c ****     len = BUF_MIN(len, free);
+ 1722              		.loc 1 643 5 is_stmt 1 view .LVU533
+ 643:Middlewares/Third_Party/lwrb/lwrb.c ****     len = BUF_MIN(len, free);
+ 1723              		.loc 1 643 12 is_stmt 0 view .LVU534
+ 1724 0018 FFF7FEFF 		bl	lwrb_get_free
+ 1725              	.LVL194:
+ 644:Middlewares/Third_Party/lwrb/lwrb.c ****     w = LWRB_LOAD(buff->w, memory_order_relaxed);
+ 1726              		.loc 1 644 5 is_stmt 1 view .LVU535
+ 644:Middlewares/Third_Party/lwrb/lwrb.c ****     w = LWRB_LOAD(buff->w, memory_order_relaxed);
+ 1727              		.loc 1 644 9 is_stmt 0 view .LVU536
+ 1728 001c 2C46     		mov	r4, r5
+ 1729 001e 8542     		cmp	r5, r0
+ 1730 0020 28BF     		it	cs
+ 1731 0022 0446     		movcs	r4, r0
+ 1732              	.LVL195:
+ 645:Middlewares/Third_Party/lwrb/lwrb.c ****     w += len;
+ 1733              		.loc 1 645 5 is_stmt 1 view .LVU537
+ 1734              	.LBB25:
+ 645:Middlewares/Third_Party/lwrb/lwrb.c ****     w += len;
+ 1735              		.loc 1 645 9 view .LVU538
+ 645:Middlewares/Third_Party/lwrb/lwrb.c ****     w += len;
+ 1736              		.loc 1 645 9 view .LVU539
+ 645:Middlewares/Third_Party/lwrb/lwrb.c ****     w += len;
+ 1737              		.loc 1 645 9 view .LVU540
+ 1738 0024 F368     		ldr	r3, [r6, #12]
+ 1739              	.LVL196:
+ 645:Middlewares/Third_Party/lwrb/lwrb.c ****     w += len;
+ 1740              		.loc 1 645 9 view .LVU541
+ 645:Middlewares/Third_Party/lwrb/lwrb.c ****     w += len;
+ 1741              		.loc 1 645 9 is_stmt 0 view .LVU542
+ 1742              	.LBE25:
+ 646:Middlewares/Third_Party/lwrb/lwrb.c ****     if (w >= buff->size)
+ 1743              		.loc 1 646 5 is_stmt 1 view .LVU543
+ 646:Middlewares/Third_Party/lwrb/lwrb.c ****     if (w >= buff->size)
+ 1744              		.loc 1 646 7 is_stmt 0 view .LVU544
+ 1745 0026 2344     		add	r3, r3, r4
+ 1746              	.LVL197:
+ 647:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 1747              		.loc 1 647 5 is_stmt 1 view .LVU545
+ 647:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 1748              		.loc 1 647 18 is_stmt 0 view .LVU546
+ 1749 0028 7268     		ldr	r2, [r6, #4]
+ 647:Middlewares/Third_Party/lwrb/lwrb.c ****     {
+ 1750              		.loc 1 647 8 view .LVU547
+ 1751 002a 9A42     		cmp	r2, r3
+ 1752 002c 00D8     		bhi	.L130
+ 649:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 1753              		.loc 1 649 9 is_stmt 1 view .LVU548
+ 649:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 1754              		.loc 1 649 11 is_stmt 0 view .LVU549
+ 1755 002e 9B1A     		subs	r3, r3, r2
+ 1756              	.LVL198:
+ 1757              	.L130:
+ 651:Middlewares/Third_Party/lwrb/lwrb.c ****     BUF_SEND_EVT(buff, LWRB_EVT_WRITE, len);
+ 1758              		.loc 1 651 5 is_stmt 1 view .LVU550
+ 1759              	.LBB26:
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccx4nf71.s 			page 50
+
+
+ 651:Middlewares/Third_Party/lwrb/lwrb.c ****     BUF_SEND_EVT(buff, LWRB_EVT_WRITE, len);
+ 1760              		.loc 1 651 5 view .LVU551
+ 651:Middlewares/Third_Party/lwrb/lwrb.c ****     BUF_SEND_EVT(buff, LWRB_EVT_WRITE, len);
+ 1761              		.loc 1 651 5 view .LVU552
+ 651:Middlewares/Third_Party/lwrb/lwrb.c ****     BUF_SEND_EVT(buff, LWRB_EVT_WRITE, len);
+ 1762              		.loc 1 651 5 view .LVU553
+ 1763 0030 BFF35B8F 		dmb	ish
+ 1764 0034 F360     		str	r3, [r6, #12]
+ 1765              	.LBE26:
+ 652:Middlewares/Third_Party/lwrb/lwrb.c ****     return len;
+ 1766              		.loc 1 652 5 view .LVU554
+ 652:Middlewares/Third_Party/lwrb/lwrb.c ****     return len;
+ 1767              		.loc 1 652 5 view .LVU555
+ 1768 0036 3369     		ldr	r3, [r6, #16]
+ 1769              	.LVL199:
+ 652:Middlewares/Third_Party/lwrb/lwrb.c ****     return len;
+ 1770              		.loc 1 652 5 is_stmt 0 view .LVU556
+ 1771 0038 002B     		cmp	r3, #0
+ 1772 003a EBD0     		beq	.L128
+ 652:Middlewares/Third_Party/lwrb/lwrb.c ****     return len;
+ 1773              		.loc 1 652 5 is_stmt 1 discriminator 1 view .LVU557
+ 1774 003c 2246     		mov	r2, r4
+ 1775 003e 0121     		movs	r1, #1
+ 1776 0040 3046     		mov	r0, r6
+ 1777              	.LVL200:
+ 652:Middlewares/Third_Party/lwrb/lwrb.c ****     return len;
+ 1778              		.loc 1 652 5 is_stmt 0 discriminator 1 view .LVU558
+ 1779 0042 9847     		blx	r3
+ 1780              	.LVL201:
+ 652:Middlewares/Third_Party/lwrb/lwrb.c ****     return len;
+ 1781              		.loc 1 652 5 discriminator 1 view .LVU559
+ 1782 0044 E6E7     		b	.L128
+ 1783              	.LVL202:
+ 1784              	.L131:
+ 639:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 1785              		.loc 1 639 16 view .LVU560
+ 1786 0046 0024     		movs	r4, #0
+ 1787 0048 E4E7     		b	.L128
+ 1788              	.L132:
+ 639:Middlewares/Third_Party/lwrb/lwrb.c ****     }
+ 1789              		.loc 1 639 16 view .LVU561
+ 1790 004a 0024     		movs	r4, #0
+ 1791 004c E2E7     		b	.L128
+ 1792              		.cfi_endproc
+ 1793              	.LFE16:
+ 1795              		.text
+ 1796              	.Letext0:
+ 1797              		.file 2 "/opt/homebrew/Cellar/arm-none-eabi-gcc/10.3-2021.07/gcc/arm-none-eabi/include/machine/_de
+ 1798              		.file 3 "/opt/homebrew/Cellar/arm-none-eabi-gcc/10.3-2021.07/gcc/arm-none-eabi/include/sys/_stdint
+ 1799              		.file 4 "/opt/homebrew/Cellar/arm-none-eabi-gcc/10.3-2021.07/gcc/lib/gcc/arm-none-eabi/10.3.1/incl
+ 1800              		.file 5 "/opt/homebrew/Cellar/arm-none-eabi-gcc/10.3-2021.07/gcc/lib/gcc/arm-none-eabi/10.3.1/incl
+ 1801              		.file 6 "Middlewares/Third_Party/lwrb/lwrb.h"
+ 1802              		.file 7 "<built-in>"
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccx4nf71.s 			page 51
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 lwrb.c
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccx4nf71.s:18     .text.lwrb_init:0000000000000000 $t
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccx4nf71.s:26     .text.lwrb_init:0000000000000000 lwrb_init
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccx4nf71.s:100    .text.lwrb_is_ready:0000000000000000 $t
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccx4nf71.s:107    .text.lwrb_is_ready:0000000000000000 lwrb_is_ready
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccx4nf71.s:154    .text.lwrb_free:0000000000000000 $t
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccx4nf71.s:161    .text.lwrb_free:0000000000000000 lwrb_free
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccx4nf71.s:189    .text.lwrb_set_evt_fn:0000000000000000 $t
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccx4nf71.s:196    .text.lwrb_set_evt_fn:0000000000000000 lwrb_set_evt_fn
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccx4nf71.s:223    .text.lwrb_get_free:0000000000000000 $t
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccx4nf71.s:230    .text.lwrb_get_free:0000000000000000 lwrb_get_free
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccx4nf71.s:335    .text.lwrb_write:0000000000000000 $t
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccx4nf71.s:342    .text.lwrb_write:0000000000000000 lwrb_write
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccx4nf71.s:509    .text.lwrb_get_full:0000000000000000 $t
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccx4nf71.s:516    .text.lwrb_get_full:0000000000000000 lwrb_get_full
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccx4nf71.s:614    .text.lwrb_read:0000000000000000 $t
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccx4nf71.s:621    .text.lwrb_read:0000000000000000 lwrb_read
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccx4nf71.s:789    .text.lwrb_peek:0000000000000000 $t
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccx4nf71.s:796    .text.lwrb_peek:0000000000000000 lwrb_peek
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccx4nf71.s:946    .text.lwrb_find:0000000000000000 $t
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccx4nf71.s:953    .text.lwrb_find:0000000000000000 lwrb_find
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccx4nf71.s:1138   .text.lwrb_reset:0000000000000000 $t
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccx4nf71.s:1145   .text.lwrb_reset:0000000000000000 lwrb_reset
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccx4nf71.s:1204   .text.lwrb_get_linear_block_read_address:0000000000000000 $t
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccx4nf71.s:1211   .text.lwrb_get_linear_block_read_address:0000000000000000 lwrb_get_linear_block_read_address
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccx4nf71.s:1254   .text.lwrb_get_linear_block_read_length:0000000000000000 $t
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccx4nf71.s:1261   .text.lwrb_get_linear_block_read_length:0000000000000000 lwrb_get_linear_block_read_length
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccx4nf71.s:1385   .text.lwrb_skip:0000000000000000 $t
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccx4nf71.s:1392   .text.lwrb_skip:0000000000000000 lwrb_skip
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccx4nf71.s:1504   .text.lwrb_get_linear_block_write_address:0000000000000000 $t
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccx4nf71.s:1511   .text.lwrb_get_linear_block_write_address:0000000000000000 lwrb_get_linear_block_write_address
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccx4nf71.s:1554   .text.lwrb_get_linear_block_write_length:0000000000000000 $t
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccx4nf71.s:1561   .text.lwrb_get_linear_block_write_length:0000000000000000 lwrb_get_linear_block_write_length
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccx4nf71.s:1677   .text.lwrb_advance:0000000000000000 $t
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccx4nf71.s:1684   .text.lwrb_advance:0000000000000000 lwrb_advance
+
+UNDEFINED SYMBOLS
+memcpy

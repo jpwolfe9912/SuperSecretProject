@@ -293,7 +293,7 @@ void ili9341DrawColorBurst(uint16_t color, uint32_t size)
     uint32_t buffer_size = 0;
     if ((size * 2) < BURST_MAX_SIZE)
     {
-        buffer_size = size;
+        buffer_size = size * 2;
     }
     else
     {
@@ -308,7 +308,6 @@ void ili9341DrawColorBurst(uint16_t color, uint32_t size)
         burst_buffer[j] = chifted;
         burst_buffer[j + 1] = color;
     }
-
     uint32_t sending_size = size * 2;
     uint32_t sending_in_block = sending_size / buffer_size;
     uint32_t remainder_from_block = sending_size % buffer_size;

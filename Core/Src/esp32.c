@@ -4,19 +4,16 @@
 Wifi_t Wifi;
 MQTT_t MQTT;
 SNTP_t SNTP;
+
+static bool split_string(char* input_string, char* output_array[], uint8_t* output_size) ;
 // #########################################################################################################
 bool Wifi_SendRaw(uint8_t *data, uint16_t len)
 {
     if (len <= _WIFI_TX_SIZE)
     {
         // Send the information in data through the UART of the ESP8266
-        memcpy(Wifi.TxBuffer, data, len);
-        usart1TransmitDma(data, len);
+        usart_transmit_dma((char*)data);
         return true;
-        // if(HAL_UART_Transmit(&_WIFI_USART,data,len,900) == HAL_OK)
-        // 	return true;
-        // else
-        // 	return false;
     }
     else
         return false;
@@ -69,7 +66,8 @@ bool Wifi_WaitForString(uint32_t TimeOut_ms, uint8_t *result, uint8_t CountOfPar
         delayMicroseconds(20000);
         for (uint8_t mx = 0; mx < CountOfParameter; mx++)
         {
-            if (strstr((char *)Wifi.RxBuffer, arg[mx]) != NULL)
+            if (strstr((char *)Buffs.RxBuffer.buff, arg[mx]) != NULL)  // TODO change to lwrb_find()
+            // if (strstr((char *)Buffs.RxBuffer.buff, arg[mx]) != NULL)
             {
                 *result = mx + 1;
                 return true;
@@ -87,7 +85,7 @@ bool Wifi_ReturnString(char *result, uint8_t WantWhichOne, char *SplitterChars)
     if (WantWhichOne == 0)
         return false;
 
-    char *str = (char *)Wifi.RxBuffer;
+    char *str = (char *)Buffs.RxBuffer.buff;
 
     str = strtok(str, SplitterChars);
     if (str == NULL)
@@ -143,22 +141,22 @@ bool Wifi_ReturnStrings(char *InputString, char *SplitterChars, uint8_t CountOfP
 // #########################################################################################################
 bool Wifi_ReturnInteger(int32_t *result, uint8_t WantWhichOne, char *SplitterChars)
 {
-    if ((char *)Wifi.RxBuffer == NULL)
+    if ((char *)Buffs.RxBuffer.buff == NULL)
         return false;
-    if (Wifi_ReturnString((char *)Wifi.RxBuffer, WantWhichOne, SplitterChars) == false)
+    if (Wifi_ReturnString((char *)Buffs.RxBuffer.buff, WantWhichOne, SplitterChars) == false)
         return false;
-    *result = atoi((char *)Wifi.RxBuffer);
+    *result = atoi((char *)Buffs.RxBuffer.buff);
     return true;
 }
 // #########################################################################################################
 
 bool Wifi_ReturnFloat(float *result, uint8_t WantWhichOne, char *SplitterChars)
 {
-    if ((char *)Wifi.RxBuffer == NULL)
+    if ((char *)Buffs.RxBuffer.buff == NULL)
         return false;
-    if (Wifi_ReturnString((char *)Wifi.RxBuffer, WantWhichOne, SplitterChars) == false)
+    if (Wifi_ReturnString((char *)Buffs.RxBuffer.buff, WantWhichOne, SplitterChars) == false)
         return false;
-    *result = atof((char *)Wifi.RxBuffer);
+    *result = atof((char *)Buffs.RxBuffer.buff);
     return true;
 }
 // #########################################################################################################
@@ -176,24 +174,20 @@ void Wifi_RemoveChar(char *str, char garbage)
 // #########################################################################################################
 void Wifi_RxClear(void)
 {
-    memset(Wifi.RxBuffer, 0, _WIFI_RX_SIZE);
-    Wifi.RxIndex = 0;
-    usart1StartRxIt();
-    // HAL_UART_Receive_IT(&_WIFI_USART,&Wifi.usartBuff,1);
+    lwrb_reset(&Buffs.RxBuffer);
 }
 // #########################################################################################################
 void Wifi_TxClear(void)
 {
-    memset(Wifi.TxBuffer, 0, _WIFI_TX_SIZE);
+    memset(Buffs.TxBuffer, '\0', _WIFI_TX_SIZE);
 }
 // #########################################################################################################
 void Wifi_RxCallBack(void)
 {
-    Wifi.RxBuffer[Wifi.RxIndex] = Wifi.usartBuff;
-    if (Wifi.RxIndex < _WIFI_RX_SIZE)
-        Wifi.RxIndex++;
-    usart1StartRxIt();
-    // HAL_UART_Receive_IT(&_WIFI_USART, &Wifi.usartBuff, 1);
+    // Buffs.RxBuffer.buff[Wifi.RxIndex] = Wifi.usartBuff;
+    // if (Wifi.RxIndex < _WIFI_RX_SIZE)
+    //     Wifi.RxIndex++;
+    // usart1StartRxIt();
 }
 // #########################################################################################################
 // #########################################################################################################
@@ -206,7 +200,7 @@ bool Wifi_Init(void)
     // Clean the variables and start the interruption to work with the UART
     do
     {
-        Wifi_RxClear();
+        // Wifi_RxClear();
 
         if (Wifi_SendString("\r\nAT\r\n") == false)
             break;
@@ -217,7 +211,7 @@ bool Wifi_Init(void)
         returnVal = true;
         Wifi_RxClear();
         Wifi_TxClear();
-        usart1StartRxIt();
+        // usart1StartRxIt();
     } while (0);
     return returnVal;
 }
@@ -235,8 +229,8 @@ bool Wifi_Restart(void)
     do
     {
         Wifi_RxClear();
-        sprintf((char *)Wifi.TxBuffer, "AT+RST\r\n");
-        if (Wifi_SendString((char *)Wifi.TxBuffer) == false)
+        sprintf((char *)Buffs.TxBuffer, "AT+RST\r\n");
+        if (Wifi_SendString((char *)Buffs.TxBuffer) == false)
             break;
         if (Wifi_WaitForString(_WIFI_WAIT_TIME_LOW, &result, 2, "OK", "ERROR") == false)
             break;       // The timeout was completed and the string was not there
@@ -256,8 +250,8 @@ bool Wifi_DeepSleep(uint16_t DelayMs)
     do
     {
         Wifi_RxClear();
-        sprintf((char *)Wifi.TxBuffer, "AT+GSLP=%d\r\n", DelayMs);
-        if (Wifi_SendString((char *)Wifi.TxBuffer) == false)
+        sprintf((char *)Buffs.TxBuffer, "AT+GSLP=%d\r\n", DelayMs);
+        if (Wifi_SendString((char *)Buffs.TxBuffer) == false)
             break;
         if (Wifi_WaitForString(_WIFI_WAIT_TIME_LOW, &result, 2, "OK", "ERROR") == false)
             break;       // The timeout was completed and the string was not there
@@ -275,8 +269,8 @@ bool Wifi_FactoryReset(void)
     do
     {
         Wifi_RxClear();
-        sprintf((char *)Wifi.TxBuffer, "AT+RESTORE\r\n");
-        if (Wifi_SendString((char *)Wifi.TxBuffer) == false)
+        sprintf((char *)Buffs.TxBuffer, "AT+RESTORE\r\n");
+        if (Wifi_SendString((char *)Buffs.TxBuffer) == false)
             break;
         if (Wifi_WaitForString(_WIFI_WAIT_TIME_LOW, &result, 2, "OK", "ERROR") == false)
             break;       // The timeout was completed and the string was not there
@@ -296,8 +290,8 @@ bool Wifi_Update(void)
     do
     {
         Wifi_RxClear();
-        sprintf((char *)Wifi.TxBuffer, "AT+CIUPDATE\r\n");
-        if (Wifi_SendString((char *)Wifi.TxBuffer) == false)
+        sprintf((char *)Buffs.TxBuffer, "AT+CIUPDATE\r\n");
+        if (Wifi_SendString((char *)Buffs.TxBuffer) == false)
             break;
         if (Wifi_WaitForString(1000 * 60 * 5, &result, 2, "OK", "ERROR") == false)
             break;       // The timeout was completed and the string was not there
@@ -315,8 +309,8 @@ bool Wifi_SetRfPower(uint8_t Power_0_to_82)
     do
     {
         Wifi_RxClear();
-        sprintf((char *)Wifi.TxBuffer, "AT+RFPOWER=%d\r\n", Power_0_to_82);
-        if (Wifi_SendString((char *)Wifi.TxBuffer) == false)
+        sprintf((char *)Buffs.TxBuffer, "AT+RFPOWER=%d\r\n", Power_0_to_82);
+        if (Wifi_SendString((char *)Buffs.TxBuffer) == false)
             break;
         if (Wifi_WaitForString(_WIFI_WAIT_TIME_LOW, &result, 2, "OK", "ERROR") == false)
             break;       // The timeout was completed and the string was not there
@@ -337,8 +331,8 @@ bool Wifi_SetMode(WifiMode_t WifiMode_)
     do
     {
         Wifi_RxClear();
-        sprintf((char *)Wifi.TxBuffer, "AT+CWMODE=%d\r\n", WifiMode_);
-        if (Wifi_SendString((char *)Wifi.TxBuffer) == false)
+        sprintf((char *)Buffs.TxBuffer, "AT+CWMODE=%d\r\n", WifiMode_);
+        if (Wifi_SendString((char *)Buffs.TxBuffer) == false)
             break;
         if (Wifi_WaitForString(_WIFI_WAIT_TIME_LOW, &result, 2, "OK", "ERROR") == false)
             break;       // The timeout was completed and the string was not there
@@ -357,8 +351,8 @@ bool Wifi_GetMode(void)
     do
     {
         Wifi_RxClear();
-        sprintf((char *)Wifi.TxBuffer, "AT+CWMODE?\r\n");
-        if (Wifi_SendString((char *)Wifi.TxBuffer) == false)
+        sprintf((char *)Buffs.TxBuffer, "AT+CWMODE?\r\n");
+        if (Wifi_SendString((char *)Buffs.TxBuffer) == false)
             break;
         if (Wifi_WaitForString(_WIFI_WAIT_TIME_LOW, &result, 2, "OK", "ERROR") == false)
             break;       // The timeout was completed and the string was not there
@@ -380,15 +374,15 @@ bool Wifi_GetMyIp(void)
     do
     {
         Wifi_RxClear();
-        sprintf((char *)Wifi.TxBuffer, "AT+CIFSR\r\n");
-        if (Wifi_SendString((char *)Wifi.TxBuffer) == false)
+        sprintf((char *)Buffs.TxBuffer, "AT+CIFSR\r\n");
+        if (Wifi_SendString((char *)Buffs.TxBuffer) == false)
             break;
         if (Wifi_WaitForString(_WIFI_WAIT_TIME_LOW, &result, 2, "OK", "ERROR") == false)
             break;       // The timeout was completed and the string was not there
         if (result == 2) // It was find the "ERROR" String in the receiving information
             break;
-        sscanf((char *)Wifi.RxBuffer, "AT+CIFSR\r\r\n+CIFSR:APIP,\"%[^\"]", Wifi.MyIP);
-        sscanf((char *)Wifi.RxBuffer, "AT+CIFSR\r\r\n+CIFSR:STAIP,\"%[^\"]", Wifi.MyIP);
+        sscanf((char *)Buffs.RxBuffer.buff, "AT+CIFSR\r\r\n+CIFSR:APIP,\"%[^\"]", Wifi.MyIP);
+        sscanf((char *)Buffs.RxBuffer.buff, "AT+CIFSR\r\r\n+CIFSR:STAIP,\"%[^\"]", Wifi.MyIP);
         returnVal = true;
     } while (0);
     return returnVal;
@@ -408,10 +402,10 @@ bool Wifi_Station_ConnectToAp(char *SSID, char *Pass, char *MAC)
          */
         Wifi_RxClear();
         if (MAC == NULL)
-            sprintf((char *)Wifi.TxBuffer, "AT+CWJAP=\"%s\",\"%s\"\r\n", SSID, Pass);
+            sprintf((char *)Buffs.TxBuffer, "AT+CWJAP=\"%s\",\"%s\"\r\n", SSID, Pass);
         else
-            sprintf((char *)Wifi.TxBuffer, "AT+CWJAP=\"%s\",\"%s\",\"%s\"\r\n", SSID, Pass, MAC);
-        if (Wifi_SendString((char *)Wifi.TxBuffer) == false)
+            sprintf((char *)Buffs.TxBuffer, "AT+CWJAP=\"%s\",\"%s\",\"%s\"\r\n", SSID, Pass, MAC);
+        if (Wifi_SendString((char *)Buffs.TxBuffer) == false)
             break;
         if (Wifi_WaitForString(_WIFI_WAIT_TIME_VERYHIGH, &result, 3, "\r\nOK\r\n", "\r\nERROR\r\n", "\r\nFAIL\r\n") == false)
             break;
@@ -429,8 +423,8 @@ bool Wifi_Station_Disconnect(void)
     do
     {
         Wifi_RxClear();
-        sprintf((char *)Wifi.TxBuffer, "AT+CWQAP\r\n");
-        if (Wifi_SendString((char *)Wifi.TxBuffer) == false)
+        sprintf((char *)Buffs.TxBuffer, "AT+CWQAP\r\n");
+        if (Wifi_SendString((char *)Buffs.TxBuffer) == false)
             break;
         if (Wifi_WaitForString(_WIFI_WAIT_TIME_LOW, &result, 2, "OK", "ERROR") == false)
             break;       // The timeout was completed and the string was not there
@@ -448,8 +442,8 @@ bool Wifi_Station_SetIp(char *IP, char *GateWay, char *NetMask)
     do
     {
         Wifi_RxClear();
-        sprintf((char *)Wifi.TxBuffer, "AT+CIPSTA=\"%s\",\"%s\",\"%s\"\r\n", IP, GateWay, NetMask);
-        if (Wifi_SendString((char *)Wifi.TxBuffer) == false)
+        sprintf((char *)Buffs.TxBuffer, "AT+CIPSTA=\"%s\",\"%s\",\"%s\"\r\n", IP, GateWay, NetMask);
+        if (Wifi_SendString((char *)Buffs.TxBuffer) == false)
             break;
         if (Wifi_WaitForString(_WIFI_WAIT_TIME_LOW, &result, 2, "OK", "ERROR") == false)
             break;       // The timeout was completed and the string was not there
@@ -471,8 +465,8 @@ bool Wifi_Station_DhcpEnable(bool Enable)
          * It makes the DHCP from the Station Mode enable
          */
         Wifi_RxClear();
-        sprintf((char *)Wifi.TxBuffer, "AT+CWDHCP=1,%d\r\n", Enable);
-        if (Wifi_SendString((char *)Wifi.TxBuffer) == false)
+        sprintf((char *)Buffs.TxBuffer, "AT+CWDHCP=1,%d\r\n", Enable);
+        if (Wifi_SendString((char *)Buffs.TxBuffer) == false)
             break;
         if (Wifi_WaitForString(_WIFI_WAIT_TIME_LOW, &result, 2, "OK", "ERROR") == false)
             break;       // The timeout was completed and the string was not there
@@ -495,8 +489,8 @@ bool Wifi_Station_DhcpIsEnable(void)
          * DHCP process inside of it
          */
         Wifi_RxClear();
-        sprintf((char *)Wifi.TxBuffer, "AT+CWDHCP?\r\n");
-        if (Wifi_SendString((char *)Wifi.TxBuffer) == false)
+        sprintf((char *)Buffs.TxBuffer, "AT+CWDHCP?\r\n");
+        if (Wifi_SendString((char *)Buffs.TxBuffer) == false)
             break;
         if (Wifi_WaitForString(_WIFI_WAIT_TIME_LOW, &result, 2, "OK", "ERROR") == false)
             break;       // The timeout was completed and the string was not there
@@ -543,8 +537,8 @@ bool Wifi_SoftAp_Create(char *SSID, char *password, uint8_t channel, WifiEncrypt
          * the data of this network is defined by the inputs of the function
          */
         Wifi_RxClear();
-        sprintf((char *)Wifi.TxBuffer, "AT+CWSAP=\"%s\",\"%s\",%d,%d,%d,%d\r\n", SSID, password, channel, WifiEncryptionType, MaxConnections_1_to_4, HiddenSSID);
-        if (Wifi_SendString((char *)Wifi.TxBuffer) == false)
+        sprintf((char *)Buffs.TxBuffer, "AT+CWSAP=\"%s\",\"%s\",%d,%d,%d,%d\r\n", SSID, password, channel, WifiEncryptionType, MaxConnections_1_to_4, HiddenSSID);
+        if (Wifi_SendString((char *)Buffs.TxBuffer) == false)
             break;
         if (Wifi_WaitForString(_WIFI_WAIT_TIME_LOW, &result, 2, "OK", "ERROR") == false)
             break;       // The timeout was completed and the string was not there
@@ -564,8 +558,8 @@ bool Wifi_GetApConnection(void)
     {
         Wifi_RxClear();
         // Get the name of the AP Connection
-        sprintf((char *)Wifi.TxBuffer, "AT+CWJAP?\r\n");
-        if (Wifi_SendString((char *)Wifi.TxBuffer) == false)
+        sprintf((char *)Buffs.TxBuffer, "AT+CWJAP?\r\n");
+        if (Wifi_SendString((char *)Buffs.TxBuffer) == false)
             break;
         if (Wifi_WaitForString(_WIFI_WAIT_TIME_LOW, &result, 2, "OK", "ERROR") == false)
             break;       // The timeout was completed and the string was not there
@@ -582,10 +576,10 @@ bool Wifi_GetApConnection(void)
          * value is saved in the structure of the Wifi Connection.
          */
 
-        char *str1 = strstr((char *)Wifi.RxBuffer, ":\"");
+        char *str1 = strstr((char *)Buffs.RxBuffer.buff, ":\"");
         if (str1 == NULL)
         {
-            str1 = strstr((char *)Wifi.RxBuffer, "No AP");
+            str1 = strstr((char *)Buffs.RxBuffer.buff, "No AP");
             if (str1 == NULL)
                 break;
             else
@@ -621,16 +615,16 @@ bool Wifi_SoftAp_GetConnectedDevices(void)
          * the devices, which is the IP address and the MAC Address of every device
          */
         Wifi_RxClear();
-        sprintf((char *)Wifi.TxBuffer, "AT+CWLIF\r\n");
-        if (Wifi_SendString((char *)Wifi.TxBuffer) == false)
+        sprintf((char *)Buffs.TxBuffer, "AT+CWLIF\r\n");
+        if (Wifi_SendString((char *)Buffs.TxBuffer) == false)
             break;
         if (Wifi_WaitForString(_WIFI_WAIT_TIME_LOW, &result, 2, "OK", "ERROR") == false)
             break;       // The timeout was completed and the string was not there
         if (result == 2) // It was find the "ERROR" String in the receiving information
             break;
 
-        Wifi_RemoveChar((char *)Wifi.RxBuffer, '\r');
-        Wifi_ReturnStrings((char *)Wifi.RxBuffer, "\n,", 10, Wifi.SoftApConnectedDevicesIp[0], Wifi.SoftApConnectedDevicesMac[0], Wifi.SoftApConnectedDevicesIp[1], Wifi.SoftApConnectedDevicesMac[1], Wifi.SoftApConnectedDevicesIp[2], Wifi.SoftApConnectedDevicesMac[2], Wifi.SoftApConnectedDevicesIp[3], Wifi.SoftApConnectedDevicesMac[3], Wifi.SoftApConnectedDevicesIp[4], Wifi.SoftApConnectedDevicesMac[4]);
+        Wifi_RemoveChar((char *)Buffs.RxBuffer.buff, '\r');
+        Wifi_ReturnStrings((char *)Buffs.RxBuffer.buff, "\n,", 10, Wifi.SoftApConnectedDevicesIp[0], Wifi.SoftApConnectedDevicesMac[0], Wifi.SoftApConnectedDevicesIp[1], Wifi.SoftApConnectedDevicesMac[1], Wifi.SoftApConnectedDevicesIp[2], Wifi.SoftApConnectedDevicesMac[2], Wifi.SoftApConnectedDevicesIp[3], Wifi.SoftApConnectedDevicesMac[3], Wifi.SoftApConnectedDevicesIp[4], Wifi.SoftApConnectedDevicesMac[4]);
 
         // Search if there is any device or it does not have any
         for (uint8_t i = 0; i < 6; i++)
@@ -657,8 +651,8 @@ bool Wifi_TcpIp_GetConnectionStatus(void)
     {
         Wifi_RxClear();
         // Get the connections status of all the possible connection with the ESP8266
-        sprintf((char *)Wifi.TxBuffer, "AT+CIPSTATUS\r\n");
-        if (Wifi_SendString((char *)Wifi.TxBuffer) == false)
+        sprintf((char *)Buffs.TxBuffer, "AT+CIPSTATUS\r\n");
+        if (Wifi_SendString((char *)Buffs.TxBuffer) == false)
             break;
         if (Wifi_WaitForString(_WIFI_WAIT_TIME_LOW, &result, 2, "OK", "ERROR") == false)
             break;       // The timeout was completed and the string was not there
@@ -671,14 +665,14 @@ bool Wifi_TcpIp_GetConnectionStatus(void)
          * all the needed information in the structure. If there are not other connection
          * the str return a NULL value and the loop is broken.
          */
-        char *str = strstr((char *)Wifi.RxBuffer, "\nSTATUS:");
+        char *str = strstr((char *)Buffs.RxBuffer.buff, "\nSTATUS:");
         if (str == NULL)
             break;
         str = strchr(str, ':');
         str++;
         for (uint8_t i = 0; i < 5; i++)
             Wifi.TcpIpConnections[i].status = (WifiConnectionStatus_t)atoi(str);
-        str = strstr((char *)Wifi.RxBuffer, "+CIPSTATUS:");
+        str = strstr((char *)Buffs.RxBuffer.buff, "+CIPSTATUS:");
         for (uint8_t i = 0; i < 5; i++)
         {
             sscanf(str, "+CIPSTATUS:%d,\"%3s\",\"%[^\"]\",%d,%d,%d", (int *)&Wifi.TcpIpConnections[i].LinkId, Wifi.TcpIpConnections[i].Type, Wifi.TcpIpConnections[i].RemoteIp, (int *)&Wifi.TcpIpConnections[i].RemotePort, (int *)&Wifi.TcpIpConnections[i].LocalPort, (int *)&Wifi.TcpIpConnections[i].RunAsServer);
@@ -700,8 +694,8 @@ bool Wifi_TcpIp_Ping(char *PingTo)
     do
     {
         Wifi_RxClear();
-        sprintf((char *)Wifi.TxBuffer, "AT+PING=\"%s\"\r\n", PingTo);
-        if (Wifi_SendString((char *)Wifi.TxBuffer) == false)
+        sprintf((char *)Buffs.TxBuffer, "AT+PING=\"%s\"\r\n", PingTo);
+        if (Wifi_SendString((char *)Buffs.TxBuffer) == false)
             break;
         if (Wifi_WaitForString(_WIFI_WAIT_TIME_MED, &result, 3, "OK", "ERROR") == false)
             break;       // The timeout was completed and the string was not there
@@ -722,8 +716,8 @@ bool Wifi_TcpIp_SetMultiConnection(bool EnableMultiConnections)
     {
         // Enable or Disable the multiconnection possibility
         Wifi_RxClear();
-        sprintf((char *)Wifi.TxBuffer, "AT+CIPMUX=%d\r\n", EnableMultiConnections);
-        if (Wifi_SendString((char *)Wifi.TxBuffer) == false)
+        sprintf((char *)Buffs.TxBuffer, "AT+CIPMUX=%d\r\n", EnableMultiConnections);
+        if (Wifi_SendString((char *)Buffs.TxBuffer) == false)
             break;
         if (Wifi_WaitForString(_WIFI_WAIT_TIME_LOW, &result, 2, "OK", "ERROR") == false)
             break;
@@ -742,8 +736,8 @@ bool Wifi_TcpIp_GetMultiConnection(void)
     do
     {
         Wifi_RxClear();
-        sprintf((char *)Wifi.TxBuffer, "AT+CIPMUX?\r\n");
-        if (Wifi_SendString((char *)Wifi.TxBuffer) == false)
+        sprintf((char *)Buffs.TxBuffer, "AT+CIPMUX?\r\n");
+        if (Wifi_SendString((char *)Buffs.TxBuffer) == false)
             break;
         if (Wifi_WaitForString(_WIFI_WAIT_TIME_LOW, &result, 2, "OK", "ERROR") == false)
             break;       // The timeout was completed and the string was not there
@@ -771,8 +765,8 @@ bool Wifi_TcpIp_StartTcpConnection(uint8_t LinkId, char *RemoteIp, uint16_t Remo
         Wifi_RxClear();
         if (Wifi.TcpIpMultiConnection == true)
         {
-            sprintf((char *)Wifi.TxBuffer, "AT+CIPSERVER=1,%d\r\n", RemotePort);
-            if (Wifi_SendString((char *)Wifi.TxBuffer) == false)
+            sprintf((char *)Buffs.TxBuffer, "AT+CIPSERVER=1,%d\r\n", RemotePort);
+            if (Wifi_SendString((char *)Buffs.TxBuffer) == false)
                 break;
             if (Wifi_WaitForString(_WIFI_WAIT_TIME_LOW, &result, 2, "OK", "ERROR") == false)
                 break;       // The timeout was completed and the string was not there
@@ -781,10 +775,10 @@ bool Wifi_TcpIp_StartTcpConnection(uint8_t LinkId, char *RemoteIp, uint16_t Remo
         }
         Wifi_RxClear();
         if (Wifi.TcpIpMultiConnection == false)
-            sprintf((char *)Wifi.TxBuffer, "AT+CIPSTART=\"TCP\",\"%s\",%d,%d\r\n", RemoteIp, RemotePort, TimeOut);
+            sprintf((char *)Buffs.TxBuffer, "AT+CIPSTART=\"TCP\",\"%s\",%d,%d\r\n", RemoteIp, RemotePort, TimeOut);
         else
-            sprintf((char *)Wifi.TxBuffer, "AT+CIPSTART=%d,\"TCP\",\"%s\",%d,%d\r\n", LinkId, RemoteIp, RemotePort, TimeOut);
-        if (Wifi_SendString((char *)Wifi.TxBuffer) == false)
+            sprintf((char *)Buffs.TxBuffer, "AT+CIPSTART=%d,\"TCP\",\"%s\",%d,%d\r\n", LinkId, RemoteIp, RemotePort, TimeOut);
+        if (Wifi_SendString((char *)Buffs.TxBuffer) == false)
             break;
         if (Wifi_WaitForString(_WIFI_WAIT_TIME_HIGH, &result, 3, "OK", "CONNECT", "ERROR") == false)
             break;
@@ -803,10 +797,10 @@ bool Wifi_TcpIp_StartUdpConnection(uint8_t LinkId, char *RemoteIp, uint16_t Remo
     {
         Wifi_RxClear();
         if (Wifi.TcpIpMultiConnection == false)
-            sprintf((char *)Wifi.TxBuffer, "AT+CIPSTART=\"UDP\",\"%s\",%d,%d\r\n", RemoteIp, RemotePort, LocalPort);
+            sprintf((char *)Buffs.TxBuffer, "AT+CIPSTART=\"UDP\",\"%s\",%d,%d\r\n", RemoteIp, RemotePort, LocalPort);
         else
-            sprintf((char *)Wifi.TxBuffer, "AT+CIPSTART=%d,\"UDP\",\"%s\",%d,%d\r\n", LinkId, RemoteIp, RemotePort, LocalPort);
-        if (Wifi_SendString((char *)Wifi.TxBuffer) == false)
+            sprintf((char *)Buffs.TxBuffer, "AT+CIPSTART=%d,\"UDP\",\"%s\",%d,%d\r\n", LinkId, RemoteIp, RemotePort, LocalPort);
+        if (Wifi_SendString((char *)Buffs.TxBuffer) == false)
             break;
         if (Wifi_WaitForString(_WIFI_WAIT_TIME_HIGH, &result, 3, "OK", "ALREADY", "ERROR") == false)
             break;
@@ -825,10 +819,10 @@ bool Wifi_TcpIp_Close(uint8_t LinkId)
     {
         Wifi_RxClear();
         if (Wifi.TcpIpMultiConnection == false)
-            sprintf((char *)Wifi.TxBuffer, "AT+CIPCLOSE\r\n");
+            sprintf((char *)Buffs.TxBuffer, "AT+CIPCLOSE\r\n");
         else
-            sprintf((char *)Wifi.TxBuffer, "AT+CIPCLOSE=%d\r\n", LinkId);
-        if (Wifi_SendString((char *)Wifi.TxBuffer) == false)
+            sprintf((char *)Buffs.TxBuffer, "AT+CIPCLOSE=%d\r\n", LinkId);
+        if (Wifi_SendString((char *)Buffs.TxBuffer) == false)
             break;
         if (Wifi_WaitForString(_WIFI_WAIT_TIME_LOW, &result, 2, "OK", "ERROR") == false)
             break;       // The timeout was completed and the string was not there
@@ -849,8 +843,8 @@ bool Wifi_TcpIp_SetEnableTcpServer(uint16_t PortNumber)
         if (Wifi.TcpIpMultiConnection == false)
         {
             // it actives the Multiconnection first to make a TCP Server
-            sprintf((char *)Wifi.TxBuffer, "AT+CIPMUX=1\r\n");
-            if (Wifi_SendString((char *)Wifi.TxBuffer) == false)
+            sprintf((char *)Buffs.TxBuffer, "AT+CIPMUX=1\r\n");
+            if (Wifi_SendString((char *)Buffs.TxBuffer) == false)
                 break;
             if (Wifi_WaitForString(_WIFI_WAIT_TIME_LOW, &result, 2, "OK", "ERROR") == false)
                 break;       // The timeout was completed and the string was not there
@@ -860,8 +854,8 @@ bool Wifi_TcpIp_SetEnableTcpServer(uint16_t PortNumber)
             Wifi_RxClear();
         }
         else
-            sprintf((char *)Wifi.TxBuffer, "AT+CIPSERVER=1,%d\r\n", PortNumber);
-        if (Wifi_SendString((char *)Wifi.TxBuffer) == false)
+            sprintf((char *)Buffs.TxBuffer, "AT+CIPSERVER=1,%d\r\n", PortNumber);
+        if (Wifi_SendString((char *)Buffs.TxBuffer) == false)
             break;
         if (Wifi_WaitForString(_WIFI_WAIT_TIME_LOW, &result, 2, "OK", "ERROR") == false)
             break;       // The timeout was completed and the string was not there
@@ -879,8 +873,8 @@ bool Wifi_TcpIp_SetDisableTcpServer(uint16_t PortNumber)
     do
     {
         Wifi_RxClear();
-        sprintf((char *)Wifi.TxBuffer, "AT+CIPSERVER=0,%d\r\n", PortNumber);
-        if (Wifi_SendString((char *)Wifi.TxBuffer) == false)
+        sprintf((char *)Buffs.TxBuffer, "AT+CIPSERVER=0,%d\r\n", PortNumber);
+        if (Wifi_SendString((char *)Buffs.TxBuffer) == false)
             break;
         if (Wifi_WaitForString(_WIFI_WAIT_TIME_LOW, &result, 2, "OK", "ERROR") == false)
             break;       // The timeout was completed and the string was not there
@@ -899,10 +893,10 @@ bool Wifi_TcpIp_SendDataUdp(uint8_t LinkId, uint16_t dataLen, uint8_t *data)
     {
         Wifi_RxClear();
         if (Wifi.TcpIpMultiConnection == false)
-            sprintf((char *)Wifi.TxBuffer, "AT+CIPSEND=%d\r\n", dataLen);
+            sprintf((char *)Buffs.TxBuffer, "AT+CIPSEND=%d\r\n", dataLen);
         else
-            sprintf((char *)Wifi.TxBuffer, "AT+CIPSEND=%d,%d\r\n", LinkId, dataLen);
-        if (Wifi_SendString((char *)Wifi.TxBuffer) == false)
+            sprintf((char *)Buffs.TxBuffer, "AT+CIPSEND=%d,%d\r\n", LinkId, dataLen);
+        if (Wifi_SendString((char *)Buffs.TxBuffer) == false)
             break;
         if (Wifi_WaitForString(_WIFI_WAIT_TIME_LOW, &result, 2, ">", "ERROR") == false)
             break;       // The timeout was completed and the string was not there
@@ -928,10 +922,10 @@ bool Wifi_TcpIp_SendDataTcp(uint8_t LinkId, uint16_t dataLen, uint8_t *data)
     {
         Wifi_RxClear();
         if (Wifi.TcpIpMultiConnection == false)
-            sprintf((char *)Wifi.TxBuffer, "AT+CIPSENDBUF=%d\r\n", dataLen);
+            sprintf((char *)Buffs.TxBuffer, "AT+CIPSENDBUF=%d\r\n", dataLen);
         else
-            sprintf((char *)Wifi.TxBuffer, "AT+CIPSENDBUF=%d,%d\r\n", LinkId, dataLen);
-        if (Wifi_SendString((char *)Wifi.TxBuffer) == false)
+            sprintf((char *)Buffs.TxBuffer, "AT+CIPSENDBUF=%d,%d\r\n", LinkId, dataLen);
+        if (Wifi_SendString((char *)Buffs.TxBuffer) == false)
             break;
         if (Wifi_WaitForString(_WIFI_WAIT_TIME_LOW, &result, 2, "OK", "ERROR") == false)
             break;
@@ -958,7 +952,7 @@ bool SNTP_Init(void)
 
     SNTP.time_updated = false;
     SNTP_QueryTime();
-    if (SNTP.time.year < 2023)
+    if (SNTP.time.month[0] != 'M')  // TODO figure out why the year won't read
     {
         SNTP_SetTimeZone(1);
         SNTP_QueryTime();
@@ -976,16 +970,16 @@ bool SNTP_SetTimeZone(size_t numServers)
         switch (numServers)
         {
         case 3:
-            sprintf((char *)Wifi.TxBuffer, "AT+CIPSNTPCFG=%d,%d,\"%s\",\"%s\",\"%s\"\r\n", SNTP.enable, SNTP.timezone, SNTP.server1, SNTP.server2, SNTP.server3);
+            sprintf((char *)Buffs.TxBuffer, "AT+CIPSNTPCFG=%d,%d,\"%s\",\"%s\",\"%s\"\r\n", SNTP.enable, SNTP.timezone, SNTP.server1, SNTP.server2, SNTP.server3);
             break;
         case 2:
-            sprintf((char *)Wifi.TxBuffer, "AT+CIPSNTPCFG=%d,%d,\"%s\",\"%s\"\r\n", SNTP.enable, SNTP.timezone, SNTP.server1, SNTP.server2);
+            sprintf((char *)Buffs.TxBuffer, "AT+CIPSNTPCFG=%d,%d,\"%s\",\"%s\"\r\n", SNTP.enable, SNTP.timezone, SNTP.server1, SNTP.server2);
             break;
         default:
-            sprintf((char *)Wifi.TxBuffer, "AT+CIPSNTPCFG=%d,%d,\"%s\"\r\n", SNTP.enable, SNTP.timezone, SNTP.server1);
+            sprintf((char *)Buffs.TxBuffer, "AT+CIPSNTPCFG=%d,%d,\"%s\"\r\n", SNTP.enable, SNTP.timezone, SNTP.server1);
             break;
         }
-        if (Wifi_SendString((char *)Wifi.TxBuffer) == false)
+        if (Wifi_SendString((char *)Buffs.TxBuffer) == false)
             break;
         if (Wifi_WaitForString(_WIFI_WAIT_TIME_LOW, &result, 2, "OK", "ERROR") == false)
             break;       // The timeout was completed and the string was not there
@@ -1013,17 +1007,16 @@ bool SNTP_QueryTime(void)
     {
         Wifi_RxClear();
 
-        sprintf((char *)Wifi.TxBuffer, "AT+CIPSNTPTIME?\r\n");
-        if (Wifi_SendString((char *)Wifi.TxBuffer) == false)
+        sprintf((char *)Buffs.TxBuffer, "AT+CIPSNTPTIME?\r\n");
+        if (Wifi_SendString((char *)Buffs.TxBuffer) == false)
             break;
         if (Wifi_WaitForString(_WIFI_WAIT_TIME_LOW, &result, 2, "OK", "ERROR") == false)
             break;       // The timeout was completed and the string was not there
         if (result == 2) // It was find the "ERROR" String in the receiving information
             break;
 
-        char *str = strstr((char *)Wifi.RxBuffer, "+CIPSNTPTIME:");
-        // sscanf(str, "+CIPSNTPTIME:%[^\r]", SNTP.time);
-        sscanf(str, "+CIPSNTPTIME:%s %s %u %u:%u:%u %hu", SNTP.time.day_of_week, SNTP.time.month, &SNTP.time.day, &SNTP.time.clocktime.hour, &SNTP.time.clocktime.min, &SNTP.time.clocktime.sec, &SNTP.time.year);
+        char *str = strstr((char *)Buffs.RxBuffer.buff, "+CIPSNTPTIME:");
+        sscanf(str, "+CIPSNTPTIME:%3s %3s %hhu %hhu:%hhu:%hhu %hu", SNTP.time.day_of_week, SNTP.time.month, &SNTP.time.day, &SNTP.time.clocktime.hour, &SNTP.time.clocktime.min, &SNTP.time.clocktime.sec, &SNTP.time.year);
 
         returnVal = true;
     } while (0);
@@ -1044,7 +1037,7 @@ bool MQTT_Init(void)
         sprintf(MQTT.client_id, "%p%p%p", unique_id_1, unique_id_2, unique_id_3);
         strcpy(MQTT.username, "Jpwolfe");
         strcpy(MQTT.password, "1234567890");
-        strcpy(MQTT.host, "a1k7aswhvntcg-ats.iot.us-east-1.amazonaws.com");
+        strcpy(MQTT.host, "a1k7aswhvntcg-ats.iot.us-west-1.amazonaws.com");
         MQTT.port = 8883;
         MQTT.reconnect = 1;
         strcpy(MQTT.path, "");
@@ -1064,9 +1057,9 @@ bool MQTT_SetUserConfig(void)
     do
     {
         Wifi_RxClear();
-        // memset(Wifi.TxBuffer, '\0', sizeof(Wifi.TxBuffer));
-        sprintf((char *)Wifi.TxBuffer, "AT+MQTTUSERCFG=%u,%d,\"%s\",\"%s\",\"%s\",0,0,\"%s\"\r\n", MQTT.link_id, MQTT.scheme, MQTT.client_id, MQTT.username, MQTT.password, MQTT.path);
-        if (Wifi_SendString((char *)Wifi.TxBuffer) == false)
+        // memset(Buffs.TxBuffer, '\0', sizeof(Buffs.TxBuffer));
+        sprintf((char *)Buffs.TxBuffer, "AT+MQTTUSERCFG=%u,%d,\"%s\",\"%s\",\"%s\",0,0,\"%s\"\r\n", MQTT.link_id, MQTT.scheme, MQTT.client_id, MQTT.username, MQTT.password, MQTT.path);
+        if (Wifi_SendString((char *)Buffs.TxBuffer) == false)
             break;
         if (Wifi_WaitForString(_WIFI_WAIT_TIME_LOW, &result, 2, "OK", "ERROR") == false)
             break;       // The timeout was completed and the string was not there
@@ -1084,8 +1077,8 @@ bool MQTT_SetClientID(void)
     do
     {
         Wifi_RxClear();
-        sprintf((char *)Wifi.TxBuffer, "AT+MQTTCLIENTID=%u,\"%s\"\r\n", MQTT.link_id, MQTT.client_id);
-        if (Wifi_SendString((char *)Wifi.TxBuffer) == false)
+        sprintf((char *)Buffs.TxBuffer, "AT+MQTTCLIENTID=%u,\"%s\"\r\n", MQTT.link_id, MQTT.client_id);
+        if (Wifi_SendString((char *)Buffs.TxBuffer) == false)
             break;
         if (Wifi_WaitForString(_WIFI_WAIT_TIME_LOW, &result, 2, "OK", "ERROR") == false)
             break;       // The timeout was completed and the string was not there
@@ -1103,8 +1096,8 @@ bool MQTT_SetUsername(void)
     do
     {
         Wifi_RxClear();
-        sprintf((char *)Wifi.TxBuffer, "AT+MQTTUSERNAME=%u,\"%s\"\r\n", MQTT.link_id, MQTT.username);
-        if (Wifi_SendString((char *)Wifi.TxBuffer) == false)
+        sprintf((char *)Buffs.TxBuffer, "AT+MQTTUSERNAME=%u,\"%s\"\r\n", MQTT.link_id, MQTT.username);
+        if (Wifi_SendString((char *)Buffs.TxBuffer) == false)
             break;
         if (Wifi_WaitForString(_WIFI_WAIT_TIME_LOW, &result, 2, "OK", "ERROR") == false)
             break;       // The timeout was completed and the string was not there
@@ -1122,8 +1115,8 @@ bool MQTT_SetPassword(void)
     do
     {
         Wifi_RxClear();
-        sprintf((char *)Wifi.TxBuffer, "AT+MQTTPASSWORD=%u,\"%s\"\r\n", MQTT.link_id, MQTT.password);
-        if (Wifi_SendString((char *)Wifi.TxBuffer) == false)
+        sprintf((char *)Buffs.TxBuffer, "AT+MQTTPASSWORD=%u,\"%s\"\r\n", MQTT.link_id, MQTT.password);
+        if (Wifi_SendString((char *)Buffs.TxBuffer) == false)
             break;
         if (Wifi_WaitForString(_WIFI_WAIT_TIME_LOW, &result, 2, "OK", "ERROR") == false)
             break;       // The timeout was completed and the string was not there
@@ -1141,8 +1134,8 @@ bool MQTT_SetConnectionConfig(void)
     do
     {
         Wifi_RxClear();
-        sprintf((char *)Wifi.TxBuffer, "AT+MQTTPASSWORD=%u,\"%s\"\r\n", MQTT.link_id, MQTT.password);
-        if (Wifi_SendString((char *)Wifi.TxBuffer) == false)
+        sprintf((char *)Buffs.TxBuffer, "AT+MQTTPASSWORD=%u,\"%s\"\r\n", MQTT.link_id, MQTT.password);
+        if (Wifi_SendString((char *)Buffs.TxBuffer) == false)
             break;
         if (Wifi_WaitForString(_WIFI_WAIT_TIME_LOW, &result, 2, "OK", "ERROR") == false)
             break;       // The timeout was completed and the string was not there
@@ -1161,8 +1154,8 @@ bool MQTT_Connect(void)
     do
     {
         Wifi_RxClear();
-        sprintf((char *)Wifi.TxBuffer, "AT+MQTTCONN=%u,\"%s\",%u,%d\r\n", MQTT.link_id, MQTT.host, MQTT.port, MQTT.reconnect);
-        if (Wifi_SendString((char *)Wifi.TxBuffer) == false)
+        sprintf((char *)Buffs.TxBuffer, "AT+MQTTCONN=%u,\"%s\",%u,%d\r\n", MQTT.link_id, MQTT.host, MQTT.port, MQTT.reconnect);
+        if (Wifi_SendString((char *)Buffs.TxBuffer) == false)
             break;
         if (Wifi_WaitForString(_WIFI_WAIT_TIME_LOW, &result, 2, "OK", "ERROR") == false)
             break;       // The timeout was completed and the string was not there
@@ -1181,24 +1174,31 @@ bool MQTT_GetConnection(void)
 {
     uint8_t result;
     bool returnVal = false;
+    static char* items[6];
+    uint8_t items_size = 0;
     do
     {
         Wifi_RxClear();
-        sprintf((char *)Wifi.TxBuffer, "AT+MQTTCONN?\r\n");
-        if (Wifi_SendString((char *)Wifi.TxBuffer) == false)
+        sprintf((char *)Buffs.TxBuffer, "AT+MQTTCONN?\r\n");
+        if (Wifi_SendString((char *)Buffs.TxBuffer) == false)
             break;
         if (Wifi_WaitForString(_WIFI_WAIT_TIME_LOW, &result, 2, "OK", "ERROR") == false)
             break;       // The timeout was completed and the string was not there
         if (result == 2) // It was find the "ERROR" String in the receiving information
             break;
 
-        char *str = strstr((char *)Wifi.RxBuffer, "+MQTTCONN:");
-        if (sscanf(str, "+MQTTCONN:0,%d,%d,\"%[^\"]\",\"%u\",\"\",%d", (int*)&MQTT.state, (int*)&MQTT.scheme, MQTT.host, (int*)&MQTT.port, (int*)&MQTT.reconnect) == false)
+        char *str = strstr((char *)Buffs.RxBuffer.buff, "+MQTTCONN:");
+        // if (sscanf(str, "+MQTTCONN:0,%d,%d,\"%[^\"]\",\"%u\",\"\",%d", (int *)&MQTT.state, (int *)&MQTT.scheme, MQTT.host, (int *)&MQTT.port, (int *)&MQTT.reconnect) == false)
+        //     break;
+        if(!split_string(str, items, &items_size))
             break;
-
-        // strcpy(MQTT.host, MQTT.host + 4); // offset by 4 bytes. unknown reason
-
-        if (MQTT.state >= MQTTStates_Established)
+        MQTT.state = (MQTTStates_e)atoi(items[0]);
+        MQTT.scheme = (MQTTSchemes_e)atoi(items[1]);
+        strcpy(MQTT.host, items[2]);
+        MQTT.port = (uint16_t)atoi(items[3]);
+        MQTT.reconnect = (bool)atoi(items[5]);
+        
+        if ((MQTT.state >= MQTTStates_Established) && (MQTT.host != NULL))
             MQTT.connected = true;
         else
             MQTT.connected = false;
@@ -1214,8 +1214,8 @@ bool MQTT_Publish(MQTT_Message_t Message)
     do
     {
         Wifi_RxClear();
-        sprintf((char *)Wifi.TxBuffer, "AT+MQTTPUB=%u,\"%s\",\"%s\",0,0\r\n", MQTT.link_id, Message.topic, Message.data);
-        if (Wifi_SendString((char *)Wifi.TxBuffer) == false)
+        sprintf((char *)Buffs.TxBuffer, "AT+MQTTPUB=%u,\"%s\",\"%s\",0,0\r\n", MQTT.link_id, Message.topic, Message.data);
+        if (Wifi_SendString((char *)Buffs.TxBuffer) == false)
             break;
         if (Wifi_WaitForString(_WIFI_WAIT_TIME_LOW, &result, 2, "OK", "ERROR") == false)
             break;       // The timeout was completed and the string was not there
@@ -1233,18 +1233,22 @@ bool MQTT_PublishRaw(MQTT_Message_t Message)
     do
     {
         Wifi_RxClear();
-        sprintf((char *)Wifi.TxBuffer, "AT+MQTTPUBRAW=%u,\"%s\",%u,0,0\r\n", MQTT.link_id, Message.topic, Message.length);
-        if (Wifi_SendString((char *)Wifi.TxBuffer) == false)
+        sprintf((char *)Buffs.TxBuffer, "AT+MQTTPUBRAW=%u,\"%s\",%u,0,0\r\n", MQTT.link_id, Message.topic, Message.length);
+        if (Wifi_SendString((char *)Buffs.TxBuffer) == false)
             break;
         if (Wifi_WaitForString(_WIFI_WAIT_TIME_LOW, &result, 2, "OK", "ERROR") == false)
             break;       // The timeout was completed and the string was not there
         if (result == 2) // It was find the "ERROR" String in the receiving information
             break;
         /* Send all data */
-        usart1TransmitDma((uint8_t*)Message.data, (size_t)Message.length);
+        // usart1TransmitDma((uint8_t *)Message.data, (size_t)Message.length);
+        usart_transmit_dma(Message.data);
         /* Wait for response */
         if (Wifi_WaitForString(_WIFI_WAIT_TIME_LOW, &result, 2, "+MQTTPUB:OK", "+MQTTPUB:FAIL") == false)
+        {
+            usart_transmit_dma(" 0;0 0;0 0;0 0;0 0;0 0;0 0;0 0;0 0;0 0;0 0;0 0;0 0;0 0;0 0;0 0;0 0;0 0;0 0;0 0;0 0;0 0;0 0;0");
             break;       // The timeout was completed and the string was not there
+        }
         if (result == 2) // It was find the "FAIL" String in the receiving information
             break;
         returnVal = true;
@@ -1259,8 +1263,8 @@ bool MQTT_Subscribe(MQTT_Message_t Message)
     do
     {
         Wifi_RxClear();
-        sprintf((char *)Wifi.TxBuffer, "AT+MQTTSUB=%u,\"%s\",0\r\n", MQTT.link_id, Message.topic);
-        if (Wifi_SendString((char *)Wifi.TxBuffer) == false)
+        sprintf((char *)Buffs.TxBuffer, "AT+MQTTSUB=%u,\"%s\",0\r\n", MQTT.link_id, Message.topic);
+        if (Wifi_SendString((char *)Buffs.TxBuffer) == false)
             break;
         if (Wifi_WaitForString(_WIFI_WAIT_TIME_LOW, &result, 2, "OK", "ERROR") == false)
             break;       // The timeout was completed and the string was not there
@@ -1278,8 +1282,8 @@ bool MQTT_Unsubscribe(MQTT_Message_t Message)
     do
     {
         Wifi_RxClear();
-        sprintf((char *)Wifi.TxBuffer, "AT+MQTTUNSUB=%u,\"%s\"\r\n", MQTT.link_id, Message.topic);
-        if (Wifi_SendString((char *)Wifi.TxBuffer) == false)
+        sprintf((char *)Buffs.TxBuffer, "AT+MQTTUNSUB=%u,\"%s\"\r\n", MQTT.link_id, Message.topic);
+        if (Wifi_SendString((char *)Buffs.TxBuffer) == false)
             break;
         if (Wifi_WaitForString(_WIFI_WAIT_TIME_LOW, &result, 2, "OK", "ERROR") == false)
             break;       // The timeout was completed and the string was not there
@@ -1297,15 +1301,15 @@ bool MQTT_CheckSubscription(MQTT_Message_t *Message)
     do
     {
         Wifi_RxClear();
-        sprintf((char *)Wifi.TxBuffer, "AT+MQTTSUB?\r\n");
-        if (Wifi_SendString((char *)Wifi.TxBuffer) == false)
+        sprintf((char *)Buffs.TxBuffer, "AT+MQTTSUB?\r\n");
+        if (Wifi_SendString((char *)Buffs.TxBuffer) == false)
             break;
         if (Wifi_WaitForString(_WIFI_WAIT_TIME_LOW, &result, 2, "OK", "ERROR") == false)
             break;       // The timeout was completed and the string was not there
         if (result == 2) // It was find the "ERROR" String in the receiving information
             break;
 
-        char *str = strstr((char *)Wifi.RxBuffer, "+MQTTSUB");
+        char *str = strstr((char *)Buffs.RxBuffer.buff, "+MQTTSUB");
         if (sscanf(str, "+MQTTSUB:0,\"%[^\"]\",%d,0", Message->topic, (int *)&MQTT.state) == false)
             break;
 
@@ -1321,8 +1325,8 @@ bool MQTT_Disconnect(void)
     do
     {
         Wifi_RxClear();
-        sprintf((char *)Wifi.TxBuffer, "AT+MQTTCLEAN=%u\r\n", MQTT.link_id);
-        if (Wifi_SendString((char *)Wifi.TxBuffer) == false)
+        sprintf((char *)Buffs.TxBuffer, "AT+MQTTCLEAN=%u\r\n", MQTT.link_id);
+        if (Wifi_SendString((char *)Buffs.TxBuffer) == false)
             break;
         if (Wifi_WaitForString(_WIFI_WAIT_TIME_LOW, &result, 2, "OK", "ERROR") == false)
             break;       // The timeout was completed and the string was not there
@@ -1344,8 +1348,8 @@ bool MQTT_WaitForMessage(MQTT_Message_t *Message, uint32_t waitTime)
         if (Wifi_WaitForString(waitTime, &result, 1, "+MQTTSUBRECV") == false)
             break; // The timeout was completed and the string was not there
 
-        char *str = strstr((char *)Wifi.RxBuffer, "+MQTTSUBRECV");
-        if (sscanf(str, "+MQTTSUBRECV:0,\"%[^\"]\",%hu,%[^\r]", Message->topic, &Message->length, Message->data) == false)
+        char *str = strstr((char *)Buffs.RxBuffer.buff, "+MQTTSUBRECV");
+        if (sscanf(str, "+MQTTSUBRECV:0,\"%[^\"]\",%zu,%[^\r]", Message->topic, &Message->length, Message->data) == false)
             break;
 
         returnVal = true;
@@ -1353,43 +1357,56 @@ bool MQTT_WaitForMessage(MQTT_Message_t *Message, uint32_t waitTime)
     return returnVal;
 }
 // #########################################################################################################
-bool MQTT_ListenForMessage(MQTT_Message_t *Message)
+bool MQTT_ListenForMessage(MQTT_Message_t *Message, char *findStr, size_t* start_idx)
 {
-    uint8_t result;
     bool returnVal = false;
+    size_t find_idx = 0;
+    char* items[3];
+    uint8_t items_size;
     do
     {
-        Wifi_RxClear();
-        memset(Message->data, '\0', strlen(Message->data));
-
-        if (char_irq_recv)
+        if (lwrb_find(&Buffs.RxBuffer, (void *)findStr, strlen(findStr), *start_idx, &find_idx))
         {
-            char_irq_recv = false;
-
-            if (Wifi_WaitForString(1000, &result, 1, "+MQTTSUBRECV") == false)
-                break; // The timeout was completed and the string was not there 
-
-            char *str = strstr((char *)Wifi.RxBuffer, "+MQTTSUBRECV");
-            if (sscanf(str, "+MQTTSUBRECV:0,\"%[^\"]\",%hu,%[^\r]", Message->topic, &Message->length, Message->data) == false)
+            char *str = (char *)Buffs.RxBuffer.buff + find_idx;
+            *start_idx = find_idx;   // start new search at last index
+            if (!split_string(str, items, &items_size))
                 break;
-
+            strcpy(Message->topic, items[0]);
+            Message->length = atoi(items[1]);
+            strcpy(Message->data, items[2]);
             returnVal = true;
         }
 
     } while (0);
     return returnVal;
 }
-// void MQTT_MessageParser(MQTT_Message_t *Message, TouchData_t TouchData[10])
-// {
-//     // see stackoverflow question on parser data faster than sscanf
-//     char *resstr = Message->data;// strchr(token, '=') + 1;
-//     TouchData[0].xPos = (int16_t)atoi(resstr);
-//     resstr = strchr(resstr, ';') + 1;
-//     *res2 = (int16_t)atoi(resstr);
 
-//     resstr = strchr(resstr, ',') + 1;
-//     *res3 = (int16_t)atoi(resstr);
+static bool split_string(char* input_string, char* output_array[], uint8_t* output_size)
+{
+    char *token;
+    int i = 0;
 
-//     resstr = strchr(resstr, ',') + 1;
-//     *res4 = (int16_t)atoi(resstr);
-// }
+    // Get the first token
+    token = strtok(input_string, ",");
+    token = strtok(NULL, ","); // disregard header string
+
+    // Loop through the input string and split it by delimiter
+    while (token != NULL)
+    {
+        if (*token == '\"') // strip "" from string
+        {
+            if (*(token + 1) == '\"')
+                token = NULL;
+            else
+                sscanf(token, "\"%[^\"]\"", token);
+        }
+        output_array[i] = token;
+        i++;
+        token = strtok(NULL, ",");
+    }
+
+    *output_size = i;
+
+    // Return true if string is successfully split, false otherwise
+    return i > 0;
+}

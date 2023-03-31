@@ -2,6 +2,7 @@
 #define _ESP32_H
 
 #include "super_secret_project.h"
+#include "../lwrb/lwrb.h"
 #include "esp32Config.h"
 
 // ###################################################################################################
@@ -74,12 +75,6 @@ typedef struct
 // ###################################################################################################
 typedef struct
 {
-    //----------------Usart	Paremeter
-    uint8_t usartBuff;
-    uint8_t RxBuffer[_WIFI_RX_SIZE];
-    uint8_t TxBuffer[_WIFI_TX_SIZE];
-    uint16_t RxIndex;
-    bool RxIsData;
     //----------------General	Parameter
     WifiMode_t Mode;
     char MyIP[16];
@@ -145,7 +140,7 @@ typedef struct
 {
     char topic[128];
     char* data; //[_MQTT_SIZE];
-    uint16_t length;
+    size_t length;
 } MQTT_Message_t;
 
 // ###################################################################################################
@@ -217,6 +212,6 @@ bool MQTT_Subscribe(MQTT_Message_t Message);
 bool MQTT_Unsubscribe(MQTT_Message_t Message);
 bool MQTT_Disconnect(void);
 bool MQTT_WaitForMessage(MQTT_Message_t *Message, uint32_t waitTime);
-bool MQTT_ListenForMessage(MQTT_Message_t *Message);
+bool MQTT_ListenForMessage(MQTT_Message_t *Message, char *findStr, size_t* idx);
 
 #endif

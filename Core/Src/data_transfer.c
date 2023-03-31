@@ -15,12 +15,18 @@ uint32_t last_loop_time = 0;
 
 TouchData_t txTouchData[100];
 
-void initTxTouches(MQTT_Message_t *MQTT_TxPacket)
+void initTxPacket(MQTT_Message_t *MQTT_TxPacket)
 {
-    MQTT_TxPacket->data = malloc(_MQTT_SIZE);
+    MQTT_TxPacket->data = calloc(_MQTT_TX_SIZE, sizeof(uint8_t));
     strcpy(MQTT_TxPacket->topic, "topic/esp32atTx");
-    strcpy(MQTT_TxPacket->data, "Hello from STM32L432");
     MQTT_Unsubscribe(*MQTT_TxPacket);
+}
+
+void initRxPacket(MQTT_Message_t *MQTT_RxPacket)
+{
+    MQTT_RxPacket->data = calloc(_MQTT_RX_SIZE, sizeof(uint8_t));
+    strcpy(MQTT_RxPacket->topic, "topic/esp32atRx");
+    MQTT_Subscribe(*MQTT_RxPacket);
 }
 
 void readAndSendTouches(MQTT_Message_t *Message)
@@ -42,10 +48,10 @@ void readAndSendTouches(MQTT_Message_t *Message)
         txTouchData[txTouchIdx].yPos = touchData.yPos; // set x data to correct array index
 
         if (txTouchIdx == 0)
-            ili9341DrawPixel(touchData.xPos, touchData.yPos, RED); // draw pixel if first of index
+            fillCircle(touchData.xPos, touchData.yPos, 3, RED);
         else if ((txTouchData[txTouchIdx].xPos != txTouchData[txTouchIdx - 1].xPos) ||
                  (txTouchData[txTouchIdx].yPos != txTouchData[txTouchIdx - 1].yPos))
-            ili9341DrawPixel(touchData.xPos, touchData.yPos, RED); // draw pixel if not the same as previous
+            fillCircle(touchData.xPos, touchData.yPos, 3, RED);
 
         txTouchIdx++;
     }
@@ -60,7 +66,7 @@ void readAndSendTouches(MQTT_Message_t *Message)
             loopCounter = touchCounter; // reset counters to be equal
             touchRecv = false;          // reset touched check
 
-            Message->data = coords2string(txTouchData, txTouchIdx);
+            coords2string(txTouchData, txTouchIdx, Message->data);
             Message->length = strlen(Message->data);
             txTouchIdx = 0;
             txDataReady = true;
@@ -69,6 +75,7 @@ void readAndSendTouches(MQTT_Message_t *Message)
         if (SEND_RATE && txDataReady) // if 1s has passed and data is ready
         {
             MQTT_PublishRaw(*Message);
+            memset(Message->data, '\0', strlen(Message->data));
             SEND_RATE = false;
             txDataReady = false;
         }

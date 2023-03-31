@@ -1,4 +1,4 @@
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s 			page 1
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc24MSn4.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s 			page 1
   27:Core/Src/graphics.c ****               uint16_t color)
   28:Core/Src/graphics.c **** {
   30              		.loc 1 28 1 view -0
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s 			page 2
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc24MSn4.s 			page 2
 
 
   31              		.cfi_startproc
@@ -118,7 +118,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s 			page 1
   77              		.loc 1 36 5 discriminator 1 view .LVU10
   78              		.loc 1 36 8 is_stmt 0 discriminator 1 view .LVU11
   79 0038 AF42     		cmp	r7, r5
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s 			page 3
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc24MSn4.s 			page 3
 
 
   80 003a 05DC     		bgt	.L3
@@ -178,7 +178,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s 			page 1
  121              		.loc 1 49 5 discriminator 1 view .LVU27
  122              		.loc 1 49 8 is_stmt 0 discriminator 1 view .LVU28
  123 0066 8642     		cmp	r6, r0
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s 			page 4
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc24MSn4.s 			page 4
 
 
  124 0068 21DB     		blt	.L4
@@ -238,7 +238,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s 			page 1
  155              		.loc 1 58 24 view .LVU38
  156 008a 2DB2     		sxth	r5, r5
  157              	.LVL16:
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s 			page 5
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc24MSn4.s 			page 5
 
 
  158              	.L9:
@@ -298,7 +298,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s 			page 1
  200 00b4 03B0     		add	sp, sp, #12
  201              		.cfi_def_cfa_offset 36
  202              	.LVL23:
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s 			page 6
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc24MSn4.s 			page 6
 
 
  203              		.loc 1 75 1 view .LVU52
@@ -358,7 +358,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s 			page 1
  244 000c 8242     		cmp	r2, r0
  245 000e 1AD9     		bls	.L14
  246              		.loc 1 90 33 discriminator 1 view .LVU61
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s 			page 7
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc24MSn4.s 			page 7
 
 
  247 0010 0E4B     		ldr	r3, .L18+4
@@ -418,7 +418,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s 			page 1
  293              	.L18:
  294 0048 00000000 		.word	_lcd_width
  295 004c 00000000 		.word	_lcd_height
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s 			page 8
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc24MSn4.s 			page 8
 
 
  296              		.cfi_endproc
@@ -478,7 +478,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s 			page 1
  338 0014 9BB2     		uxth	r3, r3
  339              		.loc 1 112 27 discriminator 1 view .LVU83
  340 0016 8B42     		cmp	r3, r1
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s 			page 9
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc24MSn4.s 			page 9
 
 
  341 0018 15D9     		bls	.L20
@@ -538,7 +538,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s 			page 1
  388              		.section	.text.drawCircle,"ax",%progbits
  389              		.align	1
  390              		.global	drawCircle
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s 			page 10
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc24MSn4.s 			page 10
 
 
  391              		.syntax unified
@@ -598,7 +598,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s 			page 1
  139:Core/Src/graphics.c ****     int16_t ddF_y = -2 * r;
  428              		.loc 1 139 5 view .LVU102
  429              		.loc 1 139 24 is_stmt 0 view .LVU103
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s 			page 11
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc24MSn4.s 			page 11
 
 
  430 0014 C4EBC433 		rsb	r3, r4, r4, lsl #15
@@ -658,7 +658,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s 			page 1
  474              		.loc 1 140 13 is_stmt 0 view .LVU115
  475 005e 0023     		movs	r3, #0
  476 0060 0293     		str	r3, [sp, #8]
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s 			page 12
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc24MSn4.s 			page 12
 
 
  138:Core/Src/graphics.c ****     int16_t ddF_y = -2 * r;
@@ -718,7 +718,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s 			page 1
  158:Core/Src/graphics.c ****         f += ddF_x;
  521              		.loc 1 158 9 is_stmt 1 view .LVU129
  522              		.loc 1 158 11 is_stmt 0 view .LVU130
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s 			page 13
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc24MSn4.s 			page 13
 
 
  523 0092 19FA83F9 		uxtah	r9, r9, r3
@@ -778,7 +778,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s 			page 1
  571              	.LVL59:
  165:Core/Src/graphics.c ****         ili9341DrawPixel(x0 - y, y0 + x, color);
  572              		.loc 1 165 9 view .LVU137
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s 			page 14
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc24MSn4.s 			page 14
 
 
  573 00fc ABEB0404 		sub	r4, fp, r4
@@ -838,7 +838,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s 			page 1
  621              		.fpu fpv4-sp-d16
  623              	drawCircleHelper:
  624              	.LVL63:
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s 			page 15
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc24MSn4.s 			page 15
 
 
  625              	.LFB1159:
@@ -898,7 +898,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s 			page 1
  661              		.loc 1 187 24 is_stmt 0 view .LVU153
  662 001c C3EBC333 		rsb	r3, r3, r3, lsl #15
  663 0020 5B00     		lsls	r3, r3, #1
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s 			page 16
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc24MSn4.s 			page 16
 
 
  664              		.loc 1 187 13 view .LVU154
@@ -958,7 +958,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s 			page 1
  704 0040 0135     		adds	r5, r5, #1
  705              	.LVL73:
  706              		.loc 1 199 10 view .LVU171
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s 			page 17
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc24MSn4.s 			page 17
 
 
  707 0042 1FFA85F8 		uxth	r8, r5
@@ -1018,7 +1018,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s 			page 1
  743              	.LVL78:
  744              	.L34:
  191:Core/Src/graphics.c ****     {
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s 			page 18
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc24MSn4.s 			page 18
 
 
  745              		.loc 1 191 11 is_stmt 1 view .LVU185
@@ -1078,7 +1078,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s 			page 1
  793              	.LVL82:
  794 00da C2E7     		b	.L37
  795              	.L44:
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s 			page 19
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc24MSn4.s 			page 19
 
 
  214:Core/Src/graphics.c ****             ili9341DrawPixel(x0 - x, y0 + y, color);
@@ -1138,7 +1138,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s 			page 1
  842 0142 BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
  843              		.loc 1 223 1 view .LVU197
  844              		.cfi_endproc
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s 			page 20
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc24MSn4.s 			page 20
 
 
  845              	.LFE1159:
@@ -1198,7 +1198,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s 			page 1
  869              		.cfi_offset 8, -20
  870              		.cfi_offset 9, -16
  871              		.cfi_offset 10, -12
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s 			page 21
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc24MSn4.s 			page 21
 
 
  872              		.cfi_offset 11, -8
@@ -1258,7 +1258,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s 			page 1
  913 0030 9146     		mov	r9, r2
  260:Core/Src/graphics.c ****     int16_t y = r;
  914              		.loc 1 260 13 view .LVU216
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s 			page 22
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc24MSn4.s 			page 22
 
 
  915 0032 0025     		movs	r5, #0
@@ -1318,7 +1318,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s 			page 1
  946              		.loc 1 289 13 is_stmt 1 view .LVU224
  947              		.loc 1 289 16 is_stmt 0 view .LVU225
  948 0060 18F0010F 		tst	r8, #1
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s 			page 23
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc24MSn4.s 			page 23
 
 
  949 0064 35D1     		bne	.L58
@@ -1378,7 +1378,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s 			page 1
  275:Core/Src/graphics.c ****         ddF_x += 2;
  988              		.loc 1 275 9 is_stmt 1 view .LVU240
  275:Core/Src/graphics.c ****         ddF_x += 2;
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s 			page 24
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc24MSn4.s 			page 24
 
 
  989              		.loc 1 275 10 is_stmt 0 view .LVU241
@@ -1438,7 +1438,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s 			page 1
  1028 00b6 029B     		ldr	r3, [sp, #8]
  1029 00b8 1A44     		add	r2, r2, r3
  1030 00ba 049B     		ldr	r3, [sp, #16]
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s 			page 25
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc24MSn4.s 			page 25
 
 
  1031 00bc 591A     		subs	r1, r3, r1
@@ -1498,7 +1498,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s 			page 1
  1079 0110 B146     		mov	r9, r6
  1080              	.LVL108:
  1081              		.loc 1 293 16 view .LVU264
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s 			page 26
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc24MSn4.s 			page 26
 
 
  1082 0112 ACE7     		b	.L49
@@ -1558,7 +1558,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s 			page 1
  236:Core/Src/graphics.c ****     drawVerticalLine(x0, y0 - r, 2 * r + 1, color);
  1105              		.loc 1 236 1 is_stmt 1 view -0
  1106              		.cfi_startproc
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s 			page 27
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc24MSn4.s 			page 27
 
 
  1107              		@ args = 0, pretend = 0, frame = 0
@@ -1618,7 +1618,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s 			page 1
  1153              		@ sp needed
  1154 003c F0BD     		pop	{r4, r5, r6, r7, pc}
  1155              		.cfi_endproc
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s 			page 28
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc24MSn4.s 			page 28
 
 
  1156              	.LFE1160:
@@ -1678,7 +1678,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s 			page 1
  1196              		.loc 1 342 5 view .LVU282
  1197 0018 FFF7FEFF 		bl	drawHorizontalLine
  1198              	.LVL117:
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s 			page 29
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc24MSn4.s 			page 29
 
 
  343:Core/Src/graphics.c ****     drawHorizontalLine(x, y + h - 1, w, color);
@@ -1738,7 +1738,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s 			page 1
  350:Core/Src/graphics.c ****    @brief   Draw a rectangle with fill color
  351:Core/Src/graphics.c ****     @param    x   Top left corner x coordinate
  352:Core/Src/graphics.c ****     @param    y   Top left corner y coordinate
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s 			page 30
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc24MSn4.s 			page 30
 
 
  353:Core/Src/graphics.c ****     @param    w   Width in pixels
@@ -1798,7 +1798,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s 			page 1
  1290              		.loc 1 364 24 is_stmt 0 view .LVU305
  1291 0026 104B     		ldr	r3, .L71
  1292 0028 1D88     		ldrh	r5, [r3]
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s 			page 31
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc24MSn4.s 			page 31
 
 
  1293 002a ADB2     		uxth	r5, r5
@@ -1858,7 +1858,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s 			page 1
  1339              		.loc 1 372 1 is_stmt 0 view .LVU319
  1340 0066 38BD     		pop	{r3, r4, r5, pc}
  1341              	.LVL128:
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s 			page 32
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc24MSn4.s 			page 32
 
 
  1342              	.L72:
@@ -1918,7 +1918,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s 			page 1
  388:Core/Src/graphics.c ****     int16_t max_radius = ((w < h) ? w : h) / 2; // 1/2 minor axis
  1383              		.loc 1 388 5 is_stmt 1 view .LVU323
  1384              		.loc 1 388 39 is_stmt 0 view .LVU324
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s 			page 33
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc24MSn4.s 			page 33
 
 
  1385 0010 9342     		cmp	r3, r2
@@ -1978,7 +1978,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s 			page 1
  1433              		.loc 1 394 5 view .LVU338
  1434 005a 691E     		subs	r1, r5, #1
  1435 005c 3B46     		mov	r3, r7
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s 			page 34
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc24MSn4.s 			page 34
 
 
  1436 005e 059A     		ldr	r2, [sp, #20]
@@ -2038,7 +2038,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s 			page 1
  1485 00bc 0097     		str	r7, [sp]
  1486 00be 0223     		movs	r3, #2
  1487 00c0 4246     		mov	r2, r8
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s 			page 35
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc24MSn4.s 			page 35
 
 
  1488 00c2 2146     		mov	r1, r4
@@ -2098,7 +2098,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s 			page 1
  409:Core/Src/graphics.c ****     @param    w   Width in pixels
  410:Core/Src/graphics.c ****     @param    h   Height in pixels
  411:Core/Src/graphics.c ****     @param    r   Radius of corner rounding
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s 			page 36
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc24MSn4.s 			page 36
 
 
  412:Core/Src/graphics.c ****     @param    color 16-bit 5-6-5 Color to draw/fill with
@@ -2158,7 +2158,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s 			page 1
  1577 002c A819     		adds	r0, r5, r6
  1578              	.LVL149:
  1579              		.loc 1 423 5 view .LVU365
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s 			page 37
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc24MSn4.s 			page 37
 
 
  1580 002e 80B2     		uxth	r0, r0
@@ -2218,7 +2218,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s 			page 1
  1631 007e CDF804B0 		str	fp, [sp, #4]
  1632 0082 0094     		str	r4, [sp]
  1633 0084 0223     		movs	r3, #2
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s 			page 38
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc24MSn4.s 			page 38
 
 
  1634 0086 5246     		mov	r2, r10
@@ -2278,7 +2278,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s 			page 1
  1673              		.cfi_offset 14, -4
  1674 0004 82B0     		sub	sp, sp, #8
  1675              		.cfi_def_cfa_offset 40
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s 			page 39
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc24MSn4.s 			page 39
 
 
  1676 0006 0446     		mov	r4, r0
@@ -2338,7 +2338,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s 			page 1
  453:Core/Src/graphics.c ****     @param    y0  Vertex #0 y coordinate
  454:Core/Src/graphics.c ****     @param    x1  Vertex #1 x coordinate
  455:Core/Src/graphics.c ****     @param    y1  Vertex #1 y coordinate
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s 			page 40
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc24MSn4.s 			page 40
 
 
  456:Core/Src/graphics.c ****     @param    x2  Vertex #2 x coordinate
@@ -2398,7 +2398,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s 			page 1
  1764              	.L82:
  469:Core/Src/graphics.c ****     {
  470:Core/Src/graphics.c ****         _swap_int16_t(y0, y1);
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s 			page 41
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc24MSn4.s 			page 41
 
 
  471:Core/Src/graphics.c ****         _swap_int16_t(x0, x1);
@@ -2458,7 +2458,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s 			page 1
  1805 004c 019B     		ldr	r3, [sp, #4]
  1806 004e 4345     		cmp	r3, r8
  1807 0050 26D0     		beq	.L100
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s 			page 42
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc24MSn4.s 			page 42
 
 
  485:Core/Src/graphics.c ****     { // Handle awkward all-on-same-line case as its own thing
@@ -2518,7 +2518,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s 			page 1
  1845              	.LVL175:
  1846              		.loc 1 501 13 view .LVU427
  1847 0080 01B2     		sxth	r1, r0
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s 			page 43
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc24MSn4.s 			page 43
 
 
  1848              	.LVL176:
@@ -2578,7 +2578,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s 			page 1
  487:Core/Src/graphics.c ****             a = x1;
  1885              		.loc 1 487 9 view .LVU443
  487:Core/Src/graphics.c ****             a = x1;
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s 			page 44
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc24MSn4.s 			page 44
 
 
  1886              		.loc 1 487 12 is_stmt 0 view .LVU444
@@ -2638,7 +2638,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s 			page 1
  524:Core/Src/graphics.c ****         */
  525:Core/Src/graphics.c ****         if (a > b)
  526:Core/Src/graphics.c ****             _swap_int16_t(a, b);
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s 			page 45
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc24MSn4.s 			page 45
 
 
  527:Core/Src/graphics.c ****         drawHorizontalLine(a, y, b - a + 1, color);
@@ -2698,7 +2698,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s 			page 1
  494:Core/Src/graphics.c ****             b = x2;
  1948              		.loc 1 494 15 view .LVU463
  1949 00d8 EBE7     		b	.L87
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s 			page 46
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc24MSn4.s 			page 46
 
 
  1950              	.LVL191:
@@ -2758,7 +2758,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s 			page 1
  517:Core/Src/graphics.c ****         a = x0 + sa / dy01;
  1990              		.loc 1 517 16 view .LVU478
  1991 0100 3244     		add	r2, r2, r6
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s 			page 47
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc24MSn4.s 			page 47
 
 
  517:Core/Src/graphics.c ****         a = x0 + sa / dy01;
@@ -2818,7 +2818,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s 			page 1
  532:Core/Src/graphics.c ****     sa = (int32_t)dx12 * (y - y1);
  2030              		.loc 1 532 29 is_stmt 0 view .LVU495
  2031 0122 069B     		ldr	r3, [sp, #24]
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s 			page 48
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc24MSn4.s 			page 48
 
 
  2032 0124 A4EB030B 		sub	fp, r4, r3
@@ -2878,7 +2878,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s 			page 1
  2072 014e 24B2     		sxth	r4, r4
  2073              	.LVL212:
  2074              	.L93:
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s 			page 49
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc24MSn4.s 			page 49
 
 
  534:Core/Src/graphics.c ****     for (; y <= y2; y++)
@@ -2938,7 +2938,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s 			page 1
  2112 0174 1046     		mov	r0, r2
  2113              	.LVL217:
  537:Core/Src/graphics.c ****         b = x0 + sb / dy02;
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s 			page 50
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc24MSn4.s 			page 50
 
 
  2114              		.loc 1 537 11 view .LVU527
@@ -2955,40 +2955,40 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s 			page 1
  2125              		.file 3 "/opt/homebrew/Cellar/arm-none-eabi-gcc/10.3-2021.07/gcc/arm-none-eabi/include/sys/_stdint
  2126              		.file 4 "Core/Inc/ili9341.h"
  2127              		.file 5 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h"
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s 			page 51
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc24MSn4.s 			page 51
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 graphics.c
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s:18     .text.drawLine:0000000000000000 $t
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s:26     .text.drawLine:0000000000000000 drawLine
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s:211    .text.drawVerticalLine:0000000000000000 $t
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s:218    .text.drawVerticalLine:0000000000000000 drawVerticalLine
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s:294    .text.drawVerticalLine:0000000000000048 $d
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s:300    .text.drawHorizontalLine:0000000000000000 $t
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s:307    .text.drawHorizontalLine:0000000000000000 drawHorizontalLine
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s:383    .text.drawHorizontalLine:0000000000000048 $d
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s:389    .text.drawCircle:0000000000000000 $t
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s:396    .text.drawCircle:0000000000000000 drawCircle
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s:616    .text.drawCircleHelper:0000000000000000 $t
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s:623    .text.drawCircleHelper:0000000000000000 drawCircleHelper
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s:848    .text.fillCircleHelper:0000000000000000 $t
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s:855    .text.fillCircleHelper:0000000000000000 fillCircleHelper
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s:1095   .text.fillCircle:0000000000000000 $t
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s:1102   .text.fillCircle:0000000000000000 fillCircle
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s:1159   .text.drawRect:0000000000000000 $t
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s:1166   .text.drawRect:0000000000000000 drawRect
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s:1238   .text.fillRect:0000000000000000 $t
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s:1245   .text.fillRect:0000000000000000 fillRect
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s:1346   .text.fillRect:0000000000000068 $d
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s:1352   .text.drawRoundRect:0000000000000000 $t
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s:1359   .text.drawRoundRect:0000000000000000 drawRoundRect
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s:1525   .text.fillRoundRect:0000000000000000 $t
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s:1532   .text.fillRoundRect:0000000000000000 fillRoundRect
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s:1649   .text.drawTriangle:0000000000000000 $t
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s:1656   .text.drawTriangle:0000000000000000 drawTriangle
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s:1713   .text.fillTriangle:0000000000000000 $t
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc69DpRo.s:1720   .text.fillTriangle:0000000000000000 fillTriangle
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc24MSn4.s:18     .text.drawLine:0000000000000000 $t
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc24MSn4.s:26     .text.drawLine:0000000000000000 drawLine
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc24MSn4.s:211    .text.drawVerticalLine:0000000000000000 $t
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc24MSn4.s:218    .text.drawVerticalLine:0000000000000000 drawVerticalLine
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc24MSn4.s:294    .text.drawVerticalLine:0000000000000048 $d
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc24MSn4.s:300    .text.drawHorizontalLine:0000000000000000 $t
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc24MSn4.s:307    .text.drawHorizontalLine:0000000000000000 drawHorizontalLine
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc24MSn4.s:383    .text.drawHorizontalLine:0000000000000048 $d
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc24MSn4.s:389    .text.drawCircle:0000000000000000 $t
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc24MSn4.s:396    .text.drawCircle:0000000000000000 drawCircle
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc24MSn4.s:616    .text.drawCircleHelper:0000000000000000 $t
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc24MSn4.s:623    .text.drawCircleHelper:0000000000000000 drawCircleHelper
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc24MSn4.s:848    .text.fillCircleHelper:0000000000000000 $t
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc24MSn4.s:855    .text.fillCircleHelper:0000000000000000 fillCircleHelper
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc24MSn4.s:1095   .text.fillCircle:0000000000000000 $t
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc24MSn4.s:1102   .text.fillCircle:0000000000000000 fillCircle
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc24MSn4.s:1159   .text.drawRect:0000000000000000 $t
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc24MSn4.s:1166   .text.drawRect:0000000000000000 drawRect
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc24MSn4.s:1238   .text.fillRect:0000000000000000 $t
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc24MSn4.s:1245   .text.fillRect:0000000000000000 fillRect
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc24MSn4.s:1346   .text.fillRect:0000000000000068 $d
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc24MSn4.s:1352   .text.drawRoundRect:0000000000000000 $t
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc24MSn4.s:1359   .text.drawRoundRect:0000000000000000 drawRoundRect
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc24MSn4.s:1525   .text.fillRoundRect:0000000000000000 $t
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc24MSn4.s:1532   .text.fillRoundRect:0000000000000000 fillRoundRect
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc24MSn4.s:1649   .text.drawTriangle:0000000000000000 $t
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc24MSn4.s:1656   .text.drawTriangle:0000000000000000 drawTriangle
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc24MSn4.s:1713   .text.fillTriangle:0000000000000000 $t
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc24MSn4.s:1720   .text.fillTriangle:0000000000000000 fillTriangle
 
 UNDEFINED SYMBOLS
 ili9341DrawPixel
