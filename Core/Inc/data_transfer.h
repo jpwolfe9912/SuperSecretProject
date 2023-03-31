@@ -8,8 +8,8 @@
 #include "utilities.h"
 typedef struct
 {
-    uint16_t xPos[100];
-    uint16_t yPos[100];
+    uint16_t* xPos;
+    uint16_t* yPos;
 } Coords_t;
 
 void initTxPacket(MQTT_Message_t* MQTT_TxPacket);

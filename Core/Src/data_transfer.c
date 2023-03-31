@@ -16,7 +16,7 @@ uint32_t prev_touch_time = 0;
 uint32_t elap_touch_time = 0;
 uint32_t last_loop_time = 0;
 
-Coords_t TxCoords;
+// Coords_t TxCoords;
 Coords_t RxCoords;
 
 void initTxPacket(MQTT_Message_t *MQTT_TxPacket)
@@ -35,8 +35,11 @@ void initRxPacket(MQTT_Message_t *MQTT_RxPacket)
 
 void readAndSendTouches(MQTT_Message_t *Message)
 {
-    if (touchData.touched)
+    Coords_t TxCoords;
+    if (touchData.touched && touchData.touches) // check for touch
     {
+        TxCoords.xPos = calloc(100, sizeof(uint16_t));
+        TxCoords.yPos = calloc(100, sizeof(uint16_t));
         // want to see how long it takes from one touch to the next
         // if the time from the previous touch to the loop is > 10ms then we know touched wasn't run
         prev_touch_time = last_touch_time;
@@ -70,6 +73,7 @@ void readAndSendTouches(MQTT_Message_t *Message)
             loopCounter = touchCounter; // reset counters to be equal
             touchRecv = false;          // reset touched check
 
+
             coords2string(TxCoords.xPos, TxCoords.yPos, txTouchIdx, Message->data);
             Message->length = strlen(Message->data);
             txTouchIdx = 0;
@@ -90,7 +94,7 @@ void recvAndDisplayTouches(MQTT_Message_t *Message)
 {
     static size_t find_idx = 0;
     static uint8_t rxTouchIdx = 0;
-    char* str = "+MQTTSUBRECV";
+    char *str = "+MQTTSUBRECV";
     if (frame1000Hz)
     {
         if (MQTT_ListenForMessage(Message, str, &find_idx))
@@ -122,4 +126,3 @@ void recvAndDisplayTouches(MQTT_Message_t *Message)
         frame100Hz = false;
     }
 }
-
