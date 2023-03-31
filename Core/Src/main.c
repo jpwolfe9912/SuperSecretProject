@@ -51,90 +51,50 @@ int main(void)
     MX_I2C1_Init();
     MX_USART1_UART_Init();
     MX_USART2_UART_Init();
-    // MX_FATFS_Init();
-    /* USER CODE BEGIN 2 */
+
+// MX_FATFS_Init();
+/* USER CODE BEGIN 2 */
+#ifdef USE_LCD
     ili9341Init();
-    printf("Test print\n");
+#endif
+#ifdef USE_TOUCH
     if (ft6206Init())
         printf("Init Success\n");
     else
         printf("Init Failed\n");
+#endif
 
     ili9341FillScreen(BLUE);
     ili9341DrawImage(0, 0, ILI9341_SCREEN_WIDTH, ILI9341_SCREEN_HEIGHT, nellie);
 
-    fillCircle(50, 50, 10, RED);
-    fillCircle(75, 50, 10, ORANGE);
-    fillCircle(100, 50, 10, YELLOW);
-    fillCircle(125, 50, 10, GREEN);
-    fillCircle(150, 50, 10, BLUE);
-    fillCircle(175, 50, 10, PURPLE);
-    fillCircle(200, 50, 10, WHITE);
-    fillCircle(225, 50, 10, BLACK);
+    lwrb_init(&Buffs.RxBuffer, (void *)Buffs.RxBuffer_Data, sizeof(Buffs.RxBuffer_Data));
 
-    drawVerticalLine(62, 40, 20, RED);
+    Wifi_Init();
+    while (!Wifi_GetApConnection())
+    { // connect if not connected
+        Wifi_Station_ConnectToAp("Jeremy Wolfe's iPhone", "aaaaaaaa", NULL);
+        delay(1000);
+    }
+    SNTP_Init();
+    MQTT_Init();
 
-    /* USER CODE END 2 */
+    MQTT_Message_t TxPacket;
+    MQTT_Message_t RxPacket;
+    initTxPacket(&TxPacket);
+    initRxPacket(&RxPacket);
 
-    /* Infinite loop */
-    /* USER CODE BEGIN WHILE */
-
-    // Wifi_Init();
-    // if (!Wifi_GetApConnection()) // connect if not connected
-    //     Wifi_Station_ConnectToAp("Jeremy Wolfe's iPhone", "aaaaaaaa", NULL);
-    // SNTP_Init();
-    // MQTT_Init();
-
-    // MQTT_Message_t MQTT_TxPacket;
-    // initTxTouches(&MQTT_TxPacket);
-
+    char *str = "+MQTTSUBRECV";
+    size_t find_idx = 0;
     while (1)
     {
-        /*
-        4 Things to do
-            1) Listen for and display touch
-                a) In 1Hz loop, listen for TouchData.touched
-                b) Write pixel at touched spot
-                c) Scan touches into buffer
-            2) Send touches
-                a) Wait for 10 touches to occur
-                b) Send buffer of touches
-            3) Listen for data
-                a) If "+MQTTSUBRECV" received
-                b) Read 10 values into buffer
-                c) Set recv data ready flag
-            4) Display data
-                a) Display data to screen when ready
-        */
-
-        // if (!dataRecv)
-        // {
-        //     if (MQTT_ListenForMessage(&Test))
-        //     {
-        //         start = micros();
-        //         if (sscanf(Test.RxData, "%u;%u %u;%u %u;%u %u;%u %u;%u %u;%u %u;%u %u;%u %u;%u %u;%u", &rxTouchData10[0].xPos, &rxTouchData10[0].yPos, &rxTouchData10[1].xPos, &rxTouchData10[1].yPos, &rxTouchData10[2].xPos, &rxTouchData10[2].yPos, &rxTouchData10[3].xPos, &rxTouchData10[3].yPos, &rxTouchData10[4].xPos, &rxTouchData10[4].yPos, &rxTouchData10[5].xPos, &rxTouchData10[5].yPos, &rxTouchData10[6].xPos, &rxTouchData10[6].yPos, &rxTouchData10[7].xPos, &rxTouchData10[7].yPos, &rxTouchData10[8].xPos, &rxTouchData10[8].yPos, &rxTouchData10[9].xPos, &rxTouchData10[9].yPos))
-        //                 /* sscanf function takes over 500us to complete... could be causing problems */
-        //             {
-        //                 dataRecv = true;
-        //                 elapsed = micros() - start;
-        //             }
-        //     }
-        // }
-        // if (dataRecv)
-        // {
-        //     if (frame100Hz)
-        //     {
-        //         fillRect(rxTouchData10[rxTouchIdx].xPos, rxTouchData10[rxTouchIdx].yPos, 5, 5, GREEN);
-        //         if (++rxTouchIdx > 10)
-        //         {
-        //             rxTouchIdx = 0;
-        //             dataRecv = false;
-        //             memset(rxTouchData10, '\0', sizeof(rxTouchData10));
-        //         }
-        //     }
-        // }
-        // TODO: Figure out how to have part of the data sent if a whole second wasn't recorded so we can clear buffer
-        // readAndSendTouches(&MQTT_TxPacket);
+        readAndSendTouches(&TxPacket);
+        if(frame1000Hz)
+        {
+            if(MQTT_ListenForMessage(&RxPacket, str, &find_idx))
+                serialWrite('y');
+            lwrb_reset(&Buffs.RxBuffer);
+            frame1000Hz = false;
+        }
     }
 }
 /* USER CODE END 3 */

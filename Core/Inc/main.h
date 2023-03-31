@@ -81,7 +81,8 @@ extern "C" {
 
 /* Exported macro ------------------------------------------------------------*/
 /* USER CODE BEGIN EM */
-
+#define USE_LCD
+#define USE_TOUCH
 /* USER CODE END EM */
 
 /* Exported functions prototypes ---------------------------------------------*/
