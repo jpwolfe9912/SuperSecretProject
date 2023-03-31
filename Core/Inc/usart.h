@@ -57,8 +57,9 @@ void MX_USART1_UART_Init(void);
 void MX_USART2_UART_Init(void);
 
 /* USER CODE BEGIN Prototypes */
-void serialWrite(uint8_t ch);
+void serialWrite(const char *str);
 char serialRead(void);
+void serial_transmit_dma(const char *str);
 
 void usart_rx_check(void);
 void usart_process_data(const void* data, size_t len);

@@ -43,7 +43,7 @@ build/syscall.o: Middlewares/Third_Party/FatFs/src/option/syscall.c \
  Core/Inc/stm32l4xx_it.h Core/Inc/dwt_system.h Core/Inc/dma.h \
  Core/Inc/i2c.h Core/Inc/spi.h Core/Inc/usart.h \
  Middlewares/Third_Party/lwrb/../lwrb/lwrb.h Core/Inc/esp32.h \
- Core/Inc/esp32Config.h Core/Inc/gpio.h
+ Core/Inc/utilities.h Core/Inc/esp32Config.h Core/Inc/gpio.h
 Middlewares/Third_Party/FatFs/src/option/../ff.h:
 Middlewares/Third_Party/FatFs/src/option/../integer.h:
 FATFS/Target/ffconf.h:
@@ -97,5 +97,6 @@ Core/Inc/spi.h:
 Core/Inc/usart.h:
 Middlewares/Third_Party/lwrb/../lwrb/lwrb.h:
 Core/Inc/esp32.h:
+Core/Inc/utilities.h:
 Core/Inc/esp32Config.h:
 Core/Inc/gpio.h:

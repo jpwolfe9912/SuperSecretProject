@@ -60,9 +60,9 @@ int main(void)
 #endif
 #ifdef USE_TOUCH
     if (ft6206Init())
-        printf("Init Success\n");
+        serialWrite("Init Success\n");
     else
-        printf("Init Failed\n");
+        serialWrite("Init Failed\n");
 #endif
 
     ili9341FillScreen(BLUE);
@@ -84,18 +84,14 @@ int main(void)
     initTxPacket(&TxPacket);
     initRxPacket(&RxPacket);
 
-    char *str = "+MQTTSUBRECV";
-    size_t find_idx = 0;
     while (1)
     {
-        readAndSendTouches(&TxPacket);
-        if(frame1000Hz)
+        if (GPIOB->IDR & GPIO_IDR_ID4)
         {
-            if(MQTT_ListenForMessage(&RxPacket, str, &find_idx))
-                serialWrite('y');
-            lwrb_reset(&Buffs.RxBuffer);
-            frame1000Hz = false;
+            ili9341DrawImage(0, 0, ILI9341_SCREEN_WIDTH, ILI9341_SCREEN_HEIGHT, nellie);
         }
+        readAndSendTouches(&TxPacket);
+        recvAndDisplayTouches(&RxPacket);
     }
 }
 /* USER CODE END 3 */

@@ -48,7 +48,6 @@ bool ft6206Init(void)
         i2c1Write(FT62XX_ADDR, data, sizeof(data));
 
         i2c1Read(FT62XX_ADDR, FT62XX_REG_G_MODE, &mode, 1);
-        printf("\nMode is: %X\n", mode);
     }
     {
         // check if vendor ID matches
@@ -69,6 +68,11 @@ bool ft6206Init(void)
             return false;
         }
     }
+    touchData.touched = false;
+    touchData.touches = 0;
+    touchData.touchId = 0;
+    touchData.xPos = 0;
+    touchData.yPos = 0;
 
     NVIC_EnableIRQ(EXTI9_5_IRQn);
     return true;
@@ -91,13 +95,11 @@ void ft6206ReadData(void)
         touchData.touches = 0;
     }
 
-#ifdef FT62XX_DEBUG
-    // printf("\n# Touches: %u\n", touchData.touches);
-#endif
-
     touchData.yPos = 240 - (((rawData[3] & 0x0F) << 8U) | rawData[4]);
-    touchData.xPos = (((rawData[5] & 0x0F) << 8U) | rawData[6]);
+    touchData.xPos = ((rawData[5] & 0x0F) << 8U) | rawData[6];
     touchData.touchId = (rawData[5] >> 4U) & 0x0F;
+    touchData.yPos = touchData.yPos > 240 ? 240 : touchData.yPos;
+    touchData.xPos = touchData.xPos > 320 ? 320 : touchData.xPos;
 
 #ifdef FT62XX_DEBUG
 
@@ -115,9 +117,9 @@ void FT62XX_TOUCH_IRQ(void)
     {
         LL_EXTI_ClearFlag_0_31(LL_EXTI_LINE_5);
         /* USER CODE BEGIN LL_EXTI_LINE_5 */
-        if(!(GPIOB->IDR & GPIO_IDR_ID5))    // falling edge
+        if (!(GPIOB->IDR & GPIO_IDR_ID5)) // falling edge
             touchData.touched = true;
-        else if(GPIOB->IDR & GPIO_IDR_ID5)  // rising edge
+        else if (GPIOB->IDR & GPIO_IDR_ID5) // rising edge
             touchData.touched = false;
         /* USER CODE END LL_EXTI_LINE_5 */
     }

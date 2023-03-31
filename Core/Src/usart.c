@@ -173,11 +173,15 @@ void MX_USART2_UART_Init(void)
  *  @param ch The character to send.
  *  @return Void.
  */
-void serialWrite(uint8_t ch)
+void serialWrite(const char *str)
 {
-    while (!(USART2->ISR & USART_ISR_TXE))
-        ;             // waits for TX buffer to become empty
-    USART2->TDR = ch; // transfers the value of the data register into ch
+    while(*str != '\0')
+    {
+        while (!(USART2->ISR & USART_ISR_TXE))
+            ;                   // waits for TX buffer to become empty
+        USART2->TDR = *str;   // transfers the value of the data register into ch
+        str++;
+    }
 }
 
 char serialRead(void)
@@ -313,7 +317,7 @@ void usart_transmit_dma(const char *str)
 
 PUTCHAR_PROTOTYPE
 {
-    serialWrite(ch);
+    serialWrite((char*)ch);
     return ch;
 }
 
@@ -335,7 +339,7 @@ void DMA1_Channel4_IRQHandler(void)
 {
     if (LL_DMA_IsEnabledIT_TC(DMA1, LL_DMA_CHANNEL_4) && LL_DMA_IsActiveFlag_TC4(DMA1))
     {
-        LL_DMA_ClearFlag_TC4(DMA1);                        /* Clear transfer complete flag */
+        LL_DMA_ClearFlag_TC4(DMA1); /* Clear transfer complete flag */
         utx_finished = true;
     }
 }
@@ -359,4 +363,3 @@ void DMA1_Channel5_IRQHandler(void)
         usart_rx_check();           /* Check for data to process */
     }
 }
-

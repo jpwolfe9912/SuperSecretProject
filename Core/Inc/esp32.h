@@ -2,6 +2,7 @@
 #define _ESP32_H
 
 #include "super_secret_project.h"
+#include "utilities.h"
 #include "../lwrb/lwrb.h"
 #include "esp32Config.h"
 
@@ -103,8 +104,8 @@ typedef struct
 
 typedef struct
 {
-    char day_of_week[3];
-    char month[3];
+    char day_of_week[4];
+    char month[4];
     uint8_t day;
     uint16_t year;
     SNTP_Clocktime_t clocktime;
@@ -196,7 +197,7 @@ bool Wifi_TcpIp_SendDataTcp(uint8_t LinkId, uint16_t dataLen, uint8_t *data);
 
 bool SNTP_Init(void);
 bool SNTP_SetTimeZone(size_t numServers);
-bool SNTP_QueryTime(void);
+bool SNTP_TimeUpdated(void);
 
 bool MQTT_Init(void);
 bool MQTT_SetUserConfig(void);

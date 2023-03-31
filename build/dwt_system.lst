@@ -1,4 +1,4 @@
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s 			page 1
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc8KQGM0.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s 			page 1
   28:Core/Src/dwt_system.c ****  *		This can be called from within IRQ Handlers, so uses LDREX/STREX.
   29:Core/Src/dwt_system.c ****  *		If a higher priority IRQ or DMA or anything happens the STREX will fail
   30:Core/Src/dwt_system.c ****  *		and restart the loop. Otherwise the same number that was read is harmlessly
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s 			page 2
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc8KQGM0.s 			page 2
 
 
   31:Core/Src/dwt_system.c ****  *		written back.
@@ -118,7 +118,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s 			page 1
   27:Drivers/CMSIS/Include/cmsis_gcc.h **** 
   28:Drivers/CMSIS/Include/cmsis_gcc.h **** /* ignore some GCC warnings */
   29:Drivers/CMSIS/Include/cmsis_gcc.h **** #pragma GCC diagnostic push
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s 			page 3
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc8KQGM0.s 			page 3
 
 
   30:Drivers/CMSIS/Include/cmsis_gcc.h **** #pragma GCC diagnostic ignored "-Wsign-conversion"
@@ -178,7 +178,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s 			page 1
   84:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __UNALIGNED_UINT16_WRITE(addr, val)    (void)((((struct T_UINT16_WRITE *)(void *)(addr))-
   85:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
   86:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __UNALIGNED_UINT16_READ
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s 			page 4
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc8KQGM0.s 			page 4
 
 
   87:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic push
@@ -238,7 +238,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s 			page 1
  141:Drivers/CMSIS/Include/cmsis_gcc.h ****   typedef struct {
  142:Drivers/CMSIS/Include/cmsis_gcc.h ****     uint32_t* dest;
  143:Drivers/CMSIS/Include/cmsis_gcc.h ****     uint32_t  wlen;
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s 			page 5
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc8KQGM0.s 			page 5
 
 
  144:Drivers/CMSIS/Include/cmsis_gcc.h ****   } __zero_table_t;
@@ -298,7 +298,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s 			page 1
  198:Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("cpsie i" : : : "memory");
  199:Drivers/CMSIS/Include/cmsis_gcc.h **** }
  200:Drivers/CMSIS/Include/cmsis_gcc.h **** 
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s 			page 6
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc8KQGM0.s 			page 6
 
 
  201:Drivers/CMSIS/Include/cmsis_gcc.h **** 
@@ -358,7 +358,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s 			page 1
  255:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
  256:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   Set Control Register (non-secure)
  257:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Writes the given value to the non-secure Control Register when in secure state.
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s 			page 7
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc8KQGM0.s 			page 7
 
 
  258:Drivers/CMSIS/Include/cmsis_gcc.h ****   \param [in]    control  Control Register value to set
@@ -418,7 +418,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s 			page 1
  312:Drivers/CMSIS/Include/cmsis_gcc.h ****   \return               PSP Register value
  313:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
  314:Drivers/CMSIS/Include/cmsis_gcc.h **** __STATIC_FORCEINLINE uint32_t __get_PSP(void)
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s 			page 8
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc8KQGM0.s 			page 8
 
 
  315:Drivers/CMSIS/Include/cmsis_gcc.h **** {
@@ -478,7 +478,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s 			page 1
  369:Drivers/CMSIS/Include/cmsis_gcc.h **** {
  370:Drivers/CMSIS/Include/cmsis_gcc.h ****   uint32_t result;
  371:Drivers/CMSIS/Include/cmsis_gcc.h **** 
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s 			page 9
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc8KQGM0.s 			page 9
 
 
  372:Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("MRS %0, msp" : "=r" (result) );
@@ -538,7 +538,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s 			page 1
  426:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  427:Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("MRS %0, sp_ns" : "=r" (result) );
  428:Drivers/CMSIS/Include/cmsis_gcc.h ****   return(result);
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s 			page 10
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc8KQGM0.s 			page 10
 
 
  429:Drivers/CMSIS/Include/cmsis_gcc.h **** }
@@ -598,7 +598,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s 			page 1
  483:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  484:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  485:Drivers/CMSIS/Include/cmsis_gcc.h **** #if (defined (__ARM_FEATURE_CMSE ) && (__ARM_FEATURE_CMSE == 3))
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s 			page 11
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc8KQGM0.s 			page 11
 
 
  486:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
@@ -658,7 +658,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s 			page 1
  540:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Returns the current value of the non-secure Base Priority register when in secure state.
  541:Drivers/CMSIS/Include/cmsis_gcc.h ****   \return               Base Priority register value
  542:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s 			page 12
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc8KQGM0.s 			page 12
 
 
  543:Drivers/CMSIS/Include/cmsis_gcc.h **** __STATIC_FORCEINLINE uint32_t __TZ_get_BASEPRI_NS(void)
@@ -718,7 +718,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s 			page 1
  597:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  598:Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("MRS %0, faultmask" : "=r" (result) );
  599:Drivers/CMSIS/Include/cmsis_gcc.h ****   return(result);
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s 			page 13
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc8KQGM0.s 			page 13
 
 
  600:Drivers/CMSIS/Include/cmsis_gcc.h **** }
@@ -778,7 +778,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s 			page 1
  654:Drivers/CMSIS/Include/cmsis_gcc.h ****   mode.
  655:Drivers/CMSIS/Include/cmsis_gcc.h ****   
  656:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Returns the current value of the Process Stack Pointer Limit (PSPLIM).
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s 			page 14
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc8KQGM0.s 			page 14
 
 
  657:Drivers/CMSIS/Include/cmsis_gcc.h ****   \return               PSPLIM Register value
@@ -838,7 +838,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s 			page 1
  711:Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("MSR psplim, %0" : : "r" (ProcStackPtrLimit));
  712:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
  713:Drivers/CMSIS/Include/cmsis_gcc.h **** }
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s 			page 15
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc8KQGM0.s 			page 15
 
 
  714:Drivers/CMSIS/Include/cmsis_gcc.h **** 
@@ -898,7 +898,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s 			page 1
  768:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
  769:Drivers/CMSIS/Include/cmsis_gcc.h **** __STATIC_FORCEINLINE uint32_t __TZ_get_MSPLIM_NS(void)
  770:Drivers/CMSIS/Include/cmsis_gcc.h **** {
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s 			page 16
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc8KQGM0.s 			page 16
 
 
  771:Drivers/CMSIS/Include/cmsis_gcc.h **** #if (!(defined (__ARM_ARCH_8M_MAIN__ ) && (__ARM_ARCH_8M_MAIN__ == 1)))
@@ -958,7 +958,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s 			page 1
  825:Drivers/CMSIS/Include/cmsis_gcc.h ****            (defined (__ARM_ARCH_8M_BASE__ ) && (__ARM_ARCH_8M_BASE__ == 1))    ) */
  826:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  827:Drivers/CMSIS/Include/cmsis_gcc.h **** 
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s 			page 17
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc8KQGM0.s 			page 17
 
 
  828:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
@@ -1018,7 +1018,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s 			page 1
  882:Drivers/CMSIS/Include/cmsis_gcc.h ****   Access to dedicated instructions
  883:Drivers/CMSIS/Include/cmsis_gcc.h ****   @{
  884:Drivers/CMSIS/Include/cmsis_gcc.h **** */
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s 			page 18
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc8KQGM0.s 			page 18
 
 
  885:Drivers/CMSIS/Include/cmsis_gcc.h **** 
@@ -1078,7 +1078,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s 			page 1
  939:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
  940:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   Data Synchronization Barrier
  941:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Acts as a special kind of Data Memory Barrier.
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s 			page 19
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc8KQGM0.s 			page 19
 
 
  942:Drivers/CMSIS/Include/cmsis_gcc.h ****            It completes when all explicit memory accesses before this instruction complete.
@@ -1138,7 +1138,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s 			page 1
  996:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   Reverse byte order (16 bit)
  997:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Reverses the byte order in a 16-bit value and returns the signed 16-bit result. For exam
  998:Drivers/CMSIS/Include/cmsis_gcc.h ****   \param [in]    value  Value to reverse
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s 			page 20
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc8KQGM0.s 			page 20
 
 
  999:Drivers/CMSIS/Include/cmsis_gcc.h ****   \return               Reversed value
@@ -1198,7 +1198,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s 			page 1
 1053:Drivers/CMSIS/Include/cmsis_gcc.h ****      (defined (__ARM_ARCH_7EM__     ) && (__ARM_ARCH_7EM__     == 1)) || \
 1054:Drivers/CMSIS/Include/cmsis_gcc.h ****      (defined (__ARM_ARCH_8M_MAIN__ ) && (__ARM_ARCH_8M_MAIN__ == 1))    )
 1055:Drivers/CMSIS/Include/cmsis_gcc.h ****    __ASM volatile ("rbit %0, %1" : "=r" (result) : "r" (value) );
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s 			page 21
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc8KQGM0.s 			page 21
 
 
 1056:Drivers/CMSIS/Include/cmsis_gcc.h **** #else
@@ -1258,7 +1258,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s 			page 1
 1110:Drivers/CMSIS/Include/cmsis_gcc.h **** 
 1111:Drivers/CMSIS/Include/cmsis_gcc.h **** #if (__GNUC__ > 4) || (__GNUC__ == 4 && __GNUC_MINOR__ >= 8)
 1112:Drivers/CMSIS/Include/cmsis_gcc.h ****    __ASM volatile ("ldrexb %0, %1" : "=r" (result) : "Q" (*addr) );
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s 			page 22
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc8KQGM0.s 			page 22
 
 
 1113:Drivers/CMSIS/Include/cmsis_gcc.h **** #else
@@ -1318,7 +1318,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s 			page 1
   55              		.loc 2 1156 4 discriminator 1 view .LVU7
   56              		.loc 2 1156 4 is_stmt 0 discriminator 1 view .LVU8
   57              		.thumb
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s 			page 23
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc8KQGM0.s 			page 23
 
 
   58              		.syntax unified
@@ -1378,7 +1378,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s 			page 1
 1192:Drivers/CMSIS/Include/cmsis_gcc.h **** 
 1193:Drivers/CMSIS/Include/cmsis_gcc.h **** 
 1194:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s 			page 24
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc8KQGM0.s 			page 24
 
 
 1195:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   STR Exclusive (32 bit)
@@ -1438,7 +1438,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s 			page 1
  112 0030 00000000 		.word	.LANCHOR0
  113 0034 001000E0 		.word	-536866816
  114 0038 00000000 		.word	.LANCHOR1
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s 			page 25
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc8KQGM0.s 			page 25
 
 
  115 003c 00000000 		.word	.LANCHOR2
@@ -1498,7 +1498,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s 			page 1
   64:Core/Src/dwt_system.c **** void delayMicroseconds(uint32_t us)
   65:Core/Src/dwt_system.c **** {
  158              		.loc 1 65 1 is_stmt 1 view -0
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s 			page 26
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc8KQGM0.s 			page 26
 
 
  159              		.cfi_startproc
@@ -1558,7 +1558,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s 			page 1
   69:Core/Src/dwt_system.c ****     {
  190              		.loc 1 69 11 is_stmt 1 view .LVU40
  191              	.LBB11:
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s 			page 27
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc8KQGM0.s 			page 27
 
 
   76:Core/Src/dwt_system.c **** 
@@ -1618,7 +1618,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s 			page 1
  228 002c 7047     		bx	lr
  229              	.L14:
  230 002e 00BF     		.align	2
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s 			page 28
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc8KQGM0.s 			page 28
 
 
  231              	.L13:
@@ -1678,7 +1678,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s 			page 1
  274              		.loc 1 97 11 view .LVU66
  275 0010 0028     		cmp	r0, #0
  276 0012 F7D1     		bne	.L17
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s 			page 29
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc8KQGM0.s 			page 29
 
 
   99:Core/Src/dwt_system.c **** }
@@ -1738,7 +1738,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s 			page 1
  318 0024 43F00103 		orr	r3, r3, #1
  319 0028 1360     		str	r3, [r2]
  114:Core/Src/dwt_system.c **** }
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s 			page 30
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc8KQGM0.s 			page 30
 
 
  320              		.loc 1 114 1 view .LVU77
@@ -1798,7 +1798,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s 			page 1
  369 001a 194A     		ldr	r2, .L26+16
  370 001c 0121     		movs	r1, #1
  371 001e 1170     		strb	r1, [r2]
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s 			page 31
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc8KQGM0.s 			page 31
 
 
  122:Core/Src/dwt_system.c ****     if (!(frameCounter % 10))
@@ -1858,7 +1858,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s 			page 1
  420              	.L22:
  128:Core/Src/dwt_system.c ****     // HAL_IncTick();
  129:Core/Src/dwt_system.c **** }...
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s 			page 32
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc8KQGM0.s 			page 32
 
 
  421              		.loc 1 129 1 view .LVU103
@@ -1918,7 +1918,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s 			page 1
  490              		.section	.bss.usTicks,"aw",%nobits
  491              		.align	2
  492              		.set	.LANCHOR2,. + 0
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s 			page 33
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc8KQGM0.s 			page 33
 
 
  495              	usTicks:
@@ -1931,44 +1931,44 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s 			page 1
  502              		.file 6 "Drivers/CMSIS/Device/ST/STM32L4xx/Include/system_stm32l4xx.h"
  503              		.file 7 "Core/Inc/dwt_system.h"
  504              		.file 8 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h"
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s 			page 34
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc8KQGM0.s 			page 34
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 dwt_system.c
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s:18     .text.micros:0000000000000000 $t
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s:26     .text.micros:0000000000000000 micros
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s:112    .text.micros:0000000000000030 $d
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s:120    .text.millis:0000000000000000 $t
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s:127    .text.millis:0000000000000000 millis
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s:143    .text.millis:0000000000000008 $d
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s:148    .text.delayMicroseconds:0000000000000000 $t
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s:155    .text.delayMicroseconds:0000000000000000 delayMicroseconds
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s:232    .text.delayMicroseconds:0000000000000030 $d
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s:238    .text.delay:0000000000000000 $t
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s:245    .text.delay:0000000000000000 delay
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s:284    .text.cycleCounterInit:0000000000000000 $t
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s:291    .text.cycleCounterInit:0000000000000000 cycleCounterInit
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s:325    .text.cycleCounterInit:000000000000002c $d
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s:333    .text.SysTick_Handler:0000000000000000 $t
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s:340    .text.SysTick_Handler:0000000000000000 SysTick_Handler
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s:426    .text.SysTick_Handler:0000000000000070 $d
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s:449    .bss.frame1000Hz:0000000000000000 frame1000Hz
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s:455    .bss.frame100Hz:0000000000000000 frame100Hz
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s:461    .bss.frame10Hz:0000000000000000 frame10Hz
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s:467    .bss.frame1Hz:0000000000000000 frame1Hz
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s:474    .bss.frameCounter:0000000000000000 frameCounter
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s:450    .bss.frame1000Hz:0000000000000000 $d
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s:456    .bss.frame100Hz:0000000000000000 $d
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s:462    .bss.frame10Hz:0000000000000000 $d
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s:468    .bss.frame1Hz:0000000000000000 $d
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s:470    .bss.frameCounter:0000000000000000 $d
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s:477    .bss.sysTickCycleCounter:0000000000000000 $d
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s:481    .bss.sysTickCycleCounter:0000000000000000 sysTickCycleCounter
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s:484    .bss.sysTickUptime:0000000000000000 $d
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s:488    .bss.sysTickUptime:0000000000000000 sysTickUptime
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s:491    .bss.usTicks:0000000000000000 $d
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccHG2LYP.s:495    .bss.usTicks:0000000000000000 usTicks
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc8KQGM0.s:18     .text.micros:0000000000000000 $t
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc8KQGM0.s:26     .text.micros:0000000000000000 micros
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc8KQGM0.s:112    .text.micros:0000000000000030 $d
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc8KQGM0.s:120    .text.millis:0000000000000000 $t
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc8KQGM0.s:127    .text.millis:0000000000000000 millis
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc8KQGM0.s:143    .text.millis:0000000000000008 $d
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc8KQGM0.s:148    .text.delayMicroseconds:0000000000000000 $t
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc8KQGM0.s:155    .text.delayMicroseconds:0000000000000000 delayMicroseconds
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc8KQGM0.s:232    .text.delayMicroseconds:0000000000000030 $d
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc8KQGM0.s:238    .text.delay:0000000000000000 $t
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc8KQGM0.s:245    .text.delay:0000000000000000 delay
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc8KQGM0.s:284    .text.cycleCounterInit:0000000000000000 $t
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc8KQGM0.s:291    .text.cycleCounterInit:0000000000000000 cycleCounterInit
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc8KQGM0.s:325    .text.cycleCounterInit:000000000000002c $d
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc8KQGM0.s:333    .text.SysTick_Handler:0000000000000000 $t
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc8KQGM0.s:340    .text.SysTick_Handler:0000000000000000 SysTick_Handler
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc8KQGM0.s:426    .text.SysTick_Handler:0000000000000070 $d
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc8KQGM0.s:449    .bss.frame1000Hz:0000000000000000 frame1000Hz
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc8KQGM0.s:455    .bss.frame100Hz:0000000000000000 frame100Hz
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc8KQGM0.s:461    .bss.frame10Hz:0000000000000000 frame10Hz
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc8KQGM0.s:467    .bss.frame1Hz:0000000000000000 frame1Hz
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc8KQGM0.s:474    .bss.frameCounter:0000000000000000 frameCounter
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc8KQGM0.s:450    .bss.frame1000Hz:0000000000000000 $d
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc8KQGM0.s:456    .bss.frame100Hz:0000000000000000 $d
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc8KQGM0.s:462    .bss.frame10Hz:0000000000000000 $d
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc8KQGM0.s:468    .bss.frame1Hz:0000000000000000 $d
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc8KQGM0.s:470    .bss.frameCounter:0000000000000000 $d
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc8KQGM0.s:477    .bss.sysTickCycleCounter:0000000000000000 $d
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc8KQGM0.s:481    .bss.sysTickCycleCounter:0000000000000000 sysTickCycleCounter
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc8KQGM0.s:484    .bss.sysTickUptime:0000000000000000 $d
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc8KQGM0.s:488    .bss.sysTickUptime:0000000000000000 sysTickUptime
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc8KQGM0.s:491    .bss.usTicks:0000000000000000 $d
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//cc8KQGM0.s:495    .bss.usTicks:0000000000000000 usTicks
 
 UNDEFINED SYMBOLS
 SystemCoreClock

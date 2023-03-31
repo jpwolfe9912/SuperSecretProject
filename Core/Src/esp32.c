@@ -5,7 +5,6 @@ Wifi_t Wifi;
 MQTT_t MQTT;
 SNTP_t SNTP;
 
-static bool split_string(char* input_string, char* output_array[], uint8_t* output_size) ;
 // #########################################################################################################
 bool Wifi_SendRaw(uint8_t *data, uint16_t len)
 {
@@ -951,12 +950,8 @@ bool SNTP_Init(void)
     SNTP.server1 = "pool.ntp.org";
 
     SNTP.time_updated = false;
-    SNTP_QueryTime();
-    if (SNTP.time.month[0] != 'M')  // TODO figure out why the year won't read
-    {
+    while (!SNTP_TimeUpdated())
         SNTP_SetTimeZone(1);
-        SNTP_QueryTime();
-    }
     return true;
 }
 // #########################################################################################################
@@ -999,7 +994,7 @@ bool SNTP_SetTimeZone(size_t numServers)
     return returnVal;
 }
 // #########################################################################################################
-bool SNTP_QueryTime(void)
+bool SNTP_TimeUpdated(void)
 {
     uint8_t result;
     bool returnVal = false;
@@ -1015,8 +1010,15 @@ bool SNTP_QueryTime(void)
         if (result == 2) // It was find the "ERROR" String in the receiving information
             break;
 
-        char *str = strstr((char *)Buffs.RxBuffer.buff, "+CIPSNTPTIME:");
-        sscanf(str, "+CIPSNTPTIME:%3s %3s %hhu %hhu:%hhu:%hhu %hu", SNTP.time.day_of_week, SNTP.time.month, &SNTP.time.day, &SNTP.time.clocktime.hour, &SNTP.time.clocktime.min, &SNTP.time.clocktime.sec, &SNTP.time.year);
+        char* search_str = "+CIPSNTPTIME:";
+        char* search_year = "2023";
+        size_t search_idx = 0;
+        lwrb_find(&Buffs.RxBuffer, (void*)search_str, strlen(search_str), 0, &search_idx);
+        if(!lwrb_find(&Buffs.RxBuffer, (void*)search_year, strlen(search_year), search_idx, &search_idx)){
+            break;
+        }
+        //  = strstr((char *)Buffs.RxBuffer.buff, "+CIPSNTPTIME:");
+        // sscanf(((char*)&Buffs.RxBuffer_Data + search_idx + strlen(search_str)), "%3s %3s %hhu %hhu:%hhu:%hhu %hu", SNTP.time.day_of_week, SNTP.time.month, &SNTP.time.day, &SNTP.time.clocktime.hour, &SNTP.time.clocktime.min, &SNTP.time.clocktime.sec, &SNTP.time.year);
 
         returnVal = true;
     } while (0);
@@ -1379,34 +1381,4 @@ bool MQTT_ListenForMessage(MQTT_Message_t *Message, char *findStr, size_t* start
 
     } while (0);
     return returnVal;
-}
-
-static bool split_string(char* input_string, char* output_array[], uint8_t* output_size)
-{
-    char *token;
-    int i = 0;
-
-    // Get the first token
-    token = strtok(input_string, ",");
-    token = strtok(NULL, ","); // disregard header string
-
-    // Loop through the input string and split it by delimiter
-    while (token != NULL)
-    {
-        if (*token == '\"') // strip "" from string
-        {
-            if (*(token + 1) == '\"')
-                token = NULL;
-            else
-                sscanf(token, "\"%[^\"]\"", token);
-        }
-        output_array[i] = token;
-        i++;
-        token = strtok(NULL, ",");
-    }
-
-    *output_size = i;
-
-    // Return true if string is successfully split, false otherwise
-    return i > 0;
 }

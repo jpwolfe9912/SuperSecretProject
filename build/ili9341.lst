@@ -1,4 +1,4 @@
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 1
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 1
   40              		.cfi_def_cfa_offset 16
   41 0004 8DF80700 		strb	r0, [sp, #7]
   17:Core/Src/ili9341.c ****     static uint8_t dummy __attribute__((unused));
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 2
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s 			page 2
 
 
   42              		.loc 1 17 5 is_stmt 1 view .LVU2
@@ -118,7 +118,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 1
   88              		.cfi_startproc
   89              		@ args = 0, pretend = 0, frame = 0
   90              		@ frame_needed = 0, uses_anonymous_args = 0
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 3
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s 			page 3
 
 
   91              		.loc 1 27 1 is_stmt 0 view .LVU10
@@ -178,7 +178,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 1
   38:Core/Src/ili9341.c **** {
  137              		.loc 1 38 1 is_stmt 1 view -0
  138              		.cfi_startproc
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 4
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s 			page 4
 
 
  139              		@ args = 0, pretend = 0, frame = 8
@@ -238,7 +238,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 1
  184              		.loc 1 47 1 is_stmt 0 view .LVU28
  185 0044 03B0     		add	sp, sp, #12
  186              		.cfi_def_cfa_offset 12
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 5
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s 			page 5
 
 
  187              		@ sp needed
@@ -298,7 +298,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 1
  235              		.loc 1 55 9 is_stmt 1 view .LVU34
  236              		.loc 1 55 17 is_stmt 0 view .LVU35
  237 0012 3B0A     		lsrs	r3, r7, #8
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 6
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s 			page 6
 
 
  238 0014 8DF80430 		strb	r3, [sp, #4]
@@ -358,7 +358,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 1
  280              		.section	.text.ili9341WriteChar,"ax",%progbits
  281              		.align	1
  282              		.syntax unified
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 7
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s 			page 7
 
 
  283              		.thumb
@@ -418,7 +418,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 1
  117:Core/Src/ili9341.c ****         break;
  118:Core/Src/ili9341.c ****     }
  119:Core/Src/ili9341.c **** }
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 8
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s 			page 8
 
 
  120:Core/Src/ili9341.c **** 
@@ -478,7 +478,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 1
  174:Core/Src/ili9341.c ****     {
  175:Core/Src/ili9341.c ****         uint8_t data[] = {0x20};
  176:Core/Src/ili9341.c ****         ili9341WriteData(data, sizeof(data));
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 9
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s 			page 9
 
 
  177:Core/Src/ili9341.c ****     }
@@ -538,7 +538,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 1
  231:Core/Src/ili9341.c ****         uint8_t data[] = {0x08, 0x82, 0x27};
  232:Core/Src/ili9341.c ****         ili9341WriteData(data, sizeof(data));
  233:Core/Src/ili9341.c ****     }
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 10
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s 			page 10
 
 
  234:Core/Src/ili9341.c **** 
@@ -598,7 +598,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 1
  288:Core/Src/ili9341.c **** // INTERNAL FUNCTION OF LIBRARy
  289:Core/Src/ili9341.c **** /*Sends block color information to LCD*/
  290:Core/Src/ili9341.c **** void ili9341DrawColorBurst(uint16_t color, uint32_t size)
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 11
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s 			page 11
 
 
  291:Core/Src/ili9341.c **** {
@@ -658,7 +658,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 1
  345:Core/Src/ili9341.c **** // Try using either rectangles or lines if possible
  346:Core/Src/ili9341.c **** //
  347:Core/Src/ili9341.c **** void ili9341DrawPixel(uint16_t x, uint16_t y, uint16_t color)
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 12
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s 			page 12
 
 
  348:Core/Src/ili9341.c **** {
@@ -718,7 +718,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 1
  402:Core/Src/ili9341.c **** static void ili9341WriteChar(uint16_t x, uint16_t y, char ch, FontDef font, uint16_t color, uint16_
  403:Core/Src/ili9341.c **** {
  290              		.loc 1 403 1 is_stmt 1 view -0
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 13
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s 			page 13
 
 
  291              		.cfi_startproc
@@ -778,7 +778,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 1
  340              	.LVL22:
  341              	.L18:
  342              	.LBB4:
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 14
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s 			page 14
 
 
  409:Core/Src/ili9341.c ****     {
@@ -838,7 +838,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 1
  375 005e 8DF80430 		strb	r3, [sp, #4]
  376 0062 8DF80580 		strb	r8, [sp, #5]
  416:Core/Src/ili9341.c ****             }
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 15
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s 			page 15
 
 
  377              		.loc 1 416 17 is_stmt 1 view .LVU69
@@ -898,7 +898,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 1
  416              		.cfi_restore 11
  417              		.cfi_restore 10
  418              		.cfi_restore 9
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 16
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s 			page 16
 
 
  419              		.cfi_restore 8
@@ -958,7 +958,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 1
  469              	.LVL31:
   77:Core/Src/ili9341.c **** }
  470              		.loc 1 77 5 view .LVU89
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 17
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s 			page 17
 
 
   77:Core/Src/ili9341.c **** }
@@ -1018,7 +1018,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 1
  518 000e FFF7FEFF 		bl	delay
  519              	.LVL36:
   89:Core/Src/ili9341.c ****     {
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 18
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s 			page 18
 
 
  520              		.loc 1 89 5 view .LVU99
@@ -1078,7 +1078,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 1
  563 0040 2823     		movs	r3, #40
  564 0042 8DF80730 		strb	r3, [sp, #7]
   99:Core/Src/ili9341.c ****         _lcd_width = 320;
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 19
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s 			page 19
 
 
  565              		.loc 1 99 9 is_stmt 1 view .LVU111
@@ -1138,7 +1138,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 1
  605              		.loc 1 110 9 view .LVU125
  110:Core/Src/ili9341.c ****         ili9341WriteData(&rot_code, 1);
  606              		.loc 1 110 18 is_stmt 0 view .LVU126
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 20
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s 			page 20
 
 
  607 0080 E823     		movs	r3, #232
@@ -1198,7 +1198,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 1
  652              		.loc 1 129 1 is_stmt 1 view -0
  653              		.cfi_startproc
  654              		@ args = 0, pretend = 0, frame = 16
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 21
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s 			page 21
 
 
  655              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -1258,7 +1258,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 1
  700              	.LBB7:
  147:Core/Src/ili9341.c ****         ili9341WriteData(data, sizeof(data));
  701              		.loc 1 147 9 view .LVU144
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 22
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s 			page 22
 
 
  147:Core/Src/ili9341.c ****         ili9341WriteData(data, sizeof(data));
@@ -1318,7 +1318,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 1
  745              		.loc 1 166 5 view .LVU155
  746 0084 ED20     		movs	r0, #237
  747 0086 FFF7FEFF 		bl	ili9341WriteCommand
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 23
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s 			page 23
 
 
  748              	.LVL53:
@@ -1378,7 +1378,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 1
  790              		.loc 1 187 5 view .LVU167
  791 00be C120     		movs	r0, #193
  792 00c0 FFF7FEFF 		bl	ili9341WriteCommand
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 24
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s 			page 24
 
 
  793              	.LVL59:
@@ -1438,7 +1438,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 1
  835              		.loc 1 208 5 view .LVU179
  836 00fc 3620     		movs	r0, #54
  837 00fe FFF7FEFF 		bl	ili9341WriteCommand
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 25
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s 			page 25
 
 
  838              	.LVL65:
@@ -1498,7 +1498,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 1
  880              		.loc 1 229 5 view .LVU191
  881 013a B620     		movs	r0, #182
  882 013c FFF7FEFF 		bl	ili9341WriteCommand
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 26
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s 			page 26
 
 
  883              	.LVL71:
@@ -1558,7 +1558,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 1
  250:Core/Src/ili9341.c ****     {
  926              		.loc 1 250 5 view .LVU203
  927 017a E020     		movs	r0, #224
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 27
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s 			page 27
 
 
  928 017c FFF7FEFF 		bl	ili9341WriteCommand
@@ -1618,7 +1618,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 1
  973              	.LVL82:
  270:Core/Src/ili9341.c **** 
  974              		.loc 1 270 5 view .LVU213
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 28
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s 			page 28
 
 
  975 01cc 2920     		movs	r0, #41
@@ -1678,7 +1678,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 1
  1024              		.loc 1 282 5 is_stmt 1 view .LVU220
  1025 000e 4FF09044 		mov	r4, #1207959552
  1026 0012 A369     		ldr	r3, [r4, #24]
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 29
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s 			page 29
 
 
  1027 0014 43F00803 		orr	r3, r3, #8
@@ -1738,7 +1738,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 1
  1076              		.cfi_offset 4, -28
  1077              		.cfi_offset 5, -24
  1078              		.cfi_offset 6, -20
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 30
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s 			page 30
 
 
  1079              		.cfi_offset 7, -16
@@ -1798,7 +1798,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 1
  1119              	.LBE24:
  296:Core/Src/ili9341.c ****     }
  1120              		.loc 1 296 21 view .LVU242
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 31
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s 			page 31
 
 
  1121 0028 3546     		mov	r5, r6
@@ -1858,7 +1858,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 1
  1159 0046 42F00802 		orr	r2, r2, #8
  1160 004a 9A61     		str	r2, [r3, #24]
  316:Core/Src/ili9341.c **** 
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 32
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s 			page 32
 
 
  1161              		.loc 1 316 5 is_stmt 1 view .LVU259
@@ -1918,7 +1918,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 1
  320:Core/Src/ili9341.c ****         {
  1205              		.loc 1 320 54 discriminator 3 view .LVU270
  320:Core/Src/ili9341.c ****         {
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 33
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s 			page 33
 
 
  1206              		.loc 1 320 55 is_stmt 0 discriminator 3 view .LVU271
@@ -1978,7 +1978,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 1
  1256 000a 2B88     		ldrh	r3, [r5]
  1257 000c 9BB2     		uxth	r3, r3
  1258 000e 92B2     		uxth	r2, r2
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 34
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s 			page 34
 
 
  1259 0010 0021     		movs	r1, #0
@@ -2038,7 +2038,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 1
  1306              		.loc 1 349 8 view .LVU286
  1307 0006 8342     		cmp	r3, r0
  1308 0008 40D9     		bls	.L70
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 35
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s 			page 35
 
 
  348:Core/Src/ili9341.c ****     if ((x >= _lcd_width) || (y >= _lcd_height))
@@ -2098,7 +2098,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 1
  1353              		.loc 1 356 50 view .LVU296
  1354 0036 2412     		asrs	r4, r4, #8
  356:Core/Src/ili9341.c ****     ili9341WriteData(temp_buffer, 4);
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 36
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s 			page 36
 
 
  1355              		.loc 1 356 13 view .LVU297
@@ -2158,7 +2158,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 1
  1395              		.loc 1 370 5 view .LVU311
  370:Core/Src/ili9341.c ****     ili9341WriteData(temp_buffer2, 2);
  1396              		.loc 1 370 13 is_stmt 0 view .LVU312
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 37
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s 			page 37
 
 
  1397 0078 330A     		lsrs	r3, r6, #8
@@ -2218,7 +2218,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 1
  1447              		.cfi_offset 5, -16
  1448              		.cfi_offset 6, -12
  1449              		.cfi_offset 7, -8
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 38
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s 			page 38
 
 
  1450              		.cfi_offset 14, -4
@@ -2278,7 +2278,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 1
  1490              		.loc 1 385 5 is_stmt 1 view .LVU332
  386:Core/Src/ili9341.c ****     uint16_t burst_remainder;
  1491              		.loc 1 386 5 view .LVU333
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 39
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s 			page 39
 
 
  387:Core/Src/ili9341.c **** 
@@ -2338,7 +2338,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 1
  396:Core/Src/ili9341.c ****         if (burst_remainder)
  1531              		.loc 1 396 65 is_stmt 0 discriminator 2 view .LVU349
  1532 0064 47F23051 		movw	r1, #30000
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 40
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s 			page 40
 
 
  396:Core/Src/ili9341.c ****         if (burst_remainder)
@@ -2398,7 +2398,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 1
  1577              		.cfi_endproc
  1578              	.LFE1166:
  1580              		.section	.text.ili9341WriteCharFromUART,"ax",%progbits
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 41
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s 			page 41
 
 
  1581              		.align	1
@@ -2458,7 +2458,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 1
  1629 0026 DBB2     		uxtb	r3, r3
  1630 0028 0A93     		str	r3, [sp, #40]
  1631              	.LVL141:
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 42
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s 			page 42
 
 
  433:Core/Src/ili9341.c ****     uint8_t maxLocY = ILI9341_SCREEN_HEIGHT / font.height;
@@ -2518,7 +2518,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 1
  1671 0056 013C     		subs	r4, r4, #1
  1672              	.LVL146:
  1673              		.loc 1 445 21 view .LVU386
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 43
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s 			page 43
 
 
  1674 0058 E4B2     		uxtb	r4, r4
@@ -2578,7 +2578,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 1
  1719 0078 F6B2     		uxtb	r6, r6
  1720              	.LVL155:
  1721              	.L92:
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 44
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s 			page 44
 
 
  455:Core/Src/ili9341.c ****             ili9341WriteChar(startX + (locX * font.width), startY + (locY * font.height), ch, font,
@@ -2638,7 +2638,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 1
  1745              	.LVL157:
  436:Core/Src/ili9341.c ****     {
  1746              		.loc 1 436 11 view .LVU408
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 45
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s 			page 45
 
 
  1747              	.L97:
@@ -2698,7 +2698,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 1
  1788 00f0 0D9B     		ldr	r3, [sp, #52]
  1789 00f2 0093     		str	r3, [sp]
  1790 00f4 0C9B     		ldr	r3, [sp, #48]
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 46
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s 			page 46
 
 
  1791 00f6 2A46     		mov	r2, r5
@@ -2758,7 +2758,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 1
  1831              		.loc 1 466 17 is_stmt 1 view .LVU435
  1832              	.LVL167:
  467:Core/Src/ili9341.c ****             }
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 47
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s 			page 47
 
 
  1833              		.loc 1 467 17 view .LVU436
@@ -2818,7 +2818,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 1
  488:Core/Src/ili9341.c **** 
  489:Core/Src/ili9341.c **** void ili9341WriteString(uint16_t x, uint16_t y, const char *str, FontDef font, uint16_t color, uint
  490:Core/Src/ili9341.c **** {
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 48
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s 			page 48
 
 
  1877              		.loc 1 490 1 is_stmt 1 view -0
@@ -2878,7 +2878,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 1
  1914              		.loc 1 507 17 is_stmt 1 view .LVU453
  1915              		.loc 1 507 20 is_stmt 0 view .LVU454
  1916 0026 0137     		adds	r7, r7, #1
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 49
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s 			page 49
 
 
  1917              	.LVL179:
@@ -2938,7 +2938,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 1
  1956 0052 B3F5A07F 		cmp	r3, #320
  1957 0056 E9DB     		blt	.L106
  497:Core/Src/ili9341.c ****             y += font.height;
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 50
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s 			page 50
 
 
  1958              		.loc 1 497 13 is_stmt 1 view .LVU470
@@ -2998,7 +2998,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 1
  1998              		.cfi_restore 6
  1999              		.cfi_restore 5
  2000              		.cfi_restore 4
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 51
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s 			page 51
 
 
  2001              		.cfi_def_cfa_offset 8
@@ -3058,7 +3058,7 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 1
  2051              		.global	rxBuf
  2052              		.global	_lcd_width
  2053              		.global	_lcd_height
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 52
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s 			page 52
 
 
  2054              		.section	.rodata
@@ -3117,73 +3117,73 @@ ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 1
  2115              		.file 9 "Core/Inc/usart.h"
  2116              		.file 10 "Core/Inc/spi.h"
  2117              		.file 11 "Core/Inc/dwt_system.h"
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 53
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s 			page 53
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 ili9341.c
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s:18     .text.ili9341WriteCommand:0000000000000000 $t
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s:26     .text.ili9341WriteCommand:0000000000000000 ili9341WriteCommand
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s:72     .text.ili9341WriteCommand:0000000000000034 $d
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s:77     .text.ili9341WriteData:0000000000000000 $t
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s:84     .text.ili9341WriteData:0000000000000000 ili9341WriteData
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s:122    .text.ili9341WriteData:0000000000000028 $d
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s:127    .text.ili9341Read8:0000000000000000 $t
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s:134    .text.ili9341Read8:0000000000000000 ili9341Read8
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s:194    .text.ili9341Read8:0000000000000048 $d
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s:200    .text.ili9341SetAddress:0000000000000000 $t
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s:207    .text.ili9341SetAddress:0000000000000000 ili9341SetAddress
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s:281    .text.ili9341WriteChar:0000000000000000 $t
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s:287    .text.ili9341WriteChar:0000000000000000 ili9341WriteChar
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s:434    .text.ili9341_Reset:0000000000000000 $t
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s:441    .text.ili9341_Reset:0000000000000000 ili9341_Reset
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s:480    .text.ili9341_Reset:0000000000000030 $d
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s:485    .text.ili9341SetRotation:0000000000000000 $t
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s:492    .text.ili9341SetRotation:0000000000000000 ili9341SetRotation
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s:525    .text.ili9341SetRotation:000000000000001a $d
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s:529    .text.ili9341SetRotation:000000000000001e $t
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s:630    .text.ili9341SetRotation:00000000000000a0 $d
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s:636    .rodata.ili9341Init.str1.4:0000000000000000 $d
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s:643    .text.ili9341Init:0000000000000000 $t
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s:650    .text.ili9341Init:0000000000000000 ili9341Init
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s:990    .text.ili9341Init:00000000000001dc $d
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s:998    .text.ili9341DrawColor:0000000000000000 $t
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s:1005   .text.ili9341DrawColor:0000000000000000 ili9341DrawColor
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s:1053   .text.ili9341DrawColor:0000000000000038 $d
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s:1058   .text.ili9341DrawColorBurst:0000000000000000 $t
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s:1065   .text.ili9341DrawColorBurst:0000000000000000 ili9341DrawColorBurst
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s:1225   .text.ili9341DrawColorBurst:0000000000000090 $d
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s:1230   .text.ili9341FillScreen:0000000000000000 $t
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s:1237   .text.ili9341FillScreen:0000000000000000 ili9341FillScreen
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s:1281   .text.ili9341FillScreen:000000000000002c $d
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s:1287   .text.ili9341DrawPixel:0000000000000000 $t
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s:1294   .text.ili9341DrawPixel:0000000000000000 ili9341DrawPixel
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s:1418   .text.ili9341DrawPixel:0000000000000090 $d
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s:1424   .text.ili9341DrawImage:0000000000000000 $t
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s:1431   .text.ili9341DrawImage:0000000000000000 ili9341DrawImage
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s:1576   .text.ili9341DrawImage:0000000000000094 $d
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s:1581   .text.ili9341WriteCharFromUART:0000000000000000 $t
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s:1588   .text.ili9341WriteCharFromUART:0000000000000000 ili9341WriteCharFromUART
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s:1867   .text.ili9341WriteString:0000000000000000 $t
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s:1874   .text.ili9341WriteString:0000000000000000 ili9341WriteString
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s:2011   .text.ili9341InvertColors:0000000000000000 $t
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s:2018   .text.ili9341InvertColors:0000000000000000 ili9341InvertColors
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s:2090   .bss.txBuf:0000000000000000 txBuf
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s:2084   .bss.rxBuf:0000000000000000 rxBuf
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s:2104   .data._lcd_width:0000000000000000 _lcd_width
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s:2097   .data._lcd_height:0000000000000000 _lcd_height
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s:2055   .rodata:0000000000000000 $d
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s:2072   .bss.dummy.0:0000000000000000 dummy.0
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s:2073   .bss.dummy.0:0000000000000000 $d
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s:2078   .bss.dummy.1:0000000000000000 dummy.1
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s:2079   .bss.dummy.1:0000000000000000 $d
-ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s 			page 54
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s:18     .text.ili9341WriteCommand:0000000000000000 $t
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s:26     .text.ili9341WriteCommand:0000000000000000 ili9341WriteCommand
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s:72     .text.ili9341WriteCommand:0000000000000034 $d
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s:77     .text.ili9341WriteData:0000000000000000 $t
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s:84     .text.ili9341WriteData:0000000000000000 ili9341WriteData
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s:122    .text.ili9341WriteData:0000000000000028 $d
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s:127    .text.ili9341Read8:0000000000000000 $t
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s:134    .text.ili9341Read8:0000000000000000 ili9341Read8
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s:194    .text.ili9341Read8:0000000000000048 $d
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s:200    .text.ili9341SetAddress:0000000000000000 $t
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s:207    .text.ili9341SetAddress:0000000000000000 ili9341SetAddress
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s:281    .text.ili9341WriteChar:0000000000000000 $t
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s:287    .text.ili9341WriteChar:0000000000000000 ili9341WriteChar
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s:434    .text.ili9341_Reset:0000000000000000 $t
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s:441    .text.ili9341_Reset:0000000000000000 ili9341_Reset
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s:480    .text.ili9341_Reset:0000000000000030 $d
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s:485    .text.ili9341SetRotation:0000000000000000 $t
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s:492    .text.ili9341SetRotation:0000000000000000 ili9341SetRotation
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s:525    .text.ili9341SetRotation:000000000000001a $d
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s:529    .text.ili9341SetRotation:000000000000001e $t
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s:630    .text.ili9341SetRotation:00000000000000a0 $d
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s:636    .rodata.ili9341Init.str1.4:0000000000000000 $d
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s:643    .text.ili9341Init:0000000000000000 $t
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s:650    .text.ili9341Init:0000000000000000 ili9341Init
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s:990    .text.ili9341Init:00000000000001dc $d
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s:998    .text.ili9341DrawColor:0000000000000000 $t
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s:1005   .text.ili9341DrawColor:0000000000000000 ili9341DrawColor
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s:1053   .text.ili9341DrawColor:0000000000000038 $d
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s:1058   .text.ili9341DrawColorBurst:0000000000000000 $t
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s:1065   .text.ili9341DrawColorBurst:0000000000000000 ili9341DrawColorBurst
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s:1225   .text.ili9341DrawColorBurst:0000000000000090 $d
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s:1230   .text.ili9341FillScreen:0000000000000000 $t
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s:1237   .text.ili9341FillScreen:0000000000000000 ili9341FillScreen
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s:1281   .text.ili9341FillScreen:000000000000002c $d
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s:1287   .text.ili9341DrawPixel:0000000000000000 $t
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s:1294   .text.ili9341DrawPixel:0000000000000000 ili9341DrawPixel
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s:1418   .text.ili9341DrawPixel:0000000000000090 $d
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s:1424   .text.ili9341DrawImage:0000000000000000 $t
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s:1431   .text.ili9341DrawImage:0000000000000000 ili9341DrawImage
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s:1576   .text.ili9341DrawImage:0000000000000094 $d
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s:1581   .text.ili9341WriteCharFromUART:0000000000000000 $t
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s:1588   .text.ili9341WriteCharFromUART:0000000000000000 ili9341WriteCharFromUART
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s:1867   .text.ili9341WriteString:0000000000000000 $t
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s:1874   .text.ili9341WriteString:0000000000000000 ili9341WriteString
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s:2011   .text.ili9341InvertColors:0000000000000000 $t
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s:2018   .text.ili9341InvertColors:0000000000000000 ili9341InvertColors
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s:2090   .bss.txBuf:0000000000000000 txBuf
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s:2084   .bss.rxBuf:0000000000000000 rxBuf
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s:2104   .data._lcd_width:0000000000000000 _lcd_width
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s:2097   .data._lcd_height:0000000000000000 _lcd_height
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s:2055   .rodata:0000000000000000 $d
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s:2072   .bss.dummy.0:0000000000000000 dummy.0
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s:2073   .bss.dummy.0:0000000000000000 $d
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s:2078   .bss.dummy.1:0000000000000000 dummy.1
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s:2079   .bss.dummy.1:0000000000000000 $d
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s 			page 54
 
 
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s:2085   .bss.rxBuf:0000000000000000 $d
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s:2091   .bss.txBuf:0000000000000000 $d
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s:2093   .data._lcd_height:0000000000000000 $d
-/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccqd2uAD.s:2100   .data._lcd_width:0000000000000000 $d
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s:2085   .bss.rxBuf:0000000000000000 $d
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s:2091   .bss.txBuf:0000000000000000 $d
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s:2093   .data._lcd_height:0000000000000000 $d
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccP5hKqG.s:2100   .data._lcd_width:0000000000000000 $d
 
 UNDEFINED SYMBOLS
 spi1Transfer

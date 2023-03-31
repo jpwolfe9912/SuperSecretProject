@@ -43,7 +43,7 @@ build/fatfs.o: FATFS/App/fatfs.c FATFS/App/fatfs.h \
  Core/Inc/stm32l4xx_it.h Core/Inc/dwt_system.h Core/Inc/dma.h \
  Core/Inc/i2c.h Core/Inc/spi.h Core/Inc/usart.h \
  Middlewares/Third_Party/lwrb/../lwrb/lwrb.h Core/Inc/esp32.h \
- Core/Inc/esp32Config.h Core/Inc/gpio.h \
+ Core/Inc/utilities.h Core/Inc/esp32Config.h Core/Inc/gpio.h \
  Middlewares/Third_Party/FatFs/src/ff_gen_drv.h \
  Middlewares/Third_Party/FatFs/src/diskio.h \
  Middlewares/Third_Party/FatFs/src/ff.h FATFS/Target/user_diskio.h
@@ -101,6 +101,7 @@ Core/Inc/spi.h:
 Core/Inc/usart.h:
 Middlewares/Third_Party/lwrb/../lwrb/lwrb.h:
 Core/Inc/esp32.h:
+Core/Inc/utilities.h:
 Core/Inc/esp32Config.h:
 Core/Inc/gpio.h:
 Middlewares/Third_Party/FatFs/src/ff_gen_drv.h:

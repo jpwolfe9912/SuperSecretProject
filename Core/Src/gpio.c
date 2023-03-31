@@ -87,6 +87,8 @@ void MX_GPIO_Init(void)
     /* EXTI interrupt init*/
     NVIC_SetPriority(EXTI9_5_IRQn, NVIC_EncodePriority(NVIC_GetPriorityGrouping(), 0, 0));
 
+    GPIOB->MODER &= ~GPIO_MODER_MODE4;
+    GPIOB->PUPDR |= GPIO_PUPDR_PUPD4_1;
     GPIOB->MODER &= ~GPIO_MODER_MODE3;
     GPIOB->MODER |= GPIO_MODER_MODE3_0;
 }

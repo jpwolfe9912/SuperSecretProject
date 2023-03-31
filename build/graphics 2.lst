@@ -1,0 +1,2998 @@
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccKBrlEE.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"graphics.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.drawLine,"ax",%progbits
+  18              		.align	1
+  19              		.global	drawLine
+  20              		.arch armv7e-m
+  21              		.syntax unified
+  22              		.thumb
+  23              		.thumb_func
+  24              		.fpu fpv4-sp-d16
+  26              	drawLine:
+  27              	.LVL0:
+  28              	.LFB1155:
+  29              		.file 1 "Core/Src/graphics.c"
+   1:Core/Src/graphics.c **** #include "graphics.h"
+   2:Core/Src/graphics.c **** 
+   3:Core/Src/graphics.c **** #ifndef min
+   4:Core/Src/graphics.c **** #define min(a, b) (((a) < (b)) ? (a) : (b))
+   5:Core/Src/graphics.c **** #endif
+   6:Core/Src/graphics.c **** 
+   7:Core/Src/graphics.c **** #ifndef _swap_int16_t
+   8:Core/Src/graphics.c **** #define _swap_int16_t(a, b) \
+   9:Core/Src/graphics.c ****     {                       \
+  10:Core/Src/graphics.c ****         int16_t t = a;      \
+  11:Core/Src/graphics.c ****         a = b;              \
+  12:Core/Src/graphics.c ****         b = t;              \
+  13:Core/Src/graphics.c ****     }
+  14:Core/Src/graphics.c **** #endif
+  15:Core/Src/graphics.c **** 
+  16:Core/Src/graphics.c **** /**************************************************************************/
+  17:Core/Src/graphics.c **** /*!
+  18:Core/Src/graphics.c ****    @brief    Write a line.  Bresenham's algorithm - thx wikpedia
+  19:Core/Src/graphics.c ****     @param    x0  Start point x coordinate
+  20:Core/Src/graphics.c ****     @param    y0  Start point y coordinate
+  21:Core/Src/graphics.c ****     @param    x1  End point x coordinate
+  22:Core/Src/graphics.c ****     @param    y1  End point y coordinate
+  23:Core/Src/graphics.c ****     @param    color 16-bit 5-6-5 Color to draw with
+  24:Core/Src/graphics.c **** */
+  25:Core/Src/graphics.c **** /**************************************************************************/
+  26:Core/Src/graphics.c **** void drawLine(int16_t x0, int16_t y0, int16_t x1, int16_t y1,
+  27:Core/Src/graphics.c ****               uint16_t color)
+  28:Core/Src/graphics.c **** {
+  30              		.loc 1 28 1 view -0
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccKBrlEE.s 			page 2
+
+
+  31              		.cfi_startproc
+  32              		@ args = 4, pretend = 0, frame = 8
+  33              		@ frame_needed = 0, uses_anonymous_args = 0
+  34              		.loc 1 28 1 is_stmt 0 view .LVU1
+  35 0000 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, r10, fp, lr}
+  36              		.cfi_def_cfa_offset 36
+  37              		.cfi_offset 4, -36
+  38              		.cfi_offset 5, -32
+  39              		.cfi_offset 6, -28
+  40              		.cfi_offset 7, -24
+  41              		.cfi_offset 8, -20
+  42              		.cfi_offset 9, -16
+  43              		.cfi_offset 10, -12
+  44              		.cfi_offset 11, -8
+  45              		.cfi_offset 14, -4
+  46 0004 83B0     		sub	sp, sp, #12
+  47              		.cfi_def_cfa_offset 48
+  48 0006 0F46     		mov	r7, r1
+  49 0008 1646     		mov	r6, r2
+  50 000a 1D46     		mov	r5, r3
+  51 000c BDF830B0 		ldrh	fp, [sp, #48]
+  29:Core/Src/graphics.c ****     int16_t steep = abs(y1 - y0) > abs(x1 - x0);
+  52              		.loc 1 29 5 is_stmt 1 view .LVU2
+  53              		.loc 1 29 28 is_stmt 0 view .LVU3
+  54 0010 A3EB0108 		sub	r8, r3, r1
+  55              		.loc 1 29 21 view .LVU4
+  56 0014 B8F1000F 		cmp	r8, #0
+  57 0018 B8BF     		it	lt
+  58 001a C8F10008 		rsblt	r8, r8, #0
+  59              		.loc 1 29 43 view .LVU5
+  60 001e A2EB0009 		sub	r9, r2, r0
+  61              		.loc 1 29 36 view .LVU6
+  62 0022 B9F1000F 		cmp	r9, #0
+  63 0026 B8BF     		it	lt
+  64 0028 C9F10009 		rsblt	r9, r9, #0
+  65              	.LVL1:
+  30:Core/Src/graphics.c ****     if (steep)
+  66              		.loc 1 30 5 is_stmt 1 view .LVU7
+  67              		.loc 1 30 8 is_stmt 0 view .LVU8
+  68 002c C845     		cmp	r8, r9
+  69 002e 03DC     		bgt	.L2
+  70 0030 1546     		mov	r5, r2
+  71 0032 1E46     		mov	r6, r3
+  72 0034 0746     		mov	r7, r0
+  73 0036 0846     		mov	r0, r1
+  74              	.LVL2:
+  75              	.L2:
+  31:Core/Src/graphics.c ****     {
+  32:Core/Src/graphics.c ****         _swap_int16_t(x0, y0);
+  33:Core/Src/graphics.c ****         _swap_int16_t(x1, y1);
+  76              		.loc 1 33 30 is_stmt 1 discriminator 1 view .LVU9
+  34:Core/Src/graphics.c ****     }
+  35:Core/Src/graphics.c **** 
+  36:Core/Src/graphics.c ****     if (x0 > x1)
+  77              		.loc 1 36 5 discriminator 1 view .LVU10
+  78              		.loc 1 36 8 is_stmt 0 discriminator 1 view .LVU11
+  79 0038 AF42     		cmp	r7, r5
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccKBrlEE.s 			page 3
+
+
+  80 003a 05DC     		bgt	.L3
+  81              		.loc 1 36 8 view .LVU12
+  82 003c 3346     		mov	r3, r6
+  83 003e 0646     		mov	r6, r0
+  84              	.LVL3:
+  85              		.loc 1 36 8 view .LVU13
+  86 0040 1846     		mov	r0, r3
+  87              	.LVL4:
+  88              		.loc 1 36 8 view .LVU14
+  89 0042 2B46     		mov	r3, r5
+  90 0044 3D46     		mov	r5, r7
+  91              	.LVL5:
+  92              		.loc 1 36 8 view .LVU15
+  93 0046 1F46     		mov	r7, r3
+  94              	.LVL6:
+  95              	.L3:
+  37:Core/Src/graphics.c ****     {
+  38:Core/Src/graphics.c ****         _swap_int16_t(x0, x1);
+  39:Core/Src/graphics.c ****         _swap_int16_t(y0, y1);
+  96              		.loc 1 39 30 is_stmt 1 discriminator 1 view .LVU16
+  40:Core/Src/graphics.c ****     }
+  41:Core/Src/graphics.c **** 
+  42:Core/Src/graphics.c ****     int16_t dx, dy;
+  97              		.loc 1 42 5 discriminator 1 view .LVU17
+  43:Core/Src/graphics.c ****     dx = x1 - x0;
+  98              		.loc 1 43 5 discriminator 1 view .LVU18
+  99              		.loc 1 43 13 is_stmt 0 discriminator 1 view .LVU19
+ 100 0048 7C1B     		subs	r4, r7, r5
+ 101 004a A3B2     		uxth	r3, r4
+ 102 004c 0093     		str	r3, [sp]
+ 103              	.LVL7:
+  44:Core/Src/graphics.c ****     dy = abs(y1 - y0);
+ 104              		.loc 1 44 5 is_stmt 1 discriminator 1 view .LVU20
+ 105              		.loc 1 44 17 is_stmt 0 discriminator 1 view .LVU21
+ 106 004e A0EB060A 		sub	r10, r0, r6
+ 107              		.loc 1 44 10 discriminator 1 view .LVU22
+ 108 0052 BAF1000F 		cmp	r10, #0
+ 109 0056 B8BF     		it	lt
+ 110 0058 CAF1000A 		rsblt	r10, r10, #0
+ 111              	.LVL8:
+  45:Core/Src/graphics.c **** 
+  46:Core/Src/graphics.c ****     int16_t err = dx / 2;
+ 112              		.loc 1 46 5 is_stmt 1 discriminator 1 view .LVU23
+ 113              		.loc 1 46 13 is_stmt 0 discriminator 1 view .LVU24
+ 114 005c C4F3C033 		ubfx	r3, r4, #15, #1
+ 115 0060 03FA84F4 		sxtah	r4, r3, r4
+ 116              	.LVL9:
+ 117              		.loc 1 46 13 discriminator 1 view .LVU25
+ 118 0064 6410     		asrs	r4, r4, #1
+ 119              	.LVL10:
+  47:Core/Src/graphics.c ****     int16_t ystep;
+ 120              		.loc 1 47 5 is_stmt 1 discriminator 1 view .LVU26
+  48:Core/Src/graphics.c **** 
+  49:Core/Src/graphics.c ****     if (y0 < y1)
+ 121              		.loc 1 49 5 discriminator 1 view .LVU27
+ 122              		.loc 1 49 8 is_stmt 0 discriminator 1 view .LVU28
+ 123 0066 8642     		cmp	r6, r0
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccKBrlEE.s 			page 4
+
+
+ 124 0068 21DB     		blt	.L4
+  50:Core/Src/graphics.c ****     {
+  51:Core/Src/graphics.c ****         ystep = 1;
+  52:Core/Src/graphics.c ****     }
+  53:Core/Src/graphics.c ****     else
+  54:Core/Src/graphics.c ****     {
+  55:Core/Src/graphics.c ****         ystep = -1;
+ 125              		.loc 1 55 15 view .LVU29
+ 126 006a 4FF0FF33 		mov	r3, #-1
+ 127 006e 0193     		str	r3, [sp, #4]
+ 128 0070 0CE0     		b	.L9
+ 129              	.LVL11:
+ 130              	.L6:
+  56:Core/Src/graphics.c ****     }
+  57:Core/Src/graphics.c **** 
+  58:Core/Src/graphics.c ****     for (; x0 <= x1; x0++)
+  59:Core/Src/graphics.c ****     {
+  60:Core/Src/graphics.c ****         if (steep)
+  61:Core/Src/graphics.c ****         {
+  62:Core/Src/graphics.c ****             ili9341DrawPixel(y0, x0, color);
+  63:Core/Src/graphics.c ****         }
+  64:Core/Src/graphics.c ****         else
+  65:Core/Src/graphics.c ****         {
+  66:Core/Src/graphics.c ****             ili9341DrawPixel(x0, y0, color);
+ 131              		.loc 1 66 13 is_stmt 1 view .LVU30
+ 132 0072 5A46     		mov	r2, fp
+ 133 0074 B1B2     		uxth	r1, r6
+ 134 0076 A8B2     		uxth	r0, r5
+ 135 0078 FFF7FEFF 		bl	ili9341DrawPixel
+ 136              	.LVL12:
+ 137              	.L7:
+  67:Core/Src/graphics.c ****         }
+  68:Core/Src/graphics.c ****         err -= dy;
+ 138              		.loc 1 68 9 view .LVU31
+ 139              		.loc 1 68 13 is_stmt 0 view .LVU32
+ 140 007c A4EB0A04 		sub	r4, r4, r10
+ 141              	.LVL13:
+ 142              		.loc 1 68 13 view .LVU33
+ 143 0080 A3B2     		uxth	r3, r4
+ 144 0082 24B2     		sxth	r4, r4
+ 145              	.LVL14:
+  69:Core/Src/graphics.c ****         if (err < 0)
+ 146              		.loc 1 69 9 is_stmt 1 view .LVU34
+ 147              		.loc 1 69 12 is_stmt 0 view .LVU35
+ 148 0084 002C     		cmp	r4, #0
+ 149 0086 0BDB     		blt	.L12
+ 150              	.L8:
+  58:Core/Src/graphics.c ****     {
+ 151              		.loc 1 58 22 is_stmt 1 view .LVU36
+  58:Core/Src/graphics.c ****     {
+ 152              		.loc 1 58 24 is_stmt 0 view .LVU37
+ 153 0088 0135     		adds	r5, r5, #1
+ 154              	.LVL15:
+  58:Core/Src/graphics.c ****     {
+ 155              		.loc 1 58 24 view .LVU38
+ 156 008a 2DB2     		sxth	r5, r5
+ 157              	.LVL16:
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccKBrlEE.s 			page 5
+
+
+ 158              	.L9:
+  58:Core/Src/graphics.c ****     {
+ 159              		.loc 1 58 12 is_stmt 1 discriminator 1 view .LVU39
+  58:Core/Src/graphics.c ****     {
+ 160              		.loc 1 58 5 is_stmt 0 discriminator 1 view .LVU40
+ 161 008c BD42     		cmp	r5, r7
+ 162 008e 11DC     		bgt	.L13
+  60:Core/Src/graphics.c ****         {
+ 163              		.loc 1 60 9 is_stmt 1 view .LVU41
+  60:Core/Src/graphics.c ****         {
+ 164              		.loc 1 60 12 is_stmt 0 view .LVU42
+ 165 0090 C845     		cmp	r8, r9
+ 166 0092 EEDD     		ble	.L6
+  62:Core/Src/graphics.c ****         }
+ 167              		.loc 1 62 13 is_stmt 1 view .LVU43
+ 168 0094 5A46     		mov	r2, fp
+ 169 0096 A9B2     		uxth	r1, r5
+ 170 0098 B0B2     		uxth	r0, r6
+ 171 009a FFF7FEFF 		bl	ili9341DrawPixel
+ 172              	.LVL17:
+ 173 009e EDE7     		b	.L7
+ 174              	.L12:
+  70:Core/Src/graphics.c ****         {
+  71:Core/Src/graphics.c ****             y0 += ystep;
+ 175              		.loc 1 71 13 view .LVU44
+ 176              		.loc 1 71 16 is_stmt 0 view .LVU45
+ 177 00a0 019A     		ldr	r2, [sp, #4]
+ 178 00a2 1644     		add	r6, r6, r2
+ 179              	.LVL18:
+ 180              		.loc 1 71 16 view .LVU46
+ 181 00a4 36B2     		sxth	r6, r6
+ 182              	.LVL19:
+  72:Core/Src/graphics.c ****             err += dx;
+ 183              		.loc 1 72 13 is_stmt 1 view .LVU47
+ 184              		.loc 1 72 17 is_stmt 0 view .LVU48
+ 185 00a6 009A     		ldr	r2, [sp]
+ 186 00a8 1344     		add	r3, r3, r2
+ 187 00aa 1CB2     		sxth	r4, r3
+ 188              	.LVL20:
+ 189              		.loc 1 72 17 view .LVU49
+ 190 00ac ECE7     		b	.L8
+ 191              	.LVL21:
+ 192              	.L4:
+  51:Core/Src/graphics.c ****     }
+ 193              		.loc 1 51 15 view .LVU50
+ 194 00ae 0123     		movs	r3, #1
+ 195 00b0 0193     		str	r3, [sp, #4]
+ 196 00b2 EBE7     		b	.L9
+ 197              	.LVL22:
+ 198              	.L13:
+  73:Core/Src/graphics.c ****         }
+  74:Core/Src/graphics.c ****     }
+  75:Core/Src/graphics.c **** }
+ 199              		.loc 1 75 1 view .LVU51
+ 200 00b4 03B0     		add	sp, sp, #12
+ 201              		.cfi_def_cfa_offset 36
+ 202              	.LVL23:
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccKBrlEE.s 			page 6
+
+
+ 203              		.loc 1 75 1 view .LVU52
+ 204              		@ sp needed
+ 205 00b6 BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
+ 206              		.loc 1 75 1 view .LVU53
+ 207              		.cfi_endproc
+ 208              	.LFE1155:
+ 210              		.section	.text.drawVerticalLine,"ax",%progbits
+ 211              		.align	1
+ 212              		.global	drawVerticalLine
+ 213              		.syntax unified
+ 214              		.thumb
+ 215              		.thumb_func
+ 216              		.fpu fpv4-sp-d16
+ 218              	drawVerticalLine:
+ 219              	.LVL24:
+ 220              	.LFB1156:
+  76:Core/Src/graphics.c **** 
+  77:Core/Src/graphics.c **** /**************************************************************************/
+  78:Core/Src/graphics.c **** /*!
+  79:Core/Src/graphics.c ****    @brief    Draw a perfectly vertical line (this is often optimized in a
+  80:Core/Src/graphics.c ****    subclass!)
+  81:Core/Src/graphics.c ****     @param    x   Top-most x coordinate
+  82:Core/Src/graphics.c ****     @param    y   Top-most y coordinate
+  83:Core/Src/graphics.c ****     @param    height   Height in pixels
+  84:Core/Src/graphics.c ****    @param    color 16-bit 5-6-5 Color to fill with
+  85:Core/Src/graphics.c **** */
+  86:Core/Src/graphics.c **** /**************************************************************************/
+  87:Core/Src/graphics.c **** // DRAW LINE FROM X,Y LOCATION to X,Y+Height LOCATION
+  88:Core/Src/graphics.c **** void drawVerticalLine(uint16_t x, uint16_t y, uint16_t h, uint16_t color)
+  89:Core/Src/graphics.c **** {
+ 221              		.loc 1 89 1 is_stmt 1 view -0
+ 222              		.cfi_startproc
+ 223              		@ args = 0, pretend = 0, frame = 0
+ 224              		@ frame_needed = 0, uses_anonymous_args = 0
+ 225              		.loc 1 89 1 is_stmt 0 view .LVU55
+ 226 0000 38B5     		push	{r3, r4, r5, lr}
+ 227              		.cfi_def_cfa_offset 16
+ 228              		.cfi_offset 3, -16
+ 229              		.cfi_offset 4, -12
+ 230              		.cfi_offset 5, -8
+ 231              		.cfi_offset 14, -4
+ 232 0002 1446     		mov	r4, r2
+ 233 0004 1D46     		mov	r5, r3
+  90:Core/Src/graphics.c ****     if ((x >= _lcd_width) || (y >= _lcd_height))
+ 234              		.loc 1 90 5 is_stmt 1 view .LVU56
+ 235              		.loc 1 90 12 is_stmt 0 view .LVU57
+ 236 0006 104B     		ldr	r3, .L18
+ 237              	.LVL25:
+ 238              		.loc 1 90 12 view .LVU58
+ 239 0008 1A88     		ldrh	r2, [r3]
+ 240              	.LVL26:
+ 241              		.loc 1 90 12 view .LVU59
+ 242 000a 92B2     		uxth	r2, r2
+ 243              		.loc 1 90 8 view .LVU60
+ 244 000c 8242     		cmp	r2, r0
+ 245 000e 1AD9     		bls	.L14
+ 246              		.loc 1 90 33 discriminator 1 view .LVU61
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccKBrlEE.s 			page 7
+
+
+ 247 0010 0E4B     		ldr	r3, .L18+4
+ 248 0012 1B88     		ldrh	r3, [r3]
+ 249 0014 9BB2     		uxth	r3, r3
+ 250              		.loc 1 90 27 discriminator 1 view .LVU62
+ 251 0016 8B42     		cmp	r3, r1
+ 252 0018 15D9     		bls	.L14
+  91:Core/Src/graphics.c ****         return;
+  92:Core/Src/graphics.c ****     if ((y + h - 1) >= _lcd_height)
+ 253              		.loc 1 92 5 is_stmt 1 view .LVU63
+ 254              		.loc 1 92 12 is_stmt 0 view .LVU64
+ 255 001a 0A19     		adds	r2, r1, r4
+ 256              		.loc 1 92 21 view .LVU65
+ 257 001c 0B4B     		ldr	r3, .L18+4
+ 258 001e 1B88     		ldrh	r3, [r3]
+ 259 0020 9BB2     		uxth	r3, r3
+ 260              		.loc 1 92 8 view .LVU66
+ 261 0022 9A42     		cmp	r2, r3
+ 262 0024 04DD     		ble	.L16
+  93:Core/Src/graphics.c ****     {
+  94:Core/Src/graphics.c ****         h = _lcd_height - y;
+ 263              		.loc 1 94 9 is_stmt 1 view .LVU67
+ 264              		.loc 1 94 25 is_stmt 0 view .LVU68
+ 265 0026 094B     		ldr	r3, .L18+4
+ 266 0028 1C88     		ldrh	r4, [r3]
+ 267 002a A4B2     		uxth	r4, r4
+ 268              		.loc 1 94 11 view .LVU69
+ 269 002c 641A     		subs	r4, r4, r1
+ 270 002e A4B2     		uxth	r4, r4
+ 271              	.LVL27:
+ 272              	.L16:
+  95:Core/Src/graphics.c ****     }
+  96:Core/Src/graphics.c ****     ili9341SetAddress(x, y, x, y + h - 1);
+ 273              		.loc 1 96 5 is_stmt 1 view .LVU70
+ 274              		.loc 1 96 34 is_stmt 0 view .LVU71
+ 275 0030 6318     		adds	r3, r4, r1
+ 276 0032 9BB2     		uxth	r3, r3
+ 277              		.loc 1 96 5 view .LVU72
+ 278 0034 013B     		subs	r3, r3, #1
+ 279 0036 9BB2     		uxth	r3, r3
+ 280 0038 0246     		mov	r2, r0
+ 281 003a FFF7FEFF 		bl	ili9341SetAddress
+ 282              	.LVL28:
+  97:Core/Src/graphics.c ****     ili9341DrawColorBurst(color, h);
+ 283              		.loc 1 97 5 is_stmt 1 view .LVU73
+ 284 003e 2146     		mov	r1, r4
+ 285 0040 2846     		mov	r0, r5
+ 286 0042 FFF7FEFF 		bl	ili9341DrawColorBurst
+ 287              	.LVL29:
+ 288              	.L14:
+  98:Core/Src/graphics.c **** }
+ 289              		.loc 1 98 1 is_stmt 0 view .LVU74
+ 290 0046 38BD     		pop	{r3, r4, r5, pc}
+ 291              	.L19:
+ 292              		.align	2
+ 293              	.L18:
+ 294 0048 00000000 		.word	_lcd_width
+ 295 004c 00000000 		.word	_lcd_height
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccKBrlEE.s 			page 8
+
+
+ 296              		.cfi_endproc
+ 297              	.LFE1156:
+ 299              		.section	.text.drawHorizontalLine,"ax",%progbits
+ 300              		.align	1
+ 301              		.global	drawHorizontalLine
+ 302              		.syntax unified
+ 303              		.thumb
+ 304              		.thumb_func
+ 305              		.fpu fpv4-sp-d16
+ 307              	drawHorizontalLine:
+ 308              	.LVL30:
+ 309              	.LFB1157:
+  99:Core/Src/graphics.c **** 
+ 100:Core/Src/graphics.c **** /**************************************************************************/
+ 101:Core/Src/graphics.c **** /*!
+ 102:Core/Src/graphics.c ****    @brief    Draw a perfectly horizontal line (this is often optimized in a
+ 103:Core/Src/graphics.c ****    subclass!)
+ 104:Core/Src/graphics.c ****     @param    x   Left-most x coordinate
+ 105:Core/Src/graphics.c ****     @param    y   Left-most y coordinate
+ 106:Core/Src/graphics.c ****     @param    w   Width in pixels
+ 107:Core/Src/graphics.c ****    @param    color 16-bit 5-6-5 Color to fill with
+ 108:Core/Src/graphics.c **** */
+ 109:Core/Src/graphics.c **** /**************************************************************************/
+ 110:Core/Src/graphics.c **** void drawHorizontalLine(uint16_t x, uint16_t y, uint16_t w, uint16_t color)
+ 111:Core/Src/graphics.c **** {
+ 310              		.loc 1 111 1 is_stmt 1 view -0
+ 311              		.cfi_startproc
+ 312              		@ args = 0, pretend = 0, frame = 0
+ 313              		@ frame_needed = 0, uses_anonymous_args = 0
+ 314              		.loc 1 111 1 is_stmt 0 view .LVU76
+ 315 0000 38B5     		push	{r3, r4, r5, lr}
+ 316              		.cfi_def_cfa_offset 16
+ 317              		.cfi_offset 3, -16
+ 318              		.cfi_offset 4, -12
+ 319              		.cfi_offset 5, -8
+ 320              		.cfi_offset 14, -4
+ 321 0002 1446     		mov	r4, r2
+ 322 0004 1D46     		mov	r5, r3
+ 112:Core/Src/graphics.c ****     if ((x >= _lcd_width) || (y >= _lcd_height))
+ 323              		.loc 1 112 5 is_stmt 1 view .LVU77
+ 324              		.loc 1 112 12 is_stmt 0 view .LVU78
+ 325 0006 104B     		ldr	r3, .L24
+ 326              	.LVL31:
+ 327              		.loc 1 112 12 view .LVU79
+ 328 0008 1A88     		ldrh	r2, [r3]
+ 329              	.LVL32:
+ 330              		.loc 1 112 12 view .LVU80
+ 331 000a 92B2     		uxth	r2, r2
+ 332              		.loc 1 112 8 view .LVU81
+ 333 000c 8242     		cmp	r2, r0
+ 334 000e 1AD9     		bls	.L20
+ 335              		.loc 1 112 33 discriminator 1 view .LVU82
+ 336 0010 0E4B     		ldr	r3, .L24+4
+ 337 0012 1B88     		ldrh	r3, [r3]
+ 338 0014 9BB2     		uxth	r3, r3
+ 339              		.loc 1 112 27 discriminator 1 view .LVU83
+ 340 0016 8B42     		cmp	r3, r1
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccKBrlEE.s 			page 9
+
+
+ 341 0018 15D9     		bls	.L20
+ 113:Core/Src/graphics.c ****         return;
+ 114:Core/Src/graphics.c ****     if ((x + w - 1) >= _lcd_width)
+ 342              		.loc 1 114 5 is_stmt 1 view .LVU84
+ 343              		.loc 1 114 12 is_stmt 0 view .LVU85
+ 344 001a 0219     		adds	r2, r0, r4
+ 345              		.loc 1 114 21 view .LVU86
+ 346 001c 0A4B     		ldr	r3, .L24
+ 347 001e 1B88     		ldrh	r3, [r3]
+ 348 0020 9BB2     		uxth	r3, r3
+ 349              		.loc 1 114 8 view .LVU87
+ 350 0022 9A42     		cmp	r2, r3
+ 351 0024 04DD     		ble	.L22
+ 115:Core/Src/graphics.c ****     {
+ 116:Core/Src/graphics.c ****         w = _lcd_width - x;
+ 352              		.loc 1 116 9 is_stmt 1 view .LVU88
+ 353              		.loc 1 116 24 is_stmt 0 view .LVU89
+ 354 0026 084B     		ldr	r3, .L24
+ 355 0028 1C88     		ldrh	r4, [r3]
+ 356 002a A4B2     		uxth	r4, r4
+ 357              		.loc 1 116 11 view .LVU90
+ 358 002c 241A     		subs	r4, r4, r0
+ 359 002e A4B2     		uxth	r4, r4
+ 360              	.LVL33:
+ 361              	.L22:
+ 117:Core/Src/graphics.c ****     }
+ 118:Core/Src/graphics.c ****     ili9341SetAddress(x, y, x + w - 1, y);
+ 362              		.loc 1 118 5 is_stmt 1 view .LVU91
+ 363              		.loc 1 118 31 is_stmt 0 view .LVU92
+ 364 0030 2218     		adds	r2, r4, r0
+ 365 0032 92B2     		uxth	r2, r2
+ 366              		.loc 1 118 5 view .LVU93
+ 367 0034 013A     		subs	r2, r2, #1
+ 368 0036 0B46     		mov	r3, r1
+ 369 0038 92B2     		uxth	r2, r2
+ 370 003a FFF7FEFF 		bl	ili9341SetAddress
+ 371              	.LVL34:
+ 119:Core/Src/graphics.c ****     ili9341DrawColorBurst(color, w);
+ 372              		.loc 1 119 5 is_stmt 1 view .LVU94
+ 373 003e 2146     		mov	r1, r4
+ 374 0040 2846     		mov	r0, r5
+ 375 0042 FFF7FEFF 		bl	ili9341DrawColorBurst
+ 376              	.LVL35:
+ 377              	.L20:
+ 120:Core/Src/graphics.c **** }
+ 378              		.loc 1 120 1 is_stmt 0 view .LVU95
+ 379 0046 38BD     		pop	{r3, r4, r5, pc}
+ 380              	.L25:
+ 381              		.align	2
+ 382              	.L24:
+ 383 0048 00000000 		.word	_lcd_width
+ 384 004c 00000000 		.word	_lcd_height
+ 385              		.cfi_endproc
+ 386              	.LFE1157:
+ 388              		.section	.text.drawCircle,"ax",%progbits
+ 389              		.align	1
+ 390              		.global	drawCircle
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccKBrlEE.s 			page 10
+
+
+ 391              		.syntax unified
+ 392              		.thumb
+ 393              		.thumb_func
+ 394              		.fpu fpv4-sp-d16
+ 396              	drawCircle:
+ 397              	.LVL36:
+ 398              	.LFB1158:
+ 121:Core/Src/graphics.c **** 
+ 122:Core/Src/graphics.c **** /**************************************************************************/
+ 123:Core/Src/graphics.c **** /*!
+ 124:Core/Src/graphics.c ****    @brief    Draw a circle outline
+ 125:Core/Src/graphics.c ****     @param    x0   Center-point x coordinate
+ 126:Core/Src/graphics.c ****     @param    y0   Center-point y coordinate
+ 127:Core/Src/graphics.c ****     @param    r   Radius of circle
+ 128:Core/Src/graphics.c ****     @param    color 16-bit 5-6-5 Color to draw with
+ 129:Core/Src/graphics.c **** */
+ 130:Core/Src/graphics.c **** /**************************************************************************/
+ 131:Core/Src/graphics.c **** void drawCircle(int16_t x0, int16_t y0, int16_t r,
+ 132:Core/Src/graphics.c ****                 uint16_t color)
+ 133:Core/Src/graphics.c **** {
+ 399              		.loc 1 133 1 is_stmt 1 view -0
+ 400              		.cfi_startproc
+ 401              		@ args = 0, pretend = 0, frame = 24
+ 402              		@ frame_needed = 0, uses_anonymous_args = 0
+ 403              		.loc 1 133 1 is_stmt 0 view .LVU97
+ 404 0000 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, r10, fp, lr}
+ 405              		.cfi_def_cfa_offset 36
+ 406              		.cfi_offset 4, -36
+ 407              		.cfi_offset 5, -32
+ 408              		.cfi_offset 6, -28
+ 409              		.cfi_offset 7, -24
+ 410              		.cfi_offset 8, -20
+ 411              		.cfi_offset 9, -16
+ 412              		.cfi_offset 10, -12
+ 413              		.cfi_offset 11, -8
+ 414              		.cfi_offset 14, -4
+ 415 0004 87B0     		sub	sp, sp, #28
+ 416              		.cfi_def_cfa_offset 64
+ 417 0006 0192     		str	r2, [sp, #4]
+ 418 0008 1E46     		mov	r6, r3
+ 134:Core/Src/graphics.c **** #if defined(ESP8266)
+ 135:Core/Src/graphics.c ****     yield();
+ 136:Core/Src/graphics.c **** #endif
+ 137:Core/Src/graphics.c ****     int16_t f = 1 - r;
+ 419              		.loc 1 137 5 is_stmt 1 view .LVU98
+ 420              		.loc 1 137 19 is_stmt 0 view .LVU99
+ 421 000a 94B2     		uxth	r4, r2
+ 422 000c C4F10103 		rsb	r3, r4, #1
+ 423              	.LVL37:
+ 424              		.loc 1 137 13 view .LVU100
+ 425 0010 0FFA83F9 		sxth	r9, r3
+ 426              	.LVL38:
+ 138:Core/Src/graphics.c ****     int16_t ddF_x = 1;
+ 427              		.loc 1 138 5 is_stmt 1 view .LVU101
+ 139:Core/Src/graphics.c ****     int16_t ddF_y = -2 * r;
+ 428              		.loc 1 139 5 view .LVU102
+ 429              		.loc 1 139 24 is_stmt 0 view .LVU103
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccKBrlEE.s 			page 11
+
+
+ 430 0014 C4EBC433 		rsb	r3, r4, r4, lsl #15
+ 431 0018 5B00     		lsls	r3, r3, #1
+ 432              		.loc 1 139 13 view .LVU104
+ 433 001a 1BB2     		sxth	r3, r3
+ 434 001c 0593     		str	r3, [sp, #20]
+ 435              	.LVL39:
+ 140:Core/Src/graphics.c ****     int16_t x = 0;
+ 436              		.loc 1 140 5 is_stmt 1 view .LVU105
+ 141:Core/Src/graphics.c ****     int16_t y = r;
+ 437              		.loc 1 141 5 view .LVU106
+ 142:Core/Src/graphics.c **** 
+ 143:Core/Src/graphics.c ****     ili9341DrawPixel(x0, y0 + r, color);
+ 438              		.loc 1 143 5 view .LVU107
+ 439 001e 1FFA80FB 		uxth	fp, r0
+ 440 0022 1FFA81FA 		uxth	r10, r1
+ 441 0026 04EB0A01 		add	r1, r4, r10
+ 442              	.LVL40:
+ 443              		.loc 1 143 5 is_stmt 0 view .LVU108
+ 444 002a 3246     		mov	r2, r6
+ 445              	.LVL41:
+ 446              		.loc 1 143 5 view .LVU109
+ 447 002c 89B2     		uxth	r1, r1
+ 448 002e 5846     		mov	r0, fp
+ 449              		.loc 1 143 5 view .LVU110
+ 450 0030 FFF7FEFF 		bl	ili9341DrawPixel
+ 451              	.LVL42:
+ 144:Core/Src/graphics.c ****     ili9341DrawPixel(x0, y0 - r, color);
+ 452              		.loc 1 144 5 is_stmt 1 view .LVU111
+ 453 0034 AAEB0401 		sub	r1, r10, r4
+ 454 0038 3246     		mov	r2, r6
+ 455 003a 89B2     		uxth	r1, r1
+ 456 003c 5846     		mov	r0, fp
+ 457 003e FFF7FEFF 		bl	ili9341DrawPixel
+ 458              	.LVL43:
+ 145:Core/Src/graphics.c ****     ili9341DrawPixel(x0 + r, y0, color);
+ 459              		.loc 1 145 5 view .LVU112
+ 460 0042 04EB0B00 		add	r0, r4, fp
+ 461 0046 3246     		mov	r2, r6
+ 462 0048 5146     		mov	r1, r10
+ 463 004a 80B2     		uxth	r0, r0
+ 464 004c FFF7FEFF 		bl	ili9341DrawPixel
+ 465              	.LVL44:
+ 146:Core/Src/graphics.c ****     ili9341DrawPixel(x0 - r, y0, color);
+ 466              		.loc 1 146 5 view .LVU113
+ 467 0050 ABEB0400 		sub	r0, fp, r4
+ 468 0054 3246     		mov	r2, r6
+ 469 0056 5146     		mov	r1, r10
+ 470 0058 80B2     		uxth	r0, r0
+ 471 005a FFF7FEFF 		bl	ili9341DrawPixel
+ 472              	.LVL45:
+ 147:Core/Src/graphics.c **** 
+ 148:Core/Src/graphics.c ****     while (x < y)
+ 473              		.loc 1 148 5 view .LVU114
+ 140:Core/Src/graphics.c ****     int16_t y = r;
+ 474              		.loc 1 140 13 is_stmt 0 view .LVU115
+ 475 005e 0023     		movs	r3, #0
+ 476 0060 0293     		str	r3, [sp, #8]
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccKBrlEE.s 			page 12
+
+
+ 138:Core/Src/graphics.c ****     int16_t ddF_y = -2 * r;
+ 477              		.loc 1 138 13 view .LVU116
+ 478 0062 0123     		movs	r3, #1
+ 479 0064 0393     		str	r3, [sp, #12]
+ 480              		.loc 1 148 11 view .LVU117
+ 481 0066 5EE0     		b	.L27
+ 482              	.LVL46:
+ 483              	.L32:
+ 149:Core/Src/graphics.c ****     {
+ 150:Core/Src/graphics.c ****         if (f >= 0)
+ 151:Core/Src/graphics.c ****         {
+ 152:Core/Src/graphics.c ****             y--;
+ 484              		.loc 1 152 13 is_stmt 1 view .LVU118
+ 485              		.loc 1 152 14 is_stmt 0 view .LVU119
+ 486 0068 019B     		ldr	r3, [sp, #4]
+ 487 006a 013B     		subs	r3, r3, #1
+ 488 006c 1BB2     		sxth	r3, r3
+ 489 006e 0193     		str	r3, [sp, #4]
+ 490              	.LVL47:
+ 153:Core/Src/graphics.c ****             ddF_y += 2;
+ 491              		.loc 1 153 13 is_stmt 1 view .LVU120
+ 492              		.loc 1 153 19 is_stmt 0 view .LVU121
+ 493 0070 059B     		ldr	r3, [sp, #20]
+ 494 0072 0233     		adds	r3, r3, #2
+ 495 0074 1AB2     		sxth	r2, r3
+ 496 0076 0592     		str	r2, [sp, #20]
+ 497              	.LVL48:
+ 154:Core/Src/graphics.c ****             f += ddF_y;
+ 498              		.loc 1 154 13 is_stmt 1 view .LVU122
+ 499              		.loc 1 154 15 is_stmt 0 view .LVU123
+ 500 0078 19FA83F9 		uxtah	r9, r9, r3
+ 501              	.LVL49:
+ 502              		.loc 1 154 15 view .LVU124
+ 503 007c 0FFA89F9 		sxth	r9, r9
+ 504              	.LVL50:
+ 505              	.L28:
+ 155:Core/Src/graphics.c ****         }
+ 156:Core/Src/graphics.c ****         x++;
+ 506              		.loc 1 156 9 is_stmt 1 view .LVU125
+ 507              		.loc 1 156 10 is_stmt 0 view .LVU126
+ 508 0080 029B     		ldr	r3, [sp, #8]
+ 509 0082 0133     		adds	r3, r3, #1
+ 510 0084 9DB2     		uxth	r5, r3
+ 511 0086 1BB2     		sxth	r3, r3
+ 512 0088 0293     		str	r3, [sp, #8]
+ 513              	.LVL51:
+ 157:Core/Src/graphics.c ****         ddF_x += 2;
+ 514              		.loc 1 157 9 is_stmt 1 view .LVU127
+ 515              		.loc 1 157 15 is_stmt 0 view .LVU128
+ 516 008a 039B     		ldr	r3, [sp, #12]
+ 517 008c 0233     		adds	r3, r3, #2
+ 518 008e 1AB2     		sxth	r2, r3
+ 519 0090 0392     		str	r2, [sp, #12]
+ 520              	.LVL52:
+ 158:Core/Src/graphics.c ****         f += ddF_x;
+ 521              		.loc 1 158 9 is_stmt 1 view .LVU129
+ 522              		.loc 1 158 11 is_stmt 0 view .LVU130
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccKBrlEE.s 			page 13
+
+
+ 523 0092 19FA83F9 		uxtah	r9, r9, r3
+ 524              	.LVL53:
+ 525              		.loc 1 158 11 view .LVU131
+ 526 0096 0FFA89F9 		sxth	r9, r9
+ 527              	.LVL54:
+ 159:Core/Src/graphics.c **** 
+ 160:Core/Src/graphics.c ****         ili9341DrawPixel(x0 + x, y0 + y, color);
+ 528              		.loc 1 160 9 is_stmt 1 view .LVU132
+ 529 009a 0BEB0503 		add	r3, fp, r5
+ 530 009e 9BB2     		uxth	r3, r3
+ 531 00a0 BDF80440 		ldrh	r4, [sp, #4]
+ 532 00a4 0AEB0408 		add	r8, r10, r4
+ 533 00a8 1FFA88F8 		uxth	r8, r8
+ 534 00ac 3246     		mov	r2, r6
+ 535 00ae 4146     		mov	r1, r8
+ 536 00b0 0493     		str	r3, [sp, #16]
+ 537 00b2 1846     		mov	r0, r3
+ 538 00b4 FFF7FEFF 		bl	ili9341DrawPixel
+ 539              	.LVL55:
+ 161:Core/Src/graphics.c ****         ili9341DrawPixel(x0 - x, y0 + y, color);
+ 540              		.loc 1 161 9 view .LVU133
+ 541 00b8 ABEB0507 		sub	r7, fp, r5
+ 542 00bc BFB2     		uxth	r7, r7
+ 543 00be 3246     		mov	r2, r6
+ 544 00c0 4146     		mov	r1, r8
+ 545 00c2 3846     		mov	r0, r7
+ 546 00c4 FFF7FEFF 		bl	ili9341DrawPixel
+ 547              	.LVL56:
+ 162:Core/Src/graphics.c ****         ili9341DrawPixel(x0 + x, y0 - y, color);
+ 548              		.loc 1 162 9 view .LVU134
+ 549 00c8 AAEB0408 		sub	r8, r10, r4
+ 550 00cc 1FFA88F8 		uxth	r8, r8
+ 551 00d0 3246     		mov	r2, r6
+ 552 00d2 4146     		mov	r1, r8
+ 553 00d4 0498     		ldr	r0, [sp, #16]
+ 554 00d6 FFF7FEFF 		bl	ili9341DrawPixel
+ 555              	.LVL57:
+ 163:Core/Src/graphics.c ****         ili9341DrawPixel(x0 - x, y0 - y, color);
+ 556              		.loc 1 163 9 view .LVU135
+ 557 00da 3246     		mov	r2, r6
+ 558 00dc 4146     		mov	r1, r8
+ 559 00de 3846     		mov	r0, r7
+ 560 00e0 FFF7FEFF 		bl	ili9341DrawPixel
+ 561              	.LVL58:
+ 164:Core/Src/graphics.c ****         ili9341DrawPixel(x0 + y, y0 + x, color);
+ 562              		.loc 1 164 9 view .LVU136
+ 563 00e4 0BEB0407 		add	r7, fp, r4
+ 564 00e8 BFB2     		uxth	r7, r7
+ 565 00ea 0AEB0508 		add	r8, r10, r5
+ 566 00ee 1FFA88F8 		uxth	r8, r8
+ 567 00f2 3246     		mov	r2, r6
+ 568 00f4 4146     		mov	r1, r8
+ 569 00f6 3846     		mov	r0, r7
+ 570 00f8 FFF7FEFF 		bl	ili9341DrawPixel
+ 571              	.LVL59:
+ 165:Core/Src/graphics.c ****         ili9341DrawPixel(x0 - y, y0 + x, color);
+ 572              		.loc 1 165 9 view .LVU137
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccKBrlEE.s 			page 14
+
+
+ 573 00fc ABEB0404 		sub	r4, fp, r4
+ 574 0100 A4B2     		uxth	r4, r4
+ 575 0102 3246     		mov	r2, r6
+ 576 0104 4146     		mov	r1, r8
+ 577 0106 2046     		mov	r0, r4
+ 578 0108 FFF7FEFF 		bl	ili9341DrawPixel
+ 579              	.LVL60:
+ 166:Core/Src/graphics.c ****         ili9341DrawPixel(x0 + y, y0 - x, color);
+ 580              		.loc 1 166 9 view .LVU138
+ 581 010c AAEB0505 		sub	r5, r10, r5
+ 582 0110 ADB2     		uxth	r5, r5
+ 583 0112 3246     		mov	r2, r6
+ 584 0114 2946     		mov	r1, r5
+ 585 0116 3846     		mov	r0, r7
+ 586 0118 FFF7FEFF 		bl	ili9341DrawPixel
+ 587              	.LVL61:
+ 167:Core/Src/graphics.c ****         ili9341DrawPixel(x0 - y, y0 - x, color);
+ 588              		.loc 1 167 9 view .LVU139
+ 589 011c 3246     		mov	r2, r6
+ 590 011e 2946     		mov	r1, r5
+ 591 0120 2046     		mov	r0, r4
+ 592 0122 FFF7FEFF 		bl	ili9341DrawPixel
+ 593              	.LVL62:
+ 594              	.L27:
+ 148:Core/Src/graphics.c ****     {
+ 595              		.loc 1 148 11 view .LVU140
+ 596 0126 029B     		ldr	r3, [sp, #8]
+ 597 0128 019A     		ldr	r2, [sp, #4]
+ 598 012a 9342     		cmp	r3, r2
+ 599 012c 03DA     		bge	.L31
+ 150:Core/Src/graphics.c ****         {
+ 600              		.loc 1 150 9 view .LVU141
+ 150:Core/Src/graphics.c ****         {
+ 601              		.loc 1 150 12 is_stmt 0 view .LVU142
+ 602 012e B9F1000F 		cmp	r9, #0
+ 603 0132 99DA     		bge	.L32
+ 604 0134 A4E7     		b	.L28
+ 605              	.L31:
+ 168:Core/Src/graphics.c ****     }
+ 169:Core/Src/graphics.c **** }
+ 606              		.loc 1 169 1 view .LVU143
+ 607 0136 07B0     		add	sp, sp, #28
+ 608              		.cfi_def_cfa_offset 36
+ 609              		@ sp needed
+ 610 0138 BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
+ 611              		.loc 1 169 1 view .LVU144
+ 612              		.cfi_endproc
+ 613              	.LFE1158:
+ 615              		.section	.text.drawCircleHelper,"ax",%progbits
+ 616              		.align	1
+ 617              		.global	drawCircleHelper
+ 618              		.syntax unified
+ 619              		.thumb
+ 620              		.thumb_func
+ 621              		.fpu fpv4-sp-d16
+ 623              	drawCircleHelper:
+ 624              	.LVL63:
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccKBrlEE.s 			page 15
+
+
+ 625              	.LFB1159:
+ 170:Core/Src/graphics.c **** 
+ 171:Core/Src/graphics.c **** /**************************************************************************/
+ 172:Core/Src/graphics.c **** /*!
+ 173:Core/Src/graphics.c ****     @brief    Quarter-circle drawer, used to do circles and roundrects
+ 174:Core/Src/graphics.c ****     @param    x0   Center-point x coordinate
+ 175:Core/Src/graphics.c ****     @param    y0   Center-point y coordinate
+ 176:Core/Src/graphics.c ****     @param    r   Radius of circle
+ 177:Core/Src/graphics.c ****     @param    cornername  Mask bit #1 or bit #2 to indicate which quarters of
+ 178:Core/Src/graphics.c ****    the circle we're doing
+ 179:Core/Src/graphics.c ****     @param    color 16-bit 5-6-5 Color to draw with
+ 180:Core/Src/graphics.c **** */
+ 181:Core/Src/graphics.c **** /**************************************************************************/
+ 182:Core/Src/graphics.c **** void drawCircleHelper(int16_t x0, int16_t y0, int16_t r,
+ 183:Core/Src/graphics.c ****                       uint8_t cornername, uint16_t color)
+ 184:Core/Src/graphics.c **** {
+ 626              		.loc 1 184 1 is_stmt 1 view -0
+ 627              		.cfi_startproc
+ 628              		@ args = 4, pretend = 0, frame = 24
+ 629              		@ frame_needed = 0, uses_anonymous_args = 0
+ 630              		.loc 1 184 1 is_stmt 0 view .LVU146
+ 631 0000 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, r10, fp, lr}
+ 632              		.cfi_def_cfa_offset 36
+ 633              		.cfi_offset 4, -36
+ 634              		.cfi_offset 5, -32
+ 635              		.cfi_offset 6, -28
+ 636              		.cfi_offset 7, -24
+ 637              		.cfi_offset 8, -20
+ 638              		.cfi_offset 9, -16
+ 639              		.cfi_offset 10, -12
+ 640              		.cfi_offset 11, -8
+ 641              		.cfi_offset 14, -4
+ 642 0004 87B0     		sub	sp, sp, #28
+ 643              		.cfi_def_cfa_offset 64
+ 644 0006 0390     		str	r0, [sp, #12]
+ 645 0008 0491     		str	r1, [sp, #16]
+ 646 000a 1646     		mov	r6, r2
+ 647 000c 1F46     		mov	r7, r3
+ 648 000e BDF84030 		ldrh	r3, [sp, #64]
+ 649              	.LVL64:
+ 650              		.loc 1 184 1 view .LVU147
+ 651 0012 0193     		str	r3, [sp, #4]
+ 185:Core/Src/graphics.c ****     int16_t f = 1 - r;
+ 652              		.loc 1 185 5 is_stmt 1 view .LVU148
+ 653              		.loc 1 185 19 is_stmt 0 view .LVU149
+ 654 0014 93B2     		uxth	r3, r2
+ 655 0016 C3F10104 		rsb	r4, r3, #1
+ 656              		.loc 1 185 13 view .LVU150
+ 657 001a 24B2     		sxth	r4, r4
+ 658              	.LVL65:
+ 186:Core/Src/graphics.c ****     int16_t ddF_x = 1;
+ 659              		.loc 1 186 5 is_stmt 1 view .LVU151
+ 187:Core/Src/graphics.c ****     int16_t ddF_y = -2 * r;
+ 660              		.loc 1 187 5 view .LVU152
+ 661              		.loc 1 187 24 is_stmt 0 view .LVU153
+ 662 001c C3EBC333 		rsb	r3, r3, r3, lsl #15
+ 663 0020 5B00     		lsls	r3, r3, #1
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccKBrlEE.s 			page 16
+
+
+ 664              		.loc 1 187 13 view .LVU154
+ 665 0022 1BB2     		sxth	r3, r3
+ 666 0024 0593     		str	r3, [sp, #20]
+ 667              	.LVL66:
+ 188:Core/Src/graphics.c ****     int16_t x = 0;
+ 668              		.loc 1 188 5 is_stmt 1 view .LVU155
+ 189:Core/Src/graphics.c ****     int16_t y = r;
+ 669              		.loc 1 189 5 view .LVU156
+ 190:Core/Src/graphics.c **** 
+ 191:Core/Src/graphics.c ****     while (x < y)
+ 670              		.loc 1 191 5 view .LVU157
+ 188:Core/Src/graphics.c ****     int16_t y = r;
+ 671              		.loc 1 188 13 is_stmt 0 view .LVU158
+ 672 0026 0025     		movs	r5, #0
+ 186:Core/Src/graphics.c ****     int16_t ddF_y = -2 * r;
+ 673              		.loc 1 186 13 view .LVU159
+ 674 0028 0123     		movs	r3, #1
+ 675 002a 0293     		str	r3, [sp, #8]
+ 676              		.loc 1 191 11 view .LVU160
+ 677 002c 1FE0     		b	.L34
+ 678              	.LVL67:
+ 679              	.L47:
+ 192:Core/Src/graphics.c ****     {
+ 193:Core/Src/graphics.c ****         if (f >= 0)
+ 194:Core/Src/graphics.c ****         {
+ 195:Core/Src/graphics.c ****             y--;
+ 680              		.loc 1 195 13 is_stmt 1 view .LVU161
+ 681              		.loc 1 195 14 is_stmt 0 view .LVU162
+ 682 002e 013E     		subs	r6, r6, #1
+ 683              	.LVL68:
+ 684              		.loc 1 195 14 view .LVU163
+ 685 0030 36B2     		sxth	r6, r6
+ 686              	.LVL69:
+ 196:Core/Src/graphics.c ****             ddF_y += 2;
+ 687              		.loc 1 196 13 is_stmt 1 view .LVU164
+ 688              		.loc 1 196 19 is_stmt 0 view .LVU165
+ 689 0032 059B     		ldr	r3, [sp, #20]
+ 690 0034 0233     		adds	r3, r3, #2
+ 691 0036 1AB2     		sxth	r2, r3
+ 692 0038 0592     		str	r2, [sp, #20]
+ 693              	.LVL70:
+ 197:Core/Src/graphics.c ****             f += ddF_y;
+ 694              		.loc 1 197 13 is_stmt 1 view .LVU166
+ 695              		.loc 1 197 15 is_stmt 0 view .LVU167
+ 696 003a 14FA83F4 		uxtah	r4, r4, r3
+ 697              	.LVL71:
+ 698              		.loc 1 197 15 view .LVU168
+ 699 003e 24B2     		sxth	r4, r4
+ 700              	.LVL72:
+ 701              	.L35:
+ 198:Core/Src/graphics.c ****         }
+ 199:Core/Src/graphics.c ****         x++;
+ 702              		.loc 1 199 9 is_stmt 1 view .LVU169
+ 703              		.loc 1 199 10 is_stmt 0 view .LVU170
+ 704 0040 0135     		adds	r5, r5, #1
+ 705              	.LVL73:
+ 706              		.loc 1 199 10 view .LVU171
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccKBrlEE.s 			page 17
+
+
+ 707 0042 1FFA85F8 		uxth	r8, r5
+ 708 0046 2DB2     		sxth	r5, r5
+ 709              	.LVL74:
+ 200:Core/Src/graphics.c ****         ddF_x += 2;
+ 710              		.loc 1 200 9 is_stmt 1 view .LVU172
+ 711              		.loc 1 200 15 is_stmt 0 view .LVU173
+ 712 0048 029B     		ldr	r3, [sp, #8]
+ 713 004a 0233     		adds	r3, r3, #2
+ 714 004c 1AB2     		sxth	r2, r3
+ 715 004e 0292     		str	r2, [sp, #8]
+ 716              	.LVL75:
+ 201:Core/Src/graphics.c ****         f += ddF_x;
+ 717              		.loc 1 201 9 is_stmt 1 view .LVU174
+ 718              		.loc 1 201 11 is_stmt 0 view .LVU175
+ 719 0050 14FA83F4 		uxtah	r4, r4, r3
+ 720              	.LVL76:
+ 721              		.loc 1 201 11 view .LVU176
+ 722 0054 24B2     		sxth	r4, r4
+ 723              	.LVL77:
+ 202:Core/Src/graphics.c ****         if (cornername & 0x4)
+ 724              		.loc 1 202 9 is_stmt 1 view .LVU177
+ 725              		.loc 1 202 12 is_stmt 0 view .LVU178
+ 726 0056 17F0040F 		tst	r7, #4
+ 727 005a 0DD1     		bne	.L42
+ 728              	.L36:
+ 203:Core/Src/graphics.c ****         {
+ 204:Core/Src/graphics.c ****             ili9341DrawPixel(x0 + x, y0 + y, color);
+ 205:Core/Src/graphics.c ****             ili9341DrawPixel(x0 + y, y0 + x, color);
+ 206:Core/Src/graphics.c ****         }
+ 207:Core/Src/graphics.c ****         if (cornername & 0x2)
+ 729              		.loc 1 207 9 is_stmt 1 view .LVU179
+ 730              		.loc 1 207 12 is_stmt 0 view .LVU180
+ 731 005c 17F0020F 		tst	r7, #2
+ 732 0060 23D1     		bne	.L43
+ 733              	.L37:
+ 208:Core/Src/graphics.c ****         {
+ 209:Core/Src/graphics.c ****             ili9341DrawPixel(x0 + x, y0 - y, color);
+ 210:Core/Src/graphics.c ****             ili9341DrawPixel(x0 + y, y0 - x, color);
+ 211:Core/Src/graphics.c ****         }
+ 212:Core/Src/graphics.c ****         if (cornername & 0x8)
+ 734              		.loc 1 212 9 is_stmt 1 view .LVU181
+ 735              		.loc 1 212 12 is_stmt 0 view .LVU182
+ 736 0062 17F0080F 		tst	r7, #8
+ 737 0066 39D1     		bne	.L44
+ 738              	.L38:
+ 213:Core/Src/graphics.c ****         {
+ 214:Core/Src/graphics.c ****             ili9341DrawPixel(x0 - y, y0 + x, color);
+ 215:Core/Src/graphics.c ****             ili9341DrawPixel(x0 - x, y0 + y, color);
+ 216:Core/Src/graphics.c ****         }
+ 217:Core/Src/graphics.c ****         if (cornername & 0x1)
+ 739              		.loc 1 217 9 is_stmt 1 view .LVU183
+ 740              		.loc 1 217 12 is_stmt 0 view .LVU184
+ 741 0068 17F0010F 		tst	r7, #1
+ 742 006c 4FD1     		bne	.L45
+ 743              	.LVL78:
+ 744              	.L34:
+ 191:Core/Src/graphics.c ****     {
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccKBrlEE.s 			page 18
+
+
+ 745              		.loc 1 191 11 is_stmt 1 view .LVU185
+ 746 006e B542     		cmp	r5, r6
+ 747 0070 66DA     		bge	.L46
+ 193:Core/Src/graphics.c ****         {
+ 748              		.loc 1 193 9 view .LVU186
+ 193:Core/Src/graphics.c ****         {
+ 749              		.loc 1 193 12 is_stmt 0 view .LVU187
+ 750 0072 002C     		cmp	r4, #0
+ 751 0074 DBDA     		bge	.L47
+ 752 0076 E3E7     		b	.L35
+ 753              	.L42:
+ 204:Core/Src/graphics.c ****             ili9341DrawPixel(x0 + y, y0 + x, color);
+ 754              		.loc 1 204 13 is_stmt 1 view .LVU188
+ 755 0078 BDF80C90 		ldrh	r9, [sp, #12]
+ 756 007c BDF810A0 		ldrh	r10, [sp, #16]
+ 757 0080 1FFA86FB 		uxth	fp, r6
+ 758 0084 0AEB0B01 		add	r1, r10, fp
+ 759 0088 08EB0900 		add	r0, r8, r9
+ 760 008c 019A     		ldr	r2, [sp, #4]
+ 761 008e 89B2     		uxth	r1, r1
+ 762 0090 80B2     		uxth	r0, r0
+ 763 0092 FFF7FEFF 		bl	ili9341DrawPixel
+ 764              	.LVL79:
+ 205:Core/Src/graphics.c ****         }
+ 765              		.loc 1 205 13 view .LVU189
+ 766 0096 08EB0A01 		add	r1, r8, r10
+ 767 009a 09EB0B00 		add	r0, r9, fp
+ 768 009e 019A     		ldr	r2, [sp, #4]
+ 769 00a0 89B2     		uxth	r1, r1
+ 770 00a2 80B2     		uxth	r0, r0
+ 771 00a4 FFF7FEFF 		bl	ili9341DrawPixel
+ 772              	.LVL80:
+ 773 00a8 D8E7     		b	.L36
+ 774              	.L43:
+ 209:Core/Src/graphics.c ****             ili9341DrawPixel(x0 + y, y0 - x, color);
+ 775              		.loc 1 209 13 view .LVU190
+ 776 00aa BDF80C90 		ldrh	r9, [sp, #12]
+ 777 00ae BDF810A0 		ldrh	r10, [sp, #16]
+ 778 00b2 1FFA86FB 		uxth	fp, r6
+ 779 00b6 AAEB0B01 		sub	r1, r10, fp
+ 780 00ba 08EB0900 		add	r0, r8, r9
+ 781 00be 019A     		ldr	r2, [sp, #4]
+ 782 00c0 89B2     		uxth	r1, r1
+ 783 00c2 80B2     		uxth	r0, r0
+ 784 00c4 FFF7FEFF 		bl	ili9341DrawPixel
+ 785              	.LVL81:
+ 210:Core/Src/graphics.c ****         }
+ 786              		.loc 1 210 13 view .LVU191
+ 787 00c8 AAEB0801 		sub	r1, r10, r8
+ 788 00cc 09EB0B00 		add	r0, r9, fp
+ 789 00d0 019A     		ldr	r2, [sp, #4]
+ 790 00d2 89B2     		uxth	r1, r1
+ 791 00d4 80B2     		uxth	r0, r0
+ 792 00d6 FFF7FEFF 		bl	ili9341DrawPixel
+ 793              	.LVL82:
+ 794 00da C2E7     		b	.L37
+ 795              	.L44:
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccKBrlEE.s 			page 19
+
+
+ 214:Core/Src/graphics.c ****             ili9341DrawPixel(x0 - x, y0 + y, color);
+ 796              		.loc 1 214 13 view .LVU192
+ 797 00dc BDF80C90 		ldrh	r9, [sp, #12]
+ 798 00e0 1FFA86FA 		uxth	r10, r6
+ 799 00e4 BDF810B0 		ldrh	fp, [sp, #16]
+ 800 00e8 08EB0B01 		add	r1, r8, fp
+ 801 00ec A9EB0A00 		sub	r0, r9, r10
+ 802 00f0 019A     		ldr	r2, [sp, #4]
+ 803 00f2 89B2     		uxth	r1, r1
+ 804 00f4 80B2     		uxth	r0, r0
+ 805 00f6 FFF7FEFF 		bl	ili9341DrawPixel
+ 806              	.LVL83:
+ 215:Core/Src/graphics.c ****         }
+ 807              		.loc 1 215 13 view .LVU193
+ 808 00fa 0AEB0B01 		add	r1, r10, fp
+ 809 00fe A9EB0800 		sub	r0, r9, r8
+ 810 0102 019A     		ldr	r2, [sp, #4]
+ 811 0104 89B2     		uxth	r1, r1
+ 812 0106 80B2     		uxth	r0, r0
+ 813 0108 FFF7FEFF 		bl	ili9341DrawPixel
+ 814              	.LVL84:
+ 815 010c ACE7     		b	.L38
+ 816              	.L45:
+ 218:Core/Src/graphics.c ****         {
+ 219:Core/Src/graphics.c ****             ili9341DrawPixel(x0 - y, y0 - x, color);
+ 817              		.loc 1 219 13 view .LVU194
+ 818 010e BDF80C90 		ldrh	r9, [sp, #12]
+ 819 0112 1FFA86FB 		uxth	fp, r6
+ 820 0116 BDF810A0 		ldrh	r10, [sp, #16]
+ 821 011a AAEB0801 		sub	r1, r10, r8
+ 822 011e A9EB0B00 		sub	r0, r9, fp
+ 823 0122 019A     		ldr	r2, [sp, #4]
+ 824 0124 89B2     		uxth	r1, r1
+ 825 0126 80B2     		uxth	r0, r0
+ 826 0128 FFF7FEFF 		bl	ili9341DrawPixel
+ 827              	.LVL85:
+ 220:Core/Src/graphics.c ****             ili9341DrawPixel(x0 - x, y0 - y, color);
+ 828              		.loc 1 220 13 view .LVU195
+ 829 012c AAEB0B01 		sub	r1, r10, fp
+ 830 0130 A9EB0800 		sub	r0, r9, r8
+ 831 0134 019A     		ldr	r2, [sp, #4]
+ 832 0136 89B2     		uxth	r1, r1
+ 833 0138 80B2     		uxth	r0, r0
+ 834 013a FFF7FEFF 		bl	ili9341DrawPixel
+ 835              	.LVL86:
+ 836 013e 96E7     		b	.L34
+ 837              	.L46:
+ 221:Core/Src/graphics.c ****         }
+ 222:Core/Src/graphics.c ****     }
+ 223:Core/Src/graphics.c **** }
+ 838              		.loc 1 223 1 is_stmt 0 view .LVU196
+ 839 0140 07B0     		add	sp, sp, #28
+ 840              		.cfi_def_cfa_offset 36
+ 841              		@ sp needed
+ 842 0142 BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
+ 843              		.loc 1 223 1 view .LVU197
+ 844              		.cfi_endproc
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccKBrlEE.s 			page 20
+
+
+ 845              	.LFE1159:
+ 847              		.section	.text.fillCircleHelper,"ax",%progbits
+ 848              		.align	1
+ 849              		.global	fillCircleHelper
+ 850              		.syntax unified
+ 851              		.thumb
+ 852              		.thumb_func
+ 853              		.fpu fpv4-sp-d16
+ 855              	fillCircleHelper:
+ 856              	.LVL87:
+ 857              	.LFB1161:
+ 224:Core/Src/graphics.c **** 
+ 225:Core/Src/graphics.c **** /**************************************************************************/
+ 226:Core/Src/graphics.c **** /*!
+ 227:Core/Src/graphics.c ****    @brief    Draw a circle with filled color
+ 228:Core/Src/graphics.c ****     @param    x0   Center-point x coordinate
+ 229:Core/Src/graphics.c ****     @param    y0   Center-point y coordinate
+ 230:Core/Src/graphics.c ****     @param    r   Radius of circle
+ 231:Core/Src/graphics.c ****     @param    color 16-bit 5-6-5 Color to fill with
+ 232:Core/Src/graphics.c **** */
+ 233:Core/Src/graphics.c **** /**************************************************************************/
+ 234:Core/Src/graphics.c **** void fillCircle(int16_t x0, int16_t y0, int16_t r,
+ 235:Core/Src/graphics.c ****                 uint16_t color)
+ 236:Core/Src/graphics.c **** {
+ 237:Core/Src/graphics.c ****     drawVerticalLine(x0, y0 - r, 2 * r + 1, color);
+ 238:Core/Src/graphics.c ****     fillCircleHelper(x0, y0, r, 3, 0, color);
+ 239:Core/Src/graphics.c **** }
+ 240:Core/Src/graphics.c **** 
+ 241:Core/Src/graphics.c **** /**************************************************************************/
+ 242:Core/Src/graphics.c **** /*!
+ 243:Core/Src/graphics.c ****     @brief  Quarter-circle drawer with fill, used for circles and roundrects
+ 244:Core/Src/graphics.c ****     @param  x0       Center-point x coordinate
+ 245:Core/Src/graphics.c ****     @param  y0       Center-point y coordinate
+ 246:Core/Src/graphics.c ****     @param  r        Radius of circle
+ 247:Core/Src/graphics.c ****     @param  corners  Mask bits indicating which quarters we're doing
+ 248:Core/Src/graphics.c ****     @param  delta    Offset from center-point, used for round-rects
+ 249:Core/Src/graphics.c ****     @param  color    16-bit 5-6-5 Color to fill with
+ 250:Core/Src/graphics.c **** */
+ 251:Core/Src/graphics.c **** /**************************************************************************/
+ 252:Core/Src/graphics.c **** void fillCircleHelper(int16_t x0, int16_t y0, int16_t r,
+ 253:Core/Src/graphics.c ****                       uint8_t corners, int16_t delta,
+ 254:Core/Src/graphics.c ****                       uint16_t color)
+ 255:Core/Src/graphics.c **** {
+ 858              		.loc 1 255 1 is_stmt 1 view -0
+ 859              		.cfi_startproc
+ 860              		@ args = 8, pretend = 0, frame = 24
+ 861              		@ frame_needed = 0, uses_anonymous_args = 0
+ 862              		.loc 1 255 1 is_stmt 0 view .LVU199
+ 863 0000 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, r10, fp, lr}
+ 864              		.cfi_def_cfa_offset 36
+ 865              		.cfi_offset 4, -36
+ 866              		.cfi_offset 5, -32
+ 867              		.cfi_offset 6, -28
+ 868              		.cfi_offset 7, -24
+ 869              		.cfi_offset 8, -20
+ 870              		.cfi_offset 9, -16
+ 871              		.cfi_offset 10, -12
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccKBrlEE.s 			page 21
+
+
+ 872              		.cfi_offset 11, -8
+ 873              		.cfi_offset 14, -4
+ 874 0004 87B0     		sub	sp, sp, #28
+ 875              		.cfi_def_cfa_offset 64
+ 876 0006 0390     		str	r0, [sp, #12]
+ 877 0008 0491     		str	r1, [sp, #16]
+ 878 000a 1646     		mov	r6, r2
+ 879 000c 9846     		mov	r8, r3
+ 880 000e BDF84430 		ldrh	r3, [sp, #68]
+ 881              	.LVL88:
+ 882              		.loc 1 255 1 view .LVU200
+ 883 0012 0593     		str	r3, [sp, #20]
+ 256:Core/Src/graphics.c **** 
+ 257:Core/Src/graphics.c ****     int16_t f = 1 - r;
+ 884              		.loc 1 257 5 is_stmt 1 view .LVU201
+ 885              		.loc 1 257 19 is_stmt 0 view .LVU202
+ 886 0014 93B2     		uxth	r3, r2
+ 887 0016 C3F10104 		rsb	r4, r3, #1
+ 888              		.loc 1 257 13 view .LVU203
+ 889 001a 24B2     		sxth	r4, r4
+ 890              	.LVL89:
+ 258:Core/Src/graphics.c ****     int16_t ddF_x = 1;
+ 891              		.loc 1 258 5 is_stmt 1 view .LVU204
+ 259:Core/Src/graphics.c ****     int16_t ddF_y = -2 * r;
+ 892              		.loc 1 259 5 view .LVU205
+ 893              		.loc 1 259 24 is_stmt 0 view .LVU206
+ 894 001c C3EBC333 		rsb	r3, r3, r3, lsl #15
+ 895 0020 5B00     		lsls	r3, r3, #1
+ 896              		.loc 1 259 13 view .LVU207
+ 897 0022 1BB2     		sxth	r3, r3
+ 898 0024 0193     		str	r3, [sp, #4]
+ 899              	.LVL90:
+ 260:Core/Src/graphics.c ****     int16_t x = 0;
+ 900              		.loc 1 260 5 is_stmt 1 view .LVU208
+ 261:Core/Src/graphics.c ****     int16_t y = r;
+ 901              		.loc 1 261 5 view .LVU209
+ 262:Core/Src/graphics.c ****     int16_t px = x;
+ 902              		.loc 1 262 5 view .LVU210
+ 263:Core/Src/graphics.c ****     int16_t py = y;
+ 903              		.loc 1 263 5 view .LVU211
+ 264:Core/Src/graphics.c **** 
+ 265:Core/Src/graphics.c ****     delta++; // Avoid some +1's in the loop
+ 904              		.loc 1 265 5 view .LVU212
+ 905              		.loc 1 265 10 is_stmt 0 view .LVU213
+ 906 0026 BDF94030 		ldrsh	r3, [sp, #64]
+ 907 002a 0133     		adds	r3, r3, #1
+ 908 002c 9BB2     		uxth	r3, r3
+ 909 002e 0293     		str	r3, [sp, #8]
+ 910              	.LVL91:
+ 266:Core/Src/graphics.c **** 
+ 267:Core/Src/graphics.c ****     while (x < y)
+ 911              		.loc 1 267 5 is_stmt 1 view .LVU214
+ 263:Core/Src/graphics.c **** 
+ 912              		.loc 1 263 13 is_stmt 0 view .LVU215
+ 913 0030 9146     		mov	r9, r2
+ 260:Core/Src/graphics.c ****     int16_t y = r;
+ 914              		.loc 1 260 13 view .LVU216
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccKBrlEE.s 			page 22
+
+
+ 915 0032 0025     		movs	r5, #0
+ 258:Core/Src/graphics.c ****     int16_t ddF_y = -2 * r;
+ 916              		.loc 1 258 13 view .LVU217
+ 917 0034 4FF0010A 		mov	r10, #1
+ 918              		.loc 1 267 11 view .LVU218
+ 919 0038 19E0     		b	.L49
+ 920              	.LVL92:
+ 921              	.L61:
+ 268:Core/Src/graphics.c ****     {
+ 269:Core/Src/graphics.c ****         if (f >= 0)
+ 270:Core/Src/graphics.c ****         {
+ 271:Core/Src/graphics.c ****             y--;
+ 272:Core/Src/graphics.c ****             ddF_y += 2;
+ 273:Core/Src/graphics.c ****             f += ddF_y;
+ 274:Core/Src/graphics.c ****         }
+ 275:Core/Src/graphics.c ****         x++;
+ 276:Core/Src/graphics.c ****         ddF_x += 2;
+ 277:Core/Src/graphics.c ****         f += ddF_x;
+ 278:Core/Src/graphics.c ****         // These checks avoid double-drawing certain lines, important
+ 279:Core/Src/graphics.c ****         // for the SSD1306 library which has an INVERT drawing mode.
+ 280:Core/Src/graphics.c ****         if (x < (y + 1))
+ 281:Core/Src/graphics.c ****         {
+ 282:Core/Src/graphics.c ****             if (corners & 1)
+ 283:Core/Src/graphics.c ****                 drawVerticalLine(x0 + x, y0 - y, 2 * y + delta, color);
+ 922              		.loc 1 283 17 is_stmt 1 view .LVU219
+ 923 003a B1B2     		uxth	r1, r6
+ 924              		.loc 1 283 52 is_stmt 0 view .LVU220
+ 925 003c 4A00     		lsls	r2, r1, #1
+ 926 003e 92B2     		uxth	r2, r2
+ 927              		.loc 1 283 17 view .LVU221
+ 928 0040 029B     		ldr	r3, [sp, #8]
+ 929 0042 1A44     		add	r2, r2, r3
+ 930 0044 049B     		ldr	r3, [sp, #16]
+ 931 0046 591A     		subs	r1, r3, r1
+ 932 0048 039B     		ldr	r3, [sp, #12]
+ 933 004a 0BEB0300 		add	r0, fp, r3
+ 934 004e 059B     		ldr	r3, [sp, #20]
+ 935 0050 92B2     		uxth	r2, r2
+ 936 0052 89B2     		uxth	r1, r1
+ 937 0054 80B2     		uxth	r0, r0
+ 938 0056 FFF7FEFF 		bl	drawVerticalLine
+ 939              	.LVL93:
+ 940 005a 26E0     		b	.L52
+ 941              	.L51:
+ 284:Core/Src/graphics.c ****             if (corners & 2)
+ 285:Core/Src/graphics.c ****                 drawVerticalLine(x0 - x, y0 - y, 2 * y + delta, color);
+ 286:Core/Src/graphics.c ****         }
+ 287:Core/Src/graphics.c ****         if (y != py)
+ 942              		.loc 1 287 9 is_stmt 1 view .LVU222
+ 943              		.loc 1 287 12 is_stmt 0 view .LVU223
+ 944 005c 4E45     		cmp	r6, r9
+ 945 005e 06D0     		beq	.L49
+ 288:Core/Src/graphics.c ****         {
+ 289:Core/Src/graphics.c ****             if (corners & 1)
+ 946              		.loc 1 289 13 is_stmt 1 view .LVU224
+ 947              		.loc 1 289 16 is_stmt 0 view .LVU225
+ 948 0060 18F0010F 		tst	r8, #1
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccKBrlEE.s 			page 23
+
+
+ 949 0064 35D1     		bne	.L58
+ 950              	.L54:
+ 290:Core/Src/graphics.c ****                 drawVerticalLine(x0 + py, y0 - px, 2 * px + delta, color);
+ 291:Core/Src/graphics.c ****             if (corners & 2)
+ 951              		.loc 1 291 13 is_stmt 1 view .LVU226
+ 952              		.loc 1 291 16 is_stmt 0 view .LVU227
+ 953 0066 18F0020F 		tst	r8, #2
+ 954 006a 42D1     		bne	.L59
+ 292:Core/Src/graphics.c ****                 drawVerticalLine(x0 - py, y0 - px, 2 * px + delta, color);
+ 293:Core/Src/graphics.c ****             py = y;
+ 955              		.loc 1 293 16 view .LVU228
+ 956 006c B146     		mov	r9, r6
+ 957              	.LVL94:
+ 958              	.L49:
+ 267:Core/Src/graphics.c ****     {
+ 959              		.loc 1 267 11 is_stmt 1 view .LVU229
+ 960 006e B542     		cmp	r5, r6
+ 961 0070 50DA     		bge	.L60
+ 269:Core/Src/graphics.c ****         {
+ 962              		.loc 1 269 9 view .LVU230
+ 269:Core/Src/graphics.c ****         {
+ 963              		.loc 1 269 12 is_stmt 0 view .LVU231
+ 964 0072 002C     		cmp	r4, #0
+ 965 0074 08DB     		blt	.L50
+ 271:Core/Src/graphics.c ****             ddF_y += 2;
+ 966              		.loc 1 271 13 is_stmt 1 view .LVU232
+ 271:Core/Src/graphics.c ****             ddF_y += 2;
+ 967              		.loc 1 271 14 is_stmt 0 view .LVU233
+ 968 0076 013E     		subs	r6, r6, #1
+ 969              	.LVL95:
+ 271:Core/Src/graphics.c ****             ddF_y += 2;
+ 970              		.loc 1 271 14 view .LVU234
+ 971 0078 36B2     		sxth	r6, r6
+ 972              	.LVL96:
+ 272:Core/Src/graphics.c ****             f += ddF_y;
+ 973              		.loc 1 272 13 is_stmt 1 view .LVU235
+ 272:Core/Src/graphics.c ****             f += ddF_y;
+ 974              		.loc 1 272 19 is_stmt 0 view .LVU236
+ 975 007a 019B     		ldr	r3, [sp, #4]
+ 976 007c 0233     		adds	r3, r3, #2
+ 977 007e 1AB2     		sxth	r2, r3
+ 978 0080 0192     		str	r2, [sp, #4]
+ 979              	.LVL97:
+ 273:Core/Src/graphics.c ****         }
+ 980              		.loc 1 273 13 is_stmt 1 view .LVU237
+ 273:Core/Src/graphics.c ****         }
+ 981              		.loc 1 273 15 is_stmt 0 view .LVU238
+ 982 0082 14FA83F4 		uxtah	r4, r4, r3
+ 983              	.LVL98:
+ 273:Core/Src/graphics.c ****         }
+ 984              		.loc 1 273 15 view .LVU239
+ 985 0086 24B2     		sxth	r4, r4
+ 986              	.LVL99:
+ 987              	.L50:
+ 275:Core/Src/graphics.c ****         ddF_x += 2;
+ 988              		.loc 1 275 9 is_stmt 1 view .LVU240
+ 275:Core/Src/graphics.c ****         ddF_x += 2;
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccKBrlEE.s 			page 24
+
+
+ 989              		.loc 1 275 10 is_stmt 0 view .LVU241
+ 990 0088 AFB2     		uxth	r7, r5
+ 991 008a 7D1C     		adds	r5, r7, #1
+ 992              	.LVL100:
+ 275:Core/Src/graphics.c ****         ddF_x += 2;
+ 993              		.loc 1 275 10 view .LVU242
+ 994 008c 1FFA85FB 		uxth	fp, r5
+ 995 0090 2DB2     		sxth	r5, r5
+ 996              	.LVL101:
+ 276:Core/Src/graphics.c ****         f += ddF_x;
+ 997              		.loc 1 276 9 is_stmt 1 view .LVU243
+ 276:Core/Src/graphics.c ****         f += ddF_x;
+ 998              		.loc 1 276 15 is_stmt 0 view .LVU244
+ 999 0092 0AF10203 		add	r3, r10, #2
+ 1000 0096 0FFA83FA 		sxth	r10, r3
+ 1001              	.LVL102:
+ 277:Core/Src/graphics.c ****         // These checks avoid double-drawing certain lines, important
+ 1002              		.loc 1 277 9 is_stmt 1 view .LVU245
+ 277:Core/Src/graphics.c ****         // These checks avoid double-drawing certain lines, important
+ 1003              		.loc 1 277 11 is_stmt 0 view .LVU246
+ 1004 009a 14FA83F4 		uxtah	r4, r4, r3
+ 1005              	.LVL103:
+ 277:Core/Src/graphics.c ****         // These checks avoid double-drawing certain lines, important
+ 1006              		.loc 1 277 11 view .LVU247
+ 1007 009e 24B2     		sxth	r4, r4
+ 1008              	.LVL104:
+ 280:Core/Src/graphics.c ****         {
+ 1009              		.loc 1 280 9 is_stmt 1 view .LVU248
+ 280:Core/Src/graphics.c ****         {
+ 1010              		.loc 1 280 12 is_stmt 0 view .LVU249
+ 1011 00a0 AE42     		cmp	r6, r5
+ 1012 00a2 DBDB     		blt	.L51
+ 282:Core/Src/graphics.c ****                 drawVerticalLine(x0 + x, y0 - y, 2 * y + delta, color);
+ 1013              		.loc 1 282 13 is_stmt 1 view .LVU250
+ 282:Core/Src/graphics.c ****                 drawVerticalLine(x0 + x, y0 - y, 2 * y + delta, color);
+ 1014              		.loc 1 282 16 is_stmt 0 view .LVU251
+ 1015 00a4 18F0010F 		tst	r8, #1
+ 1016 00a8 C7D1     		bne	.L61
+ 1017              	.L52:
+ 284:Core/Src/graphics.c ****                 drawVerticalLine(x0 - x, y0 - y, 2 * y + delta, color);
+ 1018              		.loc 1 284 13 is_stmt 1 view .LVU252
+ 284:Core/Src/graphics.c ****                 drawVerticalLine(x0 - x, y0 - y, 2 * y + delta, color);
+ 1019              		.loc 1 284 16 is_stmt 0 view .LVU253
+ 1020 00aa 18F0020F 		tst	r8, #2
+ 1021 00ae D5D0     		beq	.L51
+ 285:Core/Src/graphics.c ****         }
+ 1022              		.loc 1 285 17 is_stmt 1 view .LVU254
+ 1023 00b0 B1B2     		uxth	r1, r6
+ 285:Core/Src/graphics.c ****         }
+ 1024              		.loc 1 285 52 is_stmt 0 view .LVU255
+ 1025 00b2 4A00     		lsls	r2, r1, #1
+ 1026 00b4 92B2     		uxth	r2, r2
+ 285:Core/Src/graphics.c ****         }
+ 1027              		.loc 1 285 17 view .LVU256
+ 1028 00b6 029B     		ldr	r3, [sp, #8]
+ 1029 00b8 1A44     		add	r2, r2, r3
+ 1030 00ba 049B     		ldr	r3, [sp, #16]
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccKBrlEE.s 			page 25
+
+
+ 1031 00bc 591A     		subs	r1, r3, r1
+ 1032 00be 039B     		ldr	r3, [sp, #12]
+ 1033 00c0 A3EB0B00 		sub	r0, r3, fp
+ 1034 00c4 059B     		ldr	r3, [sp, #20]
+ 1035 00c6 92B2     		uxth	r2, r2
+ 1036 00c8 89B2     		uxth	r1, r1
+ 1037 00ca 80B2     		uxth	r0, r0
+ 1038 00cc FFF7FEFF 		bl	drawVerticalLine
+ 1039              	.LVL105:
+ 1040 00d0 C4E7     		b	.L51
+ 1041              	.L58:
+ 290:Core/Src/graphics.c ****             if (corners & 2)
+ 1042              		.loc 1 290 17 is_stmt 1 view .LVU257
+ 290:Core/Src/graphics.c ****             if (corners & 2)
+ 1043              		.loc 1 290 54 is_stmt 0 view .LVU258
+ 1044 00d2 7A00     		lsls	r2, r7, #1
+ 1045 00d4 92B2     		uxth	r2, r2
+ 290:Core/Src/graphics.c ****             if (corners & 2)
+ 1046              		.loc 1 290 17 view .LVU259
+ 1047 00d6 029B     		ldr	r3, [sp, #8]
+ 1048 00d8 1A44     		add	r2, r2, r3
+ 1049 00da 049B     		ldr	r3, [sp, #16]
+ 1050 00dc D91B     		subs	r1, r3, r7
+ 1051 00de 039B     		ldr	r3, [sp, #12]
+ 1052 00e0 03EB0900 		add	r0, r3, r9
+ 1053 00e4 059B     		ldr	r3, [sp, #20]
+ 1054 00e6 92B2     		uxth	r2, r2
+ 1055 00e8 89B2     		uxth	r1, r1
+ 1056 00ea 80B2     		uxth	r0, r0
+ 1057 00ec FFF7FEFF 		bl	drawVerticalLine
+ 1058              	.LVL106:
+ 1059 00f0 B9E7     		b	.L54
+ 1060              	.L59:
+ 292:Core/Src/graphics.c ****             py = y;
+ 1061              		.loc 1 292 17 is_stmt 1 view .LVU260
+ 292:Core/Src/graphics.c ****             py = y;
+ 1062              		.loc 1 292 54 is_stmt 0 view .LVU261
+ 1063 00f2 7A00     		lsls	r2, r7, #1
+ 1064 00f4 92B2     		uxth	r2, r2
+ 292:Core/Src/graphics.c ****             py = y;
+ 1065              		.loc 1 292 17 view .LVU262
+ 1066 00f6 029B     		ldr	r3, [sp, #8]
+ 1067 00f8 1A44     		add	r2, r2, r3
+ 1068 00fa 049B     		ldr	r3, [sp, #16]
+ 1069 00fc D91B     		subs	r1, r3, r7
+ 1070 00fe 039B     		ldr	r3, [sp, #12]
+ 1071 0100 A3EB0900 		sub	r0, r3, r9
+ 1072 0104 059B     		ldr	r3, [sp, #20]
+ 1073 0106 92B2     		uxth	r2, r2
+ 1074 0108 89B2     		uxth	r1, r1
+ 1075 010a 80B2     		uxth	r0, r0
+ 1076 010c FFF7FEFF 		bl	drawVerticalLine
+ 1077              	.LVL107:
+ 1078              		.loc 1 293 16 view .LVU263
+ 1079 0110 B146     		mov	r9, r6
+ 1080              	.LVL108:
+ 1081              		.loc 1 293 16 view .LVU264
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccKBrlEE.s 			page 26
+
+
+ 1082 0112 ACE7     		b	.L49
+ 1083              	.LVL109:
+ 1084              	.L60:
+ 294:Core/Src/graphics.c ****         }
+ 295:Core/Src/graphics.c ****         px = x;
+ 296:Core/Src/graphics.c ****     }
+ 297:Core/Src/graphics.c ****     // int16_t f = 1 - r;
+ 298:Core/Src/graphics.c ****     // int16_t ddF_x = 1;
+ 299:Core/Src/graphics.c ****     // int16_t ddF_y = -r - r;
+ 300:Core/Src/graphics.c ****     // int16_t x = 0;
+ 301:Core/Src/graphics.c **** 
+ 302:Core/Src/graphics.c ****     // delta++;
+ 303:Core/Src/graphics.c ****     // while (x < r)
+ 304:Core/Src/graphics.c ****     // {
+ 305:Core/Src/graphics.c ****     //     if (f >= 0)
+ 306:Core/Src/graphics.c ****     //     {
+ 307:Core/Src/graphics.c ****     //         r--;
+ 308:Core/Src/graphics.c ****     //         ddF_y += 2;
+ 309:Core/Src/graphics.c ****     //         f += ddF_y;
+ 310:Core/Src/graphics.c ****     //     }
+ 311:Core/Src/graphics.c ****     //     x++;
+ 312:Core/Src/graphics.c ****     //     ddF_x += 2;
+ 313:Core/Src/graphics.c ****     //     f += ddF_x;
+ 314:Core/Src/graphics.c **** 
+ 315:Core/Src/graphics.c ****     //     if (corners & 0x1)
+ 316:Core/Src/graphics.c ****     //     {
+ 317:Core/Src/graphics.c ****     //         drawVerticalLine(x0 + x, y0 - r, r + r + delta, color);
+ 318:Core/Src/graphics.c ****     //         drawVerticalLine(x0 + r, y0 - x, x + x + delta, color);
+ 319:Core/Src/graphics.c ****     //     }
+ 320:Core/Src/graphics.c ****     //     if (corners & 0x2)
+ 321:Core/Src/graphics.c ****     //     {
+ 322:Core/Src/graphics.c ****     //         drawVerticalLine(x0 - x, y0 - r, r + r + delta, color);
+ 323:Core/Src/graphics.c ****     //         drawVerticalLine(x0 - r, y0 - x, x + x + delta, color);
+ 324:Core/Src/graphics.c ****     //     }
+ 325:Core/Src/graphics.c ****     // }
+ 326:Core/Src/graphics.c **** }
+ 1085              		.loc 1 326 1 view .LVU265
+ 1086 0114 07B0     		add	sp, sp, #28
+ 1087              		.cfi_def_cfa_offset 36
+ 1088              		@ sp needed
+ 1089 0116 BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
+ 1090              		.loc 1 326 1 view .LVU266
+ 1091              		.cfi_endproc
+ 1092              	.LFE1161:
+ 1094              		.section	.text.fillCircle,"ax",%progbits
+ 1095              		.align	1
+ 1096              		.global	fillCircle
+ 1097              		.syntax unified
+ 1098              		.thumb
+ 1099              		.thumb_func
+ 1100              		.fpu fpv4-sp-d16
+ 1102              	fillCircle:
+ 1103              	.LVL110:
+ 1104              	.LFB1160:
+ 236:Core/Src/graphics.c ****     drawVerticalLine(x0, y0 - r, 2 * r + 1, color);
+ 1105              		.loc 1 236 1 is_stmt 1 view -0
+ 1106              		.cfi_startproc
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccKBrlEE.s 			page 27
+
+
+ 1107              		@ args = 0, pretend = 0, frame = 0
+ 1108              		@ frame_needed = 0, uses_anonymous_args = 0
+ 236:Core/Src/graphics.c ****     drawVerticalLine(x0, y0 - r, 2 * r + 1, color);
+ 1109              		.loc 1 236 1 is_stmt 0 view .LVU268
+ 1110 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 1111              		.cfi_def_cfa_offset 20
+ 1112              		.cfi_offset 4, -20
+ 1113              		.cfi_offset 5, -16
+ 1114              		.cfi_offset 6, -12
+ 1115              		.cfi_offset 7, -8
+ 1116              		.cfi_offset 14, -4
+ 1117 0002 83B0     		sub	sp, sp, #12
+ 1118              		.cfi_def_cfa_offset 32
+ 1119 0004 0446     		mov	r4, r0
+ 1120 0006 0D46     		mov	r5, r1
+ 1121 0008 1646     		mov	r6, r2
+ 1122 000a 1F46     		mov	r7, r3
+ 237:Core/Src/graphics.c ****     fillCircleHelper(x0, y0, r, 3, 0, color);
+ 1123              		.loc 1 237 5 is_stmt 1 view .LVU269
+ 1124 000c 91B2     		uxth	r1, r2
+ 1125              	.LVL111:
+ 237:Core/Src/graphics.c ****     fillCircleHelper(x0, y0, r, 3, 0, color);
+ 1126              		.loc 1 237 36 is_stmt 0 view .LVU270
+ 1127 000e 4FEA410C 		lsl	ip, r1, #1
+ 1128 0012 1FFA8CFC 		uxth	ip, ip
+ 237:Core/Src/graphics.c ****     fillCircleHelper(x0, y0, r, 3, 0, color);
+ 1129              		.loc 1 237 5 view .LVU271
+ 1130 0016 0CF1010C 		add	ip, ip, #1
+ 1131 001a 691A     		subs	r1, r5, r1
+ 1132 001c 1FFA8CF2 		uxth	r2, ip
+ 1133              	.LVL112:
+ 237:Core/Src/graphics.c ****     fillCircleHelper(x0, y0, r, 3, 0, color);
+ 1134              		.loc 1 237 5 view .LVU272
+ 1135 0020 89B2     		uxth	r1, r1
+ 1136 0022 80B2     		uxth	r0, r0
+ 237:Core/Src/graphics.c ****     fillCircleHelper(x0, y0, r, 3, 0, color);
+ 1137              		.loc 1 237 5 view .LVU273
+ 1138 0024 FFF7FEFF 		bl	drawVerticalLine
+ 1139              	.LVL113:
+ 238:Core/Src/graphics.c **** }
+ 1140              		.loc 1 238 5 is_stmt 1 view .LVU274
+ 1141 0028 0197     		str	r7, [sp, #4]
+ 1142 002a 0023     		movs	r3, #0
+ 1143 002c 0093     		str	r3, [sp]
+ 1144 002e 0323     		movs	r3, #3
+ 1145 0030 3246     		mov	r2, r6
+ 1146 0032 2946     		mov	r1, r5
+ 1147 0034 2046     		mov	r0, r4
+ 1148 0036 FFF7FEFF 		bl	fillCircleHelper
+ 1149              	.LVL114:
+ 239:Core/Src/graphics.c **** 
+ 1150              		.loc 1 239 1 is_stmt 0 view .LVU275
+ 1151 003a 03B0     		add	sp, sp, #12
+ 1152              		.cfi_def_cfa_offset 20
+ 1153              		@ sp needed
+ 1154 003c F0BD     		pop	{r4, r5, r6, r7, pc}
+ 1155              		.cfi_endproc
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccKBrlEE.s 			page 28
+
+
+ 1156              	.LFE1160:
+ 1158              		.section	.text.drawRect,"ax",%progbits
+ 1159              		.align	1
+ 1160              		.global	drawRect
+ 1161              		.syntax unified
+ 1162              		.thumb
+ 1163              		.thumb_func
+ 1164              		.fpu fpv4-sp-d16
+ 1166              	drawRect:
+ 1167              	.LVL115:
+ 1168              	.LFB1162:
+ 327:Core/Src/graphics.c **** 
+ 328:Core/Src/graphics.c **** /**************************************************************************/
+ 329:Core/Src/graphics.c **** /*!
+ 330:Core/Src/graphics.c ****    @brief   Draw a rectangle with no fill color
+ 331:Core/Src/graphics.c ****     @param    x   Top left corner x coordinate
+ 332:Core/Src/graphics.c ****     @param    y   Top left corner y coordinate
+ 333:Core/Src/graphics.c ****     @param    w   Width in pixels
+ 334:Core/Src/graphics.c ****     @param    h   Height in pixels
+ 335:Core/Src/graphics.c ****     @param    color 16-bit 5-6-5 Color to draw with
+ 336:Core/Src/graphics.c **** */
+ 337:Core/Src/graphics.c **** /**************************************************************************/
+ 338:Core/Src/graphics.c **** void drawRect(int16_t x, int16_t y, int16_t w, int16_t h,
+ 339:Core/Src/graphics.c ****               uint16_t color)
+ 340:Core/Src/graphics.c **** {
+ 1169              		.loc 1 340 1 is_stmt 1 view -0
+ 1170              		.cfi_startproc
+ 1171              		@ args = 4, pretend = 0, frame = 0
+ 1172              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1173              		.loc 1 340 1 is_stmt 0 view .LVU277
+ 1174 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
+ 1175              		.cfi_def_cfa_offset 24
+ 1176              		.cfi_offset 4, -24
+ 1177              		.cfi_offset 5, -20
+ 1178              		.cfi_offset 6, -16
+ 1179              		.cfi_offset 7, -12
+ 1180              		.cfi_offset 8, -8
+ 1181              		.cfi_offset 14, -4
+ 1182 0004 1D46     		mov	r5, r3
+ 1183 0006 BDF81880 		ldrh	r8, [sp, #24]
+ 341:Core/Src/graphics.c **** 
+ 342:Core/Src/graphics.c ****     drawHorizontalLine(x, y, w, color);
+ 1184              		.loc 1 342 5 is_stmt 1 view .LVU278
+ 1185 000a 84B2     		uxth	r4, r0
+ 1186 000c 8EB2     		uxth	r6, r1
+ 1187 000e 97B2     		uxth	r7, r2
+ 1188 0010 4346     		mov	r3, r8
+ 1189              	.LVL116:
+ 1190              		.loc 1 342 5 is_stmt 0 view .LVU279
+ 1191 0012 3A46     		mov	r2, r7
+ 1192              		.loc 1 342 5 view .LVU280
+ 1193 0014 3146     		mov	r1, r6
+ 1194              		.loc 1 342 5 view .LVU281
+ 1195 0016 2046     		mov	r0, r4
+ 1196              		.loc 1 342 5 view .LVU282
+ 1197 0018 FFF7FEFF 		bl	drawHorizontalLine
+ 1198              	.LVL117:
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccKBrlEE.s 			page 29
+
+
+ 343:Core/Src/graphics.c ****     drawHorizontalLine(x, y + h - 1, w, color);
+ 1199              		.loc 1 343 5 is_stmt 1 view .LVU283
+ 1200              		.loc 1 343 29 is_stmt 0 view .LVU284
+ 1201 001c ADB2     		uxth	r5, r5
+ 1202 001e 7119     		adds	r1, r6, r5
+ 1203 0020 89B2     		uxth	r1, r1
+ 1204              		.loc 1 343 5 view .LVU285
+ 1205 0022 0139     		subs	r1, r1, #1
+ 1206 0024 4346     		mov	r3, r8
+ 1207 0026 3A46     		mov	r2, r7
+ 1208 0028 89B2     		uxth	r1, r1
+ 1209 002a 2046     		mov	r0, r4
+ 1210 002c FFF7FEFF 		bl	drawHorizontalLine
+ 1211              	.LVL118:
+ 344:Core/Src/graphics.c ****     drawVerticalLine(x, y, h, color);
+ 1212              		.loc 1 344 5 is_stmt 1 view .LVU286
+ 1213 0030 4346     		mov	r3, r8
+ 1214 0032 2A46     		mov	r2, r5
+ 1215 0034 3146     		mov	r1, r6
+ 1216 0036 2046     		mov	r0, r4
+ 1217 0038 FFF7FEFF 		bl	drawVerticalLine
+ 1218              	.LVL119:
+ 345:Core/Src/graphics.c ****     drawVerticalLine(x + w - 1, y, h, color);
+ 1219              		.loc 1 345 5 view .LVU287
+ 1220              		.loc 1 345 24 is_stmt 0 view .LVU288
+ 1221 003c E019     		adds	r0, r4, r7
+ 1222 003e 80B2     		uxth	r0, r0
+ 1223              		.loc 1 345 5 view .LVU289
+ 1224 0040 0138     		subs	r0, r0, #1
+ 1225 0042 4346     		mov	r3, r8
+ 1226 0044 2A46     		mov	r2, r5
+ 1227 0046 3146     		mov	r1, r6
+ 1228 0048 80B2     		uxth	r0, r0
+ 1229 004a FFF7FEFF 		bl	drawVerticalLine
+ 1230              	.LVL120:
+ 346:Core/Src/graphics.c **** }
+ 1231              		.loc 1 346 1 view .LVU290
+ 1232 004e BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 1233              		.loc 1 346 1 view .LVU291
+ 1234              		.cfi_endproc
+ 1235              	.LFE1162:
+ 1237              		.section	.text.fillRect,"ax",%progbits
+ 1238              		.align	1
+ 1239              		.global	fillRect
+ 1240              		.syntax unified
+ 1241              		.thumb
+ 1242              		.thumb_func
+ 1243              		.fpu fpv4-sp-d16
+ 1245              	fillRect:
+ 1246              	.LVL121:
+ 1247              	.LFB1163:
+ 347:Core/Src/graphics.c **** 
+ 348:Core/Src/graphics.c **** /**************************************************************************/
+ 349:Core/Src/graphics.c **** /*!
+ 350:Core/Src/graphics.c ****    @brief   Draw a rectangle with fill color
+ 351:Core/Src/graphics.c ****     @param    x   Top left corner x coordinate
+ 352:Core/Src/graphics.c ****     @param    y   Top left corner y coordinate
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccKBrlEE.s 			page 30
+
+
+ 353:Core/Src/graphics.c ****     @param    w   Width in pixels
+ 354:Core/Src/graphics.c ****     @param    h   Height in pixels
+ 355:Core/Src/graphics.c ****     @param    color 16-bit 5-6-5 Color to draw with
+ 356:Core/Src/graphics.c **** */
+ 357:Core/Src/graphics.c **** /**************************************************************************/
+ 358:Core/Src/graphics.c **** void fillRect(uint16_t x, uint16_t y, uint16_t w, uint16_t h, uint16_t color)
+ 359:Core/Src/graphics.c **** {
+ 1248              		.loc 1 359 1 is_stmt 1 view -0
+ 1249              		.cfi_startproc
+ 1250              		@ args = 4, pretend = 0, frame = 0
+ 1251              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1252              		.loc 1 359 1 is_stmt 0 view .LVU293
+ 1253 0000 38B5     		push	{r3, r4, r5, lr}
+ 1254              		.cfi_def_cfa_offset 16
+ 1255              		.cfi_offset 3, -16
+ 1256              		.cfi_offset 4, -12
+ 1257              		.cfi_offset 5, -8
+ 1258              		.cfi_offset 14, -4
+ 1259 0002 1C46     		mov	r4, r3
+ 360:Core/Src/graphics.c ****     if ((x >= _lcd_width) || (y >= _lcd_height))
+ 1260              		.loc 1 360 5 is_stmt 1 view .LVU294
+ 1261              		.loc 1 360 12 is_stmt 0 view .LVU295
+ 1262 0004 184B     		ldr	r3, .L71
+ 1263              	.LVL122:
+ 1264              		.loc 1 360 12 view .LVU296
+ 1265 0006 1B88     		ldrh	r3, [r3]
+ 1266 0008 9BB2     		uxth	r3, r3
+ 1267              		.loc 1 360 8 view .LVU297
+ 1268 000a 8342     		cmp	r3, r0
+ 1269 000c 2BD9     		bls	.L66
+ 1270 000e 1546     		mov	r5, r2
+ 1271              		.loc 1 360 33 discriminator 1 view .LVU298
+ 1272 0010 164B     		ldr	r3, .L71+4
+ 1273 0012 1B88     		ldrh	r3, [r3]
+ 1274 0014 9BB2     		uxth	r3, r3
+ 1275              		.loc 1 360 27 discriminator 1 view .LVU299
+ 1276 0016 8B42     		cmp	r3, r1
+ 1277 0018 25D9     		bls	.L66
+ 361:Core/Src/graphics.c ****         return;
+ 362:Core/Src/graphics.c ****     if ((x + w - 1) >= _lcd_width)
+ 1278              		.loc 1 362 5 is_stmt 1 view .LVU300
+ 1279              		.loc 1 362 12 is_stmt 0 view .LVU301
+ 1280 001a 8218     		adds	r2, r0, r2
+ 1281              	.LVL123:
+ 1282              		.loc 1 362 21 view .LVU302
+ 1283 001c 124B     		ldr	r3, .L71
+ 1284 001e 1B88     		ldrh	r3, [r3]
+ 1285 0020 9BB2     		uxth	r3, r3
+ 1286              		.loc 1 362 8 view .LVU303
+ 1287 0022 9A42     		cmp	r2, r3
+ 1288 0024 04DD     		ble	.L68
+ 363:Core/Src/graphics.c ****     {
+ 364:Core/Src/graphics.c ****         w = _lcd_width - x;
+ 1289              		.loc 1 364 9 is_stmt 1 view .LVU304
+ 1290              		.loc 1 364 24 is_stmt 0 view .LVU305
+ 1291 0026 104B     		ldr	r3, .L71
+ 1292 0028 1D88     		ldrh	r5, [r3]
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccKBrlEE.s 			page 31
+
+
+ 1293 002a ADB2     		uxth	r5, r5
+ 1294              		.loc 1 364 11 view .LVU306
+ 1295 002c 2D1A     		subs	r5, r5, r0
+ 1296 002e ADB2     		uxth	r5, r5
+ 1297              	.LVL124:
+ 1298              	.L68:
+ 365:Core/Src/graphics.c ****     }
+ 366:Core/Src/graphics.c ****     if ((y + h - 1) >= _lcd_height)
+ 1299              		.loc 1 366 5 is_stmt 1 view .LVU307
+ 1300              		.loc 1 366 12 is_stmt 0 view .LVU308
+ 1301 0030 0A19     		adds	r2, r1, r4
+ 1302              		.loc 1 366 21 view .LVU309
+ 1303 0032 0E4B     		ldr	r3, .L71+4
+ 1304 0034 1B88     		ldrh	r3, [r3]
+ 1305 0036 9BB2     		uxth	r3, r3
+ 1306              		.loc 1 366 8 view .LVU310
+ 1307 0038 9A42     		cmp	r2, r3
+ 1308 003a 04DD     		ble	.L69
+ 367:Core/Src/graphics.c ****     {
+ 368:Core/Src/graphics.c ****         h = _lcd_height - y;
+ 1309              		.loc 1 368 9 is_stmt 1 view .LVU311
+ 1310              		.loc 1 368 25 is_stmt 0 view .LVU312
+ 1311 003c 0B4B     		ldr	r3, .L71+4
+ 1312 003e 1C88     		ldrh	r4, [r3]
+ 1313 0040 A4B2     		uxth	r4, r4
+ 1314              		.loc 1 368 11 view .LVU313
+ 1315 0042 641A     		subs	r4, r4, r1
+ 1316 0044 A4B2     		uxth	r4, r4
+ 1317              	.LVL125:
+ 1318              	.L69:
+ 369:Core/Src/graphics.c ****     }
+ 370:Core/Src/graphics.c ****     ili9341SetAddress(x, y, x + w - 1, y + h - 1);
+ 1319              		.loc 1 370 5 is_stmt 1 view .LVU314
+ 1320              		.loc 1 370 31 is_stmt 0 view .LVU315
+ 1321 0046 2A18     		adds	r2, r5, r0
+ 1322 0048 92B2     		uxth	r2, r2
+ 1323              		.loc 1 370 42 view .LVU316
+ 1324 004a 6318     		adds	r3, r4, r1
+ 1325 004c 9BB2     		uxth	r3, r3
+ 1326              		.loc 1 370 5 view .LVU317
+ 1327 004e 013B     		subs	r3, r3, #1
+ 1328 0050 013A     		subs	r2, r2, #1
+ 1329 0052 9BB2     		uxth	r3, r3
+ 1330 0054 92B2     		uxth	r2, r2
+ 1331 0056 FFF7FEFF 		bl	ili9341SetAddress
+ 1332              	.LVL126:
+ 371:Core/Src/graphics.c ****     ili9341DrawColorBurst(color, h * w);
+ 1333              		.loc 1 371 5 is_stmt 1 view .LVU318
+ 1334 005a 05FB04F1 		mul	r1, r5, r4
+ 1335 005e BDF81000 		ldrh	r0, [sp, #16]
+ 1336 0062 FFF7FEFF 		bl	ili9341DrawColorBurst
+ 1337              	.LVL127:
+ 1338              	.L66:
+ 372:Core/Src/graphics.c **** }
+ 1339              		.loc 1 372 1 is_stmt 0 view .LVU319
+ 1340 0066 38BD     		pop	{r3, r4, r5, pc}
+ 1341              	.LVL128:
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccKBrlEE.s 			page 32
+
+
+ 1342              	.L72:
+ 1343              		.loc 1 372 1 view .LVU320
+ 1344              		.align	2
+ 1345              	.L71:
+ 1346 0068 00000000 		.word	_lcd_width
+ 1347 006c 00000000 		.word	_lcd_height
+ 1348              		.cfi_endproc
+ 1349              	.LFE1163:
+ 1351              		.section	.text.drawRoundRect,"ax",%progbits
+ 1352              		.align	1
+ 1353              		.global	drawRoundRect
+ 1354              		.syntax unified
+ 1355              		.thumb
+ 1356              		.thumb_func
+ 1357              		.fpu fpv4-sp-d16
+ 1359              	drawRoundRect:
+ 1360              	.LVL129:
+ 1361              	.LFB1164:
+ 373:Core/Src/graphics.c **** 
+ 374:Core/Src/graphics.c **** /**************************************************************************/
+ 375:Core/Src/graphics.c **** /*!
+ 376:Core/Src/graphics.c ****    @brief   Draw a rounded rectangle with no fill color
+ 377:Core/Src/graphics.c ****     @param    x   Top left corner x coordinate
+ 378:Core/Src/graphics.c ****     @param    y   Top left corner y coordinate
+ 379:Core/Src/graphics.c ****     @param    w   Width in pixels
+ 380:Core/Src/graphics.c ****     @param    h   Height in pixels
+ 381:Core/Src/graphics.c ****     @param    r   Radius of corner rounding
+ 382:Core/Src/graphics.c ****     @param    color 16-bit 5-6-5 Color to draw with
+ 383:Core/Src/graphics.c **** */
+ 384:Core/Src/graphics.c **** /**************************************************************************/
+ 385:Core/Src/graphics.c **** void drawRoundRect(int16_t x, int16_t y, int16_t w, int16_t h,
+ 386:Core/Src/graphics.c ****                    int16_t r, uint16_t color)
+ 387:Core/Src/graphics.c **** {
+ 1362              		.loc 1 387 1 is_stmt 1 view -0
+ 1363              		.cfi_startproc
+ 1364              		@ args = 8, pretend = 0, frame = 16
+ 1365              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1366              		.loc 1 387 1 is_stmt 0 view .LVU322
+ 1367 0000 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, r10, fp, lr}
+ 1368              		.cfi_def_cfa_offset 36
+ 1369              		.cfi_offset 4, -36
+ 1370              		.cfi_offset 5, -32
+ 1371              		.cfi_offset 6, -28
+ 1372              		.cfi_offset 7, -24
+ 1373              		.cfi_offset 8, -20
+ 1374              		.cfi_offset 9, -16
+ 1375              		.cfi_offset 10, -12
+ 1376              		.cfi_offset 11, -8
+ 1377              		.cfi_offset 14, -4
+ 1378 0004 87B0     		sub	sp, sp, #28
+ 1379              		.cfi_def_cfa_offset 64
+ 1380 0006 1E46     		mov	r6, r3
+ 1381 0008 BDF94040 		ldrsh	r4, [sp, #64]
+ 1382 000c BDF84470 		ldrh	r7, [sp, #68]
+ 388:Core/Src/graphics.c ****     int16_t max_radius = ((w < h) ? w : h) / 2; // 1/2 minor axis
+ 1383              		.loc 1 388 5 is_stmt 1 view .LVU323
+ 1384              		.loc 1 388 39 is_stmt 0 view .LVU324
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccKBrlEE.s 			page 33
+
+
+ 1385 0010 9342     		cmp	r3, r2
+ 1386 0012 A8BF     		it	ge
+ 1387 0014 1346     		movge	r3, r2
+ 1388              	.LVL130:
+ 1389              		.loc 1 388 13 view .LVU325
+ 1390 0016 03EBD373 		add	r3, r3, r3, lsr #31
+ 1391 001a 4FEA6308 		asr	r8, r3, #1
+ 1392              	.LVL131:
+ 389:Core/Src/graphics.c ****     if (r > max_radius)
+ 1393              		.loc 1 389 5 is_stmt 1 view .LVU326
+ 1394              		.loc 1 389 8 is_stmt 0 view .LVU327
+ 1395 001e B4EB630F 		cmp	r4, r3, asr #1
+ 1396 0022 00DC     		bgt	.L74
+ 1397 0024 A046     		mov	r8, r4
+ 1398              	.LVL132:
+ 1399              	.L74:
+ 390:Core/Src/graphics.c ****         r = max_radius;
+ 391:Core/Src/graphics.c ****     // smarter version
+ 392:Core/Src/graphics.c **** 
+ 393:Core/Src/graphics.c ****     drawHorizontalLine(x + r, y, w - 2 * r, color);         // Top
+ 1400              		.loc 1 393 5 is_stmt 1 view .LVU328
+ 1401 0026 1FFA80FB 		uxth	fp, r0
+ 1402 002a 1FFA88F9 		uxth	r9, r8
+ 1403 002e 0BEB0903 		add	r3, fp, r9
+ 1404              	.LVL133:
+ 1405              		.loc 1 393 5 is_stmt 0 view .LVU329
+ 1406 0032 98B2     		uxth	r0, r3
+ 1407              	.LVL134:
+ 1408              		.loc 1 393 5 view .LVU330
+ 1409 0034 8CB2     		uxth	r4, r1
+ 1410 0036 93B2     		uxth	r3, r2
+ 1411              		.loc 1 393 40 view .LVU331
+ 1412 0038 4FEA490A 		lsl	r10, r9, #1
+ 1413 003c 1FFA8AFA 		uxth	r10, r10
+ 1414              		.loc 1 393 5 view .LVU332
+ 1415 0040 0493     		str	r3, [sp, #16]
+ 1416 0042 A3EB0A03 		sub	r3, r3, r10
+ 1417 0046 9AB2     		uxth	r2, r3
+ 1418              	.LVL135:
+ 1419              		.loc 1 393 5 view .LVU333
+ 1420 0048 3B46     		mov	r3, r7
+ 1421 004a 0592     		str	r2, [sp, #20]
+ 1422 004c 2146     		mov	r1, r4
+ 1423              		.loc 1 393 5 view .LVU334
+ 1424 004e 0390     		str	r0, [sp, #12]
+ 1425 0050 FFF7FEFF 		bl	drawHorizontalLine
+ 1426              	.LVL136:
+ 394:Core/Src/graphics.c ****     drawHorizontalLine(x + r, y + h - 1, w - 2 * r, color); // Bottom
+ 1427              		.loc 1 394 5 is_stmt 1 view .LVU335
+ 1428              		.loc 1 394 33 is_stmt 0 view .LVU336
+ 1429 0054 B6B2     		uxth	r6, r6
+ 1430              		.loc 1 394 33 view .LVU337
+ 1431 0056 A519     		adds	r5, r4, r6
+ 1432 0058 ADB2     		uxth	r5, r5
+ 1433              		.loc 1 394 5 view .LVU338
+ 1434 005a 691E     		subs	r1, r5, #1
+ 1435 005c 3B46     		mov	r3, r7
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccKBrlEE.s 			page 34
+
+
+ 1436 005e 059A     		ldr	r2, [sp, #20]
+ 1437 0060 89B2     		uxth	r1, r1
+ 1438 0062 0398     		ldr	r0, [sp, #12]
+ 1439 0064 FFF7FEFF 		bl	drawHorizontalLine
+ 1440              	.LVL137:
+ 395:Core/Src/graphics.c ****     drawVerticalLine(x, y + r, h - 2 * r, color);           // Left
+ 1441              		.loc 1 395 5 is_stmt 1 view .LVU339
+ 1442 0068 4C44     		add	r4, r4, r9
+ 1443              	.LVL138:
+ 1444              		.loc 1 395 5 is_stmt 0 view .LVU340
+ 1445 006a A4B2     		uxth	r4, r4
+ 1446 006c A6EB0A06 		sub	r6, r6, r10
+ 1447 0070 B6B2     		uxth	r6, r6
+ 1448 0072 3B46     		mov	r3, r7
+ 1449 0074 3246     		mov	r2, r6
+ 1450 0076 2146     		mov	r1, r4
+ 1451 0078 5846     		mov	r0, fp
+ 1452 007a FFF7FEFF 		bl	drawVerticalLine
+ 1453              	.LVL139:
+ 396:Core/Src/graphics.c ****     drawVerticalLine(x + w - 1, y + r, h - 2 * r, color);   // Right
+ 1454              		.loc 1 396 5 is_stmt 1 view .LVU341
+ 1455              		.loc 1 396 24 is_stmt 0 view .LVU342
+ 1456 007e 049B     		ldr	r3, [sp, #16]
+ 1457 0080 0BEB030A 		add	r10, fp, r3
+ 1458 0084 1FFA8AFA 		uxth	r10, r10
+ 1459              		.loc 1 396 5 view .LVU343
+ 1460 0088 0AF1FF30 		add	r0, r10, #-1
+ 1461 008c 3B46     		mov	r3, r7
+ 1462 008e 3246     		mov	r2, r6
+ 1463 0090 2146     		mov	r1, r4
+ 1464 0092 80B2     		uxth	r0, r0
+ 1465 0094 FFF7FEFF 		bl	drawVerticalLine
+ 1466              	.LVL140:
+ 397:Core/Src/graphics.c ****     // draw four corners
+ 398:Core/Src/graphics.c ****     drawCircleHelper(x + r, y + r, r, 1, color);
+ 1467              		.loc 1 398 5 is_stmt 1 view .LVU344
+ 1468 0098 BDF90C60 		ldrsh	r6, [sp, #12]
+ 1469 009c 24B2     		sxth	r4, r4
+ 1470 009e 0097     		str	r7, [sp]
+ 1471 00a0 0123     		movs	r3, #1
+ 1472 00a2 4246     		mov	r2, r8
+ 1473 00a4 2146     		mov	r1, r4
+ 1474 00a6 3046     		mov	r0, r6
+ 1475 00a8 FFF7FEFF 		bl	drawCircleHelper
+ 1476              	.LVL141:
+ 399:Core/Src/graphics.c ****     drawCircleHelper(x + w - r - 1, y + r, r, 2, color);
+ 1477              		.loc 1 399 5 view .LVU345
+ 1478              		.loc 1 399 28 is_stmt 0 view .LVU346
+ 1479 00ac AAEB090A 		sub	r10, r10, r9
+ 1480 00b0 1FFA8AFA 		uxth	r10, r10
+ 1481              		.loc 1 399 32 view .LVU347
+ 1482 00b4 0AF1FF3A 		add	r10, r10, #-1
+ 1483              		.loc 1 399 5 view .LVU348
+ 1484 00b8 0FFA8AFA 		sxth	r10, r10
+ 1485 00bc 0097     		str	r7, [sp]
+ 1486 00be 0223     		movs	r3, #2
+ 1487 00c0 4246     		mov	r2, r8
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccKBrlEE.s 			page 35
+
+
+ 1488 00c2 2146     		mov	r1, r4
+ 1489 00c4 5046     		mov	r0, r10
+ 1490 00c6 FFF7FEFF 		bl	drawCircleHelper
+ 1491              	.LVL142:
+ 400:Core/Src/graphics.c ****     drawCircleHelper(x + w - r - 1, y + h - r - 1, r, 4, color);
+ 1492              		.loc 1 400 5 is_stmt 1 view .LVU349
+ 1493              		.loc 1 400 43 is_stmt 0 view .LVU350
+ 1494 00ca A5EB0905 		sub	r5, r5, r9
+ 1495 00ce ADB2     		uxth	r5, r5
+ 1496              		.loc 1 400 47 view .LVU351
+ 1497 00d0 013D     		subs	r5, r5, #1
+ 1498              		.loc 1 400 5 view .LVU352
+ 1499 00d2 2DB2     		sxth	r5, r5
+ 1500 00d4 0097     		str	r7, [sp]
+ 1501 00d6 0423     		movs	r3, #4
+ 1502 00d8 4246     		mov	r2, r8
+ 1503 00da 2946     		mov	r1, r5
+ 1504 00dc 5046     		mov	r0, r10
+ 1505 00de FFF7FEFF 		bl	drawCircleHelper
+ 1506              	.LVL143:
+ 401:Core/Src/graphics.c ****     drawCircleHelper(x + r, y + h - r - 1, r, 8, color);
+ 1507              		.loc 1 401 5 is_stmt 1 view .LVU353
+ 1508 00e2 0097     		str	r7, [sp]
+ 1509 00e4 0823     		movs	r3, #8
+ 1510 00e6 4246     		mov	r2, r8
+ 1511 00e8 2946     		mov	r1, r5
+ 1512 00ea 3046     		mov	r0, r6
+ 1513 00ec FFF7FEFF 		bl	drawCircleHelper
+ 1514              	.LVL144:
+ 402:Core/Src/graphics.c **** }
+ 1515              		.loc 1 402 1 is_stmt 0 view .LVU354
+ 1516 00f0 07B0     		add	sp, sp, #28
+ 1517              		.cfi_def_cfa_offset 36
+ 1518              		@ sp needed
+ 1519 00f2 BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
+ 1520              		.loc 1 402 1 view .LVU355
+ 1521              		.cfi_endproc
+ 1522              	.LFE1164:
+ 1524              		.section	.text.fillRoundRect,"ax",%progbits
+ 1525              		.align	1
+ 1526              		.global	fillRoundRect
+ 1527              		.syntax unified
+ 1528              		.thumb
+ 1529              		.thumb_func
+ 1530              		.fpu fpv4-sp-d16
+ 1532              	fillRoundRect:
+ 1533              	.LVL145:
+ 1534              	.LFB1165:
+ 403:Core/Src/graphics.c **** 
+ 404:Core/Src/graphics.c **** /**************************************************************************/
+ 405:Core/Src/graphics.c **** /*!
+ 406:Core/Src/graphics.c ****    @brief   Draw a rounded rectangle with fill color
+ 407:Core/Src/graphics.c ****     @param    x   Top left corner x coordinate
+ 408:Core/Src/graphics.c ****     @param    y   Top left corner y coordinate
+ 409:Core/Src/graphics.c ****     @param    w   Width in pixels
+ 410:Core/Src/graphics.c ****     @param    h   Height in pixels
+ 411:Core/Src/graphics.c ****     @param    r   Radius of corner rounding
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccKBrlEE.s 			page 36
+
+
+ 412:Core/Src/graphics.c ****     @param    color 16-bit 5-6-5 Color to draw/fill with
+ 413:Core/Src/graphics.c **** */
+ 414:Core/Src/graphics.c **** /**************************************************************************/
+ 415:Core/Src/graphics.c **** void fillRoundRect(int16_t x, int16_t y, int16_t w, int16_t h,
+ 416:Core/Src/graphics.c ****                    int16_t r, uint16_t color)
+ 417:Core/Src/graphics.c **** {
+ 1535              		.loc 1 417 1 is_stmt 1 view -0
+ 1536              		.cfi_startproc
+ 1537              		@ args = 8, pretend = 0, frame = 8
+ 1538              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1539              		.loc 1 417 1 is_stmt 0 view .LVU357
+ 1540 0000 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, r10, fp, lr}
+ 1541              		.cfi_def_cfa_offset 36
+ 1542              		.cfi_offset 4, -36
+ 1543              		.cfi_offset 5, -32
+ 1544              		.cfi_offset 6, -28
+ 1545              		.cfi_offset 7, -24
+ 1546              		.cfi_offset 8, -20
+ 1547              		.cfi_offset 9, -16
+ 1548              		.cfi_offset 10, -12
+ 1549              		.cfi_offset 11, -8
+ 1550              		.cfi_offset 14, -4
+ 1551 0004 85B0     		sub	sp, sp, #20
+ 1552              		.cfi_def_cfa_offset 56
+ 1553 0006 BDF93840 		ldrsh	r4, [sp, #56]
+ 1554 000a BDF83CB0 		ldrh	fp, [sp, #60]
+ 418:Core/Src/graphics.c ****     int16_t max_radius = ((w < h) ? w : h) / 2; // 1/2 minor axis
+ 1555              		.loc 1 418 5 is_stmt 1 view .LVU358
+ 1556              		.loc 1 418 39 is_stmt 0 view .LVU359
+ 1557 000e 1E46     		mov	r6, r3
+ 1558 0010 9342     		cmp	r3, r2
+ 1559 0012 A8BF     		it	ge
+ 1560 0014 1646     		movge	r6, r2
+ 1561              		.loc 1 418 13 view .LVU360
+ 1562 0016 06EBD676 		add	r6, r6, r6, lsr #31
+ 1563 001a 4FEA660A 		asr	r10, r6, #1
+ 1564              	.LVL146:
+ 419:Core/Src/graphics.c ****     if (r > max_radius)
+ 1565              		.loc 1 419 5 is_stmt 1 view .LVU361
+ 1566              		.loc 1 419 8 is_stmt 0 view .LVU362
+ 1567 001e B4EB660F 		cmp	r4, r6, asr #1
+ 1568 0022 00DC     		bgt	.L77
+ 1569 0024 A246     		mov	r10, r4
+ 1570              	.LVL147:
+ 1571              	.L77:
+ 420:Core/Src/graphics.c ****         r = max_radius;
+ 421:Core/Src/graphics.c ****     // smarter version
+ 422:Core/Src/graphics.c **** 
+ 423:Core/Src/graphics.c ****     fillRect(x + r, y, w - 2 * r, h, color);
+ 1572              		.loc 1 423 5 is_stmt 1 view .LVU363
+ 1573 0026 85B2     		uxth	r5, r0
+ 1574 0028 1FFA8AF6 		uxth	r6, r10
+ 1575              	.LVL148:
+ 1576              		.loc 1 423 5 is_stmt 0 view .LVU364
+ 1577 002c A819     		adds	r0, r5, r6
+ 1578              	.LVL149:
+ 1579              		.loc 1 423 5 view .LVU365
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccKBrlEE.s 			page 37
+
+
+ 1580 002e 80B2     		uxth	r0, r0
+ 1581 0030 1FFA81F8 		uxth	r8, r1
+ 1582 0034 97B2     		uxth	r7, r2
+ 1583              		.loc 1 423 30 view .LVU366
+ 1584 0036 4FEA4609 		lsl	r9, r6, #1
+ 1585 003a 1FFA89F9 		uxth	r9, r9
+ 1586              		.loc 1 423 5 view .LVU367
+ 1587 003e 9CB2     		uxth	r4, r3
+ 1588 0040 A7EB0902 		sub	r2, r7, r9
+ 1589              	.LVL150:
+ 1590              		.loc 1 423 5 view .LVU368
+ 1591 0044 CDF800B0 		str	fp, [sp]
+ 1592 0048 2346     		mov	r3, r4
+ 1593              		.loc 1 423 5 view .LVU369
+ 1594 004a 92B2     		uxth	r2, r2
+ 1595 004c 4146     		mov	r1, r8
+ 1596              		.loc 1 423 5 view .LVU370
+ 1597 004e 0390     		str	r0, [sp, #12]
+ 1598 0050 FFF7FEFF 		bl	fillRect
+ 1599              	.LVL151:
+ 424:Core/Src/graphics.c ****     // draw four corners
+ 425:Core/Src/graphics.c ****     fillCircleHelper(x + w - r - 1, y + r, r, 1, h - 2 * r - 1, color);
+ 1600              		.loc 1 425 5 is_stmt 1 view .LVU371
+ 1601              		.loc 1 425 24 is_stmt 0 view .LVU372
+ 1602 0054 E819     		adds	r0, r5, r7
+ 1603 0056 80B2     		uxth	r0, r0
+ 1604              		.loc 1 425 28 view .LVU373
+ 1605 0058 801B     		subs	r0, r0, r6
+ 1606 005a 80B2     		uxth	r0, r0
+ 1607              		.loc 1 425 32 view .LVU374
+ 1608 005c 0138     		subs	r0, r0, #1
+ 1609              		.loc 1 425 39 view .LVU375
+ 1610 005e 4644     		add	r6, r6, r8
+ 1611              		.loc 1 425 5 view .LVU376
+ 1612 0060 36B2     		sxth	r6, r6
+ 1613              		.loc 1 425 52 view .LVU377
+ 1614 0062 A4EB0904 		sub	r4, r4, r9
+ 1615              	.LVL152:
+ 1616              		.loc 1 425 52 view .LVU378
+ 1617 0066 A4B2     		uxth	r4, r4
+ 1618              		.loc 1 425 60 view .LVU379
+ 1619 0068 013C     		subs	r4, r4, #1
+ 1620              		.loc 1 425 5 view .LVU380
+ 1621 006a 24B2     		sxth	r4, r4
+ 1622 006c CDF804B0 		str	fp, [sp, #4]
+ 1623 0070 0094     		str	r4, [sp]
+ 1624 0072 0123     		movs	r3, #1
+ 1625 0074 5246     		mov	r2, r10
+ 1626 0076 3146     		mov	r1, r6
+ 1627 0078 00B2     		sxth	r0, r0
+ 1628 007a FFF7FEFF 		bl	fillCircleHelper
+ 1629              	.LVL153:
+ 426:Core/Src/graphics.c ****     fillCircleHelper(x + r, y + r, r, 2, h - 2 * r - 1, color);
+ 1630              		.loc 1 426 5 is_stmt 1 view .LVU381
+ 1631 007e CDF804B0 		str	fp, [sp, #4]
+ 1632 0082 0094     		str	r4, [sp]
+ 1633 0084 0223     		movs	r3, #2
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccKBrlEE.s 			page 38
+
+
+ 1634 0086 5246     		mov	r2, r10
+ 1635 0088 3146     		mov	r1, r6
+ 1636 008a BDF90C00 		ldrsh	r0, [sp, #12]
+ 1637 008e FFF7FEFF 		bl	fillCircleHelper
+ 1638              	.LVL154:
+ 427:Core/Src/graphics.c **** }
+ 1639              		.loc 1 427 1 is_stmt 0 view .LVU382
+ 1640 0092 05B0     		add	sp, sp, #20
+ 1641              		.cfi_def_cfa_offset 36
+ 1642              		@ sp needed
+ 1643 0094 BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
+ 1644              		.loc 1 427 1 view .LVU383
+ 1645              		.cfi_endproc
+ 1646              	.LFE1165:
+ 1648              		.section	.text.drawTriangle,"ax",%progbits
+ 1649              		.align	1
+ 1650              		.global	drawTriangle
+ 1651              		.syntax unified
+ 1652              		.thumb
+ 1653              		.thumb_func
+ 1654              		.fpu fpv4-sp-d16
+ 1656              	drawTriangle:
+ 1657              	.LVL155:
+ 1658              	.LFB1166:
+ 428:Core/Src/graphics.c **** 
+ 429:Core/Src/graphics.c **** /**************************************************************************/
+ 430:Core/Src/graphics.c **** /*!
+ 431:Core/Src/graphics.c ****    @brief   Draw a triangle with no fill color
+ 432:Core/Src/graphics.c ****     @param    x0  Vertex #0 x coordinate
+ 433:Core/Src/graphics.c ****     @param    y0  Vertex #0 y coordinate
+ 434:Core/Src/graphics.c ****     @param    x1  Vertex #1 x coordinate
+ 435:Core/Src/graphics.c ****     @param    y1  Vertex #1 y coordinate
+ 436:Core/Src/graphics.c ****     @param    x2  Vertex #2 x coordinate
+ 437:Core/Src/graphics.c ****     @param    y2  Vertex #2 y coordinate
+ 438:Core/Src/graphics.c ****     @param    color 16-bit 5-6-5 Color to draw with
+ 439:Core/Src/graphics.c **** */
+ 440:Core/Src/graphics.c **** /**************************************************************************/
+ 441:Core/Src/graphics.c **** void drawTriangle(int16_t x0, int16_t y0, int16_t x1, int16_t y1,
+ 442:Core/Src/graphics.c ****                   int16_t x2, int16_t y2, uint16_t color)
+ 443:Core/Src/graphics.c **** {
+ 1659              		.loc 1 443 1 is_stmt 1 view -0
+ 1660              		.cfi_startproc
+ 1661              		@ args = 12, pretend = 0, frame = 0
+ 1662              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1663              		.loc 1 443 1 is_stmt 0 view .LVU385
+ 1664 0000 2DE9F047 		push	{r4, r5, r6, r7, r8, r9, r10, lr}
+ 1665              		.cfi_def_cfa_offset 32
+ 1666              		.cfi_offset 4, -32
+ 1667              		.cfi_offset 5, -28
+ 1668              		.cfi_offset 6, -24
+ 1669              		.cfi_offset 7, -20
+ 1670              		.cfi_offset 8, -16
+ 1671              		.cfi_offset 9, -12
+ 1672              		.cfi_offset 10, -8
+ 1673              		.cfi_offset 14, -4
+ 1674 0004 82B0     		sub	sp, sp, #8
+ 1675              		.cfi_def_cfa_offset 40
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccKBrlEE.s 			page 39
+
+
+ 1676 0006 0446     		mov	r4, r0
+ 1677 0008 0D46     		mov	r5, r1
+ 1678 000a 1746     		mov	r7, r2
+ 1679 000c 9846     		mov	r8, r3
+ 1680 000e BDF92890 		ldrsh	r9, [sp, #40]
+ 1681 0012 BDF92CA0 		ldrsh	r10, [sp, #44]
+ 1682 0016 BDF83060 		ldrh	r6, [sp, #48]
+ 444:Core/Src/graphics.c ****     drawLine(x0, y0, x1, y1, color);
+ 1683              		.loc 1 444 5 is_stmt 1 view .LVU386
+ 1684 001a 0096     		str	r6, [sp]
+ 1685 001c FFF7FEFF 		bl	drawLine
+ 1686              	.LVL156:
+ 445:Core/Src/graphics.c ****     drawLine(x1, y1, x2, y2, color);
+ 1687              		.loc 1 445 5 view .LVU387
+ 1688 0020 0096     		str	r6, [sp]
+ 1689 0022 5346     		mov	r3, r10
+ 1690 0024 4A46     		mov	r2, r9
+ 1691 0026 4146     		mov	r1, r8
+ 1692 0028 3846     		mov	r0, r7
+ 1693 002a FFF7FEFF 		bl	drawLine
+ 1694              	.LVL157:
+ 446:Core/Src/graphics.c ****     drawLine(x2, y2, x0, y0, color);
+ 1695              		.loc 1 446 5 view .LVU388
+ 1696 002e 0096     		str	r6, [sp]
+ 1697 0030 2B46     		mov	r3, r5
+ 1698 0032 2246     		mov	r2, r4
+ 1699 0034 5146     		mov	r1, r10
+ 1700 0036 4846     		mov	r0, r9
+ 1701 0038 FFF7FEFF 		bl	drawLine
+ 1702              	.LVL158:
+ 447:Core/Src/graphics.c **** }
+ 1703              		.loc 1 447 1 is_stmt 0 view .LVU389
+ 1704 003c 02B0     		add	sp, sp, #8
+ 1705              		.cfi_def_cfa_offset 32
+ 1706              		@ sp needed
+ 1707 003e BDE8F087 		pop	{r4, r5, r6, r7, r8, r9, r10, pc}
+ 1708              		.loc 1 447 1 view .LVU390
+ 1709              		.cfi_endproc
+ 1710              	.LFE1166:
+ 1712              		.section	.text.fillTriangle,"ax",%progbits
+ 1713              		.align	1
+ 1714              		.global	fillTriangle
+ 1715              		.syntax unified
+ 1716              		.thumb
+ 1717              		.thumb_func
+ 1718              		.fpu fpv4-sp-d16
+ 1720              	fillTriangle:
+ 1721              	.LVL159:
+ 1722              	.LFB1167:
+ 448:Core/Src/graphics.c **** 
+ 449:Core/Src/graphics.c **** /**************************************************************************/
+ 450:Core/Src/graphics.c **** /*!
+ 451:Core/Src/graphics.c ****    @brief     Draw a triangle with color-fill
+ 452:Core/Src/graphics.c ****     @param    x0  Vertex #0 x coordinate
+ 453:Core/Src/graphics.c ****     @param    y0  Vertex #0 y coordinate
+ 454:Core/Src/graphics.c ****     @param    x1  Vertex #1 x coordinate
+ 455:Core/Src/graphics.c ****     @param    y1  Vertex #1 y coordinate
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccKBrlEE.s 			page 40
+
+
+ 456:Core/Src/graphics.c ****     @param    x2  Vertex #2 x coordinate
+ 457:Core/Src/graphics.c ****     @param    y2  Vertex #2 y coordinate
+ 458:Core/Src/graphics.c ****     @param    color 16-bit 5-6-5 Color to fill/draw with
+ 459:Core/Src/graphics.c **** */
+ 460:Core/Src/graphics.c **** /**************************************************************************/
+ 461:Core/Src/graphics.c **** void fillTriangle(int16_t x0, int16_t y0, int16_t x1, int16_t y1,
+ 462:Core/Src/graphics.c ****                   int16_t x2, int16_t y2, uint16_t color)
+ 463:Core/Src/graphics.c **** {
+ 1723              		.loc 1 463 1 is_stmt 1 view -0
+ 1724              		.cfi_startproc
+ 1725              		@ args = 12, pretend = 0, frame = 32
+ 1726              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1727              		.loc 1 463 1 is_stmt 0 view .LVU392
+ 1728 0000 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, r10, fp, lr}
+ 1729              		.cfi_def_cfa_offset 36
+ 1730              		.cfi_offset 4, -36
+ 1731              		.cfi_offset 5, -32
+ 1732              		.cfi_offset 6, -28
+ 1733              		.cfi_offset 7, -24
+ 1734              		.cfi_offset 8, -20
+ 1735              		.cfi_offset 9, -16
+ 1736              		.cfi_offset 10, -12
+ 1737              		.cfi_offset 11, -8
+ 1738              		.cfi_offset 14, -4
+ 1739 0004 89B0     		sub	sp, sp, #36
+ 1740              		.cfi_def_cfa_offset 72
+ 1741 0006 8846     		mov	r8, r1
+ 1742 0008 0693     		str	r3, [sp, #24]
+ 1743 000a BDF94860 		ldrsh	r6, [sp, #72]
+ 1744 000e BDF94C10 		ldrsh	r1, [sp, #76]
+ 1745              	.LVL160:
+ 1746              		.loc 1 463 1 view .LVU393
+ 1747 0012 0191     		str	r1, [sp, #4]
+ 1748 0014 BDF850A0 		ldrh	r10, [sp, #80]
+ 464:Core/Src/graphics.c **** 
+ 465:Core/Src/graphics.c ****     int16_t a, b, y, last;
+ 1749              		.loc 1 465 5 is_stmt 1 view .LVU394
+ 466:Core/Src/graphics.c **** 
+ 467:Core/Src/graphics.c ****     // Sort coordinates by Y order (y2 >= y1 >= y0)
+ 468:Core/Src/graphics.c ****     if (y0 > y1)
+ 1750              		.loc 1 468 5 view .LVU395
+ 1751              		.loc 1 468 8 is_stmt 0 view .LVU396
+ 1752 0018 9845     		cmp	r8, r3
+ 1753 001a 05DC     		bgt	.L82
+ 1754 001c CDF81880 		str	r8, [sp, #24]
+ 1755 0020 9846     		mov	r8, r3
+ 1756 0022 1346     		mov	r3, r2
+ 1757              	.LVL161:
+ 1758              		.loc 1 468 8 view .LVU397
+ 1759 0024 0246     		mov	r2, r0
+ 1760              	.LVL162:
+ 1761              		.loc 1 468 8 view .LVU398
+ 1762 0026 1846     		mov	r0, r3
+ 1763              	.LVL163:
+ 1764              	.L82:
+ 469:Core/Src/graphics.c ****     {
+ 470:Core/Src/graphics.c ****         _swap_int16_t(y0, y1);
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccKBrlEE.s 			page 41
+
+
+ 471:Core/Src/graphics.c ****         _swap_int16_t(x0, x1);
+ 1765              		.loc 1 471 30 is_stmt 1 discriminator 1 view .LVU399
+ 472:Core/Src/graphics.c ****     }
+ 473:Core/Src/graphics.c ****     if (y1 > y2)
+ 1766              		.loc 1 473 5 discriminator 1 view .LVU400
+ 1767              		.loc 1 473 8 is_stmt 0 discriminator 1 view .LVU401
+ 1768 0028 019B     		ldr	r3, [sp, #4]
+ 1769 002a 9845     		cmp	r8, r3
+ 1770 002c 05DC     		bgt	.L83
+ 1771              		.loc 1 473 8 view .LVU402
+ 1772 002e CDF80480 		str	r8, [sp, #4]
+ 1773 0032 9846     		mov	r8, r3
+ 1774              	.LVL164:
+ 1775              		.loc 1 473 8 view .LVU403
+ 1776 0034 3346     		mov	r3, r6
+ 1777 0036 0646     		mov	r6, r0
+ 1778 0038 1846     		mov	r0, r3
+ 1779              	.LVL165:
+ 1780              	.L83:
+ 474:Core/Src/graphics.c ****     {
+ 475:Core/Src/graphics.c ****         _swap_int16_t(y2, y1);
+ 476:Core/Src/graphics.c ****         _swap_int16_t(x2, x1);
+ 1781              		.loc 1 476 30 is_stmt 1 discriminator 1 view .LVU404
+ 477:Core/Src/graphics.c ****     }
+ 478:Core/Src/graphics.c ****     if (y0 > y1)
+ 1782              		.loc 1 478 5 discriminator 1 view .LVU405
+ 1783              		.loc 1 478 8 is_stmt 0 discriminator 1 view .LVU406
+ 1784 003a 0699     		ldr	r1, [sp, #24]
+ 1785 003c 019B     		ldr	r3, [sp, #4]
+ 1786 003e 9942     		cmp	r1, r3
+ 1787 0040 04DC     		bgt	.L84
+ 1788              		.loc 1 478 8 view .LVU407
+ 1789 0042 0191     		str	r1, [sp, #4]
+ 1790              	.LVL166:
+ 1791              		.loc 1 478 8 view .LVU408
+ 1792 0044 0693     		str	r3, [sp, #24]
+ 1793              	.LVL167:
+ 1794              		.loc 1 478 8 view .LVU409
+ 1795 0046 3346     		mov	r3, r6
+ 1796 0048 1646     		mov	r6, r2
+ 1797              	.LVL168:
+ 1798              		.loc 1 478 8 view .LVU410
+ 1799 004a 1A46     		mov	r2, r3
+ 1800              	.LVL169:
+ 1801              	.L84:
+ 479:Core/Src/graphics.c ****     {
+ 480:Core/Src/graphics.c ****         _swap_int16_t(y0, y1);
+ 481:Core/Src/graphics.c ****         _swap_int16_t(x0, x1);
+ 1802              		.loc 1 481 30 is_stmt 1 discriminator 1 view .LVU411
+ 482:Core/Src/graphics.c ****     }
+ 483:Core/Src/graphics.c **** 
+ 484:Core/Src/graphics.c ****     if (y0 == y2)
+ 1803              		.loc 1 484 5 discriminator 1 view .LVU412
+ 1804              		.loc 1 484 8 is_stmt 0 discriminator 1 view .LVU413
+ 1805 004c 019B     		ldr	r3, [sp, #4]
+ 1806 004e 4345     		cmp	r3, r8
+ 1807 0050 26D0     		beq	.L100
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccKBrlEE.s 			page 42
+
+
+ 485:Core/Src/graphics.c ****     { // Handle awkward all-on-same-line case as its own thing
+ 486:Core/Src/graphics.c ****         a = b = x0;
+ 487:Core/Src/graphics.c ****         if (x1 < a)
+ 488:Core/Src/graphics.c ****             a = x1;
+ 489:Core/Src/graphics.c ****         else if (x1 > b)
+ 490:Core/Src/graphics.c ****             b = x1;
+ 491:Core/Src/graphics.c ****         if (x2 < a)
+ 492:Core/Src/graphics.c ****             a = x2;
+ 493:Core/Src/graphics.c ****         else if (x2 > b)
+ 494:Core/Src/graphics.c ****             b = x2;
+ 495:Core/Src/graphics.c ****         drawHorizontalLine(a, y0, b - a + 1, color);
+ 496:Core/Src/graphics.c **** 
+ 497:Core/Src/graphics.c ****         return;
+ 498:Core/Src/graphics.c ****     }
+ 499:Core/Src/graphics.c **** 
+ 500:Core/Src/graphics.c ****     int16_t dx01 = x1 - x0, dy01 = y1 - y0, dx02 = x2 - x0, dy02 = y2 - y0,
+ 1808              		.loc 1 500 5 is_stmt 1 view .LVU414
+ 1809              		.loc 1 500 23 is_stmt 0 view .LVU415
+ 1810 0052 91B2     		uxth	r1, r2
+ 1811 0054 0291     		str	r1, [sp, #8]
+ 1812 0056 B6B2     		uxth	r6, r6
+ 1813              		.loc 1 500 23 view .LVU416
+ 1814 0058 8B1B     		subs	r3, r1, r6
+ 1815              		.loc 1 500 13 view .LVU417
+ 1816 005a 1BB2     		sxth	r3, r3
+ 1817 005c 0393     		str	r3, [sp, #12]
+ 1818              	.LVL170:
+ 1819              		.loc 1 500 39 view .LVU418
+ 1820 005e 069C     		ldr	r4, [sp, #24]
+ 1821 0060 A2B2     		uxth	r2, r4
+ 1822              	.LVL171:
+ 1823              		.loc 1 500 39 view .LVU419
+ 1824 0062 BDF80470 		ldrh	r7, [sp, #4]
+ 1825 0066 D31B     		subs	r3, r2, r7
+ 1826              		.loc 1 500 29 view .LVU420
+ 1827 0068 1BB2     		sxth	r3, r3
+ 1828 006a 0493     		str	r3, [sp, #16]
+ 1829              	.LVL172:
+ 1830              		.loc 1 500 55 view .LVU421
+ 1831 006c 80B2     		uxth	r0, r0
+ 1832              		.loc 1 500 55 view .LVU422
+ 1833 006e A0EB0609 		sub	r9, r0, r6
+ 1834              		.loc 1 500 45 view .LVU423
+ 1835 0072 0FFA89F9 		sxth	r9, r9
+ 1836              	.LVL173:
+ 1837              		.loc 1 500 71 view .LVU424
+ 1838 0076 1FFA88F3 		uxth	r3, r8
+ 1839 007a DF1B     		subs	r7, r3, r7
+ 1840              		.loc 1 500 61 view .LVU425
+ 1841 007c 3FB2     		sxth	r7, r7
+ 1842              	.LVL174:
+ 501:Core/Src/graphics.c ****             dx12 = x2 - x1, dy12 = y2 - y1;
+ 1843              		.loc 1 501 23 view .LVU426
+ 1844 007e 401A     		subs	r0, r0, r1
+ 1845              	.LVL175:
+ 1846              		.loc 1 501 13 view .LVU427
+ 1847 0080 01B2     		sxth	r1, r0
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccKBrlEE.s 			page 43
+
+
+ 1848              	.LVL176:
+ 1849              		.loc 1 501 13 view .LVU428
+ 1850 0082 0091     		str	r1, [sp]
+ 1851              	.LVL177:
+ 1852              		.loc 1 501 39 view .LVU429
+ 1853 0084 9B1A     		subs	r3, r3, r2
+ 1854              		.loc 1 501 29 view .LVU430
+ 1855 0086 1BB2     		sxth	r3, r3
+ 1856 0088 0593     		str	r3, [sp, #20]
+ 1857              	.LVL178:
+ 502:Core/Src/graphics.c ****     int32_t sa = 0, sb = 0;
+ 1858              		.loc 1 502 5 is_stmt 1 view .LVU431
+ 503:Core/Src/graphics.c **** 
+ 504:Core/Src/graphics.c ****     // For upper part of triangle, find scanline crossings for segments
+ 505:Core/Src/graphics.c ****     // 0-1 and 0-2.  If y1=y2 (flat-bottomed triangle), the scanline y1
+ 506:Core/Src/graphics.c ****     // is included here (and second loop will be skipped, avoiding a /0
+ 507:Core/Src/graphics.c ****     // error there), otherwise scanline y1 is skipped here and handled
+ 508:Core/Src/graphics.c ****     // in the second loop...which also avoids a /0 error here if y0=y1
+ 509:Core/Src/graphics.c ****     // (flat-topped triangle).
+ 510:Core/Src/graphics.c ****     if (y1 == y2)
+ 1859              		.loc 1 510 5 view .LVU432
+ 1860              		.loc 1 510 8 is_stmt 0 view .LVU433
+ 1861 008a 4445     		cmp	r4, r8
+ 1862 008c 25D0     		beq	.L98
+ 511:Core/Src/graphics.c ****         last = y1; // Include y1 scanline
+ 512:Core/Src/graphics.c ****     else
+ 513:Core/Src/graphics.c ****         last = y1 - 1; // Skip it
+ 1863              		.loc 1 513 9 is_stmt 1 view .LVU434
+ 1864              		.loc 1 513 19 is_stmt 0 view .LVU435
+ 1865 008e 013A     		subs	r2, r2, #1
+ 1866              		.loc 1 513 14 view .LVU436
+ 1867 0090 13B2     		sxth	r3, r2
+ 1868              	.LVL179:
+ 1869              	.L89:
+ 514:Core/Src/graphics.c **** 
+ 515:Core/Src/graphics.c ****     for (y = y0; y <= last; y++)
+ 1870              		.loc 1 515 5 is_stmt 1 view .LVU437
+ 1871              		.loc 1 515 12 is_stmt 0 view .LVU438
+ 1872 0092 019C     		ldr	r4, [sp, #4]
+ 502:Core/Src/graphics.c **** 
+ 1873              		.loc 1 502 21 view .LVU439
+ 1874 0094 0025     		movs	r5, #0
+ 502:Core/Src/graphics.c **** 
+ 1875              		.loc 1 502 13 view .LVU440
+ 1876 0096 AB46     		mov	fp, r5
+ 1877 0098 CDF81C80 		str	r8, [sp, #28]
+ 1878 009c 9846     		mov	r8, r3
+ 1879              	.LVL180:
+ 1880              		.loc 1 515 5 view .LVU441
+ 1881 009e 2AE0     		b	.L90
+ 1882              	.LVL181:
+ 1883              	.L100:
+ 486:Core/Src/graphics.c ****         if (x1 < a)
+ 1884              		.loc 1 486 9 is_stmt 1 view .LVU442
+ 487:Core/Src/graphics.c ****             a = x1;
+ 1885              		.loc 1 487 9 view .LVU443
+ 487:Core/Src/graphics.c ****             a = x1;
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccKBrlEE.s 			page 44
+
+
+ 1886              		.loc 1 487 12 is_stmt 0 view .LVU444
+ 1887 00a0 9642     		cmp	r6, r2
+ 1888 00a2 01DC     		bgt	.L86
+ 489:Core/Src/graphics.c ****             b = x1;
+ 1889              		.loc 1 489 14 is_stmt 1 view .LVU445
+ 489:Core/Src/graphics.c ****             b = x1;
+ 1890              		.loc 1 489 17 is_stmt 0 view .LVU446
+ 1891 00a4 12DB     		blt	.L96
+ 486:Core/Src/graphics.c ****         if (x1 < a)
+ 1892              		.loc 1 486 11 view .LVU447
+ 1893 00a6 3246     		mov	r2, r6
+ 1894              	.LVL182:
+ 1895              	.L86:
+ 491:Core/Src/graphics.c ****             a = x2;
+ 1896              		.loc 1 491 9 is_stmt 1 view .LVU448
+ 491:Core/Src/graphics.c ****             a = x2;
+ 1897              		.loc 1 491 12 is_stmt 0 view .LVU449
+ 1898 00a8 9042     		cmp	r0, r2
+ 1899 00aa 02DB     		blt	.L87
+ 493:Core/Src/graphics.c ****             b = x2;
+ 1900              		.loc 1 493 14 is_stmt 1 view .LVU450
+ 493:Core/Src/graphics.c ****             b = x2;
+ 1901              		.loc 1 493 17 is_stmt 0 view .LVU451
+ 1902 00ac B042     		cmp	r0, r6
+ 1903 00ae 11DC     		bgt	.L97
+ 1904 00b0 1046     		mov	r0, r2
+ 1905              	.LVL183:
+ 1906              	.L87:
+ 495:Core/Src/graphics.c **** 
+ 1907              		.loc 1 495 9 is_stmt 1 view .LVU452
+ 1908 00b2 80B2     		uxth	r0, r0
+ 495:Core/Src/graphics.c **** 
+ 1909              		.loc 1 495 37 is_stmt 0 view .LVU453
+ 1910 00b4 321A     		subs	r2, r6, r0
+ 1911 00b6 92B2     		uxth	r2, r2
+ 495:Core/Src/graphics.c **** 
+ 1912              		.loc 1 495 9 view .LVU454
+ 1913 00b8 0132     		adds	r2, r2, #1
+ 1914 00ba 5346     		mov	r3, r10
+ 1915 00bc 92B2     		uxth	r2, r2
+ 1916 00be BDF80410 		ldrh	r1, [sp, #4]
+ 1917 00c2 FFF7FEFF 		bl	drawHorizontalLine
+ 1918              	.LVL184:
+ 497:Core/Src/graphics.c ****     }
+ 1919              		.loc 1 497 9 is_stmt 1 view .LVU455
+ 1920              	.L81:
+ 516:Core/Src/graphics.c ****     {
+ 517:Core/Src/graphics.c ****         a = x0 + sa / dy01;
+ 518:Core/Src/graphics.c ****         b = x0 + sb / dy02;
+ 519:Core/Src/graphics.c ****         sa += dx01;
+ 520:Core/Src/graphics.c ****         sb += dx02;
+ 521:Core/Src/graphics.c ****         /* longhand:
+ 522:Core/Src/graphics.c ****         a = x0 + (x1 - x0) * (y - y0) / (y1 - y0);
+ 523:Core/Src/graphics.c ****         b = x0 + (x2 - x0) * (y - y0) / (y2 - y0);
+ 524:Core/Src/graphics.c ****         */
+ 525:Core/Src/graphics.c ****         if (a > b)
+ 526:Core/Src/graphics.c ****             _swap_int16_t(a, b);
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccKBrlEE.s 			page 45
+
+
+ 527:Core/Src/graphics.c ****         drawHorizontalLine(a, y, b - a + 1, color);
+ 528:Core/Src/graphics.c ****     }
+ 529:Core/Src/graphics.c **** 
+ 530:Core/Src/graphics.c ****     // For lower part of triangle, find scanline crossings for segments
+ 531:Core/Src/graphics.c ****     // 0-2 and 1-2.  This loop is skipped if y1=y2.
+ 532:Core/Src/graphics.c ****     sa = (int32_t)dx12 * (y - y1);
+ 533:Core/Src/graphics.c ****     sb = (int32_t)dx02 * (y - y0);
+ 534:Core/Src/graphics.c ****     for (; y <= y2; y++)
+ 535:Core/Src/graphics.c ****     {
+ 536:Core/Src/graphics.c ****         a = x1 + sa / dy12;
+ 537:Core/Src/graphics.c ****         b = x0 + sb / dy02;
+ 538:Core/Src/graphics.c ****         sa += dx12;
+ 539:Core/Src/graphics.c ****         sb += dx02;
+ 540:Core/Src/graphics.c ****         /* longhand:
+ 541:Core/Src/graphics.c ****         a = x1 + (x2 - x1) * (y - y1) / (y2 - y1);
+ 542:Core/Src/graphics.c ****         b = x0 + (x2 - x0) * (y - y0) / (y2 - y0);
+ 543:Core/Src/graphics.c ****         */
+ 544:Core/Src/graphics.c ****         if (a > b)
+ 545:Core/Src/graphics.c ****             _swap_int16_t(a, b);
+ 546:Core/Src/graphics.c ****         drawHorizontalLine(a, y, b - a + 1, color);
+ 547:Core/Src/graphics.c ****     }
+ 548:Core/Src/graphics.c **** }...
+ 1921              		.loc 1 548 1 is_stmt 0 view .LVU456
+ 1922 00c6 09B0     		add	sp, sp, #36
+ 1923              		.cfi_remember_state
+ 1924              		.cfi_def_cfa_offset 36
+ 1925              		@ sp needed
+ 1926 00c8 BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
+ 1927              	.LVL185:
+ 1928              	.L96:
+ 1929              		.cfi_restore_state
+ 1930              		.loc 1 548 1 view .LVU457
+ 1931 00cc 1346     		mov	r3, r2
+ 486:Core/Src/graphics.c ****         a = b = x0;
+ 1932              		.loc 1 486 11 view .LVU458
+ 1933 00ce 3246     		mov	r2, r6
+ 1934              	.LVL186:
+ 490:Core/Src/graphics.c ****             b = x1;
+ 1935              		.loc 1 490 15 view .LVU459
+ 1936 00d0 1E46     		mov	r6, r3
+ 1937              	.LVL187:
+ 490:Core/Src/graphics.c ****             b = x1;
+ 1938              		.loc 1 490 15 view .LVU460
+ 1939 00d2 E9E7     		b	.L86
+ 1940              	.LVL188:
+ 1941              	.L97:
+ 494:Core/Src/graphics.c ****             b = x2;
+ 1942              		.loc 1 494 15 view .LVU461
+ 1943 00d4 0646     		mov	r6, r0
+ 1944              	.LVL189:
+ 494:Core/Src/graphics.c ****             b = x2;
+ 1945              		.loc 1 494 15 view .LVU462
+ 1946 00d6 1046     		mov	r0, r2
+ 1947              	.LVL190:
+ 494:Core/Src/graphics.c ****             b = x2;
+ 1948              		.loc 1 494 15 view .LVU463
+ 1949 00d8 EBE7     		b	.L87
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccKBrlEE.s 			page 46
+
+
+ 1950              	.LVL191:
+ 1951              	.L98:
+ 511:Core/Src/graphics.c ****         last = y1; // Include y1 scanline
+ 1952              		.loc 1 511 14 view .LVU464
+ 1953 00da 069B     		ldr	r3, [sp, #24]
+ 1954 00dc D9E7     		b	.L89
+ 1955              	.LVL192:
+ 1956              	.L91:
+ 526:Core/Src/graphics.c ****             _swap_int16_t(a, b);
+ 1957              		.loc 1 526 32 is_stmt 1 discriminator 1 view .LVU465
+ 527:Core/Src/graphics.c ****         drawHorizontalLine(a, y, b - a + 1, color);
+ 1958              		.loc 1 527 9 discriminator 1 view .LVU466
+ 1959 00de 80B2     		uxth	r0, r0
+ 527:Core/Src/graphics.c ****         drawHorizontalLine(a, y, b - a + 1, color);
+ 1960              		.loc 1 527 9 is_stmt 0 discriminator 1 view .LVU467
+ 1961 00e0 A4B2     		uxth	r4, r4
+ 527:Core/Src/graphics.c ****         drawHorizontalLine(a, y, b - a + 1, color);
+ 1962              		.loc 1 527 36 discriminator 1 view .LVU468
+ 1963 00e2 121A     		subs	r2, r2, r0
+ 1964              	.LVL193:
+ 527:Core/Src/graphics.c ****         drawHorizontalLine(a, y, b - a + 1, color);
+ 1965              		.loc 1 527 36 discriminator 1 view .LVU469
+ 1966 00e4 92B2     		uxth	r2, r2
+ 527:Core/Src/graphics.c ****         drawHorizontalLine(a, y, b - a + 1, color);
+ 1967              		.loc 1 527 9 discriminator 1 view .LVU470
+ 1968 00e6 0132     		adds	r2, r2, #1
+ 1969 00e8 5346     		mov	r3, r10
+ 1970 00ea 92B2     		uxth	r2, r2
+ 1971 00ec 2146     		mov	r1, r4
+ 1972 00ee FFF7FEFF 		bl	drawHorizontalLine
+ 1973              	.LVL194:
+ 515:Core/Src/graphics.c ****     for (y = y0; y <= last; y++)
+ 1974              		.loc 1 515 29 is_stmt 1 discriminator 1 view .LVU471
+ 515:Core/Src/graphics.c ****     for (y = y0; y <= last; y++)
+ 1975              		.loc 1 515 30 is_stmt 0 discriminator 1 view .LVU472
+ 1976 00f2 0134     		adds	r4, r4, #1
+ 1977              	.LVL195:
+ 515:Core/Src/graphics.c ****     for (y = y0; y <= last; y++)
+ 1978              		.loc 1 515 30 discriminator 1 view .LVU473
+ 1979 00f4 24B2     		sxth	r4, r4
+ 1980              	.LVL196:
+ 1981              	.L90:
+ 515:Core/Src/graphics.c ****     for (y = y0; y <= last; y++)
+ 1982              		.loc 1 515 18 is_stmt 1 discriminator 2 view .LVU474
+ 515:Core/Src/graphics.c ****     for (y = y0; y <= last; y++)
+ 1983              		.loc 1 515 5 is_stmt 0 discriminator 2 view .LVU475
+ 1984 00f6 4445     		cmp	r4, r8
+ 1985 00f8 11DC     		bgt	.L101
+ 517:Core/Src/graphics.c ****         a = x0 + sa / dy01;
+ 1986              		.loc 1 517 9 is_stmt 1 view .LVU476
+ 517:Core/Src/graphics.c ****         a = x0 + sa / dy01;
+ 1987              		.loc 1 517 21 is_stmt 0 view .LVU477
+ 1988 00fa 049B     		ldr	r3, [sp, #16]
+ 1989 00fc 9BFBF3F2 		sdiv	r2, fp, r3
+ 517:Core/Src/graphics.c ****         a = x0 + sa / dy01;
+ 1990              		.loc 1 517 16 view .LVU478
+ 1991 0100 3244     		add	r2, r2, r6
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccKBrlEE.s 			page 47
+
+
+ 517:Core/Src/graphics.c ****         a = x0 + sa / dy01;
+ 1992              		.loc 1 517 11 view .LVU479
+ 1993 0102 12B2     		sxth	r2, r2
+ 1994              	.LVL197:
+ 518:Core/Src/graphics.c ****         b = x0 + sb / dy02;
+ 1995              		.loc 1 518 9 is_stmt 1 view .LVU480
+ 518:Core/Src/graphics.c ****         b = x0 + sb / dy02;
+ 1996              		.loc 1 518 21 is_stmt 0 view .LVU481
+ 1997 0104 95FBF7F0 		sdiv	r0, r5, r7
+ 518:Core/Src/graphics.c ****         b = x0 + sb / dy02;
+ 1998              		.loc 1 518 16 view .LVU482
+ 1999 0108 3044     		add	r0, r0, r6
+ 518:Core/Src/graphics.c ****         b = x0 + sb / dy02;
+ 2000              		.loc 1 518 11 view .LVU483
+ 2001 010a 00B2     		sxth	r0, r0
+ 2002              	.LVL198:
+ 519:Core/Src/graphics.c ****         sa += dx01;
+ 2003              		.loc 1 519 9 is_stmt 1 view .LVU484
+ 519:Core/Src/graphics.c ****         sa += dx01;
+ 2004              		.loc 1 519 12 is_stmt 0 view .LVU485
+ 2005 010c 039B     		ldr	r3, [sp, #12]
+ 2006 010e 9B44     		add	fp, fp, r3
+ 2007              	.LVL199:
+ 520:Core/Src/graphics.c ****         sb += dx02;
+ 2008              		.loc 1 520 9 is_stmt 1 view .LVU486
+ 520:Core/Src/graphics.c ****         sb += dx02;
+ 2009              		.loc 1 520 12 is_stmt 0 view .LVU487
+ 2010 0110 4D44     		add	r5, r5, r9
+ 2011              	.LVL200:
+ 525:Core/Src/graphics.c ****         if (a > b)
+ 2012              		.loc 1 525 9 is_stmt 1 view .LVU488
+ 525:Core/Src/graphics.c ****         if (a > b)
+ 2013              		.loc 1 525 12 is_stmt 0 view .LVU489
+ 2014 0112 8242     		cmp	r2, r0
+ 2015 0114 E3DC     		bgt	.L91
+ 2016 0116 0346     		mov	r3, r0
+ 517:Core/Src/graphics.c ****         a = x0 + sa / dy01;
+ 2017              		.loc 1 517 11 view .LVU490
+ 2018 0118 1046     		mov	r0, r2
+ 2019              	.LVL201:
+ 518:Core/Src/graphics.c ****         b = x0 + sb / dy02;
+ 2020              		.loc 1 518 11 view .LVU491
+ 2021 011a 1A46     		mov	r2, r3
+ 2022              	.LVL202:
+ 518:Core/Src/graphics.c ****         b = x0 + sb / dy02;
+ 2023              		.loc 1 518 11 view .LVU492
+ 2024 011c DFE7     		b	.L91
+ 2025              	.LVL203:
+ 2026              	.L101:
+ 532:Core/Src/graphics.c ****     sa = (int32_t)dx12 * (y - y1);
+ 2027              		.loc 1 532 29 view .LVU493
+ 2028 011e DDF81C80 		ldr	r8, [sp, #28]
+ 532:Core/Src/graphics.c ****     sa = (int32_t)dx12 * (y - y1);
+ 2029              		.loc 1 532 5 is_stmt 1 view .LVU494
+ 532:Core/Src/graphics.c ****     sa = (int32_t)dx12 * (y - y1);
+ 2030              		.loc 1 532 29 is_stmt 0 view .LVU495
+ 2031 0122 069B     		ldr	r3, [sp, #24]
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccKBrlEE.s 			page 48
+
+
+ 2032 0124 A4EB030B 		sub	fp, r4, r3
+ 2033              	.LVL204:
+ 532:Core/Src/graphics.c ****     sa = (int32_t)dx12 * (y - y1);
+ 2034              		.loc 1 532 8 view .LVU496
+ 2035 0128 009B     		ldr	r3, [sp]
+ 2036 012a 0BFB03FB 		mul	fp, fp, r3
+ 2037              	.LVL205:
+ 533:Core/Src/graphics.c ****     sb = (int32_t)dx02 * (y - y0);
+ 2038              		.loc 1 533 5 is_stmt 1 view .LVU497
+ 533:Core/Src/graphics.c ****     sb = (int32_t)dx02 * (y - y0);
+ 2039              		.loc 1 533 29 is_stmt 0 view .LVU498
+ 2040 012e 019B     		ldr	r3, [sp, #4]
+ 2041 0130 E51A     		subs	r5, r4, r3
+ 2042              	.LVL206:
+ 533:Core/Src/graphics.c ****     sb = (int32_t)dx02 * (y - y0);
+ 2043              		.loc 1 533 8 view .LVU499
+ 2044 0132 05FB09F5 		mul	r5, r5, r9
+ 2045              	.LVL207:
+ 534:Core/Src/graphics.c ****     for (; y <= y2; y++)
+ 2046              		.loc 1 534 5 is_stmt 1 view .LVU500
+ 2047 0136 0BE0     		b	.L93
+ 2048              	.L94:
+ 2049              	.LVL208:
+ 545:Core/Src/graphics.c ****             _swap_int16_t(a, b);
+ 2050              		.loc 1 545 32 discriminator 1 view .LVU501
+ 546:Core/Src/graphics.c ****         drawHorizontalLine(a, y, b - a + 1, color);
+ 2051              		.loc 1 546 9 discriminator 1 view .LVU502
+ 2052 0138 80B2     		uxth	r0, r0
+ 546:Core/Src/graphics.c ****         drawHorizontalLine(a, y, b - a + 1, color);
+ 2053              		.loc 1 546 9 is_stmt 0 discriminator 1 view .LVU503
+ 2054 013a A4B2     		uxth	r4, r4
+ 546:Core/Src/graphics.c ****         drawHorizontalLine(a, y, b - a + 1, color);
+ 2055              		.loc 1 546 36 discriminator 1 view .LVU504
+ 2056 013c 121A     		subs	r2, r2, r0
+ 2057              	.LVL209:
+ 546:Core/Src/graphics.c ****         drawHorizontalLine(a, y, b - a + 1, color);
+ 2058              		.loc 1 546 36 discriminator 1 view .LVU505
+ 2059 013e 92B2     		uxth	r2, r2
+ 546:Core/Src/graphics.c ****         drawHorizontalLine(a, y, b - a + 1, color);
+ 2060              		.loc 1 546 9 discriminator 1 view .LVU506
+ 2061 0140 0132     		adds	r2, r2, #1
+ 2062 0142 5346     		mov	r3, r10
+ 2063 0144 92B2     		uxth	r2, r2
+ 2064 0146 2146     		mov	r1, r4
+ 2065 0148 FFF7FEFF 		bl	drawHorizontalLine
+ 2066              	.LVL210:
+ 534:Core/Src/graphics.c ****     for (; y <= y2; y++)
+ 2067              		.loc 1 534 21 is_stmt 1 discriminator 1 view .LVU507
+ 534:Core/Src/graphics.c ****     for (; y <= y2; y++)
+ 2068              		.loc 1 534 22 is_stmt 0 discriminator 1 view .LVU508
+ 2069 014c 0134     		adds	r4, r4, #1
+ 2070              	.LVL211:
+ 534:Core/Src/graphics.c ****     for (; y <= y2; y++)
+ 2071              		.loc 1 534 22 discriminator 1 view .LVU509
+ 2072 014e 24B2     		sxth	r4, r4
+ 2073              	.LVL212:
+ 2074              	.L93:
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccKBrlEE.s 			page 49
+
+
+ 534:Core/Src/graphics.c ****     for (; y <= y2; y++)
+ 2075              		.loc 1 534 12 is_stmt 1 discriminator 1 view .LVU510
+ 534:Core/Src/graphics.c ****     for (; y <= y2; y++)
+ 2076              		.loc 1 534 5 is_stmt 0 discriminator 1 view .LVU511
+ 2077 0150 A045     		cmp	r8, r4
+ 2078 0152 B8DB     		blt	.L81
+ 536:Core/Src/graphics.c ****         a = x1 + sa / dy12;
+ 2079              		.loc 1 536 9 is_stmt 1 view .LVU512
+ 536:Core/Src/graphics.c ****         a = x1 + sa / dy12;
+ 2080              		.loc 1 536 21 is_stmt 0 view .LVU513
+ 2081 0154 059B     		ldr	r3, [sp, #20]
+ 2082 0156 9BFBF3F2 		sdiv	r2, fp, r3
+ 536:Core/Src/graphics.c ****         a = x1 + sa / dy12;
+ 2083              		.loc 1 536 16 view .LVU514
+ 2084 015a 029B     		ldr	r3, [sp, #8]
+ 2085 015c 1A44     		add	r2, r2, r3
+ 536:Core/Src/graphics.c ****         a = x1 + sa / dy12;
+ 2086              		.loc 1 536 11 view .LVU515
+ 2087 015e 12B2     		sxth	r2, r2
+ 2088              	.LVL213:
+ 537:Core/Src/graphics.c ****         b = x0 + sb / dy02;
+ 2089              		.loc 1 537 9 is_stmt 1 view .LVU516
+ 537:Core/Src/graphics.c ****         b = x0 + sb / dy02;
+ 2090              		.loc 1 537 21 is_stmt 0 view .LVU517
+ 2091 0160 95FBF7F0 		sdiv	r0, r5, r7
+ 537:Core/Src/graphics.c ****         b = x0 + sb / dy02;
+ 2092              		.loc 1 537 16 view .LVU518
+ 2093 0164 3044     		add	r0, r0, r6
+ 537:Core/Src/graphics.c ****         b = x0 + sb / dy02;
+ 2094              		.loc 1 537 11 view .LVU519
+ 2095 0166 00B2     		sxth	r0, r0
+ 2096              	.LVL214:
+ 538:Core/Src/graphics.c ****         sa += dx12;
+ 2097              		.loc 1 538 9 is_stmt 1 view .LVU520
+ 538:Core/Src/graphics.c ****         sa += dx12;
+ 2098              		.loc 1 538 12 is_stmt 0 view .LVU521
+ 2099 0168 009B     		ldr	r3, [sp]
+ 2100 016a 9B44     		add	fp, fp, r3
+ 2101              	.LVL215:
+ 539:Core/Src/graphics.c ****         sb += dx02;
+ 2102              		.loc 1 539 9 is_stmt 1 view .LVU522
+ 539:Core/Src/graphics.c ****         sb += dx02;
+ 2103              		.loc 1 539 12 is_stmt 0 view .LVU523
+ 2104 016c 4D44     		add	r5, r5, r9
+ 2105              	.LVL216:
+ 544:Core/Src/graphics.c ****         if (a > b)
+ 2106              		.loc 1 544 9 is_stmt 1 view .LVU524
+ 544:Core/Src/graphics.c ****         if (a > b)
+ 2107              		.loc 1 544 12 is_stmt 0 view .LVU525
+ 2108 016e 8242     		cmp	r2, r0
+ 2109 0170 E2DC     		bgt	.L94
+ 2110 0172 0346     		mov	r3, r0
+ 536:Core/Src/graphics.c ****         a = x1 + sa / dy12;
+ 2111              		.loc 1 536 11 view .LVU526
+ 2112 0174 1046     		mov	r0, r2
+ 2113              	.LVL217:
+ 537:Core/Src/graphics.c ****         b = x0 + sb / dy02;
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccKBrlEE.s 			page 50
+
+
+ 2114              		.loc 1 537 11 view .LVU527
+ 2115 0176 1A46     		mov	r2, r3
+ 2116              	.LVL218:
+ 537:Core/Src/graphics.c ****         b = x0 + sb / dy02;
+ 2117              		.loc 1 537 11 view .LVU528
+ 2118 0178 DEE7     		b	.L94
+ 2119              		.cfi_endproc
+ 2120              	.LFE1167:
+ 2122              		.text
+ 2123              	.Letext0:
+ 2124              		.file 2 "/opt/homebrew/Cellar/arm-none-eabi-gcc/10.3-2021.07/gcc/arm-none-eabi/include/machine/_de
+ 2125              		.file 3 "/opt/homebrew/Cellar/arm-none-eabi-gcc/10.3-2021.07/gcc/arm-none-eabi/include/sys/_stdint
+ 2126              		.file 4 "Core/Inc/ili9341.h"
+ 2127              		.file 5 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h"
+ARM GAS  /var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccKBrlEE.s 			page 51
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 graphics.c
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccKBrlEE.s:18     .text.drawLine:0000000000000000 $t
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccKBrlEE.s:26     .text.drawLine:0000000000000000 drawLine
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccKBrlEE.s:211    .text.drawVerticalLine:0000000000000000 $t
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccKBrlEE.s:218    .text.drawVerticalLine:0000000000000000 drawVerticalLine
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccKBrlEE.s:294    .text.drawVerticalLine:0000000000000048 $d
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccKBrlEE.s:300    .text.drawHorizontalLine:0000000000000000 $t
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccKBrlEE.s:307    .text.drawHorizontalLine:0000000000000000 drawHorizontalLine
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccKBrlEE.s:383    .text.drawHorizontalLine:0000000000000048 $d
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccKBrlEE.s:389    .text.drawCircle:0000000000000000 $t
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccKBrlEE.s:396    .text.drawCircle:0000000000000000 drawCircle
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccKBrlEE.s:616    .text.drawCircleHelper:0000000000000000 $t
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccKBrlEE.s:623    .text.drawCircleHelper:0000000000000000 drawCircleHelper
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccKBrlEE.s:848    .text.fillCircleHelper:0000000000000000 $t
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccKBrlEE.s:855    .text.fillCircleHelper:0000000000000000 fillCircleHelper
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccKBrlEE.s:1095   .text.fillCircle:0000000000000000 $t
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccKBrlEE.s:1102   .text.fillCircle:0000000000000000 fillCircle
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccKBrlEE.s:1159   .text.drawRect:0000000000000000 $t
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccKBrlEE.s:1166   .text.drawRect:0000000000000000 drawRect
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccKBrlEE.s:1238   .text.fillRect:0000000000000000 $t
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccKBrlEE.s:1245   .text.fillRect:0000000000000000 fillRect
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccKBrlEE.s:1346   .text.fillRect:0000000000000068 $d
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccKBrlEE.s:1352   .text.drawRoundRect:0000000000000000 $t
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccKBrlEE.s:1359   .text.drawRoundRect:0000000000000000 drawRoundRect
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccKBrlEE.s:1525   .text.fillRoundRect:0000000000000000 $t
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccKBrlEE.s:1532   .text.fillRoundRect:0000000000000000 fillRoundRect
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccKBrlEE.s:1649   .text.drawTriangle:0000000000000000 $t
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccKBrlEE.s:1656   .text.drawTriangle:0000000000000000 drawTriangle
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccKBrlEE.s:1713   .text.fillTriangle:0000000000000000 $t
+/var/folders/9y/n02fl3g16gnf7ppy14xghdy80000gn/T//ccKBrlEE.s:1720   .text.fillTriangle:0000000000000000 fillTriangle
+
+UNDEFINED SYMBOLS
+ili9341DrawPixel
+ili9341SetAddress
+ili9341DrawColorBurst
+_lcd_width
+_lcd_height
