@@ -16,6 +16,7 @@
  ******************************************************************************
  */
 /* Includes */
+#include "main.h"
 #include "data_transfer.h"
 #include "fatfs.h"
 #include "esp32.h"
