@@ -1,6 +1,6 @@
 #include "utilities.h"
 
-void coords2string(uint16_t xCoords[100], uint16_t yCoords[100], size_t coords_size, char* output_str)
+void coords2string(uint16_t xCoords[100], uint16_t yCoords[100], size_t coords_size, char *output_str)
 {
     // char *strBuff = calloc(_MQTT_TX_SIZE, sizeof(uint8_t)); // allocate and clear memory
     uint8_t coord_idx = 0;
@@ -31,7 +31,7 @@ void coords2string(uint16_t xCoords[100], uint16_t yCoords[100], size_t coords_s
     strcat(&output_str[str_idx], "\"");
 }
 
-uint8_t stringToCoord(const char *str, uint16_t* xCoords, uint16_t* yCoords)
+uint8_t stringToCoord(const char *str, uint16_t *xCoords, uint16_t *yCoords)
 {
     uint8_t numCoords = 0;
     char *str_c = strdup(str);
@@ -65,7 +65,7 @@ int num2digits(int num)
     }
 }
 
-bool split_string(char* input_string, char* output_array[], uint8_t* output_size)
+bool split_string(char *input_string, char *output_array[], uint8_t *output_size)
 {
     char *token;
     int i = 0;
@@ -93,4 +93,21 @@ bool split_string(char* input_string, char* output_array[], uint8_t* output_size
 
     // Return true if string is successfully split, false otherwise
     return i > 0;
+}
+
+/** @brief Constrains an input uint16_t between two values.
+ *
+ *  @param input Value to be constrained.
+ *  @param minValue Lower threshold.
+ *  @param maxValue Upper threshold.
+ *  @return uint16_t Constrained value.
+ */
+uint16_t constrain16(uint16_t input, uint16_t minValue, uint16_t maxValue)
+{
+    if (input < minValue)
+        return minValue;
+    else if (input > maxValue)
+        return maxValue;
+    else
+        return input;
 }
