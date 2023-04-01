@@ -65,11 +65,11 @@ int main(void)
         serialWrite("Init Failed\n");
 #endif
 
-    ili9341FillScreen(BLUE);
-    ili9341DrawImage(0, 0, ILI9341_SCREEN_WIDTH, ILI9341_SCREEN_HEIGHT, nellie);
+    ili9341FillScreen(BLACK);
 
+    // Buffs.RxBuffer_Data = calloc(1024, 1);
     lwrb_init(&Buffs.RxBuffer, (void *)Buffs.RxBuffer_Data, sizeof(Buffs.RxBuffer_Data));
-
+    Buffs.RxBuffer.buff = malloc(RX_RB_SIZE);
     Wifi_Init();
     while (!Wifi_GetApConnection())
     { // connect if not connected
@@ -84,11 +84,21 @@ int main(void)
     initTxPacket(&TxPacket);
     initRxPacket(&RxPacket);
 
+    initCoords(&TxCoords);
+    initCoords(&RxCoords);
+
     while (1)
     {
         if (GPIOB->IDR & GPIO_IDR_ID4)
         {
-            ili9341DrawImage(0, 0, ILI9341_SCREEN_WIDTH, ILI9341_SCREEN_HEIGHT, nellie);
+            // SysTick->CTRL &= ~SysTick_CTRL_ENABLE_Msk;
+            ili9341FillScreen(BLACK);
+            memset(RxPacket.data, '\0', _MQTT_RX_SIZE);
+            resetTouchIdx();
+            lwrb_reset(&Buffs.RxBuffer);
+            // drawRect(50, 60, 50, 60, WHITE);
+            // lwrb_init(&Buffs.RxBuffer, (void *)Buffs.RxBuffer_Data, sizeof(Buffs.RxBuffer_Data));
+            // SysTick->CTRL |= SysTick_CTRL_ENABLE_Msk;
         }
         readAndSendTouches(&TxPacket);
         recvAndDisplayTouches(&RxPacket);

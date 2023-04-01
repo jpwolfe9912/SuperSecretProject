@@ -4,7 +4,7 @@
   * @author  MCD Application Team
   * @brief   CORTEX HAL module driver.
   *          This file provides firmware functions to manage the following
-  *          functionalities of the CORTEX:
+  *          functionalities of the CORTEX
   *           + Initialization and Configuration functions
   *           + Peripheral Control functions
   *
