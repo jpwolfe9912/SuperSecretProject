@@ -155,9 +155,8 @@ bool Wifi_WaitForString(uint32_t TimeOut_ms, uint8_t *result, uint8_t CountOfPar
 void Wifi_RxCallBack(void);
 // ###################################################################################################
 //  Basic functions of ESP8266
+void Wifi_Unbrick(void);
 bool Wifi_Init(void);
-void Wifi_Enable(void);
-void Wifi_Disable(void);
 bool Wifi_Restart(void);
 bool Wifi_DeepSleep(uint16_t DelayMs);
 bool Wifi_FactoryReset(void);

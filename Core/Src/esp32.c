@@ -11,7 +11,7 @@ bool Wifi_SendRaw(uint8_t *data, uint16_t len)
     if (len <= _WIFI_TX_SIZE)
     {
         // Send the information in data through the UART of the ESP8266
-        usart_transmit_dma((char*)data);
+        usart_transmit_dma((char *)data);
         return true;
     }
     else
@@ -65,7 +65,7 @@ bool Wifi_WaitForString(uint32_t TimeOut_ms, uint8_t *result, uint8_t CountOfPar
         delayMicroseconds(20000);
         for (uint8_t mx = 0; mx < CountOfParameter; mx++)
         {
-            if (strstr((char *)Buffs.RxBuffer.buff, arg[mx]) != NULL)  // TODO change to lwrb_find()
+            if (strstr((char *)Buffs.RxBuffer.buff, arg[mx]) != NULL) // TODO change to lwrb_find()
             // if (strstr((char *)Buffs.RxBuffer.buff, arg[mx]) != NULL)
             {
                 *result = mx + 1;
@@ -181,12 +181,18 @@ void Wifi_TxClear(void)
     memset(Buffs.TxBuffer, '\0', _WIFI_TX_SIZE);
 }
 // #########################################################################################################
-void Wifi_RxCallBack(void)
+void Wifi_Unbrick(void)
 {
-    // Buffs.RxBuffer.buff[Wifi.RxIndex] = Wifi.usartBuff;
-    // if (Wifi.RxIndex < _WIFI_RX_SIZE)
-    //     Wifi.RxIndex++;
-    // usart1StartRxIt();
+    uint8_t result;
+    do
+    {
+        if (Wifi_SendString("\r\nThis is a random string to send to force the MQTTPUBRAW string length to be reached so it unbricks\r\n") == false)
+            break;
+        Wifi_WaitForString(_WIFI_WAIT_TIME_LOW, &result, 2, "OK", "ERROR");
+        
+        Wifi_RxClear();
+        Wifi_TxClear();
+    } while (result == 0);
 }
 // #########################################################################################################
 // #########################################################################################################
@@ -203,8 +209,10 @@ bool Wifi_Init(void)
 
         if (Wifi_SendString("\r\nAT\r\n") == false)
             break;
-        if (Wifi_WaitForString(_WIFI_WAIT_TIME_LOW, &result, 2, "OK", "ERROR") == false)
+        if (Wifi_WaitForString(_WIFI_WAIT_TIME_LOW, &result, 2, "OK", "ERROR") == false){
+            Wifi_Unbrick();
             break;
+        }
         if (result == 2)
             break;
         returnVal = true;
@@ -1010,11 +1018,12 @@ bool SNTP_TimeUpdated(void)
         if (result == 2) // It was find the "ERROR" String in the receiving information
             break;
 
-        char* search_str = "+CIPSNTPTIME:";
-        char* search_year = "2023";
+        char *search_str = "+CIPSNTPTIME:";
+        char *search_year = "2023";
         size_t search_idx = 0;
-        lwrb_find(&Buffs.RxBuffer, (void*)search_str, strlen(search_str), 0, &search_idx);
-        if(!lwrb_find(&Buffs.RxBuffer, (void*)search_year, strlen(search_year), search_idx, &search_idx)){
+        lwrb_find(&Buffs.RxBuffer, (void *)search_str, strlen(search_str), 0, &search_idx);
+        if (!lwrb_find(&Buffs.RxBuffer, (void *)search_year, strlen(search_year), search_idx, &search_idx))
+        {
             break;
         }
         //  = strstr((char *)Buffs.RxBuffer.buff, "+CIPSNTPTIME:");
@@ -1176,7 +1185,7 @@ bool MQTT_GetConnection(void)
 {
     uint8_t result;
     bool returnVal = false;
-    static char* items[6];
+    static char *items[6];
     uint8_t items_size = 0;
     do
     {
@@ -1192,14 +1201,14 @@ bool MQTT_GetConnection(void)
         char *str = strstr((char *)Buffs.RxBuffer.buff, "+MQTTCONN:");
         // if (sscanf(str, "+MQTTCONN:0,%d,%d,\"%[^\"]\",\"%u\",\"\",%d", (int *)&MQTT.state, (int *)&MQTT.scheme, MQTT.host, (int *)&MQTT.port, (int *)&MQTT.reconnect) == false)
         //     break;
-        if(!split_string(str, items, &items_size))
+        if (!split_string(str, items, &items_size))
             break;
         MQTT.state = (MQTTStates_e)atoi(items[0]);
         MQTT.scheme = (MQTTSchemes_e)atoi(items[1]);
         strcpy(MQTT.host, items[2]);
         MQTT.port = (uint16_t)atoi(items[3]);
         MQTT.reconnect = (bool)atoi(items[5]);
-        
+
         if ((MQTT.state >= MQTTStates_Established) && (MQTT.host != NULL))
             MQTT.connected = true;
         else
@@ -1238,8 +1247,10 @@ bool MQTT_PublishRaw(MQTT_Message_t Message)
         sprintf((char *)Buffs.TxBuffer, "AT+MQTTPUBRAW=%u,\"%s\",%u,0,0\r\n", MQTT.link_id, Message.topic, Message.length);
         if (Wifi_SendString((char *)Buffs.TxBuffer) == false)
             break;
-        if (Wifi_WaitForString(_WIFI_WAIT_TIME_LOW, &result, 2, "OK", "ERROR") == false)
+        if (Wifi_WaitForString(_WIFI_WAIT_TIME_LOW, &result, 2, "OK", "ERROR") == false){
+            Wifi_Unbrick();
             break;       // The timeout was completed and the string was not there
+        }
         if (result == 2) // It was find the "ERROR" String in the receiving information
             break;
         /* Send all data */
@@ -1248,8 +1259,8 @@ bool MQTT_PublishRaw(MQTT_Message_t Message)
         /* Wait for response */
         if (Wifi_WaitForString(_WIFI_WAIT_TIME_LOW, &result, 2, "+MQTTPUB:OK", "+MQTTPUB:FAIL") == false)
         {
-            usart_transmit_dma(" 0;0 0;0 0;0 0;0 0;0 0;0 0;0 0;0 0;0 0;0 0;0 0;0 0;0 0;0 0;0 0;0 0;0 0;0 0;0 0;0 0;0 0;0 0;0");
-            break;       // The timeout was completed and the string was not there
+            Wifi_Unbrick();
+            break; // The timeout was completed and the string was not there
         }
         if (result == 2) // It was find the "FAIL" String in the receiving information
             break;
@@ -1359,18 +1370,18 @@ bool MQTT_WaitForMessage(MQTT_Message_t *Message, uint32_t waitTime)
     return returnVal;
 }
 // #########################################################################################################
-bool MQTT_ListenForMessage(MQTT_Message_t *Message, char *findStr, size_t* start_idx)
+bool MQTT_ListenForMessage(MQTT_Message_t *Message, char *findStr, size_t *start_idx)
 {
     bool returnVal = false;
     size_t find_idx = 0;
-    char* items[3];
+    char *items[3];
     uint8_t items_size;
     do
     {
         if (lwrb_find(&Buffs.RxBuffer, (void *)findStr, strlen(findStr), *start_idx, &find_idx))
         {
             char *str = (char *)Buffs.RxBuffer.buff + find_idx;
-            *start_idx = find_idx;   // start new search at last index
+            *start_idx = find_idx; // start new search at last index
             if (!split_string(str, items, &items_size))
                 break;
             strcpy(Message->topic, items[0]);
