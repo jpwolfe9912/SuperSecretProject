@@ -35,17 +35,17 @@ extern "C" {
 /* USER CODE END Includes */
 
 /* USER CODE BEGIN Private defines */
-#define RX_DMA_SIZE 2048
+#define RX_DMA_SIZE 1024
 #define RX_RB_SIZE 1024
 #define TX_SIZE 1024
 
 typedef struct 
 {
-    uint8_t RxBuffer_DMA[RX_DMA_SIZE];
-    lwrb_t RxBuffer;
-    uint8_t RxBuffer_Data[RX_RB_SIZE];
-
     uint8_t TxBuffer[TX_SIZE];
+
+    uint8_t RxBuffer_DMA[RX_DMA_SIZE];
+    uint8_t RxBuffer_Data[RX_RB_SIZE];
+    lwrb_t RxBuffer;
 } UsartBuffs_t;
 
 
