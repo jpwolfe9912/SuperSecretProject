@@ -170,8 +170,11 @@ void i2c1Read(uint8_t slaveAdd, uint8_t reg, uint8_t *pData, uint8_t size)
     I2C1->CR2 |= I2C_CR2_AUTOEND;
     I2C1->CR2 |= I2C_CR2_START;
 
-    while (!tx_finished)
-        ;
+    uint32_t currTime = millis();
+    while (!tx_finished){
+        if((millis() - currTime) > 1000)
+            break;
+    }
     tx_finished = false;
 
     /* Receive */
