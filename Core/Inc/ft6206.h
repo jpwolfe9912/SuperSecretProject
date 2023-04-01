@@ -44,7 +44,8 @@ typedef struct
 } TouchData_t;
 
 extern TouchData_t touchData;
+
 bool ft6206Init(void);
-void ft6206ReadData(void);
+bool ft6206ReadData(void);
 
 #endif

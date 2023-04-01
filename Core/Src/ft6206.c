@@ -78,8 +78,9 @@ bool ft6206Init(void)
     return true;
 }
 
-void ft6206ReadData(void)
+bool ft6206ReadData(void)
 {
+    bool dataReady = false;
     uint8_t rawData[16];
     i2c1Read(FT62XX_ADDR, 0x00, rawData, sizeof(rawData));
 
@@ -93,13 +94,15 @@ void ft6206ReadData(void)
     if ((touchData.touches > 2) || (touchData.touches == 0))
     {
         touchData.touches = 0;
+        return dataReady = false;
     }
-
-    touchData.yPos = 240 - (((rawData[3] & 0x0F) << 8U) | rawData[4]);
-    touchData.xPos = ((rawData[5] & 0x0F) << 8U) | rawData[6];
-    touchData.touchId = (rawData[5] >> 4U) & 0x0F;
-    touchData.yPos = touchData.yPos > 240 ? 240 : touchData.yPos;
-    touchData.xPos = touchData.xPos > 320 ? 320 : touchData.xPos;
+    else
+    {
+        touchData.yPos = constrain16(240 - (((rawData[3] & 0x0F) << 8U) | rawData[4]), 0, 240);
+        touchData.xPos = constrain16(((rawData[5] & 0x0F) << 8U) | rawData[6], 0, 320);
+        touchData.touchId = (rawData[5] >> 4U) & 0x0F;
+        return dataReady = true;
+    }
 
 #ifdef FT62XX_DEBUG
 
