@@ -22,12 +22,10 @@ ldscript: STM32L432KCUx_FLASH.ld # linker script
 # Compiler definitions. The -D prefix for the compiler will be automatically added.
 cDefinitions: 
   - USE_FULL_LL_DRIVER
-  - USE_HAL_DRIVER
   - STM32L432xx
 
 cxxDefinitions: 
   - USE_FULL_LL_DRIVER
-  - USE_HAL_DRIVER
   - STM32L432xx
 
 asDefinitions: []

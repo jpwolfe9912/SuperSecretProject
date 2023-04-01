@@ -1,12 +1,12 @@
 #include "data_transfer.h"
 
-uint8_t txTouchIdx = 0;
+// uint8_t txTouchIdx = 0;
 bool txDataReady = false;
 uint32_t sendIdx = 0;
 
 bool rxDataReady = false;
-uint8_t touchDispIdx = 0;
-uint8_t rxTouchIdx = 0;
+// uint8_t touchDispIdx = 0;
+uint8_t numCoords = 0;
 
 bool touchRecv = false;
 
@@ -34,59 +34,51 @@ void initRxPacket(MQTT_Message_t *MQTT_RxPacket)
 
 void initCoords(Coords_t *Coords)
 {
-    Coords->xPos = calloc(100, sizeof(uint16_t));
-    Coords->yPos = calloc(100, sizeof(uint16_t));
+    lwrb_init(&Coords->xPos, (void *)Coords->xPos_Data, sizeof(Coords->xPos_Data));
+    lwrb_init(&Coords->yPos, (void *)Coords->yPos_Data, sizeof(Coords->yPos_Data));
+    // Coords->xPos = calloc(100, sizeof(uint16_t));
+    // Coords->yPos = calloc(100, sizeof(uint16_t));
 }
 
 void readAndSendTouches(MQTT_Message_t *Message)
 {
     if (touchData.touched) // check for touch
     {
+        touchData.touched = false;
         // want to see how long it takes from one touch to the next
         // if the time from the previous touch to the loop is > 10ms then we know touched wasn't run
         prev_touch_time = last_touch_time;
         last_touch_time = millis();
         elap_touch_time = last_touch_time - prev_touch_time;
 
-        // touchData.touched = false;
-        // touchRecv = true;
-
         if (ft6206ReadData())
         { // read data
 
-            TxCoords.xPos[txTouchIdx] = touchData.xPos; // set x data to correct array index
-            TxCoords.yPos[txTouchIdx] = touchData.yPos; // set x data to correct array index
+            uint16_8 xPos;
+            uint16_8 yPos;
+            xPos.whole = touchData.xPos;
+            yPos.whole = touchData.yPos;
+            lwrb_write(&TxCoords.xPos, (void *)&xPos, sizeof(uint16_t));
+            lwrb_write(&TxCoords.yPos, (void *)&yPos, sizeof(uint16_t));
 
-            if (txTouchIdx == 0)
-                fillCircle(touchData.xPos, touchData.yPos, 2, RED);
-            else if ((TxCoords.xPos[txTouchIdx] != TxCoords.xPos[txTouchIdx - 1]) ||
-                     (TxCoords.yPos[txTouchIdx] != TxCoords.yPos[txTouchIdx - 1]))
-                fillCircle(touchData.xPos, touchData.yPos, 2, RED);
+            fillCircle(touchData.xPos, touchData.yPos, 2, RED);
 
-            txTouchIdx++;
-            // }
-            /* Check if Data is collected and put into string */
-            // if (touchRecv)
-            // {
             last_loop_time = millis();
 
             if (((last_loop_time - last_touch_time) > (4 * elap_touch_time)) ||
-                (txTouchIdx >= 100))
+                (lwrb_get_free(&TxCoords.xPos) == 0))
             {
                 touchRecv = false; // reset touched check
 
-                coords2string(TxCoords.xPos, TxCoords.yPos, txTouchIdx, Message->data);
+                memset(Message->data, '\0', strlen(Message->data));
+                coords2string(&TxCoords.xPos, &TxCoords.yPos, Message->data);
                 Message->length = strlen(Message->data);
-                txTouchIdx = 0;
                 txDataReady = true;
-                TxCoords.xPos = calloc(100, sizeof(uint16_t));
-                TxCoords.yPos = calloc(100, sizeof(uint16_t));
             }
 
             if (SEND_RATE && txDataReady) // if 1s has passed and data is ready
             {
                 MQTT_PublishRaw(*Message);
-                memset(Message->data, '\0', strlen(Message->data));
                 SEND_RATE = false;
                 txDataReady = false;
             }
@@ -96,7 +88,7 @@ void readAndSendTouches(MQTT_Message_t *Message)
 
 void resetTouchIdx(void)
 {
-    rxTouchIdx = 0;
+    numCoords = 0;
 }
 
 void recvAndDisplayTouches(MQTT_Message_t *Message)
@@ -108,11 +100,9 @@ void recvAndDisplayTouches(MQTT_Message_t *Message)
         if (MQTT_ListenForMessage(Message, str, &find_idx))
         {
             serialWrite("Good receive\n");
-            rxTouchIdx = stringToCoord(Message->data, RxCoords.xPos, RxCoords.yPos);
-            if (rxTouchIdx > 0)
-            {
+            numCoords = stringToCoord(Message->data, &RxCoords.xPos, &RxCoords.yPos);
+            if(lwrb_get_full(&RxCoords.xPos) > 0)
                 rxDataReady = true;
-            }
             else
                 rxDataReady = false;
         }
@@ -121,14 +111,18 @@ void recvAndDisplayTouches(MQTT_Message_t *Message)
     }
     if (frame100Hz)
     {
-        if ((touchDispIdx < rxTouchIdx) && rxDataReady)
+        if ((lwrb_get_full(&RxCoords.xPos)) && rxDataReady)
         {
-            fillCircle(RxCoords.xPos[touchDispIdx], RxCoords.yPos[touchDispIdx], 2, BLUE);
-            touchDispIdx++;
+            uint16_t xCoord;
+            uint16_t yCoord;
+            lwrb_read(&RxCoords.xPos, (void*)&xCoord, sizeof(uint16_t));
+            lwrb_read(&RxCoords.yPos, (void*)&yCoord, sizeof(uint16_t));
+            fillCircle(xCoord, yCoord, 2, BLUE);
+            // touchDispIdx++;
         }
         else
         {
-            touchDispIdx = 0;
+            // touchDispIdx = 0;
             rxDataReady = false;
         }
         frame100Hz = false;

@@ -49,29 +49,11 @@ Core/Src/ili9341.c \
 Core/Src/image_reader.c \
 Core/Src/main.c \
 Core/Src/spi.c \
-Core/Src/stm32l4xx_hal_msp.c \
 Core/Src/stm32l4xx_it.c \
 Core/Src/syscalls.c \
 Core/Src/system_stm32l4xx.c \
 Core/Src/usart.c \
 Core/Src/utilities.c \
-Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal.c \
-Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_cortex.c \
-Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_dma.c \
-Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_dma_ex.c \
-Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_exti.c \
-Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_flash.c \
-Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_flash_ex.c \
-Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_flash_ramfunc.c \
-Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_gpio.c \
-Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_i2c.c \
-Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_i2c_ex.c \
-Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr.c \
-Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c \
-Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rcc.c \
-Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rcc_ex.c \
-Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_tim.c \
-Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_tim_ex.c \
 Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_ll_dma.c \
 Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_ll_exti.c \
 Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_ll_gpio.c \
@@ -145,15 +127,13 @@ AS_DEFS =
 # C defines
 C_DEFS =  \
 -DSTM32L432xx \
--DUSE_FULL_LL_DRIVER \
--DUSE_HAL_DRIVER
+-DUSE_FULL_LL_DRIVER
 
 
 # CXX defines
 CXX_DEFS =  \
 -DSTM32L432xx \
--DUSE_FULL_LL_DRIVER \
--DUSE_HAL_DRIVER
+-DUSE_FULL_LL_DRIVER
 
 
 # AS includes

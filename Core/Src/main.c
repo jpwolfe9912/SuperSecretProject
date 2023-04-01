@@ -36,8 +36,8 @@ int main(void)
 {
     LL_APB2_GRP1_EnableClock(LL_APB2_GRP1_PERIPH_SYSCFG);
     LL_APB1_GRP1_EnableClock(LL_APB1_GRP1_PERIPH_PWR);
-    HAL_NVIC_SetPriorityGrouping(NVIC_PRIORITYGROUP_4);
-    HAL_NVIC_SetPriority(SysTick_IRQn, 15, 0U);
+    NVIC_SetPriorityGrouping(NVIC_GetPriorityGrouping());
+    NVIC_SetPriority(SysTick_IRQn, NVIC_EncodePriority(0, 15, 0U));
 
     SysTick_Config(SystemCoreClock / 1000);
 
@@ -54,7 +54,6 @@ int main(void)
     MX_USART2_UART_Init();
 
 // MX_FATFS_Init();
-/* USER CODE BEGIN 2 */
 #ifdef USE_LCD
     ili9341Init();
 #endif
@@ -144,12 +143,6 @@ void SystemClock_Config(void)
     LL_RCC_SetAPB1Prescaler(LL_RCC_APB1_DIV_1);
     LL_RCC_SetAPB2Prescaler(LL_RCC_APB2_DIV_1);
     LL_SetSystemCoreClock(80000000);
-
-    /* Update the time base */
-    if (HAL_InitTick(TICK_INT_PRIORITY) != HAL_OK)
-    {
-        Error_Handler();
-    }
 }
 
 /* USER CODE BEGIN 4 */

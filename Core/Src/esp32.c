@@ -1279,7 +1279,7 @@ bool MQTT_Subscribe(MQTT_Message_t Message)
         sprintf((char *)Buffs.TxBuffer, "AT+MQTTSUB=%u,\"%s\",0\r\n", MQTT.link_id, Message.topic);
         if (Wifi_SendString((char *)Buffs.TxBuffer) == false)
             break;
-        if (Wifi_WaitForString(_WIFI_WAIT_TIME_LOW, &result, 2, "OK", "ERROR") == false)
+        if (Wifi_WaitForString(_WIFI_WAIT_TIME_HIGH, &result, 2, "OK", "ERROR") == false)
             break;       // The timeout was completed and the string was not there
         if (result == 2) // It was find the "ERROR" String in the receiving information
             break;
@@ -1298,7 +1298,7 @@ bool MQTT_Unsubscribe(MQTT_Message_t Message)
         sprintf((char *)Buffs.TxBuffer, "AT+MQTTUNSUB=%u,\"%s\"\r\n", MQTT.link_id, Message.topic);
         if (Wifi_SendString((char *)Buffs.TxBuffer) == false)
             break;
-        if (Wifi_WaitForString(_WIFI_WAIT_TIME_LOW, &result, 2, "OK", "ERROR") == false)
+        if (Wifi_WaitForString(_WIFI_WAIT_TIME_HIGH, &result, 2, "OK", "ERROR") == false)
             break;       // The timeout was completed and the string was not there
         if (result == 2) // It was find the "ERROR" String in the receiving information
             break;
@@ -1380,7 +1380,9 @@ bool MQTT_ListenForMessage(MQTT_Message_t *Message, char *findStr, size_t *start
     {
         if (lwrb_find(&Buffs.RxBuffer, (void *)findStr, strlen(findStr), *start_idx, &find_idx))
         {
-            char *str = (char *)Buffs.RxBuffer.buff + find_idx;
+            char *str = malloc(strlen((char *)Buffs.RxBuffer.buff + find_idx)); // = (char *)Buffs.RxBuffer.buff + find_idx;
+            lwrb_skip(&Buffs.RxBuffer, find_idx);
+            lwrb_read(&Buffs.RxBuffer, (void*)str, strlen((char *)Buffs.RxBuffer.buff + find_idx));
             *start_idx = find_idx; // start new search at last index
             if (!split_string(str, items, &items_size))
                 break;

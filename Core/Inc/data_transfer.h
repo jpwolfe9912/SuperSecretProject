@@ -6,10 +6,26 @@
 #include "ili9341.h"
 #include "graphics.h"
 #include "utilities.h"
+
+#define COORDS_SIZE 100
+
+typedef union
+{
+    uint16_t whole;
+    struct{
+        uint8_t low_nib;
+        uint8_t high_nib;
+    }uint8s;
+} uint16_8;
 typedef struct
 {
-    uint16_t* xPos;
-    uint16_t* yPos;
+    lwrb_t xPos;
+    uint16_8 xPos_Data[COORDS_SIZE];
+    // uint8_t xPos_Data_l[COORDS_SIZE];
+    // uint8_t xPos_Data_u[COORDS_SIZE];
+
+    lwrb_t yPos;
+    uint16_8 yPos_Data[COORDS_SIZE];
 } Coords_t;
 
 extern Coords_t TxCoords;

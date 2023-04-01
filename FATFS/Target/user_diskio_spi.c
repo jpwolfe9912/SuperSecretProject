@@ -24,7 +24,6 @@
 
 // It is designed to be wrapped by a cubemx generated user_diskio.c file.
 
-#include "stm32l4xx_hal.h" /* Provide the low-level HAL functions */
 #include "user_diskio_spi.h"
 
 #include "spi.h"
@@ -91,13 +90,13 @@ uint32_t spiTimerTickDelay;
 
 void SPI_Timer_On(uint32_t waitTicks)
 {
-    spiTimerTickStart = HAL_GetTick();
+    spiTimerTickStart = getSysUpTime();
     spiTimerTickDelay = waitTicks;
 }
 
 uint8_t SPI_Timer_Status()
 {
-    return ((HAL_GetTick() - spiTimerTickStart) < spiTimerTickDelay);
+    return ((getSysUpTime() - spiTimerTickStart) < spiTimerTickDelay);
 }
 
 /*-----------------------------------------------------------------------*/
@@ -155,13 +154,13 @@ static int wait_ready(        /* 1:Ready, 0:Timeout */
     uint32_t waitSpiTimerTickStart;
     uint32_t waitSpiTimerTickDelay;
 
-    waitSpiTimerTickStart = HAL_GetTick();
+    waitSpiTimerTickStart = getSysUpTime();
     waitSpiTimerTickDelay = (uint32_t)wt;
     do
     {
         d = xchg_spi(0xFF);
         /* This loop takes a time. Insert rot_rdq() here for multitask envilonment. */
-    } while (d != 0xFF && ((HAL_GetTick() - waitSpiTimerTickStart) < waitSpiTimerTickDelay)); /* Wait for card goes ready or timeout */
+    } while (d != 0xFF && ((getSysUpTime() - waitSpiTimerTickStart) < waitSpiTimerTickDelay)); /* Wait for card goes ready or timeout */
 
     return (d == 0xFF) ? 1 : 0;
 }

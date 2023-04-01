@@ -3,8 +3,6 @@
 
 #include "main.h"
 
-#include "stm32l4xx_hal.h"
-
 #include "stm32l4xx_ll_dma.h"
 #include "stm32l4xx_ll_i2c.h"
 #include "stm32l4xx_ll_crs.h"
@@ -28,6 +26,7 @@
 #include <stdarg.h>
 #include <stdlib.h>
 #include <math.h>
+#include "lwrb.h"
 
 /* Lower Level Includes */
 #include "stm32l4xx_it.h"

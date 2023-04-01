@@ -1,20 +1,20 @@
 #include "utilities.h"
 
-void coords2string(uint16_t xCoords[100], uint16_t yCoords[100], size_t coords_size, char *output_str)
+void coords2string(lwrb_t *xCoords, lwrb_t *yCoords, char *output_str)
 {
-    // char *strBuff = calloc(_MQTT_TX_SIZE, sizeof(uint8_t)); // allocate and clear memory
-    uint8_t coord_idx = 0;
-    uint16_t xCoord = 0;
-    uint16_t yCoord = 0;
-    uint8_t str_size = 0;
-    uint8_t str_idx = 1;
+    size_t coords_size = (lwrb_get_full(xCoords) + 1) / 2; // total number of coords
+    uint8_t coord_idx = 0;                       // current coord index to copy
+    uint16_t xCoord = 0;                         // temp x coord
+    uint16_t yCoord = 0;                         // temp y coord
+    uint8_t str_size = 0;                        // how large the coord pair string is
+    uint8_t str_idx = 1;                         // index of where we are in the string
     *output_str = '\"';
     while (coord_idx < coords_size)
     {
-        xCoord = xCoords[coord_idx];
-        yCoord = yCoords[coord_idx];
-        str_size = 0;
-        str_idx = 1;
+        lwrb_read(xCoords, (void *)&xCoord, sizeof(uint16_t));
+        lwrb_read(yCoords, (void *)&yCoord, sizeof(uint16_t));
+        // xCoord = xCoords[coord_idx];
+        // yCoord = yCoords[coord_idx];
         char temp_str[16];
 
         if (coord_idx < (coords_size - 1))
@@ -31,20 +31,25 @@ void coords2string(uint16_t xCoords[100], uint16_t yCoords[100], size_t coords_s
     strcat(&output_str[str_idx], "\"");
 }
 
-uint8_t stringToCoord(const char *str, uint16_t *xCoords, uint16_t *yCoords)
+uint8_t stringToCoord(const char *str, lwrb_t *xCoords, lwrb_t *yCoords)
 {
     uint8_t numCoords = 0;
+    uint16_t xCoord;
+    uint16_t yCoord;
     char *str_c = strdup(str);
 
     char *pch = strtok(str_c, "; ");
     while (pch != NULL)
     {
-        xCoords[numCoords] = atoi(pch);
+        xCoord = atoi(pch);
+        lwrb_write(xCoords, (void*)&xCoord, sizeof(uint16_t));
         pch = strtok(NULL, "; ");
-        yCoords[numCoords] = atoi(pch);
+        yCoord = atoi(pch);
+        lwrb_write(yCoords, (void*)&yCoord, sizeof(uint16_t));
         pch = strtok(NULL, "; ");
         numCoords++;
     }
+    free(str_c);
     return numCoords;
 }
 

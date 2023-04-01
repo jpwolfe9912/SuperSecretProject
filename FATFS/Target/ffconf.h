@@ -23,7 +23,6 @@
 / Additional user header to be used
 /-----------------------------------------------------------------------------*/
 #include "super_secret_project.h"
-#include "stm32l4xx_hal.h"
 
 /*-----------------------------------------------------------------------------/
 / Function Configurations

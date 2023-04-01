@@ -127,3 +127,8 @@ void SysTick_Handler(void)
         frame1Hz = true;
     // HAL_IncTick();
 }
+
+uint32_t getSysUpTime(void)
+{
+    return sysTickUptime;
+}

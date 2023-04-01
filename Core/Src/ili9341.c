@@ -288,7 +288,7 @@ void ili9341DrawColor(uint16_t color)
 void ili9341DrawColorBurst(uint16_t color, uint32_t size)
 {
     // SENDS color
-    static uint8_t* dummy __attribute__((unused));
+    static uint8_t dummy __attribute__((unused));
     uint32_t buffer_size = 0;
     if ((size * 2) < BURST_MAX_SIZE)
     {

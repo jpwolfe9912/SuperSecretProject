@@ -26,6 +26,7 @@ void delay(uint32_t ms);
 
 uint32_t micros(void);
 uint32_t millis(void);
+uint32_t getSysUpTime(void);
 
 
 #endif /* __DWT_SYSTEM_H_ */
