@@ -36,8 +36,6 @@ void ili9341WriteData(uint8_t *pData, size_t size)
 /* Read 8 Bits of Data from LCD */
 void ili9341Read8(uint8_t reg, uint8_t *pData)
 {
-    // static uint8_t dummy __attribute__((unused));
-
     ILI9341_COMMAND;
     ILI9341_CS_RESET;
     spi1Transfer(&reg, &rxBuf, 1);
@@ -290,6 +288,7 @@ void ili9341DrawColor(uint16_t color)
 void ili9341DrawColorBurst(uint16_t color, uint32_t size)
 {
     // SENDS color
+    static uint8_t* dummy __attribute__((unused));
     uint32_t buffer_size = 0;
     if ((size * 2) < BURST_MAX_SIZE)
     {
@@ -319,13 +318,13 @@ void ili9341DrawColorBurst(uint16_t color, uint32_t size)
     {
         for (uint32_t j = 0; j < (sending_in_block); j++)
         {
-            spi1Transfer((uint8_t *)burst_buffer, &rxBuf, buffer_size);
+            spi1Transfer((uint8_t *)burst_buffer, &dummy, buffer_size);
         }
     }
 
     // REMAINDER!
     if (remainder_from_block)
-        spi1Transfer((uint8_t *)burst_buffer, &rxBuf, remainder_from_block);
+        spi1Transfer((uint8_t *)burst_buffer, &dummy, remainder_from_block);
 
     ILI9341_CS_SET;
 }
