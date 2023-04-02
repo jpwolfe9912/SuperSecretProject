@@ -1,37 +1,24 @@
-/* USER CODE BEGIN Header */
 /**
- ******************************************************************************
  * @file    usart.c
  * @brief   This file provides code for the configuration
  *          of the USART instances.
- ******************************************************************************
- * @attention
- *
- * Copyright (c) 2023 STMicroelectronics.
- * All rights reserved.
- *
- * This software is licensed under terms that can be found in the LICENSE file
- * in the root directory of this software component.
- * If no LICENSE file comes with this software, it is provided AS-IS.
- *
- ******************************************************************************
  */
-/* USER CODE END Header */
-/* Includes ------------------------------------------------------------------*/
+
+/* Includes */
 #include "usart.h"
 
-/* USER CODE BEGIN 0 */
 /**
- * \brief           Calculate length of statically allocated array
+ * @brief Calculate length of statically allocated array
  */
 #define ARRAY_LEN(x) (sizeof(x) / sizeof((x)[0]))
 
 volatile bool utx_finished = false;
 UsartBuffs_t Buffs;
-/* USER CODE END 0 */
 
-/* USART1 init function */
-
+/**
+ * @brief USART1 init function
+ * @param  
+ */
 void MX_USART1_UART_Init(void)
 {
 
@@ -111,8 +98,10 @@ void MX_USART1_UART_Init(void)
     LL_USART_Enable(USART1);
 }
 
-/* USART2 init function */
-
+/**
+ * @brief USART2 init function
+ * @param  
+ */
 void MX_USART2_UART_Init(void)
 {
 
@@ -168,10 +157,8 @@ void MX_USART2_UART_Init(void)
     /* USER CODE END USART2_Init 2 */
 }
 
-/** @brief Uses polling to write data to the transmit buffer.
- *
- *  @param ch The character to send.
- *  @return Void.
+/** @brief Uses polling to write string to the transmit buffer
+ *  @param str The string to send
  */
 void serialWrite(const char *str)
 {
@@ -184,6 +171,11 @@ void serialWrite(const char *str)
     }
 }
 
+/**
+ * @brief Read data from serial commands
+ * @param  
+ * @return Character read
+ */
 char serialRead(void)
 {
     char ch = '\0';
@@ -193,8 +185,8 @@ char serialRead(void)
 }
 
 /**
- * \brief           Check for new data received with DMA
- *
+ * @brief           Check for new data received with DMA
+ * @note
  * User must select context to call this function from:
  * - Only interrupts (DMA HT, DMA TC, UART IDLE) with same preemption priority level
  * - Only thread context (outside interrupts)
@@ -271,10 +263,10 @@ void usart_rx_check(void)
 }
 
 /**
- * \brief           Process received data over UART
- * \note            Either process them directly or copy to other bigger buffer
- * \param[in]       data: Data to process
- * \param[in]       len: Length in units of bytes
+ * @brief           Process received data over UART
+ * @note            Either process them directly or copy to other bigger buffer
+ * @param[in]       data: Data to process
+ * @param[in]       len: Length in units of bytes
  */
 void usart_process_data(const void *data, size_t len)
 {
@@ -283,8 +275,8 @@ void usart_process_data(const void *data, size_t len)
 }
 
 /**
- * \brief           Send string to USART
- * \param[in]       str: String to send
+ * @brief           Send string to USART
+ * @param[in]       str: String to send
  */
 void usart_transmit_dma(const char *str)
 {
@@ -321,6 +313,10 @@ PUTCHAR_PROTOTYPE
     return ch;
 }
 
+/**
+ * @brief USART1 Global Interrupt Handler
+ * @param  
+ */
 void USART1_IRQHandler(void)
 {
     if (LL_USART_IsEnabledIT_IDLE(USART1) && LL_USART_IsActiveFlag_IDLE(USART1))
@@ -333,7 +329,8 @@ void USART1_IRQHandler(void)
 }
 
 /**
- * @brief This function handles DMA1 channel4 global interrupt for USART TX.
+ * @brief This function handles DMA1 channel4 global interrupt for USART TX
+ * @param
  */
 void DMA1_Channel4_IRQHandler(void)
 {
@@ -345,7 +342,8 @@ void DMA1_Channel4_IRQHandler(void)
 }
 
 /**
- * @brief This function handles DMA1 channel5 global interrupt for USART RX.
+ * @brief This function handles DMA1 channel5 global interrupt for USART RX
+ * @param
  */
 void DMA1_Channel5_IRQHandler(void)
 {

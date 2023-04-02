@@ -47,6 +47,7 @@ Core/Src/graphics.c \
 Core/Src/i2c.c \
 Core/Src/ili9341.c \
 Core/Src/image_reader.c \
+Core/Src/leds.c \
 Core/Src/main.c \
 Core/Src/spi.c \
 Core/Src/stm32l4xx_it.c \

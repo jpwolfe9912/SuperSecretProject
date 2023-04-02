@@ -1,11 +1,13 @@
-#ifndef _WIFICONFIG_H
-#define _WIFICONFIG_H
-
-/*
- * You have to change the settings according to your settings for the project
- * the times of execution and the other things are necessary to work correctly
- * without a problem
+/**
+ * @file esp32Config.h
+ * @author Jeremy Wolfe (jpwolfe@me.com)
+ * @brief Extra defines for ESP32 use
  */
+
+#ifndef __WIFICONFIG_H__
+#define __WIFICONFIG_H__
+
+/* Defines */
 #define _WIFI_RX_SIZE 512
 #define _WIFI_RX_FOR_DATA_SIZE 1024
 #define _WIFI_TX_SIZE 1024
@@ -22,4 +24,4 @@
 #define _WIFI_WAIT_TIME_VERYHIGH 25000
 #define _WIFI_WAIT_TIME_ULTRAHIGH 120000
 
-#endif
+#endif /* __WIFICONFIG_H__ */

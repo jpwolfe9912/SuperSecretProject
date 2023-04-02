@@ -1,3 +1,9 @@
+/**
+ * @file    data_transfer.h
+ * @author  Jeremy Wolfe (jpwolfe@me.com)
+ * @brief   Used to handle data transfer from pixels on screen to AWS
+ */
+
 #ifndef __DATA_TRANSFER_H__
 #define __DATA_TRANSFER_H__
 
@@ -38,4 +44,4 @@ void readAndSendTouches(MQTT_Message_t* Message);
 void resetTouchIdx(void);
 void recvAndDisplayTouches(MQTT_Message_t* Message);
 
-#endif
+#endif /* __DATA_TRANSFER_H__ */

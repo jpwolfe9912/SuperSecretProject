@@ -6,7 +6,7 @@
 #include "../lwrb/lwrb.h"
 #include "esp32Config.h"
 
-// ###################################################################################################
+/* Typedef Enumerations */
 typedef enum
 {
     WifiMode_Error = 0,
@@ -63,6 +63,7 @@ typedef enum
     MQTT_Status_RECV_GOOD
 } MQTT_Status_e;
 
+/* Typedef Structs */
 typedef struct
 {
     WifiConnectionStatus_t status;
@@ -144,16 +145,15 @@ typedef struct
     size_t length;
 } MQTT_Message_t;
 
-// ###################################################################################################
+/* Global Extern Variables */
 extern Wifi_t Wifi;
 extern MQTT_t MQTT;
 extern SNTP_t SNTP;
-// ###################################################################################################
+
+/* Function Prototypes */
 void Wifi_RxClear(void);
 bool Wifi_SendString(char *data);
 bool Wifi_WaitForString(uint32_t TimeOut_ms, uint8_t *result, uint8_t CountOfParameter, ...);
-void Wifi_RxCallBack(void);
-// ###################################################################################################
 //  Basic functions of ESP8266
 void Wifi_Unbrick(void);
 bool Wifi_Init(void);
@@ -162,24 +162,20 @@ bool Wifi_DeepSleep(uint16_t DelayMs);
 bool Wifi_FactoryReset(void);
 bool Wifi_Update(void);
 bool Wifi_SetRfPower(uint8_t Power_0_to_82);
-// ###################################################################################################
 //  Mode of the ESP8266: Station or SoftAP or both
 bool Wifi_SetMode(WifiMode_t WifiMode_);
 bool Wifi_GetMode(void);
 bool Wifi_GetMyIp(void);
-// ###################################################################################################
 bool Wifi_Station_ConnectToAp(char *SSID, char *Pass, char *MAC);
 bool Wifi_Station_Disconnect(void);
 bool Wifi_Station_DhcpEnable(bool Enable);
 bool Wifi_Station_DhcpIsEnable(void);
 bool Wifi_Station_SetIp(char *IP, char *GateWay, char *NetMask);
-// ###################################################################################################
 bool Wifi_SoftAp_Create(char *SSID, char *password, uint8_t channel,
                         WifiEncryptionType_t WifiEncryptionType, uint8_t MaxConnections_1_to_4,
                         bool HiddenSSID);
 bool Wifi_GetApConnection(void);
 bool Wifi_SoftAp_GetConnectedDevices(void);
-// ###################################################################################################
 bool Wifi_TcpIp_GetConnectionStatus(void);
 bool Wifi_TcpIp_Ping(char *PingTo);
 bool Wifi_TcpIp_SetMultiConnection(bool EnableMultiConnections);

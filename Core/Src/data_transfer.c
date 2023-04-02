@@ -1,11 +1,17 @@
+/**
+ * @file        data_transfer.c
+ * @author      Jeremy Wolfe (jpwolfe@me.com)
+ * @brief       Used to handle data transfer from pixels on screen to AWS
+ */
+
+/* Includes */
 #include "data_transfer.h"
 
-// uint8_t txTouchIdx = 0;
+/* Global Variables */
 bool txDataReady = false;
 uint32_t sendIdx = 0;
 
 bool rxDataReady = false;
-// uint8_t touchDispIdx = 0;
 uint8_t numCoords = 0;
 
 bool touchRecv = false;
@@ -18,6 +24,10 @@ uint32_t last_loop_time = 0;
 Coords_t TxCoords;
 Coords_t RxCoords;
 
+/**
+ * @brief Allocate memory for data transmission packet
+ * @param MQTT_TxPacket 
+ */
 void initTxPacket(MQTT_Message_t *MQTT_TxPacket)
 {
     MQTT_TxPacket->data = calloc(_MQTT_TX_SIZE, sizeof(uint8_t));
@@ -25,6 +35,10 @@ void initTxPacket(MQTT_Message_t *MQTT_TxPacket)
     MQTT_Unsubscribe(*MQTT_TxPacket);
 }
 
+/**
+ * @brief Allocate memory for data reception packet
+ * @param MQTT_RxPacket 
+ */
 void initRxPacket(MQTT_Message_t *MQTT_RxPacket)
 {
     MQTT_RxPacket->data = calloc(_MQTT_RX_SIZE, sizeof(uint8_t));
@@ -32,14 +46,20 @@ void initRxPacket(MQTT_Message_t *MQTT_RxPacket)
     MQTT_Subscribe(*MQTT_RxPacket);
 }
 
+/**
+ * @brief Initializes ring buffer for x and y coordinates
+ * @param Coords 
+ */
 void initCoords(Coords_t *Coords)
 {
     lwrb_init(&Coords->xPos, (void *)Coords->xPos_Data, sizeof(Coords->xPos_Data));
     lwrb_init(&Coords->yPos, (void *)Coords->yPos_Data, sizeof(Coords->yPos_Data));
-    // Coords->xPos = calloc(100, sizeof(uint16_t));
-    // Coords->yPos = calloc(100, sizeof(uint16_t));
 }
 
+/**
+ * @brief Listens for and packs touches into a packet then sends over MQTT
+ * @param Message 
+ */
 void readAndSendTouches(MQTT_Message_t *Message)
 {
     if (touchData.touched) // check for touch
@@ -85,12 +105,16 @@ void readAndSendTouches(MQTT_Message_t *Message)
         }
     }
 }
-
+// ! Consider deleting. Test without this variable
 void resetTouchIdx(void)
 {
     numCoords = 0;
 }
 
+/**
+ * @brief Listens for a MQTT message, unpacks the data, and diplays the pixels on screen
+ * @param Message 
+ */
 void recvAndDisplayTouches(MQTT_Message_t *Message)
 {
     static size_t find_idx = 0;

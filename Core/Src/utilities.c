@@ -1,13 +1,26 @@
+/**
+ * @file utilities.c
+ * @author Jeremy Wolfe (jpwolfe@me.com)
+ * @brief Miscellaneous useful functions
+ */
+
+/* Includes */
 #include "utilities.h"
 
+/**
+ * @brief Convert x,y coordinates from ring buffer into a string
+ * @param xCoords: Buffer of x coordinates
+ * @param yCoords: Buffer of y coordinates
+ * @param output_str: String to copy data into
+ */
 void coords2string(lwrb_t *xCoords, lwrb_t *yCoords, char *output_str)
 {
     size_t coords_size = (lwrb_get_full(xCoords) + 1) / 2; // total number of coords
-    uint8_t coord_idx = 0;                       // current coord index to copy
-    uint16_t xCoord = 0;                         // temp x coord
-    uint16_t yCoord = 0;                         // temp y coord
-    uint8_t str_size = 0;                        // how large the coord pair string is
-    uint8_t str_idx = 1;                         // index of where we are in the string
+    uint8_t coord_idx = 0;                                 // current coord index to copy
+    uint16_t xCoord = 0;                                   // temp x coord
+    uint16_t yCoord = 0;                                   // temp y coord
+    uint8_t str_size = 0;                                  // how large the coord pair string is
+    uint8_t str_idx = 1;                                   // index of where we are in the string
     *output_str = '\"';
     while (coord_idx < coords_size)
     {
@@ -31,21 +44,28 @@ void coords2string(lwrb_t *xCoords, lwrb_t *yCoords, char *output_str)
     strcat(&output_str[str_idx], "\"");
 }
 
+/**
+ * @brief Unpack a string of data and copy into a buffer of x,y coordinates
+ * @param str: String to unpack
+ * @param xCoords: Buffer of x coordinates
+ * @param yCoords: Buffer of y coordinates
+ * @return Number of coordinates read from the string
+ */
 uint8_t stringToCoord(const char *str, lwrb_t *xCoords, lwrb_t *yCoords)
 {
     uint8_t numCoords = 0;
     uint16_t xCoord;
     uint16_t yCoord;
-    char *str_c = strdup(str);
+    char *str_c = my_strdup(str);
 
     char *pch = strtok(str_c, "; ");
     while (pch != NULL)
     {
         xCoord = atoi(pch);
-        lwrb_write(xCoords, (void*)&xCoord, sizeof(uint16_t));
+        lwrb_write(xCoords, (void *)&xCoord, sizeof(uint16_t));
         pch = strtok(NULL, "; ");
         yCoord = atoi(pch);
-        lwrb_write(yCoords, (void*)&yCoord, sizeof(uint16_t));
+        lwrb_write(yCoords, (void *)&yCoord, sizeof(uint16_t));
         pch = strtok(NULL, "; ");
         numCoords++;
     }
@@ -53,23 +73,13 @@ uint8_t stringToCoord(const char *str, lwrb_t *xCoords, lwrb_t *yCoords)
     return numCoords;
 }
 
-int num2digits(int num)
-{
-    int digits = 1;
-    int divisor = 10;
-
-    while (1)
-    {
-        if ((num / divisor) == 0)
-            return digits;
-        else
-        {
-            divisor *= 10;
-            digits++;
-        }
-    }
-}
-
+/**
+ * @brief Split string by a `,` into an array of smaller strings
+ * @param input_string: String to be parsed
+ * @param output_array: Array of smaller strings
+ * @param[out] output_size: Number of smaller strings
+ * @return 
+ */
 bool split_string(char *input_string, char *output_array[], uint8_t *output_size)
 {
     char *token;
@@ -100,12 +110,11 @@ bool split_string(char *input_string, char *output_array[], uint8_t *output_size
     return i > 0;
 }
 
-/** @brief Constrains an input uint16_t between two values.
- *
+/** @brief Constrains an input uint16_t between two values
  *  @param input Value to be constrained.
- *  @param minValue Lower threshold.
- *  @param maxValue Upper threshold.
- *  @return uint16_t Constrained value.
+ *  @param minValue Lower threshold
+ *  @param maxValue Upper threshold
+ *  @return Constrained value
  */
 uint16_t constrain16(uint16_t input, uint16_t minValue, uint16_t maxValue)
 {
@@ -115,4 +124,12 @@ uint16_t constrain16(uint16_t input, uint16_t minValue, uint16_t maxValue)
         return maxValue;
     else
         return input;
+}
+
+char *my_strdup(char const *s) { 
+    size_t len = strlen(s) + 1;
+    char *ret = malloc(len);
+    if (ret != NULL)
+        strcpy(ret, s);
+    return ret;
 }

@@ -1,6 +1,6 @@
 /**
- * \file            lwrb.h
- * \brief           LwRB - Lightweight ring buffer
+ * @file            lwrb.h
+ * @brief           LwRB - Lightweight ring buffer
  */
 
 /*
@@ -42,9 +42,9 @@ extern "C" {
 #endif /* __cplusplus */
 
 /**
- * \defgroup        LWRB Lightweight ring buffer manager
- * \brief           Lightweight ring buffer manager
- * \{
+ * @defgroup        LWRB Lightweight ring buffer manager
+ * @brief           Lightweight ring buffer manager
+ * @{
  */
 
 #ifdef LWRB_DISABLE_ATOMIC
@@ -55,7 +55,7 @@ typedef atomic_ulong lwrb_ulong_t;
 #endif
 
 /**
- * \brief           Event type for buffer operations
+ * @brief           Event type for buffer operations
  */
 typedef enum {
     LWRB_EVT_READ,  /*!< Read event */
@@ -64,20 +64,20 @@ typedef enum {
 } lwrb_evt_type_t;
 
 /**
- * \brief           Buffer structure forward declaration
+ * @brief           Buffer structure forward declaration
  */
 struct lwrb;
 
 /**
- * \brief           Event callback function type
- * \param[in]       buff: Buffer handle for event
- * \param[in]       evt: Event type
- * \param[in]       bp: Number of bytes written or read (when used), depends on event type
+ * @brief           Event callback function type
+ * @param[in]       buff: Buffer handle for event
+ * @param[in]       evt: Event type
+ * @param[in]       bp: Number of bytes written or read (when used), depends on event type
  */
 typedef void (*lwrb_evt_fn)(struct lwrb* buff, lwrb_evt_type_t evt, size_t bp);
 
 /**
- * \brief           Buffer structure
+ * @brief           Buffer structure
  */
 typedef struct lwrb {
     uint8_t* buff;  /*!< Pointer to buffer data. Buffer is considered initialized when `buff != NULL` and `size > 0` */
@@ -112,10 +112,6 @@ size_t lwrb_skip(lwrb_t* buff, size_t len);
 void* lwrb_get_linear_block_write_address(const lwrb_t* buff);
 size_t lwrb_get_linear_block_write_length(const lwrb_t* buff);
 size_t lwrb_advance(lwrb_t* buff, size_t len);
-
-/**
- * \}
- */
 
 #ifdef __cplusplus
 }

@@ -1,6 +1,6 @@
 /**
- * \file            lwrb.c
- * \brief           Lightweight ring buffer
+ * @file            lwrb.c
+ * @brief           Lightweight ring buffer
  */
 
 /*
@@ -61,12 +61,12 @@
 #endif
 
 /**
- * \brief           Initialize buffer handle to default values with size and buffer data array
- * \param[in]       buff: Buffer handle
- * \param[in]       buffdata: Pointer to memory to use as buffer data
- * \param[in]       size: Size of `buffdata` in units of bytes
+ * @brief           Initialize buffer handle to default values with size and buffer data array
+ * @param[in]       buff: Buffer handle
+ * @param[in]       buffdata: Pointer to memory to use as buffer data
+ * @param[in]       size: Size of `buffdata` in units of bytes
  *                      Maximum number of bytes buffer can hold is `size - 1`
- * \return          `1` on success, `0` otherwise
+ * @return          `1` on success, `0` otherwise
  */
 uint8_t
 lwrb_init(lwrb_t *buff, void *buffdata, size_t size)
@@ -85,9 +85,9 @@ lwrb_init(lwrb_t *buff, void *buffdata, size_t size)
 }
 
 /**
- * \brief           Check if buff is initialized and ready to use
- * \param[in]       buff: Buffer handle
- * \return          `1` if ready, `0` otherwise
+ * @brief           Check if buff is initialized and ready to use
+ * @param[in]       buff: Buffer handle
+ * @return          `1` if ready, `0` otherwise
  */
 uint8_t
 lwrb_is_ready(lwrb_t *buff)
@@ -96,10 +96,10 @@ lwrb_is_ready(lwrb_t *buff)
 }
 
 /**
- * \brief           Free buffer memory
- * \note            Since implementation does not use dynamic allocation,
+ * @brief           Free buffer memory
+ * @note            Since implementation does not use dynamic allocation,
  *                  it just sets buffer handle to `NULL`
- * \param[in]       buff: Buffer handle
+ * @param[in]       buff: Buffer handle
  */
 void lwrb_free(lwrb_t *buff)
 {
@@ -110,9 +110,9 @@ void lwrb_free(lwrb_t *buff)
 }
 
 /**
- * \brief           Set event function callback for different buffer operations
- * \param[in]       buff: Buffer handle
- * \param[in]       evt_fn: Callback function
+ * @brief           Set event function callback for different buffer operations
+ * @param[in]       buff: Buffer handle
+ * @param[in]       evt_fn: Callback function
  */
 void lwrb_set_evt_fn(lwrb_t *buff, lwrb_evt_fn evt_fn)
 {
@@ -123,13 +123,13 @@ void lwrb_set_evt_fn(lwrb_t *buff, lwrb_evt_fn evt_fn)
 }
 
 /**
- * \brief           Write data to buffer.
+ * @brief           Write data to buffer.
  * Copies data from `data` array to buffer and marks buffer as full for maximum `btw` number of bytes
  *
- * \param[in]       buff: Buffer handle
- * \param[in]       data: Pointer to data to write into buffer
- * \param[in]       btw: Number of bytes to write
- * \return          Number of bytes written to buffer.
+ * @param[in]       buff: Buffer handle
+ * @param[in]       data: Pointer to data to write into buffer
+ * @param[in]       btw: Number of bytes to write
+ * @return          Number of bytes written to buffer.
  *                      When returned value is less than `btw`, there was no enough memory available
  *                      to copy full data array
  */
@@ -183,13 +183,13 @@ lwrb_write(lwrb_t *buff, const void *data, size_t btw)
 }
 
 /**
- * \brief           Read data from buffer.
+ * @brief           Read data from buffer.
  * Copies data from buffer to `data` array and marks buffer as free for maximum `btr` number of bytes
  *
- * \param[in]       buff: Buffer handle
- * \param[out]      data: Pointer to output memory to copy buffer data to
- * \param[in]       btr: Number of bytes to read
- * \return          Number of bytes read and copied to data array
+ * @param[in]       buff: Buffer handle
+ * @param[out]      data: Pointer to output memory to copy buffer data to
+ * @param[in]       btr: Number of bytes to read
+ * @return          Number of bytes read and copied to data array
  */
 size_t
 lwrb_read(lwrb_t *buff, void *data, size_t btr)
@@ -241,12 +241,12 @@ lwrb_read(lwrb_t *buff, void *data, size_t btr)
 }
 
 /**
- * \brief           Read from buffer without changing read pointer (peek only)
- * \param[in]       buff: Buffer handle
- * \param[in]       skip_count: Number of bytes to skip before reading data
- * \param[out]      data: Pointer to output memory to copy buffer data to
- * \param[in]       btp: Number of bytes to peek
- * \return          Number of bytes peeked and written to output array
+ * @brief           Read from buffer without changing read pointer (peek only)
+ * @param[in]       buff: Buffer handle
+ * @param[in]       skip_count: Number of bytes to skip before reading data
+ * @param[out]      data: Pointer to output memory to copy buffer data to
+ * @param[in]       btp: Number of bytes to peek
+ * @return          Number of bytes peeked and written to output array
  */
 size_t
 lwrb_peek(const lwrb_t *buff, size_t skip_count, void *data, size_t btp)
@@ -297,17 +297,17 @@ lwrb_peek(const lwrb_t *buff, size_t skip_count, void *data, size_t btp)
 }
 
 /**
- * \brief           Searches for a *needle* in an array, starting from given offset.
+ * @brief           Searches for a *needle* in an array, starting from given offset.
  *
- * \note            This function is not thread-safe.
+ * @note            This function is not thread-safe.
  *
- * \param           buff: Ring buffer to search for needle in
- * \param           bts: Constant byte array sequence to search for in a buffer
- * \param           len: Length of the \arg bts array
- * \param           start_offset: Start offset in the buffer
- * \param           found_idx: Pointer to variable to write index in array where bts has been found
+ * @param           buff: Ring buffer to search for needle in
+ * @param           bts: Constant byte array sequence to search for in a buffer
+ * @param           len: Length of the @arg bts array
+ * @param           start_offset: Start offset in the buffer
+ * @param           found_idx: Pointer to variable to write index in array where bts has been found
  *                      Must not be set to `NULL`
- * \return          `1` if \arg bts found, `0` otherwise
+ * @return          `1` if @arg bts found, `0` otherwise
  */
 uint8_t
 lwrb_find(lwrb_t *buff, const void *bts, size_t len, size_t start_offset, size_t *found_idx)
@@ -352,9 +352,9 @@ lwrb_find(lwrb_t *buff, const void *bts, size_t len, size_t start_offset, size_t
 }
 
 /**
- * \brief           Get available size in buffer for write operation
- * \param[in]       buff: Buffer handle
- * \return          Number of free bytes in memory
+ * @brief           Get available size in buffer for write operation
+ * @param[in]       buff: Buffer handle
+ * @return          Number of free bytes in memory
  */
 size_t
 lwrb_get_free(const lwrb_t *buff)
@@ -405,9 +405,9 @@ lwrb_get_free(const lwrb_t *buff)
 }
 
 /**
- * \brief           Get number of bytes currently available in buffer
- * \param[in]       buff: Buffer handle
- * \return          Number of bytes ready to be read
+ * @brief           Get number of bytes currently available in buffer
+ * @param[in]       buff: Buffer handle
+ * @return          Number of bytes ready to be read
  */
 size_t
 lwrb_get_full(const lwrb_t *buff)
@@ -456,10 +456,10 @@ lwrb_get_full(const lwrb_t *buff)
 }
 
 /**
- * \brief           Resets buffer to default values. Buffer size is not modified
- * \note            This function is not thread safe.
+ * @brief           Resets buffer to default values. Buffer size is not modified
+ * @note            This function is not thread safe.
  *                      When used, application must ensure there is no active read/write operation
- * \param[in]       buff: Buffer handle
+ * @param[in]       buff: Buffer handle
  */
 void lwrb_reset(lwrb_t *buff)
 {
@@ -472,9 +472,9 @@ void lwrb_reset(lwrb_t *buff)
 }
 
 /**
- * \brief           Get linear address for buffer for fast read
- * \param[in]       buff: Buffer handle
- * \return          Linear buffer start address
+ * @brief           Get linear address for buffer for fast read
+ * @param[in]       buff: Buffer handle
+ * @return          Linear buffer start address
  */
 void *
 lwrb_get_linear_block_read_address(const lwrb_t *buff)
@@ -487,9 +487,9 @@ lwrb_get_linear_block_read_address(const lwrb_t *buff)
 }
 
 /**
- * \brief           Get length of linear block address before it overflows for read operation
- * \param[in]       buff: Buffer handle
- * \return          Linear buffer size in units of bytes for read operation
+ * @brief           Get length of linear block address before it overflows for read operation
+ * @param[in]       buff: Buffer handle
+ * @return          Linear buffer size in units of bytes for read operation
  */
 size_t
 lwrb_get_linear_block_read_length(const lwrb_t *buff)
@@ -525,13 +525,13 @@ lwrb_get_linear_block_read_length(const lwrb_t *buff)
 }
 
 /**
- * \brief           Skip (ignore; advance read pointer) buffer data
+ * @brief           Skip (ignore; advance read pointer) buffer data
  * Marks data as read in the buffer and increases free memory for up to `len` bytes
  *
- * \note            Useful at the end of streaming transfer such as DMA
- * \param[in]       buff: Buffer handle
- * \param[in]       len: Number of bytes to skip and mark as read
- * \return          Number of bytes skipped
+ * @note            Useful at the end of streaming transfer such as DMA
+ * @param[in]       buff: Buffer handle
+ * @param[in]       len: Number of bytes to skip and mark as read
+ * @return          Number of bytes skipped
  */
 size_t
 lwrb_skip(lwrb_t *buff, size_t len)
@@ -557,9 +557,9 @@ lwrb_skip(lwrb_t *buff, size_t len)
 }
 
 /**
- * \brief           Get linear address for buffer for fast read
- * \param[in]       buff: Buffer handle
- * \return          Linear buffer start address
+ * @brief           Get linear address for buffer for fast read
+ * @param[in]       buff: Buffer handle
+ * @return          Linear buffer start address
  */
 void *
 lwrb_get_linear_block_write_address(const lwrb_t *buff)
@@ -572,9 +572,9 @@ lwrb_get_linear_block_write_address(const lwrb_t *buff)
 }
 
 /**
- * \brief           Get length of linear block address before it overflows for write operation
- * \param[in]       buff: Buffer handle
- * \return          Linear buffer size in units of bytes for write operation
+ * @brief           Get length of linear block address before it overflows for write operation
+ * @param[in]       buff: Buffer handle
+ * @return          Linear buffer size in units of bytes for write operation
  */
 size_t
 lwrb_get_linear_block_write_length(const lwrb_t *buff)
@@ -620,14 +620,14 @@ lwrb_get_linear_block_write_length(const lwrb_t *buff)
 }
 
 /**
- * \brief           Advance write pointer in the buffer.
+ * @brief           Advance write pointer in the buffer.
  * Similar to skip function but modifies write pointer instead of read
  *
- * \note            Useful when hardware is writing to buffer and application needs to increase number
+ * @note            Useful when hardware is writing to buffer and application needs to increase number
  *                      of bytes written to buffer by hardware
- * \param[in]       buff: Buffer handle
- * \param[in]       len: Number of bytes to advance
- * \return          Number of bytes advanced for write operation
+ * @param[in]       buff: Buffer handle
+ * @param[in]       len: Number of bytes to advance
+ * @return          Number of bytes advanced for write operation
  */
 size_t
 lwrb_advance(lwrb_t *buff, size_t len)

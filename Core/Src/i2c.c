@@ -1,41 +1,27 @@
-/* USER CODE BEGIN Header */
 /**
- ******************************************************************************
  * @file    i2c.c
  * @brief   This file provides code for the configuration
  *          of the I2C instances.
- ******************************************************************************
- * @attention
- *
- * Copyright (c) 2022 STMicroelectronics.
- * All rights reserved.
- *
- * This software is licensed under terms that can be found in the LICENSE file
- * in the root directory of this software component.
- * If no LICENSE file comes with this software, it is provided AS-IS.
- *
- ******************************************************************************
  */
-/* USER CODE END Header */
-/* Includes ------------------------------------------------------------------*/
+
+/* Includes */
 #include "i2c.h"
 
-/* USER CODE BEGIN 0 */
+/* Global Variables */
 volatile bool tx_finished;
 volatile bool rx_finished;
 
 uint8_t i2c1Timeout;
 
-/* USER CODE END 0 */
 
-/* I2C1 init function */
+/**
+ * @brief Initialize I2C low level registers
+ * @param  
+ */
 void MX_I2C1_Init(void)
 {
-
-    /* USER CODE BEGIN I2C1_Init 0 */
     NVIC_SetPriority(I2C1_EV_IRQn, NVIC_EncodePriority(NVIC_GetPriorityGrouping(), 0, 0));
     NVIC_EnableIRQ(I2C1_EV_IRQn);
-    /* USER CODE END I2C1_Init 0 */
 
     LL_I2C_InitTypeDef I2C_InitStruct = {0};
 
@@ -107,17 +93,16 @@ void MX_I2C1_Init(void)
     I2C_InitStruct.OwnAddrSize = LL_I2C_OWNADDRESS1_7BIT;
     LL_I2C_Init(I2C1, &I2C_InitStruct);
     LL_I2C_SetOwnAddress2(I2C1, 0, LL_I2C_OWNADDRESS2_NOMASK);
-    /* USER CODE BEGIN I2C1_Init 2 */
+
     LL_I2C_EnableDMAReq_TX(I2C1);
     LL_I2C_EnableDMAReq_RX(I2C1);
-    /* USER CODE END I2C1_Init 2 */
 }
-
-/* USER CODE BEGIN 1 */
 
 /**
  * @brief Sends data over I2C1 using DMA
- * @param data
+ * @param slaveAdd: Address of slave device
+ * @param pData: Data to send
+ * @param size: Size of the data
  */
 void i2c1Write(uint8_t slaveAdd, uint8_t *pData, size_t size)
 {
@@ -152,6 +137,13 @@ void i2c1Write(uint8_t slaveAdd, uint8_t *pData, size_t size)
     tx_finished = false;
 }
 
+/**
+ * @brief Reads data over I2C1 using DMA
+ * @param slaveAdd: Slave address to read from
+ * @param reg: Register on the slave device to read from
+ * @param pData: Variable to read data into
+ * @param size: Size of data to read
+ */
 void i2c1Read(uint8_t slaveAdd, uint8_t reg, uint8_t *pData, uint8_t size)
 {
     /* Send Slave Address */
@@ -202,6 +194,10 @@ void i2c1Read(uint8_t slaveAdd, uint8_t reg, uint8_t *pData, uint8_t size)
     rx_finished = false;
 }
 
+/**
+ * @brief DMA1 Channel 6 IRQ Handler
+ * @param  
+ */
 void DMA1_Channel6_IRQHandler(void)
 {
     if (DMA1->ISR & DMA_ISR_TCIF6)
@@ -211,6 +207,10 @@ void DMA1_Channel6_IRQHandler(void)
     }
 }
 
+/**
+ * @brief DMA1 Channel 7 IRQ Handler
+ * @param  
+ */
 void DMA1_Channel7_IRQHandler(void)
 {
     if (DMA1->ISR & DMA_ISR_TCIF7)
@@ -219,4 +219,3 @@ void DMA1_Channel7_IRQHandler(void)
         rx_finished = true;
     }
 }
-/* USER CODE END 1 */

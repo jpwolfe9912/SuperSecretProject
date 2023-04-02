@@ -1,7 +1,11 @@
-
+/**
+ * @file ili9341.c
+ * @author Jeremy Wolfe (jpwolfe@me.com)
+ * @brief Functions to write to the ILI9341 touchscreen
+ */
 #include "ili9341.h"
 
-/* Global Variables ------------------------------------------------------------------*/
+/* Global Variables */
 volatile uint16_t _lcd_height = ILI9341_SCREEN_HEIGHT;
 volatile uint16_t _lcd_width = ILI9341_SCREEN_WIDTH;
 
@@ -11,7 +15,10 @@ uint8_t txBuf;
 /* Static Function Prototypes */
 static void ili9341WriteChar(uint16_t x, uint16_t y, char ch, FontDef font, uint16_t color, uint16_t bgcolor);
 
-/* Send command (char) to LCD */
+/**
+ * @brief Send command (char) to LCD
+ * @param command: Character to send
+ */
 void ili9341WriteCommand(uint8_t command)
 {
     static uint8_t dummy __attribute__((unused));
@@ -22,7 +29,11 @@ void ili9341WriteCommand(uint8_t command)
     ILI9341_CS_SET;
 }
 
-/* Send Data (char) to LCD */
+/**
+ * @brief Send Data (char) to LCD
+ * @param pData: Command to be sent
+ * @param size: Size of the data
+ */
 void ili9341WriteData(uint8_t *pData, size_t size)
 {
     static uint8_t dummy __attribute__((unused));
@@ -33,7 +44,12 @@ void ili9341WriteData(uint8_t *pData, size_t size)
     ILI9341_CS_SET;
 }
 
-/* Read 8 Bits of Data from LCD */
+/**
+ * @brief Read 8 Bits of Data from LCD
+ * @param reg: Register to read from
+ * @param pData: Variable to read data into
+ * @attention Not recommended to use this function without more testing
+ */
 void ili9341Read8(uint8_t reg, uint8_t *pData)
 {
     ILI9341_COMMAND;
@@ -44,7 +60,13 @@ void ili9341Read8(uint8_t reg, uint8_t *pData)
     ILI9341_CS_SET;
 }
 
-/* Set Address - Location block - to draw into */
+/**
+ * @brief Set Address - Location block - to draw into
+ * @param x0: Starting x coordinate
+ * @param y0: Starting y coordinate 
+ * @param x1: Ending x coordinate
+ * @param y1: Ending y coordinate
+ */
 void ili9341SetAddress(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1)
 {
     // column address set
@@ -65,8 +87,11 @@ void ili9341SetAddress(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1)
     ili9341WriteCommand(ILI9341_MEM_WRITE); // RAMWR
 }
 
-/*HARDWARE RESET*/
-void ili9341_Reset(void)
+/**
+ * @brief Reset ILI9341 hardware
+ * @param  
+ */
+void ili9341Reset(void)
 {
     GPIOB->BSRR |= GPIO_BSRR_BR1;
     delay(200);
@@ -75,8 +100,15 @@ void ili9341_Reset(void)
     GPIOB->BSRR |= GPIO_BSRR_BS1;
 }
 
-/*Ser rotation of the screen - changes x0 and y0*/
-void ili9341SetRotation(uint8_t rotation)
+/**
+ * @brief Set rotation of the screen - changes x0 and y0
+ * @param rotation How much to rotate
+ *                  SCREEN_VERTICAL_1 = 0
+ *                  SCREEN_HORIZONTAL_1 = 1
+ *                  SCREEN_VERTICAL_2 = 2
+ *                  SCREEN_HORIZONTAL_2 = 3
+ */
+void ili9341SetRotation(ScreenRotation_e rotation)
 {
     uint8_t rot_code;
     uint8_t screen_rotation = rotation;
@@ -116,13 +148,10 @@ void ili9341SetRotation(uint8_t rotation)
     }
 }
 
-/*Enable LCD display*/
-// void ili9341_Enable(void)
-// {
-//     HAL_GPIO_WritePin(LCD_RST_PORT, LCD_RST_PIN, GPIO_PIN_SET);
-// }
-
-/*Initialize LCD display*/
+/**
+ * @brief Initialize LCD display
+ * @param  
+ */
 void ili9341Init(void)
 {
     ili9341_Reset();
@@ -271,8 +300,11 @@ void ili9341Init(void)
     ili9341SetRotation(SCREEN_HORIZONTAL_2);
 }
 
-// INTERNAL FUNCTION OF LIBRARy, USAGE NOT RECOMENDED, USE Draw_Pixel INSTEAD
-/*Sends single pixel color information to LCD*/
+/**
+ * @brief Sends single pixel color information to LCD
+ * @param color: Color to draw
+ * @attention INTERNAL FUNCTION OF LIBRARY, USAGE NOT RECOMENDED, USE Draw_Pixel INSTEAD
+ */
 void ili9341DrawColor(uint16_t color)
 {
     // SENDS color
@@ -283,8 +315,14 @@ void ili9341DrawColor(uint16_t color)
     ILI9341_CS_SET;
 }
 
-// INTERNAL FUNCTION OF LIBRARy
+// INTERNAL FUNCTION OF LIBRARY
 /*Sends block color information to LCD*/
+
+/**
+ * @brief Sends block color information to LCD
+ * @param color: Color to send
+ * @param size: Draw color to array of addresses
+ */
 void ili9341DrawColorBurst(uint16_t color, uint32_t size)
 {
     // SENDS color
@@ -329,8 +367,11 @@ void ili9341DrawColorBurst(uint16_t color, uint32_t size)
     ILI9341_CS_SET;
 }
 
-// FILL THE ENTIRE SCREEN WITH SELECTED color (either #define-d ones or custom 16bit)
-/*Sets address (entire screen) and Sends Height*Width ammount of color information to LCD*/
+/**
+ * @brief Fill the entire screen with the selected color
+ * @param color: Color to send
+ * @note Can use either predefined colors or a custom 16-bit
+ */
 void ili9341FillScreen(uint16_t color)
 {
     ili9341SetAddress(0, 0, _lcd_width, _lcd_height);
@@ -343,6 +384,16 @@ void ili9341FillScreen(uint16_t color)
 // Using pixels to draw big simple structures is not recommended as it is really slow
 // Try using either rectangles or lines if possible
 //
+
+/**
+ * @brief Draw pixel at x,y position with selected color
+ * @param x: X coordinate to write to
+ * @param y: Y coordinate to write to
+ * @param color: Color to draw
+ * @note Location is dependant on screen orientation. x0 and y0 locations change with orientations.
+ *          Using pixels to draw big simple structures is not recommended as it is really slow
+ *          Try using either rectangles or lines if possible
+ */
 void ili9341DrawPixel(uint16_t x, uint16_t y, uint16_t color)
 {
     if ((x >= _lcd_width) || (y >= _lcd_height))
@@ -370,6 +421,14 @@ void ili9341DrawPixel(uint16_t x, uint16_t y, uint16_t color)
     ili9341WriteData(temp_buffer2, 2);
 }
 
+/**
+ * @brief Draw an image to the screen
+ * @param x: Start x coordinate to draw to
+ * @param y: Start y coordinate to draw to
+ * @param w: Width of image
+ * @param h: Height of the image
+ * @param image: Image to draw
+ */
 void ili9341DrawImage(uint16_t x, uint16_t y, uint16_t w, uint16_t h, const uint16_t image[240][320])
 {
     if ((x >= ILI9341_SCREEN_WIDTH) || (y >= ILI9341_SCREEN_HEIGHT))
@@ -398,6 +457,15 @@ void ili9341DrawImage(uint16_t x, uint16_t y, uint16_t w, uint16_t h, const uint
     }
 }
 
+/**
+ * @brief Write a letter to the screen
+ * @param x: Start x coordinate to draw to
+ * @param y: Start y coordinate to draw to
+ * @param ch: Letter to write
+ * @param font: Font to write
+ * @param color: Color of letter to write
+ * @param bgcolor: Background color to write
+ */
 static void ili9341WriteChar(uint16_t x, uint16_t y, char ch, FontDef font, uint16_t color, uint16_t bgcolor)
 {
     uint32_t i, b, j;
@@ -423,7 +491,16 @@ static void ili9341WriteChar(uint16_t x, uint16_t y, char ch, FontDef font, uint
     }
 }
 
-void ili9341WriteCharFromUART(uint16_t startX, uint16_t startY, FontDef font, uint16_t color, uint16_t bgcolor)
+/**
+ * @brief Write character from USART
+ * @param x: Start x coordinate to draw to
+ * @param y: Start y coordinate to draw to
+ * @param ch: Letter to write
+ * @param font: Font to write
+ * @param color: Color of letter to write
+ * @param bgcolor: Background color to write
+ */
+void ili9341WriteCharFromUART(uint16_t x, uint16_t y, FontDef font, uint16_t color, uint16_t bgcolor)
 {
     char ch = '\0';
     uint8_t locX = 0;
@@ -451,7 +528,7 @@ void ili9341WriteCharFromUART(uint16_t startX, uint16_t startY, FontDef font, ui
             }
             else if (locX != 0) // normal case
                 locX--;
-            ili9341WriteChar(startX + (locX * font.width), startY + (locY * font.height), ch, font, color, bgcolor);
+            ili9341WriteChar(x + (locX * font.width), y + (locY * font.height), ch, font, color, bgcolor);
         }
         else if (ch == 0x0D) // return key
         {
@@ -468,7 +545,7 @@ void ili9341WriteCharFromUART(uint16_t startX, uint16_t startY, FontDef font, ui
         }
         else if (ch >= 0x20) // normal character
         {
-            ili9341WriteChar(startX + (locX * font.width), startY + (locY * font.height), ch, font, color, bgcolor);
+            ili9341WriteChar(x + (locX * font.width), y + (locY * font.height), ch, font, color, bgcolor);
             locX++;
             if (locX + 1 == maxLocX)
             {
@@ -480,11 +557,19 @@ void ili9341WriteCharFromUART(uint16_t startX, uint16_t startY, FontDef font, ui
                 locY = 0;
             }
         }
-
         ili9341DrawHorizontalLine(locX * font.width, (locY * font.height) + font.height, font.width, color);
     }
 }
 
+/**
+ * @brief Write a string of letters to the screen
+ * @param x: Start x coordinate to draw to
+ * @param y: Start y coordinate to draw to
+ * @param str: String to write
+ * @param font: Font to write
+ * @param color: Color of letter to write
+ * @param bgcolor: Background color to write
+ */
 void ili9341WriteString(uint16_t x, uint16_t y, const char *str, FontDef font, uint16_t color, uint16_t bgcolor)
 {
     ILI9341_CS_RESET;
@@ -516,6 +601,10 @@ void ili9341WriteString(uint16_t x, uint16_t y, const char *str, FontDef font, u
     ILI9341_CS_SET;
 }
 
+/**
+ * @brief Invert colors on screen
+ * @param invert: `1` to invert `0` to not invert
+ */
 void ili9341InvertColors(bool invert)
 {
     ili9341WriteCommand(invert ? 0x21 /* INVON */ : 0x20 /* INVOFF */);

@@ -1,11 +1,26 @@
+/**
+ * @file        esp32.c
+ * @author      Jeremy Wolfe (jpwolfe@me.com)
+ * @brief       Contains functions for sending and receiving data
+ *                  with the ESP32 module using AT Commands
+ */
+
+/* Includes */
 #include "esp32.h"
 #include "esp32Config.h"
 
+/* Global Variables */
 Wifi_t Wifi;
 MQTT_t MQTT;
 SNTP_t SNTP;
 
-// #########################################################################################################
+/* Internal Functions */
+/**
+ * @brief Send data over USART with DMA
+ * @param data: String to send
+ * @param len: Length of string
+ * @return 
+ */
 bool Wifi_SendRaw(uint8_t *data, uint16_t len)
 {
     if (len <= _WIFI_TX_SIZE)
@@ -17,12 +32,23 @@ bool Wifi_SendRaw(uint8_t *data, uint16_t len)
     else
         return false;
 }
-// #########################################################################################################
+
+/**
+ * @brief Send a string of data
+ * @param data: String to send
+ * @return `1` on success or `0` on failure
+ */
 bool Wifi_SendString(char *data)
 {
     return Wifi_SendRaw((uint8_t *)data, strlen(data));
 }
-// #########################################################################################################
+
+/**
+ * @brief Send string of data and wait
+ * @param data: String to send
+ * @param DelayUs: How long to wait
+ * @return `1` on success or `0` on failure
+ */
 bool Wifi_SendStringAndWait(char *data, uint16_t DelayUs)
 {
     if (Wifi_SendRaw((uint8_t *)data, strlen(data)) == false)
@@ -30,7 +56,15 @@ bool Wifi_SendStringAndWait(char *data, uint16_t DelayUs)
     delayMicroseconds(DelayUs);
     return true;
 }
-// #########################################################################################################
+
+/**
+ * @brief Wait for a string to appear in rx buffer
+ * @param TimeOut_ms: How long to wait for
+ * @param result: Index of which string it found
+ * @param CountOfParameter: How many strings to search for
+ * @param : List of strings
+ * @return `1` on success or `0` on failure
+ */
 bool Wifi_WaitForString(uint32_t TimeOut_ms, uint8_t *result, uint8_t CountOfParameter, ...)
 {
     /*
@@ -76,7 +110,14 @@ bool Wifi_WaitForString(uint32_t TimeOut_ms, uint8_t *result, uint8_t CountOfPar
     // timeout
     return false;
 }
-// #########################################################################################################
+
+/**
+ * @brief Splits a string based on a delimiter
+ * @param result: Split string
+ * @param WantWhichOne: Which split portion you want
+ * @param SplitterChars: Delimiter
+ * @return `1` on success or `0` on failure
+ */
 bool Wifi_ReturnString(char *result, uint8_t WantWhichOne, char *SplitterChars)
 {
     if (result == NULL)
@@ -106,7 +147,15 @@ bool Wifi_ReturnString(char *result, uint8_t WantWhichOne, char *SplitterChars)
     strcpy(result, "");
     return false;
 }
-// #########################################################################################################
+
+/**
+ * @brief Splits a string into smaller strings and returns them
+ * @param InputString: String to split
+ * @param SplitterChars: Delimiter
+ * @param CountOfParameter: Amount of smaller strings to return
+ * @param  : Split strings
+ * @return `1` on success or `0` on failure
+ */
 bool Wifi_ReturnStrings(char *InputString, char *SplitterChars, uint8_t CountOfParameter, ...)
 {
     if (CountOfParameter == 0)
@@ -137,7 +186,14 @@ bool Wifi_ReturnStrings(char *InputString, char *SplitterChars, uint8_t CountOfP
     }
     return false;
 }
-// #########################################################################################################
+
+/**
+ * @brief Splits a string and returns an integer after the delimiter
+ * @param result: Integer to return
+ * @param WantWhichOne: Which integer to return
+ * @param SplitterChars: Delimiter
+ * @return `1` on success or `0` on failure
+ */
 bool Wifi_ReturnInteger(int32_t *result, uint8_t WantWhichOne, char *SplitterChars)
 {
     if ((char *)Buffs.RxBuffer.buff == NULL)
@@ -147,8 +203,14 @@ bool Wifi_ReturnInteger(int32_t *result, uint8_t WantWhichOne, char *SplitterCha
     *result = atoi((char *)Buffs.RxBuffer.buff);
     return true;
 }
-// #########################################################################################################
 
+/**
+ * @brief Splits a string and returns a float after the delimiter
+ * @param result: Float to return
+ * @param WantWhichOne: Which float to return
+ * @param SplitterChars: Delimiter
+ * @return `1` on success or `0` on failure
+ */
 bool Wifi_ReturnFloat(float *result, uint8_t WantWhichOne, char *SplitterChars)
 {
     if ((char *)Buffs.RxBuffer.buff == NULL)
@@ -158,7 +220,12 @@ bool Wifi_ReturnFloat(float *result, uint8_t WantWhichOne, char *SplitterChars)
     *result = atof((char *)Buffs.RxBuffer.buff);
     return true;
 }
-// #########################################################################################################
+
+/**
+ * @brief Remove a character from a string
+ * @param str: String to search
+ * @param garbage: Character to remove
+ */
 void Wifi_RemoveChar(char *str, char garbage)
 {
     char *src, *dst;
@@ -170,17 +237,31 @@ void Wifi_RemoveChar(char *str, char garbage)
     }
     *dst = '\0';
 }
-// #########################################################################################################
+
+/**
+ * @brief Reset receive buffer
+ * @param  
+ */
 void Wifi_RxClear(void)
 {
     lwrb_reset(&Buffs.RxBuffer);
 }
-// #########################################################################################################
+
+/**
+ * @brief Reset transmit buffer
+ * @param  
+ */
 void Wifi_TxClear(void)
 {
     memset(Buffs.TxBuffer, '\0', _WIFI_TX_SIZE);
 }
-// #########################################################################################################
+
+/**
+ * @brief Checks if ESP32 is in a state where it is waiting for
+ *          a number of characters to receive. Clears this state
+ *          by sending random characters.
+ * @param  
+ */
 void Wifi_Unbrick(void)
 {
     uint8_t result;
@@ -194,10 +275,13 @@ void Wifi_Unbrick(void)
         Wifi_TxClear();
     } while (result == 0);
 }
-// #########################################################################################################
-// #########################################################################################################
-// #########################################################################################################
-// #########################################################################################################
+/* External Functions */
+
+/**
+ * @brief Resets buffers and sees if there is a response
+ * @param  
+ * @return `1` on success or `0` on failure
+ */
 bool Wifi_Init(void)
 {
     uint8_t result;
@@ -223,10 +307,11 @@ bool Wifi_Init(void)
     return returnVal;
 }
 
-// #########################################################################################################
-// #########################################################################################################
-// #########################################################################################################
-// #########################################################################################################
+/**
+ * @brief Restart module
+ * @param  
+ * @return `1` on success or `0` on failure
+ */
 bool Wifi_Restart(void)
 {
     // Make a restart of the ESP8266 using the AT Commands
@@ -247,11 +332,14 @@ bool Wifi_Restart(void)
     } while (0);
     return returnVal;
 }
-// #########################################################################################################
+
+/**
+ * @brief ESP32 enters deep-sleep mode for a time
+ * @param DelayMs: Time to sleep for
+ * @return 
+ */
 bool Wifi_DeepSleep(uint16_t DelayMs)
 {
-    // The ESP8266 enters in Deep-Sleep Mode for the time, which is indicated
-
     uint8_t result;
     bool returnVal = false;
     do
@@ -287,11 +375,14 @@ bool Wifi_FactoryReset(void)
     } while (0);
     return returnVal;
 }
-// #########################################################################################################
+
+/**
+ * @brief Update the version of AT Commands when the device is connected to Internet
+ * @param  
+ * @return `1` on success or `0` on failure
+ */
 bool Wifi_Update(void)
 {
-    // Update the version of AT Commands when the device is connected to Internet
-
     uint8_t result;
     bool returnVal = false;
     do
@@ -308,7 +399,12 @@ bool Wifi_Update(void)
     } while (0);
     return returnVal;
 }
-// #########################################################################################################
+
+/**
+ * @brief Set Rf power
+ * @param Power_0_to_82: Power value from 0 to 82 
+ * @return `1` on success or `0` on failure
+ */
 bool Wifi_SetRfPower(uint8_t Power_0_to_82)
 {
     uint8_t result;
@@ -327,10 +423,12 @@ bool Wifi_SetRfPower(uint8_t Power_0_to_82)
     } while (0);
     return returnVal;
 }
-// #########################################################################################################
-// #########################################################################################################
-// #########################################################################################################
-// #########################################################################################################
+
+/**
+ * @brief Set wifi mode
+ * @param WifiMode_: Set Wifi mode to station, access point, or both
+ * @return `1` on success or `0` on failure
+ */
 bool Wifi_SetMode(WifiMode_t WifiMode_)
 {
     uint8_t result;
@@ -350,7 +448,12 @@ bool Wifi_SetMode(WifiMode_t WifiMode_)
     } while (0);
     return returnVal;
 }
-// #########################################################################################################
+
+/**
+ * @brief Get the wifi mode and store it in Wifi variable
+ * @param  
+ * @return `1` on success or `0` on failure
+ */
 bool Wifi_GetMode(void)
 {
     uint8_t result;
@@ -374,6 +477,12 @@ bool Wifi_GetMode(void)
     } while (0);
     return returnVal;
 }
+
+/**
+ * @brief Get my IP address
+ * @param  
+ * @return `1` on success or `0` on failure
+ */
 bool Wifi_GetMyIp(void)
 {
     uint8_t result;
@@ -394,10 +503,14 @@ bool Wifi_GetMyIp(void)
     } while (0);
     return returnVal;
 }
-// #########################################################################################################
-// #########################################################################################################
-// #########################################################################################################
-// #########################################################################################################
+
+/**
+ * @brief Connect to access point
+ * @param SSID: Network name
+ * @param Pass: Network password
+ * @param MAC: Network MAC address (NULL if doesn't exist)
+ * @return `1` on success or `0` on failure
+ */
 bool Wifi_Station_ConnectToAp(char *SSID, char *Pass, char *MAC)
 {
     uint8_t result;
@@ -422,7 +535,12 @@ bool Wifi_Station_ConnectToAp(char *SSID, char *Pass, char *MAC)
     } while (0);
     return returnVal;
 }
-// #########################################################################################################
+
+/**
+ * @brief Disconnect the station
+ * @param  
+ * @return `1` on success or `0` on failure
+ */
 bool Wifi_Station_Disconnect(void)
 {
     uint8_t result;
@@ -441,7 +559,14 @@ bool Wifi_Station_Disconnect(void)
     } while (0);
     return returnVal;
 }
-// #########################################################################################################
+
+/**
+ * @brief Set the station IP address
+ * @param IP: IP address to set to
+ * @param GateWay: Gateway
+ * @param NetMask: Net mask
+ * @return `1` on success or `0` on failure
+ */
 bool Wifi_Station_SetIp(char *IP, char *GateWay, char *NetMask)
 {
     uint8_t result;
@@ -461,7 +586,12 @@ bool Wifi_Station_SetIp(char *IP, char *GateWay, char *NetMask)
     } while (0);
     return returnVal;
 }
-// #########################################################################################################
+
+/**
+ * @brief Enable DHCP
+ * @param Enable: `1` to enable `0` to disable
+ * @return `1` on success or `0` on failure
+ */
 bool Wifi_Station_DhcpEnable(bool Enable)
 {
     uint8_t result;
@@ -484,7 +614,12 @@ bool Wifi_Station_DhcpEnable(bool Enable)
     } while (0);
     return returnVal;
 }
-// #########################################################################################################
+
+/**
+ * @brief Check if DHCP is enabled and store in Wifi variable
+ * @param  
+ * @return `1` on success or `0` on failure
+ */
 bool Wifi_Station_DhcpIsEnable(void)
 {
     uint8_t result;
@@ -529,10 +664,17 @@ bool Wifi_Station_DhcpIsEnable(void)
     } while (0);
     return returnVal;
 }
-// #########################################################################################################
-// #########################################################################################################
-// #########################################################################################################
-// #########################################################################################################
+
+/**
+ * @brief Create module as soft access point
+ * @param SSID: Network name
+ * @param password: Network password
+ * @param channel: Channel
+ * @param WifiEncryptionType: Encryption type
+ * @param MaxConnections_1_to_4: Max connections from 1 to 4
+ * @param HiddenSSID: Hidden SSID
+ * @return `1` on success or `0` on failure
+ */
 bool Wifi_SoftAp_Create(char *SSID, char *password, uint8_t channel, WifiEncryptionType_t WifiEncryptionType, uint8_t MaxConnections_1_to_4, bool HiddenSSID)
 {
     uint8_t result;
@@ -556,7 +698,12 @@ bool Wifi_SoftAp_Create(char *SSID, char *password, uint8_t channel, WifiEncrypt
     } while (0);
     return returnVal;
 }
-// #########################################################################################################
+
+/**
+ * @brief Get the network the module is connected to
+ * @param  
+ * @return `1` on success or `0` on failure
+ */
 bool Wifi_GetApConnection(void)
 {
     bool returnVal = false;
@@ -609,7 +756,11 @@ bool Wifi_GetApConnection(void)
     return returnVal;
 }
 
-// #########################################################################################################
+/**
+ * @brief Get devices connected to access point
+ * @param  
+ * @return `1` on success or `0` on failure
+ */
 bool Wifi_SoftAp_GetConnectedDevices(void)
 {
     uint8_t result;
@@ -617,7 +768,7 @@ bool Wifi_SoftAp_GetConnectedDevices(void)
     do
     {
         /*
-         * The ESP8266 has the possibility to have in a SoftAP (Small WiFi Network) four
+         * The ESP32 has the possibility to have in a SoftAP (Small WiFi Network) four
          * devices connected at the same time. This function save the information about
          * the devices, which is the IP address and the MAC Address of every device
          */
@@ -646,10 +797,12 @@ bool Wifi_SoftAp_GetConnectedDevices(void)
     } while (0);
     return returnVal;
 }
-// #########################################################################################################
-// #########################################################################################################
-// #########################################################################################################
-// #########################################################################################################
+
+/**
+ * @brief Get connection status
+ * @param  
+ * @return `1` on success or `0` on failure
+ */
 bool Wifi_TcpIp_GetConnectionStatus(void)
 {
     uint8_t result;
@@ -693,7 +846,13 @@ bool Wifi_TcpIp_GetConnectionStatus(void)
     } while (0);
     return returnVal;
 }
-// #########################################################################################################
+
+
+/**
+ * @brief Ping a url or IP address
+ * @param PingTo: String to ping
+ * @return `1` on success or `0` on failure
+ */
 bool Wifi_TcpIp_Ping(char *PingTo)
 {
     uint8_t result;
@@ -714,7 +873,12 @@ bool Wifi_TcpIp_Ping(char *PingTo)
     } while (0);
     return returnVal;
 }
-// #########################################################################################################
+
+/**
+ * @brief Enable multiple connections
+ * @param EnableMultiConnections: `1` to enable `0` to disable
+ * @return `1` on success or `0` on failure
+ */
 bool Wifi_TcpIp_SetMultiConnection(bool EnableMultiConnections)
 {
     uint8_t result;
@@ -735,7 +899,12 @@ bool Wifi_TcpIp_SetMultiConnection(bool EnableMultiConnections)
     } while (0);
     return returnVal;
 }
-// #########################################################################################################
+
+/**
+ * @brief Check if multiple connections is enabled
+ * @param  
+ * @return `1` on success or `0` on failure
+ */
 bool Wifi_TcpIp_GetMultiConnection(void)
 {
     uint8_t result;
@@ -757,7 +926,15 @@ bool Wifi_TcpIp_GetMultiConnection(void)
     } while (0);
     return returnVal;
 }
-// #########################################################################################################
+
+/**
+ * @brief Start TCP connection
+ * @param LinkId: Link ID
+ * @param RemoteIp: Remote IP address
+ * @param RemotePort: Remote port
+ * @param TimeOut: How long to wait for connection to be established
+ * @return `1` on success or `0` on failure
+ */
 bool Wifi_TcpIp_StartTcpConnection(uint8_t LinkId, char *RemoteIp, uint16_t RemotePort, uint16_t TimeOut)
 {
     uint8_t result;
@@ -767,7 +944,7 @@ bool Wifi_TcpIp_StartTcpConnection(uint8_t LinkId, char *RemoteIp, uint16_t Remo
         /*
          * It makes a TCP server and then it creates a TCP Connection according to the
          * settings in the function. It uses a very high time of waiting because the
-         * ESP8266 takes a lot of time to create a connection with a TCP the first time.
+         * ESP32 takes a lot of time to create a connection with a TCP the first time.
          */
         Wifi_RxClear();
         if (Wifi.TcpIpMultiConnection == true)
@@ -795,7 +972,15 @@ bool Wifi_TcpIp_StartTcpConnection(uint8_t LinkId, char *RemoteIp, uint16_t Remo
     } while (0);
     return returnVal;
 }
-// #########################################################################################################
+
+/**
+ * @brief Start UDP connection
+ * @param LinkId: Link ID
+ * @param RemoteIp: Remote IP address
+ * @param RemotePort: Remote port
+ * @param LocalPort: Local port
+ * @return `1` on success or `0` on failure
+ */
 bool Wifi_TcpIp_StartUdpConnection(uint8_t LinkId, char *RemoteIp, uint16_t RemotePort, uint16_t LocalPort)
 {
     uint8_t result;
@@ -817,7 +1002,12 @@ bool Wifi_TcpIp_StartUdpConnection(uint8_t LinkId, char *RemoteIp, uint16_t Remo
     } while (0);
     return returnVal;
 }
-// #########################################################################################################
+
+/**
+ * @brief Close TCP connection
+ * @param LinkId: Link ID
+ * @return `1` on success or `0` on failure
+ */
 bool Wifi_TcpIp_Close(uint8_t LinkId)
 {
     uint8_t result;
@@ -839,7 +1029,12 @@ bool Wifi_TcpIp_Close(uint8_t LinkId)
     } while (0);
     return returnVal;
 }
-// #########################################################################################################
+
+/**
+ * @brief Enable TCP server
+ * @param PortNumber: Port number
+ * @return `1` on success or `0` on failure
+ */
 bool Wifi_TcpIp_SetEnableTcpServer(uint16_t PortNumber)
 {
     uint8_t result;
@@ -872,7 +1067,12 @@ bool Wifi_TcpIp_SetEnableTcpServer(uint16_t PortNumber)
     } while (0);
     return returnVal;
 }
-// #########################################################################################################
+
+/**
+ * @brief Disable TCP server
+ * @param PortNumber: Port number
+ * @return `1` on success or `0` on failure
+ */
 bool Wifi_TcpIp_SetDisableTcpServer(uint16_t PortNumber)
 {
     uint8_t result;
@@ -891,7 +1091,14 @@ bool Wifi_TcpIp_SetDisableTcpServer(uint16_t PortNumber)
     } while (0);
     return returnVal;
 }
-// #########################################################################################################
+
+/**
+ * @brief Send data over UDP
+ * @param LinkId: Link ID
+ * @param dataLen: Data length
+ * @param data: Data string
+ * @return `1` on success or `0` on failure
+ */
 bool Wifi_TcpIp_SendDataUdp(uint8_t LinkId, uint16_t dataLen, uint8_t *data)
 {
     uint8_t result;
@@ -920,7 +1127,14 @@ bool Wifi_TcpIp_SendDataUdp(uint8_t LinkId, uint16_t dataLen, uint8_t *data)
     } while (0);
     return returnVal;
 }
-// #########################################################################################################
+
+/**
+ * @brief Send data over TCP
+ * @param LinkId: Link ID
+ * @param dataLen: Data length
+ * @param data: Data string
+ * @return 
+ */
 bool Wifi_TcpIp_SendDataTcp(uint8_t LinkId, uint16_t dataLen, uint8_t *data)
 {
     uint8_t result;
@@ -948,9 +1162,13 @@ bool Wifi_TcpIp_SendDataTcp(uint8_t LinkId, uint16_t dataLen, uint8_t *data)
     } while (0);
     return returnVal;
 }
-// #########################################################################################################
-/* MQTT Commands */
-// #########################################################################################################
+/* SNTP Commands */
+
+/**
+ * @brief Initialize SNTP server connection
+ * @param  
+ * @return `1` on success or `0` on failure
+ */
 bool SNTP_Init(void)
 {
     SNTP.enable = 1;
@@ -962,7 +1180,12 @@ bool SNTP_Init(void)
         SNTP_SetTimeZone(1);
     return true;
 }
-// #########################################################################################################
+
+/**
+ * @brief Set the timezone
+ * @param numServers: Number of servers to connect to
+ * @return `1` on success or `0` on failure
+ */
 bool SNTP_SetTimeZone(size_t numServers)
 {
     uint8_t result;
@@ -1001,7 +1224,12 @@ bool SNTP_SetTimeZone(size_t numServers)
     } while (0);
     return returnVal;
 }
-// #########################################################################################################
+
+/**
+ * @brief Check if SNTP time was updated
+ * @param  
+ * @return `1` on success or `0` on failure
+ */
 bool SNTP_TimeUpdated(void)
 {
     uint8_t result;
@@ -1026,14 +1254,17 @@ bool SNTP_TimeUpdated(void)
         {
             break;
         }
-        //  = strstr((char *)Buffs.RxBuffer.buff, "+CIPSNTPTIME:");
-        // sscanf(((char*)&Buffs.RxBuffer_Data + search_idx + strlen(search_str)), "%3s %3s %hhu %hhu:%hhu:%hhu %hu", SNTP.time.day_of_week, SNTP.time.month, &SNTP.time.day, &SNTP.time.clocktime.hour, &SNTP.time.clocktime.min, &SNTP.time.clocktime.sec, &SNTP.time.year);
-
         returnVal = true;
     } while (0);
-
     return returnVal;
 }
+
+/* MWTT Commands */
+/**
+ * @brief Initialize MQTT connection to AWS server
+ * @param  
+ * @return `1` on success or `0` on failure
+ */
 bool MQTT_Init(void)
 {
     uint32_t(*unique_id_1) = (uint32_t *)(UID_BASE);      // BASE address
@@ -1060,7 +1291,11 @@ bool MQTT_Init(void)
     return true;
 }
 
-// #########################################################################################################
+/**
+ * @brief Set the MQTT user configuration
+ * @param  
+ * @return `1` on success or `0` on failure
+ */
 bool MQTT_SetUserConfig(void)
 {
     uint8_t result;
@@ -1080,7 +1315,12 @@ bool MQTT_SetUserConfig(void)
     } while (0);
     return returnVal;
 }
-// #########################################################################################################
+
+/**
+ * @brief Set the MQTT client ID
+ * @param  
+ * @return `1` on success or `0` on failure
+ */
 bool MQTT_SetClientID(void)
 {
     uint8_t result;
@@ -1099,7 +1339,12 @@ bool MQTT_SetClientID(void)
     } while (0);
     return returnVal;
 }
-// #########################################################################################################
+
+/**
+ * @brief Set the MQTT username
+ * @param  
+ * @return `1` on success or `0` on failure
+ */
 bool MQTT_SetUsername(void)
 {
     uint8_t result;
@@ -1118,7 +1363,12 @@ bool MQTT_SetUsername(void)
     } while (0);
     return returnVal;
 }
-// #########################################################################################################
+
+/**
+ * @brief Set the MQTT password
+ * @param  
+ * @return `1` on success or `0` on failure
+ */
 bool MQTT_SetPassword(void)
 {
     uint8_t result;
@@ -1137,7 +1387,12 @@ bool MQTT_SetPassword(void)
     } while (0);
     return returnVal;
 }
-// #########################################################################################################
+
+/**
+ * @brief Set MQTT configuration connection
+ * @param  
+ * @return `1` on success or `0` on failure
+ */
 bool MQTT_SetConnectionConfig(void)
 {
     uint8_t result;
@@ -1145,7 +1400,7 @@ bool MQTT_SetConnectionConfig(void)
     do
     {
         Wifi_RxClear();
-        sprintf((char *)Buffs.TxBuffer, "AT+MQTTPASSWORD=%u,\"%s\"\r\n", MQTT.link_id, MQTT.password);
+        sprintf((char *)Buffs.TxBuffer, "AT+MQTTCONNCFG=0,0,0,\"\",\"\",0,0\r\n");
         if (Wifi_SendString((char *)Buffs.TxBuffer) == false)
             break;
         if (Wifi_WaitForString(_WIFI_WAIT_TIME_LOW, &result, 2, "OK", "ERROR") == false)
@@ -1156,7 +1411,12 @@ bool MQTT_SetConnectionConfig(void)
     } while (0);
     return returnVal;
 }
-// #########################################################################################################
+
+/**
+ * @brief Connect to MQTT broker
+ * @param  
+ * @return `1` on success or `0` on failure
+ */
 bool MQTT_Connect(void)
 {
     uint8_t result;
@@ -1180,7 +1440,12 @@ bool MQTT_Connect(void)
     } while (0);
     return returnVal;
 }
-// #########################################################################################################
+
+/**
+ * @brief Get MQTT broker you are connected to
+ * @param  
+ * @return `1` on success or `0` on failure
+ */
 bool MQTT_GetConnection(void)
 {
     uint8_t result;
@@ -1217,7 +1482,12 @@ bool MQTT_GetConnection(void)
     } while (0);
     return returnVal;
 }
-// #########################################################################################################
+
+/**
+ * @brief Publish MQTT message for command less than 256 bytes
+ * @param Message: Struct containing the topic, data length, and data
+ * @return `1` on success or `0` on failure
+ */
 bool MQTT_Publish(MQTT_Message_t Message)
 {
     uint8_t result;
@@ -1236,7 +1506,12 @@ bool MQTT_Publish(MQTT_Message_t Message)
     } while (0);
     return returnVal;
 }
-// #########################################################################################################
+
+/**
+ * @brief Publish raw data for command length greater than 256 bytes
+ * @param Message: Struct containing the topic, data length, and data
+ * @return `1` on success or `0` on failure
+ */
 bool MQTT_PublishRaw(MQTT_Message_t Message)
 {
     uint8_t result;
@@ -1268,7 +1543,12 @@ bool MQTT_PublishRaw(MQTT_Message_t Message)
     } while (0);
     return returnVal;
 }
-// #########################################################################################################
+
+/**
+ * @brief Subscribe to a topic
+ * @param Message: Struct containing the topic, data length, and data
+ * @return `1` on success or `0` on failure
+ */
 bool MQTT_Subscribe(MQTT_Message_t Message)
 {
     uint8_t result;
@@ -1287,7 +1567,12 @@ bool MQTT_Subscribe(MQTT_Message_t Message)
     } while (0);
     return returnVal;
 }
-// #########################################################################################################
+
+/**
+ * @brief Unsubscribe from a topic
+ * @param Message: Struct containing the topic, data length, and data
+ * @return `1` on success or `0` on failure
+ */
 bool MQTT_Unsubscribe(MQTT_Message_t Message)
 {
     uint8_t result;
@@ -1306,7 +1591,12 @@ bool MQTT_Unsubscribe(MQTT_Message_t Message)
     } while (0);
     return returnVal;
 }
-// #########################################################################################################
+
+/**
+ * @brief Check topics you are subscribed to
+ * @param Message: Struct containing the topic, data length, and data
+ * @return `1` on success or `0` on failure
+ */
 bool MQTT_CheckSubscription(MQTT_Message_t *Message)
 {
     uint8_t result;
@@ -1330,7 +1620,12 @@ bool MQTT_CheckSubscription(MQTT_Message_t *Message)
     } while (0);
     return returnVal;
 }
-// #########################################################################################################
+
+/**
+ * @brief Close MQTT connections
+ * @param 
+ * @return `1` on success or `0` on failure
+ */
 bool MQTT_Disconnect(void)
 {
     uint8_t result;
@@ -1349,7 +1644,13 @@ bool MQTT_Disconnect(void)
     } while (0);
     return returnVal;
 }
-// #########################################################################################################
+
+/**
+ * @brief Wait for a message to be received
+ * @param Message: Struct containing the topic, data length, and data
+ * @param waitTime: Time to wait for string to come (ms)
+ * @return `1` on success or `0` on failure
+ */
 bool MQTT_WaitForMessage(MQTT_Message_t *Message, uint32_t waitTime)
 {
     uint8_t result;
@@ -1369,7 +1670,14 @@ bool MQTT_WaitForMessage(MQTT_Message_t *Message, uint32_t waitTime)
     } while (0);
     return returnVal;
 }
-// #########################################################################################################
+
+/**
+ * @brief Check receive buffer for a received message
+ * @param Message: Struct containing the topic, data length, and data
+ * @param findStr: String to look for
+ * @param start_idx: Index in the rx buffer to start the search
+ * @return `1` on success or `0` on failure
+ */
 bool MQTT_ListenForMessage(MQTT_Message_t *Message, char *findStr, size_t *start_idx)
 {
     bool returnVal = false;

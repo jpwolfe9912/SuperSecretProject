@@ -1,39 +1,25 @@
-/* USER CODE BEGIN Header */
 /**
- ******************************************************************************
  * @file    spi.c
  * @brief   This file provides code for the configuration
  *          of the SPI instances.
- ******************************************************************************
  * @attention
- *
- * Copyright (c) 2022 STMicroelectronics.
- * All rights reserved.
- *
- * This software is licensed under terms that can be found in the LICENSE file
- * in the root directory of this software component.
- * If no LICENSE file comes with this software, it is provided AS-IS.
- *
- ******************************************************************************
  */
-/* USER CODE END Header */
-/* Includes ------------------------------------------------------------------*/
+
+/* Includes */
 #include "spi.h"
 
-/* USER CODE BEGIN 0 */
+/* Global Variables */
 volatile bool transferComplete = false;
 
+/* Static Variables */
 static void transferCompleteCallback(void);
-/* USER CODE END 0 */
 
-/* SPI1 init function */
+/**
+ * @brief SPI1 init function
+ * @param  
+ */
 void MX_SPI1_Init(void)
 {
-
-    /* USER CODE BEGIN SPI1_Init 0 */
-
-    /* USER CODE END SPI1_Init 0 */
-
     LL_SPI_InitTypeDef SPI_InitStruct = {0};
 
     LL_GPIO_InitTypeDef GPIO_InitStruct = {0};
@@ -99,19 +85,17 @@ void MX_SPI1_Init(void)
     LL_SPI_Init(SPI1, &SPI_InitStruct);
     LL_SPI_SetStandard(SPI1, LL_SPI_PROTOCOL_MOTOROLA);
     LL_SPI_EnableNSSPulseMgt(SPI1);
-    /* USER CODE BEGIN SPI1_Init 2 */
+
     LL_SPI_SetRxFIFOThreshold(SPI1, LL_SPI_RX_FIFO_TH_QUARTER);
     LL_SPI_EnableDMAReq_RX(SPI1);
     LL_SPI_EnableDMAReq_TX(SPI1);
-    /* USER CODE END SPI1_Init 2 */
 }
 
-/* USER CODE BEGIN 1 */
-/** @brief Writes one byte of data.
- *
- *  @param reg The hex value of the register to write to.
- *  @param data The data to write.
- *  @return Void.
+/**
+ * @brief Transfer one byte of data
+ * @param txData: Data to write
+ * @param rxData: Variable to read data into
+ * @param size 
  */
 void spi1Transfer(uint8_t *txData, uint8_t *rxData, size_t size)
 {
@@ -141,6 +125,10 @@ void spi1Transfer(uint8_t *txData, uint8_t *rxData, size_t size)
     transferCompleteCallback();
 }
 
+/**
+ * @brief Callback function for SPI1 transfer complete
+ * @param  
+ */
 static void transferCompleteCallback(void)
 {
     while (!transferComplete)
@@ -152,7 +140,8 @@ static void transferCompleteCallback(void)
 /* Interrupt Handlers */
 
 /**
- * @brief This function handles DMA2 stream1 global interrupt.
+ * @brief This function handles DMA1 Channel 1 global interrupt
+ * @param
  */
 void DMA1_Channel2_IRQHandler(void)
 {
@@ -166,7 +155,8 @@ void DMA1_Channel2_IRQHandler(void)
 }
 
 /**
- * @brief This function handles DMA2 stream3 global interrupt.
+ * @brief This function handles DMA1 Channel 3 global interrupt
+ * @param
  */
 void DMA1_Channel3_IRQHandler(void)
 {
@@ -176,4 +166,3 @@ void DMA1_Channel3_IRQHandler(void)
         DMA1->IFCR |= DMA_IFCR_CTCIF3;
     }
 }
-/* USER CODE END 1 */

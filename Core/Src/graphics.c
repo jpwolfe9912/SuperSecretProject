@@ -1,3 +1,9 @@
+/**
+ * @file graphics.c
+ * @author Jeremy Wolfe (jpwolfe@me.com)
+ * @brief Graphics library for writing special shapes
+ */
+
 #include "graphics.h"
 
 #ifndef min
@@ -13,8 +19,7 @@
     }
 #endif
 
-/**************************************************************************/
-/*!
+/**
    @brief    Write a line.  Bresenham's algorithm - thx wikpedia
     @param    x0  Start point x coordinate
     @param    y0  Start point y coordinate
@@ -22,7 +27,7 @@
     @param    y1  End point y coordinate
     @param    color 16-bit 5-6-5 Color to draw with
 */
-/**************************************************************************/
+
 void drawLine(int16_t x0, int16_t y0, int16_t x1, int16_t y1,
               uint16_t color)
 {
@@ -74,8 +79,7 @@ void drawLine(int16_t x0, int16_t y0, int16_t x1, int16_t y1,
     }
 }
 
-/**************************************************************************/
-/*!
+/**
    @brief    Draw a perfectly vertical line (this is often optimized in a
    subclass!)
     @param    x   Top-most x coordinate
@@ -83,7 +87,6 @@ void drawLine(int16_t x0, int16_t y0, int16_t x1, int16_t y1,
     @param    height   Height in pixels
    @param    color 16-bit 5-6-5 Color to fill with
 */
-/**************************************************************************/
 // DRAW LINE FROM X,Y LOCATION to X,Y+Height LOCATION
 void drawVerticalLine(uint16_t x, uint16_t y, uint16_t h, uint16_t color)
 {
@@ -97,8 +100,7 @@ void drawVerticalLine(uint16_t x, uint16_t y, uint16_t h, uint16_t color)
     ili9341DrawColorBurst(color, h);
 }
 
-/**************************************************************************/
-/*!
+/**
    @brief    Draw a perfectly horizontal line (this is often optimized in a
    subclass!)
     @param    x   Left-most x coordinate
@@ -106,7 +108,6 @@ void drawVerticalLine(uint16_t x, uint16_t y, uint16_t h, uint16_t color)
     @param    w   Width in pixels
    @param    color 16-bit 5-6-5 Color to fill with
 */
-/**************************************************************************/
 void drawHorizontalLine(uint16_t x, uint16_t y, uint16_t w, uint16_t color)
 {
     if ((x >= _lcd_width) || (y >= _lcd_height))
@@ -119,15 +120,13 @@ void drawHorizontalLine(uint16_t x, uint16_t y, uint16_t w, uint16_t color)
     ili9341DrawColorBurst(color, w);
 }
 
-/**************************************************************************/
-/*!
+/**
    @brief    Draw a circle outline
     @param    x0   Center-point x coordinate
     @param    y0   Center-point y coordinate
     @param    r   Radius of circle
     @param    color 16-bit 5-6-5 Color to draw with
 */
-/**************************************************************************/
 void drawCircle(int16_t x0, int16_t y0, int16_t r,
                 uint16_t color)
 {
@@ -168,8 +167,7 @@ void drawCircle(int16_t x0, int16_t y0, int16_t r,
     }
 }
 
-/**************************************************************************/
-/*!
+/**
     @brief    Quarter-circle drawer, used to do circles and roundrects
     @param    x0   Center-point x coordinate
     @param    y0   Center-point y coordinate
@@ -178,7 +176,6 @@ void drawCircle(int16_t x0, int16_t y0, int16_t r,
    the circle we're doing
     @param    color 16-bit 5-6-5 Color to draw with
 */
-/**************************************************************************/
 void drawCircleHelper(int16_t x0, int16_t y0, int16_t r,
                       uint8_t cornername, uint16_t color)
 {
@@ -222,15 +219,13 @@ void drawCircleHelper(int16_t x0, int16_t y0, int16_t r,
     }
 }
 
-/**************************************************************************/
-/*!
+/**
    @brief    Draw a circle with filled color
     @param    x0   Center-point x coordinate
     @param    y0   Center-point y coordinate
     @param    r   Radius of circle
     @param    color 16-bit 5-6-5 Color to fill with
 */
-/**************************************************************************/
 void fillCircle(int16_t x0, int16_t y0, int16_t r,
                 uint16_t color)
 {
@@ -238,8 +233,7 @@ void fillCircle(int16_t x0, int16_t y0, int16_t r,
     fillCircleHelper(x0, y0, r, 3, 0, color);
 }
 
-/**************************************************************************/
-/*!
+/**
     @brief  Quarter-circle drawer with fill, used for circles and roundrects
     @param  x0       Center-point x coordinate
     @param  y0       Center-point y coordinate
@@ -248,12 +242,10 @@ void fillCircle(int16_t x0, int16_t y0, int16_t r,
     @param  delta    Offset from center-point, used for round-rects
     @param  color    16-bit 5-6-5 Color to fill with
 */
-/**************************************************************************/
 void fillCircleHelper(int16_t x0, int16_t y0, int16_t r,
                       uint8_t corners, int16_t delta,
                       uint16_t color)
 {
-
     int16_t f = 1 - r;
     int16_t ddF_x = 1;
     int16_t ddF_y = -2 * r;
@@ -294,39 +286,9 @@ void fillCircleHelper(int16_t x0, int16_t y0, int16_t r,
         }
         px = x;
     }
-    // int16_t f = 1 - r;
-    // int16_t ddF_x = 1;
-    // int16_t ddF_y = -r - r;
-    // int16_t x = 0;
-
-    // delta++;
-    // while (x < r)
-    // {
-    //     if (f >= 0)
-    //     {
-    //         r--;
-    //         ddF_y += 2;
-    //         f += ddF_y;
-    //     }
-    //     x++;
-    //     ddF_x += 2;
-    //     f += ddF_x;
-
-    //     if (corners & 0x1)
-    //     {
-    //         drawVerticalLine(x0 + x, y0 - r, r + r + delta, color);
-    //         drawVerticalLine(x0 + r, y0 - x, x + x + delta, color);
-    //     }
-    //     if (corners & 0x2)
-    //     {
-    //         drawVerticalLine(x0 - x, y0 - r, r + r + delta, color);
-    //         drawVerticalLine(x0 - r, y0 - x, x + x + delta, color);
-    //     }
-    // }
 }
 
-/**************************************************************************/
-/*!
+/**
    @brief   Draw a rectangle with no fill color
     @param    x   Top left corner x coordinate
     @param    y   Top left corner y coordinate
@@ -334,7 +296,6 @@ void fillCircleHelper(int16_t x0, int16_t y0, int16_t r,
     @param    h   Height in pixels
     @param    color 16-bit 5-6-5 Color to draw with
 */
-/**************************************************************************/
 void drawRect(int16_t x, int16_t y, int16_t w, int16_t h,
               uint16_t color)
 {
@@ -345,8 +306,7 @@ void drawRect(int16_t x, int16_t y, int16_t w, int16_t h,
     drawVerticalLine(x + w - 1, y, h, color);
 }
 
-/**************************************************************************/
-/*!
+/**
    @brief   Draw a rectangle with fill color
     @param    x   Top left corner x coordinate
     @param    y   Top left corner y coordinate
@@ -354,7 +314,6 @@ void drawRect(int16_t x, int16_t y, int16_t w, int16_t h,
     @param    h   Height in pixels
     @param    color 16-bit 5-6-5 Color to draw with
 */
-/**************************************************************************/
 void fillRect(uint16_t x, uint16_t y, uint16_t w, uint16_t h, uint16_t color)
 {
     if ((x >= _lcd_width) || (y >= _lcd_height))
@@ -371,8 +330,7 @@ void fillRect(uint16_t x, uint16_t y, uint16_t w, uint16_t h, uint16_t color)
     ili9341DrawColorBurst(color, h * w);
 }
 
-/**************************************************************************/
-/*!
+/**
    @brief   Draw a rounded rectangle with no fill color
     @param    x   Top left corner x coordinate
     @param    y   Top left corner y coordinate
@@ -381,7 +339,6 @@ void fillRect(uint16_t x, uint16_t y, uint16_t w, uint16_t h, uint16_t color)
     @param    r   Radius of corner rounding
     @param    color 16-bit 5-6-5 Color to draw with
 */
-/**************************************************************************/
 void drawRoundRect(int16_t x, int16_t y, int16_t w, int16_t h,
                    int16_t r, uint16_t color)
 {
@@ -401,8 +358,7 @@ void drawRoundRect(int16_t x, int16_t y, int16_t w, int16_t h,
     drawCircleHelper(x + r, y + h - r - 1, r, 8, color);
 }
 
-/**************************************************************************/
-/*!
+/**
    @brief   Draw a rounded rectangle with fill color
     @param    x   Top left corner x coordinate
     @param    y   Top left corner y coordinate
@@ -411,7 +367,6 @@ void drawRoundRect(int16_t x, int16_t y, int16_t w, int16_t h,
     @param    r   Radius of corner rounding
     @param    color 16-bit 5-6-5 Color to draw/fill with
 */
-/**************************************************************************/
 void fillRoundRect(int16_t x, int16_t y, int16_t w, int16_t h,
                    int16_t r, uint16_t color)
 {
@@ -426,8 +381,7 @@ void fillRoundRect(int16_t x, int16_t y, int16_t w, int16_t h,
     fillCircleHelper(x + r, y + r, r, 2, h - 2 * r - 1, color);
 }
 
-/**************************************************************************/
-/*!
+/**
    @brief   Draw a triangle with no fill color
     @param    x0  Vertex #0 x coordinate
     @param    y0  Vertex #0 y coordinate
@@ -437,7 +391,6 @@ void fillRoundRect(int16_t x, int16_t y, int16_t w, int16_t h,
     @param    y2  Vertex #2 y coordinate
     @param    color 16-bit 5-6-5 Color to draw with
 */
-/**************************************************************************/
 void drawTriangle(int16_t x0, int16_t y0, int16_t x1, int16_t y1,
                   int16_t x2, int16_t y2, uint16_t color)
 {
@@ -446,8 +399,7 @@ void drawTriangle(int16_t x0, int16_t y0, int16_t x1, int16_t y1,
     drawLine(x2, y2, x0, y0, color);
 }
 
-/**************************************************************************/
-/*!
+/**
    @brief     Draw a triangle with color-fill
     @param    x0  Vertex #0 x coordinate
     @param    y0  Vertex #0 y coordinate
@@ -457,11 +409,9 @@ void drawTriangle(int16_t x0, int16_t y0, int16_t x1, int16_t y1,
     @param    y2  Vertex #2 y coordinate
     @param    color 16-bit 5-6-5 Color to fill/draw with
 */
-/**************************************************************************/
 void fillTriangle(int16_t x0, int16_t y0, int16_t x1, int16_t y1,
                   int16_t x2, int16_t y2, uint16_t color)
 {
-
     int16_t a, b, y, last;
 
     // Sort coordinates by Y order (y2 >= y1 >= y0)

@@ -1,12 +1,7 @@
-/** @file 		drv_system.c
- *  @brief
- *  	This file contains all the basic functions to run the timing
- *  	of the system as well as initialize the system.
- *
- *
- *  @author 	Jeremy Wolfe
- *  @date 		03 MAR 2022
- */
+/** @file       drv_system.c
+ *  @author     Jeremy Wolfe (jpwolfe@me.com)
+ *  @brief      This file contains all the basic functions to run the timing
+ *  	            of the system as well as initialize the system. */
 
 #include "dwt_system.h"
 
@@ -14,6 +9,8 @@
 static volatile uint32_t usTicks = 0;
 static volatile uint32_t sysTickUptime = 0;
 static volatile uint32_t sysTickCycleCounter = 0;
+
+/* Global Variables */
 uint16_t frameCounter = 0;
 
 volatile bool frame1Hz = false;
@@ -21,7 +18,6 @@ volatile bool frame10Hz = false;
 volatile bool frame100Hz = false;
 volatile bool frame1000Hz = false;
 
-/* Static Function Prototypes */
 
 /** @brief Gets system time in microseconds.
  *
@@ -48,7 +44,7 @@ micros(void)
 }
 
 /** @brief Gets system time in milliseconds.
- *
+ * 
  *  @return uint32_t Time in milliseconds.
  */
 uint32_t
@@ -58,7 +54,7 @@ millis(void)
 }
 
 /** @brief Delay in microseconds.
- *
+ * 
  *  @return Void.
  */
 void delayMicroseconds(uint32_t us)
@@ -113,6 +109,9 @@ void cycleCounterInit(void)
     DWT->CTRL |= DWT_CTRL_CYCCNTENA_Msk;
 }
 
+/**
+ *  @brief This function handles System tick timer.
+ */
 void SysTick_Handler(void)
 {
     sysTickCycleCounter = DWT->CYCCNT;
@@ -125,9 +124,13 @@ void SysTick_Handler(void)
         frame10Hz = true;
     if (!(frameCounter % 1000))
         frame1Hz = true;
-    // HAL_IncTick();
 }
 
+/**
+ * @brief Get the system uptime in milliseconds
+ * 
+ * @return The uptime
+ */
 uint32_t getSysUpTime(void)
 {
     return sysTickUptime;

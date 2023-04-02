@@ -1,7 +1,20 @@
+/**
+ * @file ft6206.c
+ * @author Jeremy Wolfe (jpwolfe@me.com)
+ * @brief Allows for interaction with the FT6206 touch screen
+ */
+
+/* Includes */
 #include "ft6206.h"
 
+/* Global Variables */
 TouchData_t touchData;
 
+/**
+ * @brief Initializes the FT6206 by writing to onboard registers.
+ * @param  
+ * @return `1` on success or `0` on failure
+ */
 bool ft6206Init(void)
 {
 #ifdef FT62XX_DEBUG
@@ -68,16 +81,16 @@ bool ft6206Init(void)
             return false;
         }
     }
-    touchData.touched = false;
-    touchData.touches = 0;
-    touchData.touchId = 0;
-    touchData.xPos = 0;
-    touchData.yPos = 0;
 
     NVIC_EnableIRQ(EXTI9_5_IRQn);
     return true;
 }
 
+/**
+ * @brief Read data from FT6206 when a touch is detected
+ * @param  
+ * @return `1` on success or `0` on failure
+ */
 bool ft6206ReadData(void)
 {
     bool dataReady = false;
@@ -111,6 +124,10 @@ bool ft6206ReadData(void)
 #endif
 }
 
+/**
+ * @brief IRQ Handler for touch events
+ * @param  
+ */
 void FT62XX_TOUCH_IRQ(void)
 {
     /* USER CODE BEGIN EXTI9_5_IRQn 0 */

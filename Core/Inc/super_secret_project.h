@@ -1,6 +1,12 @@
+/**
+ * @file super_secret_project.h
+ * @author Jeremy Wolfe (jpwolfe@me.com)
+ * @brief Contains common includes for every file
+ */
 #ifndef __SUPER_SECRET_PROJECT_H__
 #define __SUPER_SECRET_PROJECT_H__
 
+/* Includes */
 #include "main.h"
 
 #include "stm32l4xx_ll_dma.h"
@@ -17,8 +23,6 @@
 #include "stm32l4xx_ll_usart.h"
 #include "stm32l4xx_ll_gpio.h"
 
-/* Private includes ----------------------------------------------------------*/
-/* USER CODE BEGIN Includes */
 #include <stdbool.h>
 #include <stdint.h>
 #include <stdio.h>
@@ -37,13 +41,4 @@
 #include "usart.h"
 #include "gpio.h"
 
-// #include "images.h"
-// #include "fonts.h"
-// #include "ili9341.h"
-// #include "ft6206.h"
-// #include "utilities.h"
-// #include "data_transfer.h"
-// #include "esp32.h"
-// #include "graphics.h"
-
-#endif
+#endif /* __SUPER_SECRET_PROJECT_H__ */
