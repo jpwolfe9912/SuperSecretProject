@@ -13,6 +13,7 @@ extern "C" {
 
 /* Includes */
 #include "super_secret_project.h"
+#include "leds.h"
 
 /* Defines */
 #define I2C1_TIMEOUT 5U
