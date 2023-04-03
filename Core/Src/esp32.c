@@ -19,7 +19,7 @@ SNTP_t SNTP;
  * @brief Send data over USART with DMA
  * @param data: String to send
  * @param len: Length of string
- * @return 
+ * @return
  */
 bool Wifi_SendRaw(uint8_t *data, uint16_t len)
 {
@@ -240,7 +240,7 @@ void Wifi_RemoveChar(char *str, char garbage)
 
 /**
  * @brief Reset receive buffer
- * @param  
+ * @param
  */
 void Wifi_RxClear(void)
 {
@@ -249,7 +249,7 @@ void Wifi_RxClear(void)
 
 /**
  * @brief Reset transmit buffer
- * @param  
+ * @param
  */
 void Wifi_TxClear(void)
 {
@@ -260,7 +260,7 @@ void Wifi_TxClear(void)
  * @brief Checks if ESP32 is in a state where it is waiting for
  *          a number of characters to receive. Clears this state
  *          by sending random characters.
- * @param  
+ * @param
  */
 void Wifi_Unbrick(void)
 {
@@ -270,7 +270,7 @@ void Wifi_Unbrick(void)
         if (Wifi_SendString("\r\nThis is a random string to send to force the MQTTPUBRAW string length to be reached so it unbricks\r\n") == false)
             break;
         Wifi_WaitForString(_WIFI_WAIT_TIME_LOW, &result, 2, "OK", "ERROR");
-        
+
         Wifi_RxClear();
         Wifi_TxClear();
     } while (result == 0);
@@ -279,7 +279,7 @@ void Wifi_Unbrick(void)
 
 /**
  * @brief Resets buffers and sees if there is a response
- * @param  
+ * @param
  * @return `1` on success or `0` on failure
  */
 bool Wifi_Init(void)
@@ -293,7 +293,8 @@ bool Wifi_Init(void)
 
         if (Wifi_SendString("\r\nAT\r\n") == false)
             break;
-        if (Wifi_WaitForString(_WIFI_WAIT_TIME_LOW, &result, 2, "OK", "ERROR") == false){
+        if (Wifi_WaitForString(_WIFI_WAIT_TIME_LOW, &result, 2, "OK", "ERROR") == false)
+        {
             Wifi_Unbrick();
             break;
         }
@@ -309,7 +310,7 @@ bool Wifi_Init(void)
 
 /**
  * @brief Restart module
- * @param  
+ * @param
  * @return `1` on success or `0` on failure
  */
 bool Wifi_Restart(void)
@@ -336,7 +337,7 @@ bool Wifi_Restart(void)
 /**
  * @brief ESP32 enters deep-sleep mode for a time
  * @param DelayMs: Time to sleep for
- * @return 
+ * @return
  */
 bool Wifi_DeepSleep(uint16_t DelayMs)
 {
@@ -378,7 +379,7 @@ bool Wifi_FactoryReset(void)
 
 /**
  * @brief Update the version of AT Commands when the device is connected to Internet
- * @param  
+ * @param
  * @return `1` on success or `0` on failure
  */
 bool Wifi_Update(void)
@@ -402,7 +403,7 @@ bool Wifi_Update(void)
 
 /**
  * @brief Set Rf power
- * @param Power_0_to_82: Power value from 0 to 82 
+ * @param Power_0_to_82: Power value from 0 to 82
  * @return `1` on success or `0` on failure
  */
 bool Wifi_SetRfPower(uint8_t Power_0_to_82)
@@ -451,7 +452,7 @@ bool Wifi_SetMode(WifiMode_t WifiMode_)
 
 /**
  * @brief Get the wifi mode and store it in Wifi variable
- * @param  
+ * @param
  * @return `1` on success or `0` on failure
  */
 bool Wifi_GetMode(void)
@@ -480,7 +481,7 @@ bool Wifi_GetMode(void)
 
 /**
  * @brief Get my IP address
- * @param  
+ * @param
  * @return `1` on success or `0` on failure
  */
 bool Wifi_GetMyIp(void)
@@ -538,7 +539,7 @@ bool Wifi_Station_ConnectToAp(char *SSID, char *Pass, char *MAC)
 
 /**
  * @brief Disconnect the station
- * @param  
+ * @param
  * @return `1` on success or `0` on failure
  */
 bool Wifi_Station_Disconnect(void)
@@ -617,7 +618,7 @@ bool Wifi_Station_DhcpEnable(bool Enable)
 
 /**
  * @brief Check if DHCP is enabled and store in Wifi variable
- * @param  
+ * @param
  * @return `1` on success or `0` on failure
  */
 bool Wifi_Station_DhcpIsEnable(void)
@@ -701,7 +702,7 @@ bool Wifi_SoftAp_Create(char *SSID, char *password, uint8_t channel, WifiEncrypt
 
 /**
  * @brief Get the network the module is connected to
- * @param  
+ * @param
  * @return `1` on success or `0` on failure
  */
 bool Wifi_GetApConnection(void)
@@ -758,7 +759,7 @@ bool Wifi_GetApConnection(void)
 
 /**
  * @brief Get devices connected to access point
- * @param  
+ * @param
  * @return `1` on success or `0` on failure
  */
 bool Wifi_SoftAp_GetConnectedDevices(void)
@@ -800,7 +801,7 @@ bool Wifi_SoftAp_GetConnectedDevices(void)
 
 /**
  * @brief Get connection status
- * @param  
+ * @param
  * @return `1` on success or `0` on failure
  */
 bool Wifi_TcpIp_GetConnectionStatus(void)
@@ -846,7 +847,6 @@ bool Wifi_TcpIp_GetConnectionStatus(void)
     } while (0);
     return returnVal;
 }
-
 
 /**
  * @brief Ping a url or IP address
@@ -902,7 +902,7 @@ bool Wifi_TcpIp_SetMultiConnection(bool EnableMultiConnections)
 
 /**
  * @brief Check if multiple connections is enabled
- * @param  
+ * @param
  * @return `1` on success or `0` on failure
  */
 bool Wifi_TcpIp_GetMultiConnection(void)
@@ -1133,7 +1133,7 @@ bool Wifi_TcpIp_SendDataUdp(uint8_t LinkId, uint16_t dataLen, uint8_t *data)
  * @param LinkId: Link ID
  * @param dataLen: Data length
  * @param data: Data string
- * @return 
+ * @return
  */
 bool Wifi_TcpIp_SendDataTcp(uint8_t LinkId, uint16_t dataLen, uint8_t *data)
 {
@@ -1166,7 +1166,7 @@ bool Wifi_TcpIp_SendDataTcp(uint8_t LinkId, uint16_t dataLen, uint8_t *data)
 
 /**
  * @brief Initialize SNTP server connection
- * @param  
+ * @param
  * @return `1` on success or `0` on failure
  */
 bool SNTP_Init(void)
@@ -1227,7 +1227,7 @@ bool SNTP_SetTimeZone(size_t numServers)
 
 /**
  * @brief Check if SNTP time was updated
- * @param  
+ * @param
  * @return `1` on success or `0` on failure
  */
 bool SNTP_TimeUpdated(void)
@@ -1262,7 +1262,7 @@ bool SNTP_TimeUpdated(void)
 /* MWTT Commands */
 /**
  * @brief Initialize MQTT connection to AWS server
- * @param  
+ * @param
  * @return `1` on success or `0` on failure
  */
 bool MQTT_Init(void)
@@ -1293,7 +1293,7 @@ bool MQTT_Init(void)
 
 /**
  * @brief Set the MQTT user configuration
- * @param  
+ * @param
  * @return `1` on success or `0` on failure
  */
 bool MQTT_SetUserConfig(void)
@@ -1318,7 +1318,7 @@ bool MQTT_SetUserConfig(void)
 
 /**
  * @brief Set the MQTT client ID
- * @param  
+ * @param
  * @return `1` on success or `0` on failure
  */
 bool MQTT_SetClientID(void)
@@ -1342,7 +1342,7 @@ bool MQTT_SetClientID(void)
 
 /**
  * @brief Set the MQTT username
- * @param  
+ * @param
  * @return `1` on success or `0` on failure
  */
 bool MQTT_SetUsername(void)
@@ -1366,7 +1366,7 @@ bool MQTT_SetUsername(void)
 
 /**
  * @brief Set the MQTT password
- * @param  
+ * @param
  * @return `1` on success or `0` on failure
  */
 bool MQTT_SetPassword(void)
@@ -1390,7 +1390,7 @@ bool MQTT_SetPassword(void)
 
 /**
  * @brief Set MQTT configuration connection
- * @param  
+ * @param
  * @return `1` on success or `0` on failure
  */
 bool MQTT_SetConnectionConfig(void)
@@ -1414,7 +1414,7 @@ bool MQTT_SetConnectionConfig(void)
 
 /**
  * @brief Connect to MQTT broker
- * @param  
+ * @param
  * @return `1` on success or `0` on failure
  */
 bool MQTT_Connect(void)
@@ -1443,7 +1443,7 @@ bool MQTT_Connect(void)
 
 /**
  * @brief Get MQTT broker you are connected to
- * @param  
+ * @param
  * @return `1` on success or `0` on failure
  */
 bool MQTT_GetConnection(void)
@@ -1522,9 +1522,10 @@ bool MQTT_PublishRaw(MQTT_Message_t Message)
         sprintf((char *)Buffs.TxBuffer, "AT+MQTTPUBRAW=%u,\"%s\",%u,0,0\r\n", MQTT.link_id, Message.topic, Message.length);
         if (Wifi_SendString((char *)Buffs.TxBuffer) == false)
             break;
-        if (Wifi_WaitForString(_WIFI_WAIT_TIME_LOW, &result, 2, "OK", "ERROR") == false){
+        if (Wifi_WaitForString(_WIFI_WAIT_TIME_LOW, &result, 2, "OK", "ERROR") == false)
+        {
             Wifi_Unbrick();
-            break;       // The timeout was completed and the string was not there
+            break; // The timeout was completed and the string was not there
         }
         if (result == 2) // It was find the "ERROR" String in the receiving information
             break;
@@ -1623,7 +1624,7 @@ bool MQTT_CheckSubscription(MQTT_Message_t *Message)
 
 /**
  * @brief Close MQTT connections
- * @param 
+ * @param
  * @return `1` on success or `0` on failure
  */
 bool MQTT_Disconnect(void)
@@ -1682,21 +1683,34 @@ bool MQTT_ListenForMessage(MQTT_Message_t *Message, char *findStr, size_t *start
 {
     bool returnVal = false;
     size_t find_idx = 0;
-    char *items[3];
-    uint8_t items_size;
+    // size_t end_idx = 0;
+    // char* str_peek = calloc(14, 1);
+
     do
     {
-        if (lwrb_find(&Buffs.RxBuffer, (void *)findStr, strlen(findStr), *start_idx, &find_idx))
+        if (lwrb_find(&Buffs.RxBuffer, (void *)findStr, strlen(findStr), 0, &find_idx))
         {
-            char *str = malloc(strlen((char *)Buffs.RxBuffer.buff + find_idx)); // = (char *)Buffs.RxBuffer.buff + find_idx;
-            lwrb_skip(&Buffs.RxBuffer, find_idx);
-            lwrb_read(&Buffs.RxBuffer, (void*)str, strlen((char *)Buffs.RxBuffer.buff + find_idx));
-            *start_idx = find_idx; // start new search at last index
+            char *items[3];
+            uint8_t items_size;                          // unused
+            lwrb_skip(&Buffs.RxBuffer, find_idx);        // skip to location of data we want to read
+            size_t len = lwrb_get_full(&Buffs.RxBuffer); // strlen((char *)Buffs.RxBuffer.buff + find_idx); // length of data in the buffer starting at where we want data
+            if (len >= 0x3FF)
+            {
+                lwrb_reset(&Buffs.RxBuffer);
+                // lwrb_advance(&Buffs.RxBuffer, 1);
+                serialWrite("Fucked up length\n");
+                break;
+            }
+            char str[1024]; // = calloc(len, sizeof(uint8_t)); // allocate memory
+            // *start_idx = find_idx + len - 1;                             // start new search at last index
+
+            lwrb_read(&Buffs.RxBuffer, (void *)str, len);
             if (!split_string(str, items, &items_size))
                 break;
             strcpy(Message->topic, items[0]);
             Message->length = atoi(items[1]);
             strcpy(Message->data, items[2]);
+            
             returnVal = true;
         }
 
