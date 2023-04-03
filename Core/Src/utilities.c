@@ -103,7 +103,7 @@ bool split_string(char *input_string, char *output_array[], uint8_t *output_size
         i++;
         token = strtok(NULL, ",");
     }
-
+    // free(output_array);
     *output_size = i;
 
     // Return true if string is successfully split, false otherwise
