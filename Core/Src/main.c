@@ -80,8 +80,8 @@ int main(void)
             // SysTick->CTRL &= ~SysTick_CTRL_ENABLE_Msk;
             ili9341FillScreen(BLACK);
             memset(RxPacket.data, '\0', _MQTT_RX_SIZE);
-            resetTouchIdx();
-            lwrb_reset(&Buffs.RxBuffer);
+            // resetTouchIdx();
+            // lwrb_reset(&Buffs.RxBuffer);
             // drawRect(50, 60, 50, 60, WHITE);
             // lwrb_init(&Buffs.RxBuffer, (void *)Buffs.RxBuffer_Data, sizeof(Buffs.RxBuffer_Data));
             // SysTick->CTRL |= SysTick_CTRL_ENABLE_Msk;
