@@ -10,6 +10,7 @@
 /* Includes */
 #include "super_secret_project.h"
 #include "fonts.h"
+#include "graphics.h"
 
 /* Defines */
 #define ILI9341_COMMAND (GPIOA->BSRR |= GPIO_BSRR_BR3)
