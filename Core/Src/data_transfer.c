@@ -116,7 +116,10 @@ void resetTouchIdx(void)
  * @param Message 
  */
 void recvAndDisplayTouches(MQTT_Message_t *Message)
-{
+{   //! Doesn't always draw the whole list of coordinates
+    //! Theory is that the frame100Hz is being interrupted by something that changes the buffer
+    //? Maybe, instead of doing a single read each time inside the 100Hz loop, do one big
+    //? read into a temp variable that then sends the data one by one
     static size_t find_idx = 0;
     char *str = "+MQTTSUBRECV";
     if (frame1000Hz)
@@ -124,25 +127,23 @@ void recvAndDisplayTouches(MQTT_Message_t *Message)
         if (MQTT_ListenForMessage(Message, str, &find_idx))
         {
             serialWrite("Good receive\n");
-            numCoords = stringToCoord(Message->data, &RxCoords.xPos, &RxCoords.yPos);
+            stringToCoord(Message->data, &RxCoords.xPos, &RxCoords.yPos);
             if(lwrb_get_full(&RxCoords.xPos) > 0)
                 rxDataReady = true;
             else
                 rxDataReady = false;
         }
-        lwrb_reset(&Buffs.RxBuffer);
         frame1000Hz = false;
     }
     if (frame100Hz)
     {
-        if ((lwrb_get_full(&RxCoords.xPos)) && rxDataReady)
+        if ((lwrb_get_full(&RxCoords.xPos)) && rxDataReady) //! rxDataReady overall bad syntax
         {
             uint16_t xCoord;
             uint16_t yCoord;
             lwrb_read(&RxCoords.xPos, (void*)&xCoord, sizeof(uint16_t));
             lwrb_read(&RxCoords.yPos, (void*)&yCoord, sizeof(uint16_t));
             fillCircle(xCoord, yCoord, 2, BLUE);
-            // touchDispIdx++;
         }
         else
         {
