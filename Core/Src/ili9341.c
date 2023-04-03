@@ -154,7 +154,7 @@ void ili9341SetRotation(ScreenRotation_e rotation)
  */
 void ili9341Init(void)
 {
-    ili9341_Reset();
+    ili9341Reset();
     ILI9341_CS_SET;
 
     // SOFTWARE RESET
@@ -508,11 +508,11 @@ void ili9341WriteCharFromUART(uint16_t x, uint16_t y, FontDef font, uint16_t col
     uint8_t maxLocX = ILI9341_SCREEN_WIDTH / font.width;
     uint8_t maxLocY = ILI9341_SCREEN_HEIGHT / font.height;
 
-    ili9341DrawHorizontalLine(locX, locY + font.height, font.width, color);
+    drawHorizontalLine(locX, locY + font.height, font.width, color);
     while (1)
     {
         ch = serialRead();
-        ili9341DrawHorizontalLine(locX * font.width, (locY * font.height) + font.height, font.width, bgcolor);
+        drawHorizontalLine(locX * font.width, (locY * font.height) + font.height, font.width, bgcolor);
         if (ch == 0x08) // delete key
         {
             ch = ' ';
@@ -557,7 +557,7 @@ void ili9341WriteCharFromUART(uint16_t x, uint16_t y, FontDef font, uint16_t col
                 locY = 0;
             }
         }
-        ili9341DrawHorizontalLine(locX * font.width, (locY * font.height) + font.height, font.width, color);
+        drawHorizontalLine(locX * font.width, (locY * font.height) + font.height, font.width, color);
     }
 }
 
