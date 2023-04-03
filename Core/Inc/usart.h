@@ -17,7 +17,7 @@ extern "C" {
 
 /* Defines */
 #define RX_DMA_SIZE 1024
-#define RX_RB_SIZE 1024
+#define RX_RB_SIZE 2048
 #define TX_SIZE 1024
 
 /* Typdef Structs */
