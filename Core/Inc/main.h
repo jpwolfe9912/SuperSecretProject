@@ -38,6 +38,8 @@ void Error_Handler(void);
 #define TOUCH_IRQ_GPIO_Port GPIOB
 
 #define SEND_RATE frame1Hz
+#define READ_RATE frame1000Hz
+#define DRAW_RATE frame10Hz
 
 #ifdef __cplusplus
 }
