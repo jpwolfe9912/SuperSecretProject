@@ -13,7 +13,7 @@
 #include "graphics.h"
 #include "utilities.h"
 
-#define COORDS_SIZE 128
+#define COORDS_SIZE 100
 
 typedef union
 {
