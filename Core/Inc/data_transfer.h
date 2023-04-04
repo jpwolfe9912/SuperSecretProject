@@ -34,6 +34,8 @@ typedef struct
     uint16_8 yPos_Data[COORDS_SIZE];
 } Coords_t;
 
+extern bool lcdReset;
+
 extern Coords_t TxCoords;
 extern Coords_t RxCoords;
 

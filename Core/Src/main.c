@@ -75,16 +75,13 @@ int main(void)
 
     while (1)
     {
-        if (GPIOB->IDR & GPIO_IDR_ID4)
+        if ((GPIOB->IDR & GPIO_IDR_ID4) || lcdReset)
         {
-            // SysTick->CTRL &= ~SysTick_CTRL_ENABLE_Msk;
             ili9341FillScreen(BLACK);
+            TxPacket.data = '*';
+            MQTT_Publish(TxPacket);
             memset(RxPacket.data, '\0', _MQTT_RX_SIZE);
-            // resetTouchIdx();
-            // lwrb_reset(&Buffs.RxBuffer);
-            // drawRect(50, 60, 50, 60, WHITE);
-            // lwrb_init(&Buffs.RxBuffer, (void *)Buffs.RxBuffer_Data, sizeof(Buffs.RxBuffer_Data));
-            // SysTick->CTRL |= SysTick_CTRL_ENABLE_Msk;
+            lcdReset = false;
         }
         readAndSendTouches(&TxPacket);
         recvAndDisplayTouches(&RxPacket);

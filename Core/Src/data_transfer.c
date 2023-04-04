@@ -21,6 +21,8 @@ uint32_t prev_touch_time = 0;
 uint32_t elap_touch_time = 0;
 uint32_t last_loop_time = 0;
 
+bool lcdReset = false;
+
 Coords_t TxCoords;
 Coords_t RxCoords;
 
@@ -122,6 +124,9 @@ void recvAndDisplayTouches(MQTT_Message_t *Message)
         if (MQTT_ListenForMessage(Message, str, &find_idx))
         {
             serialWrite("Good receive\n");
+            if(Message->data[0] == '*'){
+                lcdReset = true;
+            }
             stringToCoord(Message->data, &RxCoords.xPos, &RxCoords.yPos);
         }
         if (buffTempIdx == 0)
