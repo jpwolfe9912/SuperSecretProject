@@ -8,13 +8,13 @@
 #include "data_transfer.h"
 
 /* Global Variables */
+uint16_t buffTempCoordX[100];
+uint16_t buffTempCoordY[100];
+uint8_t buffTempIdx = 0;
+
+uint8_t rbBytesAvailable = 0;
+
 bool txDataReady = false;
-uint32_t sendIdx = 0;
-
-bool rxDataReady = false;
-uint8_t numCoords = 0;
-
-bool touchRecv = false;
 
 uint32_t last_touch_time = 0;
 uint32_t prev_touch_time = 0;
@@ -26,7 +26,7 @@ Coords_t RxCoords;
 
 /**
  * @brief Allocate memory for data transmission packet
- * @param MQTT_TxPacket 
+ * @param MQTT_TxPacket
  */
 void initTxPacket(MQTT_Message_t *MQTT_TxPacket)
 {
@@ -37,7 +37,7 @@ void initTxPacket(MQTT_Message_t *MQTT_TxPacket)
 
 /**
  * @brief Allocate memory for data reception packet
- * @param MQTT_RxPacket 
+ * @param MQTT_RxPacket
  */
 void initRxPacket(MQTT_Message_t *MQTT_RxPacket)
 {
@@ -48,7 +48,7 @@ void initRxPacket(MQTT_Message_t *MQTT_RxPacket)
 
 /**
  * @brief Initializes ring buffer for x and y coordinates
- * @param Coords 
+ * @param Coords
  */
 void initCoords(Coords_t *Coords)
 {
@@ -58,7 +58,7 @@ void initCoords(Coords_t *Coords)
 
 /**
  * @brief Listens for and packs touches into a packet then sends over MQTT
- * @param Message 
+ * @param Message
  */
 void readAndSendTouches(MQTT_Message_t *Message)
 {
@@ -88,7 +88,6 @@ void readAndSendTouches(MQTT_Message_t *Message)
             if (((last_loop_time - last_touch_time) > (4 * elap_touch_time)) ||
                 (lwrb_get_free(&TxCoords.xPos) == 0))
             {
-                touchRecv = false; // reset touched check
 
                 memset(Message->data, '\0', strlen(Message->data));
                 coords2string(&TxCoords.xPos, &TxCoords.yPos, Message->data);
@@ -105,51 +104,67 @@ void readAndSendTouches(MQTT_Message_t *Message)
         }
     }
 }
-// ! Consider deleting. Test without this variable
-void resetTouchIdx(void)
-{
-    numCoords = 0;
-}
 
 /**
  * @brief Listens for a MQTT message, unpacks the data, and diplays the pixels on screen
- * @param Message 
+ * @param Message
  */
 void recvAndDisplayTouches(MQTT_Message_t *Message)
-{   //! Doesn't always draw the whole list of coordinates
+{ //! Doesn't always draw the whole list of coordinates
     //! Theory is that the frame100Hz is being interrupted by something that changes the buffer
     //? Maybe, instead of doing a single read each time inside the 100Hz loop, do one big
     //? read into a temp variable that then sends the data one by one
+    //? Or increase buffer size so the write pointer doesn't overtake read
     static size_t find_idx = 0;
     char *str = "+MQTTSUBRECV";
-    if (frame1000Hz)
+    if (READ_RATE)
     {
         if (MQTT_ListenForMessage(Message, str, &find_idx))
         {
             serialWrite("Good receive\n");
             stringToCoord(Message->data, &RxCoords.xPos, &RxCoords.yPos);
-            if(lwrb_get_full(&RxCoords.xPos) > 0)
-                rxDataReady = true;
-            else
-                rxDataReady = false;
         }
-        frame1000Hz = false;
+        if (buffTempIdx == 0)
+        {
+            rbBytesAvailable = lwrb_get_full(&RxCoords.xPos);
+            lwrb_read(&RxCoords.xPos, (void *)buffTempCoordX, rbBytesAvailable);
+            lwrb_read(&RxCoords.yPos, (void *)buffTempCoordY, rbBytesAvailable);
+        }
+        READ_RATE = false;
     }
-    if (frame100Hz)
+    /* Problem: The lwrb_read() below happens over the course of a second.
+                If at any point during the read, more data is written,
+                that will mess with the lwrb_get_full() as the write buffer
+                will change and cause undefined behavior to happen
+                (probably cutting it short)
+
+                Brainstorming:
+                - We don't want stringToCoord to be called until the buffer is empty
+                and all data has been read and drawn to the screen
+                - However, if we have to wait for the data to be read over the course
+                of a second before writing more, we might miss some data
+                - Could have a temp variable that we put the contents of the buffer
+                after all the coordinates have been written.
+                    - This way, we free the buffer for more writes without worrying
+                    about the data being overwritten before it can be read
+                    - Something about this feels redundant though because we write the
+                    values to the rb and then immediately read them
+                        - Why have the rb at all?
+                        - I still think rb is a good way to control the flow of data
+
+    */
+    if (DRAW_RATE)
     {
-        if ((lwrb_get_full(&RxCoords.xPos)) && rxDataReady) //! rxDataReady overall bad syntax
+        if ((bool)rbBytesAvailable) // buffer has been read
         {
-            uint16_t xCoord;
-            uint16_t yCoord;
-            lwrb_read(&RxCoords.xPos, (void*)&xCoord, sizeof(uint16_t));
-            lwrb_read(&RxCoords.yPos, (void*)&yCoord, sizeof(uint16_t));
-            fillCircle(xCoord, yCoord, 2, BLUE);
+            fillCircle(buffTempCoordX[buffTempIdx], buffTempCoordY[buffTempIdx], 2, BLUE);
+            if(buffTempIdx < rbBytesAvailable)
+                buffTempIdx++;          // check index during runtime
+            else{
+                buffTempIdx = 0;
+                rbBytesAvailable = 0;
+            }
         }
-        else
-        {
-            // touchDispIdx = 0;
-            rxDataReady = false;
-        }
-        frame100Hz = false;
+        DRAW_RATE = false;
     }
 }
