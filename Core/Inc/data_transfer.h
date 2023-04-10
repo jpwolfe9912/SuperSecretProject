@@ -13,7 +13,7 @@
 #include "graphics.h"
 #include "utilities.h"
 
-#define COORDS_SIZE 100
+#define COORDS_SIZE 200 // TODO Create separate macros for rx and tx
 
 typedef union
 {
@@ -27,9 +27,6 @@ typedef struct
 {
     lwrb_t xPos;
     uint16_8 xPos_Data[COORDS_SIZE];
-    // uint8_t xPos_Data_l[COORDS_SIZE];
-    // uint8_t xPos_Data_u[COORDS_SIZE];
-
     lwrb_t yPos;
     uint16_8 yPos_Data[COORDS_SIZE];
 } Coords_t;
