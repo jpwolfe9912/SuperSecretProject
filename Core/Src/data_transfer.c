@@ -13,6 +13,7 @@ uint16_t buffTempCoordY[100];
 uint8_t buffTempIdx = 0;
 
 uint8_t rbBytesAvailable = 0;
+uint8_t rbCoordsAvailable = 0;
 
 bool txDataReady = false;
 
@@ -54,8 +55,8 @@ void initRxPacket(MQTT_Message_t *MQTT_RxPacket)
  */
 void initCoords(Coords_t *Coords)
 {
-    lwrb_init(&Coords->xPos, (void *)Coords->xPos_Data, sizeof(Coords->xPos_Data));
-    lwrb_init(&Coords->yPos, (void *)Coords->yPos_Data, sizeof(Coords->yPos_Data));
+    lwrb_init(&Coords->xPos, (void *)Coords->xPos_Data, COORDS_SIZE);
+    lwrb_init(&Coords->yPos, (void *)Coords->yPos_Data, COORDS_SIZE);
 }
 
 /**
@@ -112,29 +113,28 @@ void readAndSendTouches(MQTT_Message_t *Message)
  * @param Message
  */
 void recvAndDisplayTouches(MQTT_Message_t *Message)
-{ //! Doesn't always draw the whole list of coordinates
-    //! Theory is that the frame100Hz is being interrupted by something that changes the buffer
-    //? Maybe, instead of doing a single read each time inside the 100Hz loop, do one big
-    //? read into a temp variable that then sends the data one by one
-    //? Or increase buffer size so the write pointer doesn't overtake read
-    static size_t find_idx = 0;
+{
     char *str = "+MQTTSUBRECV";
     if (READ_RATE)
     {
-        if (MQTT_ListenForMessage(Message, str, &find_idx))
+        if (MQTT_ListenForMessage(Message, str))
         {
             serialWrite("Good receive\n");
-            if(Message->data[0] == '*'){
+            if (Message->data[0] == '*')
+            {
                 lcdReset = true;
             }
             stringToCoord(Message->data, &RxCoords.xPos, &RxCoords.yPos);
+            
+            if (buffTempIdx == 0)
+            {
+                rbBytesAvailable = lwrb_get_full(&RxCoords.xPos);
+                rbCoordsAvailable = rbBytesAvailable / 2;
+                lwrb_read(&RxCoords.xPos, (void *)buffTempCoordX, rbBytesAvailable);
+                lwrb_read(&RxCoords.yPos, (void *)buffTempCoordY, rbBytesAvailable);
+            }
         }
-        if (buffTempIdx == 0)
-        {
-            rbBytesAvailable = lwrb_get_full(&RxCoords.xPos);
-            lwrb_read(&RxCoords.xPos, (void *)buffTempCoordX, rbBytesAvailable);
-            lwrb_read(&RxCoords.yPos, (void *)buffTempCoordY, rbBytesAvailable);
-        }
+
         READ_RATE = false;
     }
     /* Problem: The lwrb_read() below happens over the course of a second.
@@ -160,16 +160,22 @@ void recvAndDisplayTouches(MQTT_Message_t *Message)
     */
     if (DRAW_RATE)
     {
-        if ((bool)rbBytesAvailable) // buffer has been read
+        if (rbCoordsAvailable > 0) // buffer has been read
         {
             fillCircle(buffTempCoordX[buffTempIdx], buffTempCoordY[buffTempIdx], 2, BLUE);
-            if(buffTempIdx < rbBytesAvailable)
-                buffTempIdx++;          // check index during runtime
-            else{
+            if (buffTempIdx < rbCoordsAvailable)
+                buffTempIdx++; // check index during runtime
+            else
+            {
                 buffTempIdx = 0;
-                rbBytesAvailable = 0;
+                rbCoordsAvailable = 0;
             }
         }
         DRAW_RATE = false;
     }
 }
+
+//! Problem: Extra dots being drawn at the end
+//? Turns out the the receiver is correct. The transmitter is inserting some weird data
+
+//! Problem: Transmitter isn't sending short touches less than a second immediately after
