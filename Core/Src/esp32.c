@@ -1676,10 +1676,9 @@ bool MQTT_WaitForMessage(MQTT_Message_t *Message, uint32_t waitTime)
  * @brief Check receive buffer for a received message
  * @param Message: Struct containing the topic, data length, and data
  * @param findStr: String to look for
- * @param start_idx: Index in the rx buffer to start the search
  * @return `1` on success or `0` on failure
  */
-bool MQTT_ListenForMessage(MQTT_Message_t *Message, char *findStr, size_t *start_idx)
+bool MQTT_ListenForMessage(MQTT_Message_t *Message, char *findStr)
 {
     bool returnVal = false;
     size_t find_idx = 0;
@@ -1697,11 +1696,11 @@ bool MQTT_ListenForMessage(MQTT_Message_t *Message, char *findStr, size_t *start
             if (len >= 0x3FF)
             {
                 lwrb_reset(&Buffs.RxBuffer);
-                // lwrb_advance(&Buffs.RxBuffer, 1);
                 serialWrite("Fucked up length\n");
                 break;
             }
-            char str[1024]; // = calloc(len, sizeof(uint8_t)); // allocate memory
+            char str[len]; // = calloc(len, sizeof(uint8_t)); // allocate memory
+            memset(str, '\0', len);
             // *start_idx = find_idx + len - 1;                             // start new search at last index
 
             lwrb_read(&Buffs.RxBuffer, (void *)str, len);
@@ -1710,7 +1709,7 @@ bool MQTT_ListenForMessage(MQTT_Message_t *Message, char *findStr, size_t *start
             strcpy(Message->topic, items[0]);
             Message->length = atoi(items[1]);
             strcpy(Message->data, items[2]);
-            
+
             returnVal = true;
         }
 
