@@ -208,6 +208,6 @@ bool MQTT_Subscribe(MQTT_Message_t Message);
 bool MQTT_Unsubscribe(MQTT_Message_t Message);
 bool MQTT_Disconnect(void);
 bool MQTT_WaitForMessage(MQTT_Message_t *Message, uint32_t waitTime);
-bool MQTT_ListenForMessage(MQTT_Message_t *Message, char *findStr, size_t* idx);
+bool MQTT_ListenForMessage(MQTT_Message_t *Message, char *findStr);
 
 #endif
