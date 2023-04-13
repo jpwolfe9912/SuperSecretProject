@@ -3,7 +3,7 @@
  * @brief       This file provides code for the configuration
  *                  of all the requested memory to memory DMA transfers.
  */
-
+// TODO: changed priorities of DMA irq so mqtt pubs don't interrupt reading and drawing
 /* Includes */
 #include "dma.h"
 

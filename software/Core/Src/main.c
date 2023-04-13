@@ -52,14 +52,14 @@ int main(void)
 #endif
 
     ili9341FillScreen(BLACK);
+    ili9341DrawImage(0, 0, _lcd_width, _lcd_height, nellie);
 
-    // Buffs.RxBuffer_Data = calloc(1024, 1);
     lwrb_init(&Buffs.RxBuffer, (void *)Buffs.RxBuffer_Data, sizeof(Buffs.RxBuffer_Data));
     Buffs.RxBuffer.buff = malloc(RX_RB_SIZE);
     Wifi_Init();
     while (!Wifi_GetApConnection())
-    { // connect if not connected
-        Wifi_Station_ConnectToAp("Jeremy Wolfe's iPhone", "aaaaaaaa", NULL);
+    {
+        Wifi_Station_ConnectToAp(AP_SSID, AP_PASSWORD, NULL);
         delay(1000);
     }
     SNTP_Init();
@@ -78,9 +78,10 @@ int main(void)
         if ((GPIOB->IDR & GPIO_IDR_ID4) || lcdReset)
         {
             ili9341FillScreen(BLACK);
-            TxPacket.data = '*';
+            memcpy(&TxPacket.data[0], "*\0", 2);
             MQTT_Publish(TxPacket);
             memset(RxPacket.data, '\0', _MQTT_RX_SIZE);
+            delay(100);
             lcdReset = false;
         }
         readAndSendTouches(&TxPacket);

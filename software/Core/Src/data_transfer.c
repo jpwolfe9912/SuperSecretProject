@@ -16,8 +16,9 @@ uint8_t rbBytesAvailable = 0;
 uint8_t rbCoordsAvailable = 0;
 
 bool txDataReady = false;
+bool smallTouch = false;
 
-uint32_t last_touch_time = 0;
+uint32_t touch_time = 0;
 uint32_t prev_touch_time = 0;
 uint32_t elap_touch_time = 0;
 uint32_t last_loop_time = 0;
@@ -65,14 +66,15 @@ void initCoords(Coords_t *Coords)
  */
 void readAndSendTouches(MQTT_Message_t *Message)
 {
+    last_loop_time = millis();
     if (touchData.touched) // check for touch
     {
         touchData.touched = false;
         // want to see how long it takes from one touch to the next
         // if the time from the previous touch to the loop is > 10ms then we know touched wasn't run
-        prev_touch_time = last_touch_time;
-        last_touch_time = millis();
-        elap_touch_time = last_touch_time - prev_touch_time;
+        prev_touch_time = touch_time;
+        touch_time = millis();
+        elap_touch_time = touch_time - prev_touch_time;
 
         if (ft6206ReadData())
         { // read data
@@ -85,26 +87,25 @@ void readAndSendTouches(MQTT_Message_t *Message)
             lwrb_write(&TxCoords.yPos, (void *)&yPos, sizeof(uint16_t));
 
             fillCircle(touchData.xPos, touchData.yPos, 2, RED);
-
-            last_loop_time = millis();
-
-            if (((last_loop_time - last_touch_time) > (4 * elap_touch_time)) ||
-                (lwrb_get_free(&TxCoords.xPos) == 0))
-            {
-
-                memset(Message->data, '\0', strlen(Message->data));
-                coords2string(&TxCoords.xPos, &TxCoords.yPos, Message->data);
-                Message->length = strlen(Message->data);
-                txDataReady = true;
-            }
-
-            if (SEND_RATE && txDataReady) // if 1s has passed and data is ready
-            {
-                MQTT_PublishRaw(*Message);
-                SEND_RATE = false;
-                txDataReady = false;
-            }
+            smallTouch = true;
         }
+    }
+    if ((((last_loop_time - touch_time) > (4 * elap_touch_time)) || // if #touches is less than 100
+        (lwrb_get_free(&TxCoords.xPos) == 0)) &&                    // if touches fills up buffer
+        smallTouch) // can only go if there was a touch previously
+    {
+        memset(Message->data, '\0', strlen(Message->data)); //? Try without this line
+        coords2string(&TxCoords.xPos, &TxCoords.yPos, Message->data);
+        Message->length = strlen(Message->data);
+        txDataReady = true;
+        smallTouch = false;
+    }
+
+    if (SEND_RATE && txDataReady) // if 1s has passed and data is ready
+    {
+        MQTT_PublishRaw(*Message);
+        SEND_RATE = false;
+        txDataReady = false;
     }
 }
 
@@ -125,7 +126,7 @@ void recvAndDisplayTouches(MQTT_Message_t *Message)
                 lcdReset = true;
             }
             stringToCoord(Message->data, &RxCoords.xPos, &RxCoords.yPos);
-            
+
             if (buffTempIdx == 0)
             {
                 rbBytesAvailable = lwrb_get_full(&RxCoords.xPos);
@@ -137,27 +138,6 @@ void recvAndDisplayTouches(MQTT_Message_t *Message)
 
         READ_RATE = false;
     }
-    /* Problem: The lwrb_read() below happens over the course of a second.
-                If at any point during the read, more data is written,
-                that will mess with the lwrb_get_full() as the write buffer
-                will change and cause undefined behavior to happen
-                (probably cutting it short)
-
-                Brainstorming:
-                - We don't want stringToCoord to be called until the buffer is empty
-                and all data has been read and drawn to the screen
-                - However, if we have to wait for the data to be read over the course
-                of a second before writing more, we might miss some data
-                - Could have a temp variable that we put the contents of the buffer
-                after all the coordinates have been written.
-                    - This way, we free the buffer for more writes without worrying
-                    about the data being overwritten before it can be read
-                    - Something about this feels redundant though because we write the
-                    values to the rb and then immediately read them
-                        - Why have the rb at all?
-                        - I still think rb is a good way to control the flow of data
-
-    */
     if (DRAW_RATE)
     {
         if (rbCoordsAvailable > 0) // buffer has been read
