@@ -24,7 +24,7 @@
 #define _WIFI_WAIT_TIME_VERYHIGH 25000
 #define _WIFI_WAIT_TIME_ULTRAHIGH 120000
 
-#define AP_SSID "Jeremy Wolfe's iPhone"
-#define AP_PASSWORD "aaaaaaaa"
+#define AP_SSID ""
+#define AP_PASSWORD ""
 
 #endif /* __WIFICONFIG_H__ */

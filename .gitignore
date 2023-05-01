@@ -46,3 +46,6 @@ doxygen/
 
 # Office Temp Files
 ~$*
+
+# Kicad Backup Files
+hardware/SuperSecretPCB_V2/SuperSecretPCB_V2-backups/

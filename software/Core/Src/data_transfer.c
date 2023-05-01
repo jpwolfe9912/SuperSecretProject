@@ -91,8 +91,8 @@ void readAndSendTouches(MQTT_Message_t *Message)
         }
     }
     if ((((last_loop_time - touch_time) > (4 * elap_touch_time)) || // if #touches is less than 100
-        (lwrb_get_free(&TxCoords.xPos) == 0)) &&                    // if touches fills up buffer
-        smallTouch) // can only go if there was a touch previously
+         (lwrb_get_free(&TxCoords.xPos) == 0)) &&                   // if touches fills up buffer
+        smallTouch)                                                 // can only go if there was a touch previously
     {
         memset(Message->data, '\0', strlen(Message->data)); //? Try without this line
         coords2string(&TxCoords.xPos, &TxCoords.yPos, Message->data);
