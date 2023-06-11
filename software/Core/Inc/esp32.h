@@ -94,6 +94,8 @@ typedef struct
     uint16_t TcpIpPingAnswer;
     WifiConnection_t TcpIpConnections[5];
     //----------------
+    char ownDevID[6];
+    char othDevID[6];
 } Wifi_t;
 
 typedef struct
