@@ -40,7 +40,9 @@ int main(void)
     MX_USART1_UART_Init();
     MX_USART2_UART_Init();
 
-// MX_FATFS_Init();
+    initDevID();
+
+    // MX_FATFS_Init();
 #ifdef USE_LCD
     ili9341Init();
 #endif
@@ -57,6 +59,7 @@ int main(void)
     lwrb_init(&Buffs.RxBuffer, (void *)Buffs.RxBuffer_Data, sizeof(Buffs.RxBuffer_Data));
     Buffs.RxBuffer.buff = malloc(RX_RB_SIZE);
     Wifi_Init();
+    Wifi_SetMode(WifiMode_Station);
     while (!Wifi_GetApConnection())
     {
         Wifi_Station_ConnectToAp(AP_SSID, AP_PASSWORD, NULL);
@@ -75,11 +78,17 @@ int main(void)
 
     while (1)
     {
-        if ((GPIOB->IDR & GPIO_IDR_ID4) || lcdReset)
+        if (GPIOB->IDR & GPIO_IDR_ID4)
         {
             ili9341FillScreen(BLACK);
             memcpy(&TxPacket.data[0], "*\0", 2);
             MQTT_Publish(TxPacket);
+            memset(RxPacket.data, '\0', _MQTT_RX_SIZE);
+            delay(100);
+        }
+        if (lcdReset)
+        {
+            ili9341FillScreen(BLACK);
             memset(RxPacket.data, '\0', _MQTT_RX_SIZE);
             delay(100);
             lcdReset = false;
