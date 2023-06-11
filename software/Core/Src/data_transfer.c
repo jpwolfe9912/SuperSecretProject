@@ -28,14 +28,38 @@ bool lcdReset = false;
 Coords_t TxCoords;
 Coords_t RxCoords;
 
+void initDevID(void)
+{
+    uint32_t(*unique_id_1) = (uint32_t *)(UID_BASE);      // BASE address
+    uint32_t(*unique_id_2) = (uint32_t *)(UID_BASE + 4);  // BASE address + 0x04 offset
+    uint32_t(*unique_id_3) = (uint32_t *)(UID_BASE + 14); // BASE address + 0x14 0ffset
+    if (*unique_id_1 == 0x00680038)
+    {
+        strcpy(Wifi.ownDevID, "Dev1");
+        strcpy(Wifi.othDevID, "Dev2");
+    }
+    else if (*unique_id_1 == 0x00620032)
+    {
+        strcpy(Wifi.ownDevID, "Dev2");
+        strcpy(Wifi.othDevID, "Dev1");
+    }
+    else
+    {
+        strcpy(Wifi.ownDevID, "None");
+        strcpy(Wifi.othDevID, "None");
+    }
+}
+
 /**
  * @brief Allocate memory for data transmission packet
  * @param MQTT_TxPacket
  */
 void initTxPacket(MQTT_Message_t *MQTT_TxPacket)
 {
+    char topic[24];
+    sprintf(topic, "topic/%s", Wifi.ownDevID);
     MQTT_TxPacket->data = calloc(_MQTT_TX_SIZE, sizeof(uint8_t));
-    strcpy(MQTT_TxPacket->topic, "topic/esp32atTx");
+    strcpy(MQTT_TxPacket->topic, topic);
     MQTT_Unsubscribe(*MQTT_TxPacket);
 }
 
@@ -45,8 +69,10 @@ void initTxPacket(MQTT_Message_t *MQTT_TxPacket)
  */
 void initRxPacket(MQTT_Message_t *MQTT_RxPacket)
 {
+    char topic[24];
+    sprintf(topic, "topic/%s", Wifi.othDevID);
     MQTT_RxPacket->data = calloc(_MQTT_RX_SIZE, sizeof(uint8_t));
-    strcpy(MQTT_RxPacket->topic, "topic/esp32atRx");
+    strcpy(MQTT_RxPacket->topic, topic);
     MQTT_Subscribe(*MQTT_RxPacket);
 }
 
