@@ -1267,16 +1267,12 @@ bool SNTP_TimeUpdated(void)
  */
 bool MQTT_Init(void)
 {
-    uint32_t(*unique_id_1) = (uint32_t *)(UID_BASE);      // BASE address
-    uint32_t(*unique_id_2) = (uint32_t *)(UID_BASE + 4);  // BASE address + 0x04 offset
-    uint32_t(*unique_id_3) = (uint32_t *)(UID_BASE + 14); // BASE address + 0x14 0ffset
-
     MQTT_GetConnection();
     if (!MQTT.connected)
     {
         MQTT.link_id = 0;
         MQTT.scheme = MQTTSchemes_TlsBothCert;
-        sprintf(MQTT.client_id, "%p%p%p", unique_id_1, unique_id_2, unique_id_3);
+        sprintf(MQTT.client_id, "%s", Wifi.ownDevID);
         strcpy(MQTT.username, "Jpwolfe");
         strcpy(MQTT.password, "1234567890");
         strcpy(MQTT.host, "a1k7aswhvntcg-ats.iot.us-west-1.amazonaws.com");
