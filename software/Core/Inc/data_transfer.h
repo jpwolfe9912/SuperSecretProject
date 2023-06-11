@@ -36,11 +36,11 @@ extern bool lcdReset;
 extern Coords_t TxCoords;
 extern Coords_t RxCoords;
 
+void initDevID(void);
 void initTxPacket(MQTT_Message_t* MQTT_TxPacket);
 void initRxPacket(MQTT_Message_t* MQTT_RxPacket);
 void initCoords(Coords_t* Coords);
 void readAndSendTouches(MQTT_Message_t* Message);
-void resetTouchIdx(void);
 void recvAndDisplayTouches(MQTT_Message_t* Message);
 
 #endif /* __DATA_TRANSFER_H__ */
